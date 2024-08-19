@@ -12,10 +12,13 @@ class SocialShareController extends Controller
 {
     public function whatsappShare(Request $request){
 // dd($request->bid);
-$bid =$request->query('bid');
+$bid =$request->query(1);
+// dd($bid);
+
         if($bid){
             $business= Business::find($bid);
         }
+        $business= Business::find(1);
         return view('front.pages.social-share.index', compact('business'));
     }
 }
