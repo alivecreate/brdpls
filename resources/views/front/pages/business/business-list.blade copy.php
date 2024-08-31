@@ -4,7 +4,7 @@
 
 
         <!-- main contents -->
-        <main id="site__main" class="p-2.5 h-[calc(100vh-var(--m-top))] mt-[--m-top]">
+        <main id="site__main" class="2xl:ml-[--w-side]  xl:ml-[--w-side-sm] py-10 p-2.5 h-[calc(100vh-var(--m-top))] mt-[--m-top]">
 
             <div class="lg:flex 2xl:gap-12 gap-10 2xl:max-w-[1220px] max-w-[1065px] mx-auto mt-10" id="js-oversized">
 
@@ -16,8 +16,6 @@
         </div>
 
         <div class="w-3/5 bg-gray-300 p-4">
-            <!-- Content for the second column (60%) -->
-             
             <h1 class='font-semibold text-black font-semibold text-black mb-5'>Enter your business detail</h1>
                         <form class="needs-validation data-form" action="http://localhost:8000/users/2" method="POST" enctype="multipart/form-data">
                         <input type="hidden" name="_token" value="Zl5boaJsMQjWyBh9pX5veDO4nWorFUvyp6eBoiTD" autocomplete="off">         

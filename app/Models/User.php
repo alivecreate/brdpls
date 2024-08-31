@@ -25,8 +25,11 @@ class User extends Authenticatable
         'password',
         'username',
         'email',
+        'otp',
+        'cid',
         'bio',
         'gender',
+        'status',
        'relationship',
     ];
 
@@ -52,4 +55,35 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+
+    public function ganeshCompetitions()
+    {
+        return $this->morphMany(GaneshCompetition::class, 'participant');
+    }
+    
+    public function votes()
+    {
+        return $this->hasMany(CompetitionVote::class);
+    }
+
+    
+    public function checkCompetitionVoted()
+    {
+        // return 
+        return $this->hasMany(CompetitionVote::class);
+    }
+
+    public function hasUserVotedForCategory($categoryId)
+{
+    $userId = Auth::id(); // Get the currently authenticated user's ID
+
+    // Check if the user has already voted in the specified category
+    $hasVoted = CompetitionVote::where('user_id', $userId)
+        ->where('competition_category_id', $categoryId)
+        ->exists();
+
+    return $hasVoted;
+}
+
 }

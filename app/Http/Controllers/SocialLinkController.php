@@ -43,7 +43,7 @@ class SocialLinkController extends Controller
         ]);
     
 
-        return redirect()->route('setting')->with('success', 'Social-Links Added Successfully.');
+        return redirect()->back()->with('success', 'Social-Links Added Successfully.');
     }
 
     /**
@@ -85,8 +85,7 @@ class SocialLinkController extends Controller
 
             ]);
             
-            return redirect()->route('setting')
-                ->with('success', 'Social Links updated successfully');
+            return redirect()->back()->with('success', 'Social Links updated successfully');
             }
             else {
                 Social_Link::create([
@@ -99,7 +98,7 @@ class SocialLinkController extends Controller
                     'status' => $request->status,
                 ]);
             
-                return redirect()->route('index')->with('error', 'Social Links not found');
+                return redirect()->back()->with('success', 'Social Links updated successfully');
             }
     }
 

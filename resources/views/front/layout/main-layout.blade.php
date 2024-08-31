@@ -3,6 +3,8 @@
 <head>
 
     @include('front.ext.head')
+    
+    @yield('custom-head')
  
 </head>
 <body>
@@ -16,6 +18,9 @@
         @yield('content')
 
 		@include('front.ext.scripts')
+        @yield('custom-script')
+
+        
  
 
 </body>

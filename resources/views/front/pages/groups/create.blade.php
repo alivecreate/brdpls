@@ -1,117 +1,105 @@
-@extends('front.layout.main-layout')
+@extends('front.layout.ganesh-festival-layout')
 
 @section('content')
 
-<!-- main contents -->
-    <main id="site__main" class="2xl:ml-[--w-side]  xl:ml-[--w-side-sm] py-10 p-2.5 h-[calc(100vh-var(--m-top))] mt-[--m-top]">
 
-            
-<div class="box 2xl:max-w-[1020px] max-w-[1065px] mt-10 px-10 py-10">
+        <!-- main contents -->
+        <main id="site__main" class="2xl:ml-[--w-side]  xl:ml-[--w-side-sm] py-10 p-2.5 h-[calc(100vh-var(--m-top))] mt-[--m-top]">
+            <div class="lg:flex 2xl:gap-12 gap-10 2xl:max-w-[1220px] max-w-[1065px] mx-auto mt-10" id="js-oversized">
 
-
-    <div class="page-heading">
-        <h1 class="page-title">Create Festival Groups </h1>
-    </div>
-
-        <form class="needs-validation data-form" action="{{route('group.store')}}" method="POST" enctype="multipart/form-data">
-        @csrf
-        @method('POST')
-
-            <div class="container mx-auto p-4">
-                <div class="space-y-6">
-                    <!-- Group Name -->
-                    <div class="md:flex md:items-center md:gap-4">
-                        <label class="md:w-32 block md:inline-block">Group Name <span class="text-danger">*</span></label>
-                        <div class="flex-1 md:mt-0">
-                            <input class="w-full border rounded-md p-2" type="text" id="group-name" name="name" value="{{old('name')}}" required>
-                        </div>
-                    </div>
-
-                    <!-- Description -->
-                    <div class="md:flex md:items-center md:gap-4">
-                        <label class="md:w-32 block md:inline-block">Description <span class="text-danger">*</span></label>
-                        <div class="flex-1 md:mt-0">
-                            <textarea class="w-full border rounded-md p-2" id="description" name="description" rows="4" value="{{old('description')}}" required></textarea>
-                        </div>
-                    </div>
-
-                    <!-- Category and Group Privacy -->
-                    <div class="md:flex md:items-center md:gap-4">
-                        <label class="md:w-32 block md:inline-block" for="category">Category <span class="text-danger">*</span></label>
-                        <div class="flex-1 md:mt-0">
-                            <select id="category" class="w-full border rounded-md p-2" name="category" value="{{old('category')}}" required>
-                                <option value="">Select a category</option>
-                                <option value="technology">Technology</option>
-                                <option value="sports">Sports</option>
-                                <option value="music">Music</option>
-                                <option value="food">Food</option>
-                                <option value="festival">Festival</option>
-                                <option value="other">Other</option>
-                            </select>
-                        </div>
-                        <label class="md:w-32 block md:inline-block md-ml-4  mt-2-sm" for="privacy">Group Privacy</label>
-                        <div class="flex-1 md:mt-0">
-                            <select class="w-full border rounded-md p-2" id="privacy" name="privacy" value="{{old('privacy')}}" required>
-                                <option value="public">Public</option>
-                                <option value="private">Private</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <!-- Address -->
-                    <div class="md:flex md:items-center md:gap-4">
-                        <label class="md:w-32 block md:inline-block">Address</label>
-                        <div class="flex-1 md:mt-0">
-                            <textarea class="w-full border rounded-md p-2 h-10" id="address" name="address" rows="4" value="{{old('address')}}" required></textarea>
-                        </div>
-                    </div>
-
-                    <!-- City -->
-                    <div class="md:flex md:items-center md:gap-4">
-                        <label class="md:w-32 block md:inline-block">City <span class="text-danger">*</span></label>
-                        <div class="flex-1 md:mt-0">
-                            <select class="w-full border rounded-md p-2" name="city" value="{{old('city')}}">
-                                <option value="">Please Select City</option>
-                                    @foreach(getGujaratCities() as $city)
-                                        <option value="{{$city->name}}" @if($city->name == 'Vadodara (Baroda)') selected @endif>{{$city->name}}</option>
-                                    @endforeach
-                            </select>
-                        </div>
-                    </div>
-
-                    <!-- Establishment Year -->
-                    <div class="md:flex md:items-center md:gap-4">
-                        <label class="md:w-32 block md:inline-block">Establishment Year</label>
-                        <div class="flex-1 md:mt-0">
-                            <select class="w-full border rounded-md p-2" name="year">
-                                <option value="">Select Year</option>
-                                @for($i = date('Y'); $i >= 1931; $i--)
-                                    <option value="{{ $i }}"> {{$i}}</option>
-                                @endfor
-                            </select>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="flex items-center gap-4 mt-16 lg:pl-[10.5rem]">
-                <button type="submit" class="button lg:px-6 bg-secondery max-md:flex-1"> Cancle</button>
-                <button type="submit" class="button lg:px-10 bg-primary text-white max-md:flex-1"> Save <span class="ripple-overlay"></span></button>
-            </div>
-        </form>
-    
-        <div class="flex justify-center my-6">
-            <button type="button" class="bg-white py-2 px-5 rounded-full shadow-md font-semibold text-sm dark:bg-dark2">Load more...</button>
+    <div class="lg:flex 2xl:gap-12 gap-10 2xl:max-w-[1220px] max-w-[1065px] mx-auto">
+        <div class="2xl:w-[380px] lg:w-[330px] w-full hidden lg:block">
+            <!-- Content for the first column (40%) -->
+            <img src="https://www.justdial.com/Free-Listing/_next/image?url=https%3A%2F%2Fakam.cdn.jdmagicbox.com%2Fimages%2Ficontent%2Flistingbusiness%2Fbusiness_detail_2x_new.png&w=1920&q=75" alt="">
         </div>
 
+        <div class="w-3/5 bg-gray-300 p-4">
+            <!-- Content for the second column (60%) -->
+             
+<div class="w-full bg-gray-200 rounded-full h-1 dark:bg-gray-700">
+  <div class="bg-blue-600 h-1 rounded-full" style="width: 10%"></div>
+</div>
+
+
+            <p class='heading-h1 font-semibold text-black font-semibold text-black mb-0'>Group Registration</p>
+            <p class="mb-3 subheading-h2">ગણેશ મંડળ અને યુવક મંડળનું રજિસ્ટ્રેશન</p>
+                        <form class="needs-validation data-form" action="{{route('business.store')}}" method="POST" enctype="multipart/form-data">
+                       @csrf
+                        <div class="space-y-5">
+
+                        <div class="md:flex items-center gap-10">
+                                <div class="flex-1 max-md:mt-4">
+                                    <input type="text" name="name" placeholder="Group Name"  class="w-full">
+                                </div>
+                            </div>
+
+
+                            <div class="md:flex items-center gap-10">
+                                <div class="flex-1 max-md:mt-4">
+                                    <input type="text" name="building" placeholder="Address" class="w-full">
+                                </div>
+                            </div>
+
+                            <div class="md:flex items-center gap-10">
+                                <div class="flex-1 max-md:mt-4">
+                                    <input type="text" name="landmark" placeholder="Landmark" class="w-full">
+                                </div>
+                            </div>
+                            
+
+                            <div class="md:flex items-center gap-10">
+                                <div class="flex-1 max-md:mt-4">
+                                    <input type="text" name="pincode" placeholder="Pincode" class="w-full">
+                                </div>
+                            </div>
+
+                            <div class="md:flex items-center gap-10">
+                                <div class="flex-1 max-md:mt-4">
+                                    <select class="!rounded-md w-full text-capitalize" name="city" >
+                                    <option value="">Select City</option>
+                                        @foreach(getGujaratCities() as $city)
+                                           <option value="{{$city->name}}" @if($city->name == 'vadodara') selected @endif>{{$city->name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+
+                                <div class="flex-1 max-md:mt-4">
+                                    <select class="!rounded-md w-full text-capitalize" name="state" >
+                                    <option value="">Select State</option>
+                                        @foreach(getStates() as $state)
+                                           <option value="{{$state->name}}"  @if($state->name == 'gujarat') selected @endif>{{$state->name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            
+                            <div class="md:flex items-start gap-10 " hidden="">
+                                <div class="flex-1 flex items-center gap-5 max-md:mt-4">
+                                    <img src="http://localhost:8000/front/images/avatars/avatar-3.jpg" alt="" name="image" class="w-10 h-10 rounded-full">
+                                    <button type="submit" class="px-4 py-1 rounded-full bg-slate-100/60 border dark:bg-slate-700 dark:border-slate-600 dark:text-white"> Change</button>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="flex items-center gap-4 mt-16 lg:pl-[10.5rem]">
+                            <button type="submit" class="button lg:px-6 bg-secondery max-md:flex-1"> Cancel</button>
+                            <button type="submit" class="button lg:px-10 bg-primary text-white max-md:flex-1"> Next <span class="ripple-overlay"></span></button>
+                        </div>
+                    </form>
+        </div>
+    </div>
     
-</div>
+    
+                </div> 
+            </div>
+        </main>
+    </div>
+    
 
 
-</main>
-
-</div>
-
+ @include('front.widget.product-modal-block')
 
 
 @endsection

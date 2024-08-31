@@ -17,7 +17,7 @@ class ImageUploadController extends Controller
 
 public function imageUpload(Request $request)
 {
-
+// dd($request->all());
     // Validate the incoming request
     $request->validate([
         'image' => 'required|image|max:20480', // Max size 2MB
@@ -86,11 +86,7 @@ $business = Business::where(['id' =>$request->business_id, 'user_id'=> $request-
 public function imageUploads(Request $request)
 {
 
-    $image = $request->file('image');
-    // dd($image->getPathname());
-
-    // Validate the incoming request
-  
+    $image = $request->file('image');  
 
     $request->validate([
         'images.*' => 'required|image|mimes:jpeg,png,jpg,gif,webp,avi|max:2048', // Validate each image
@@ -136,14 +132,7 @@ public function imageUploads(Request $request)
                     'image' => $result->result->id,
                     'type' => $request->type
                 ]);
-
-                
-        
-$business->gallery()->save($businessGallery);
-
-
-                // You can store image IDs in a gallery or another related model, or update business fields
-                // $business->gallery()->create(['image_id' => $result->result->id]);
+                $business->gallery()->save($businessGallery);
 
             } else {
                 $errors[] = $result->errors[0]->message ?? 'Failed to upload image.';
@@ -168,7 +157,6 @@ $business->gallery()->save($businessGallery);
         'image_ids' => $uploadedImages,
         'message' => 'Images uploaded successfully.',
     ]);
-
 }
 
 

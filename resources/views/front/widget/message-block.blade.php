@@ -1,7 +1,7 @@
 <body class="bg-white darkd">
     
     <!-- main contents -->
-<main id="site__main" class="2xl:ml-[--w-side]  xl:ml-[--w-side-sm] p-2.5 h-[calc(100vh-var(--m-top))] mt-[--m-top]">
+<main id="site__main" class="2xl:ml-[--w-side]  xl:ml-[--w-side-sm] py-10 p-2.5 h-[calc(100vh-var(--m-top))] mt-[--m-top]">
 
     <div class="relative overflow-hidden border -m-2.5 dark:border-slate-700">
 

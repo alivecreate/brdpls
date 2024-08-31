@@ -7,6 +7,8 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     
     @yield('meta')
+    
+    @yield('custom-head')
 
 </head>
 <body>
@@ -20,6 +22,7 @@
 
 
 		@include('front.ext.scripts')
+        @yield('custom-script')
   
  
 

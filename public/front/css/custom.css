@@ -55,6 +55,10 @@
 
 
 @media (min-width: 768px) {
+    .timeline-cover{
+        height: 30rem;
+    }
+
     .md-ml-4 {
         margin-left: 1rem;
       }
@@ -73,6 +77,9 @@
 }
 
 @media (max-width: 769px) {
+    .timeline-cover{
+        height: 20rem;
+    }
     .mt-2-sm {
         margin-top: 1.5rem; /* 8px */
     }
@@ -131,6 +138,15 @@ select, input[type='password'], input[type='email'], input[type='number'], input
     border: 1px solid #d4d4d4;
     padding: 10px 10px;
 }
+.textarea{
+border-color: transparent;
+font-size: 0.875rem;
+    --tw-bg-opacity: 1;
+    background-color: rgb(241 245 249 / var(--tw-bg-opacity));
+    border: 1px solid #d4d4d4;
+    padding: 10px 10px;
+    border-radius: 0.375rem;
+}
 
 input[type='text']::placeholder,
 input[type='password']::placeholder,
@@ -160,10 +176,16 @@ text-transform: uppercase;
     font-size: 16px;
     padding: 0.6rem;
 }
-
 .heading-h1 {
     font-size: 22px;
     margin: 13px 0px;
+    margin-bottom: 12px !important;
+}
+.bg-danger{
+background: #ae0d0d;
+}
+.bg-danger:hover a {
+	color: #ffe1bb !important;
 }
 .heading-h2{
     font-size: 16px;
@@ -173,7 +195,34 @@ text-transform: uppercase;
 .float-left{
 float: left;
 }
+.custom-nav-menu {
+    display: flex;
+    align-items: center;
+    align-content: center;
+    width: auto;
+    justify-content: center;
+}
+#side a.active svg, #side a.uk-active svg, #side .active  a, #side a.uk-active {
+    --tw-bg-opacity: 1;
+    background-color: rgb(227 236 245);
+    --tw-text-opacity: 1;
+    color: rgb(var(--color-primary) / var(--tw-text-opacity));
+    box-shadow: 0pt 1pt 1pt 0pt #e0e0e0;
+}
+.flex-icon div {
+    display: flex;
+    align-items: center;
+}
 
+
+.list li {
+    list-style: auto;
+    list-style-position: inside;
+    font-size: 16px;
+    font-weight: bold;
+    color: #5c5c5c;
+    line-height: 2;
+}
 
 .float-left{
     float: right;
@@ -182,6 +231,47 @@ float: left;
     .flex-auto {
         display: flex;
         flex: auto;
+    }
+
+
+    .heading-rules {
+        font-size: 18px;
+        font-weight: bold;
+        margin: 8px 0px;
+        color: #0b6999 !important;
+        text-decoration: underline;
+    }
+    
+  .lg-mt-4{
+
+    margin-top: 16px !important;
+  }
+  .text-underline{
+    text-decoration: underline;
+  }
+
+    .heading-rules-title {
+        background: #c20287;
+        padding: 5px 7px;
+        color: white !important;
+        width: 255px;
+        border-radius: 5px;
+        font-weight: bold;
+        font-size: 20px;
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+    }
+
+    .custom-bg-blue {
+        font-size: 20px;
+        font-weight: bold;
+        float: left;
+        background: #0284c7;
+        color: white !important;
+        padding: 6px 8px;
+        margin-top: 10px;
+        border-radius: 11px;
     }
 
     .form-title{
@@ -263,11 +353,83 @@ box-shadow: none;
     border-radius: 5px;
     cursor: pointer;
 }
+.flex-column {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding-right: 16px;
+}
+.live-voting-counter {
+	color: #18a38f !important;
+	font-size: 16px;
+	background: whitesmoke;
+	padding: 4px 14px;
+	border-radius: 53px;
+	border: 1px solid;
+	text-align: center;
+}
+.bg-success{
+    background-color: green;
+}
+.btn-voting-disable{
+        background: silver;
+        cursor: not-allowed;
+}
+.btn-not-allowed{
+    cursor: not-allowed;
+}
+.live-icon{
+    height: 40px;
+}
+
+.loader {
+	border: 9px solid #f3f3f3;
+	border-radius: 50%;
+	border-top: 9px solid #3498db;
+	width: 100px;
+	height: 100px;
+	-webkit-animation: spin 2s linear infinite;
+	animation: spin 2s linear infinite;
+}
+
+  @-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }  
+
+.live-voting-counter span{
+font-weight: bolder;
+font-size: 17px;
+}
 
 div#search--box {
     margin-top: 30px;
 }
+.subheading-h3 {
+    color: #fb0000;
+    margin-bottom: 18px;
+    font-weight: bold ;
+}
+.sidebar-page-links{
 
+}
+
+.bg-voting{
+    background: whitesmoke;
+    padding: 8px;
+}
+.live-d-icon{
+top: 2px;
+position: relative;
+}
+.bg-green{
+background: green;
+}
 
 nav ol li {
     padding: 0px 2px;
@@ -281,6 +443,47 @@ nav ol li a svg {
 {
 background: #ececec;
 }
+.cover
+{
+    object-fit: cover;
+}
+.clear{
+    clear: both;
+}
+.contact-form {
+	background: whitesmoke;
+	border: 1px solid silver;
+	padding: 20px 16px;
+}
+.bg-white{
+    
+	background: white !important;
+}
+
+.payment-success {
+    text-align: center;
+    margin-top: 20px;
+    background: #00800042;
+    color: #005a00 !important;
+    padding: 20px;
+    border-radius: 20px;
+    font-weight: bold;
+}
+.payment-fail {
+    text-align: center;
+    margin-top: 20px;
+    background: #80000042;
+    color: #3b0101 !important;
+    padding: 20px;
+    border-radius: 20px;
+    font-weight: bold;
+}
+
+.sidebar-page-links h2 {
+    font-size: 17px;
+    margin: 12px 0px;
+    text-decoration: underline;
+}
 
 .flex-center {
     display: flex;
@@ -288,6 +491,11 @@ background: #ececec;
     align-items: center;
     justify-content: space-around;
 }
+.sidebar-page-links {
+    position: absolute;
+    bottom: 122px;
+}
+
 a:hover {
     color: #3a6eaa;
 }
@@ -325,6 +533,11 @@ a:hover {
     margin-left: 3px;
 }
 
+.flex-justify-space-around{
+    display: flex;
+    justify-content: space-around;
+}
+
 .biz-list-location .icon{
 font-size: 20px;
 }
@@ -344,13 +557,23 @@ font-size: 20px;
     background-color: rgb(17 143 64);
     letter-spacing: 1px;
 }
+.flex-space-between{
+    display: flex;
+  justify-content: space-between;
+}
 
 .btn-call{
     background-color: rgb(17 143 64);
     letter-spacing: 1px;
 }
+.heading-h2{
+font-size: 20px;
+}
 
-
+.subheading-h2{
+color: #1481b3;
+font-weight: bold;
+}
 
     /* Custom Image Uploading */
 
@@ -382,13 +605,15 @@ font-size: 20px;
     cursor: pointer;
 }
 
-#uploadButton {
+#uploadButton, .uploadButton {
     padding: 10px 20px;
     background-color: #007bff;
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    display: flex;
+    align-items: center;
 }
 
 #uploadButton:hover {

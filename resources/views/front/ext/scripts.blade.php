@@ -1,17 +1,22 @@
           <!-- Javascript  -->
           <script src="{{asset('front')}}/js/uikit.min.js"></script>
-    <script src="{{asset('front')}}/js/simplebar.js"></script>
-    <script src="{{asset('front')}}/js/script.js"></script>
-    <script src="{{asset('front')}}/js/custom.js"></script>
- 
- 
-    <!-- Ion icon -->
-    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+          <script src="{{asset('front')}}/js/simplebar.js"></script>
+          <script src="{{asset('front')}}/js/script.js"></script>
+          <script src="{{asset('front')}}/js/custom.js"></script>
 
-    
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <!-- <script>
+
+          <!-- Ion icon -->
+          <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+          <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+
+          <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+          <link rel="stylesheet" href="{{asset('front/js')}}/toastr.min.css">
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+          <!-- <script>
         // Ensure jQuery is loaded
         $(document).ready(function() {
             $('.business_hours').change(function (e) { 
@@ -24,27 +29,25 @@
     </script> -->
 
 
-    <script>
-
-
-
+          <script>
 document.getElementById('set-default-times').addEventListener('click', function() {
-      // alert('test');
-   
+    // alert('test');
+
     var openTimeSelects = document.querySelectorAll('select[name*="[open]"]');
     var closeTimeSelects = document.querySelectorAll('select[name*="[close]"]');
 
-    
-    if (openTimeSelects.length > 0) {
-                var firstOpenTimeValue = openTimeSelects[0].value;
-                var defaultOpenTime = openTimeSelects[0].value; // Set your desired default open time
-    var defaultCloseTime = closeTimeSelects[0].value; // Set your desired default close time
 
-    
-                console.log('first time - ', firstOpenTimeValue); // Logs the value of the first open time select element
-            } else {
-                console.log('No open time selects found');
-            }
+    if (openTimeSelects.length > 0) {
+        var firstOpenTimeValue = openTimeSelects[0].value;
+        var defaultOpenTime = openTimeSelects[0].value; // Set your desired default open time
+        var defaultCloseTime = closeTimeSelects[0].value; // Set your desired default close time
+
+
+        console.log('first time - ',
+        firstOpenTimeValue); // Logs the value of the first open time select element
+    } else {
+        console.log('No open time selects found');
+    }
 
 
     openTimeSelects.forEach(function(select) {
@@ -55,94 +58,115 @@ document.getElementById('set-default-times').addEventListener('click', function(
         select.value = defaultCloseTime;
     });
 });
-</script>
+          </script>
+
+          <script>
+// document.addEventListener('DOMContentLoaded', function() {
+
+//     const deleteButtons = document.querySelectorAll('.delete-button');
+//     const confirmDeleteForm = document.getElementById('confirm-delete-form');
+//     const dispName = document.querySelector('.disp-name');
+
+//     const deleteBaseUrl = `{{ route('deleteMyBusiness', '') }}`;
+
+//     deleteButtons.forEach(button => {
+//         button.addEventListener('click', function() {
+//             const businessCode = this.getAttribute('data-cid');
+//             const name = this.getAttribute('data-name');
+
+//             dispName.textContent = name;
+
+//             const deleteUrl = `${deleteBaseUrl}/${businessCode}`;
+//             confirmDeleteForm.setAttribute('action', deleteUrl);
+
+//         });
+//     });
+// });
+          </script>
+
 
 <script>
-
 document.addEventListener('DOMContentLoaded', function() {
 
-const deleteButtons = document.querySelectorAll('.delete-biz-button');
-const confirmDeleteForm = document.getElementById('confirm-delete-form');
-const dispName = document.querySelector('.disp-name');
+    const deleteButtons = document.querySelectorAll('.delete-biz-button');
+    const confirmDeleteForm = document.getElementById('confirm-delete-form');
+    const dispName = document.querySelector('.disp-name');
 
-const deleteBaseUrl = `{{ route('deleteMyBusiness', '') }}`;
+    const deleteBaseUrl = `{{ route('deleteMyBusiness', '') }}`;
 
-deleteButtons.forEach(button => {
-    button.addEventListener('click', function() {
-        const businessCode = this.getAttribute('data-cid');
-        const name = this.getAttribute('data-name');
-        
-        dispName.textContent = name;
+    deleteButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const businessCode = this.getAttribute('data-cid');
+            const name = this.getAttribute('data-name');
 
-        const deleteUrl = `${deleteBaseUrl}/${businessCode}`;
+            dispName.textContent = name;
+
+            const deleteUrl = `${deleteBaseUrl}/${businessCode}`;
             confirmDeleteForm.setAttribute('action', deleteUrl);
 
+        });
     });
 });
-});
-
-
-</script>
+          </script>
 
 <!-- Custom Image Uploading With Preview -->
-
 <script>
-      document.getElementById('uploadButton').addEventListener('click', function() {
-    document.getElementById('imageUpload').click();
+document.getElementById('uploadButton').addEventListener('click', function() {
+document.getElementById('imageUpload').click();
 });
 
 document.getElementById('imageUpload').addEventListener('change', function() {
-    const file = this.files[0];
-    if (file) {
-        const reader = new FileReader();
-        reader.onload = function(event) {
-            const previewImg = document.getElementById('previewImg');
-            previewImg.setAttribute('src', event.target.result);
-            previewImg.style.display = 'block';
+const file = this.files[0];
+if (file) {
+  const reader = new FileReader();
+  reader.onload = function(event) {
+      const previewImg = document.getElementById('previewImg');
+      previewImg.setAttribute('src', event.target.result);
+      previewImg.style.display = 'block';
 
-            const deleteButton = document.getElementById('deleteButton');
-            deleteButton.style.display = 'block';
-
-            
-            document.getElementById('deleteButton').onclick = function() {
-            deletevideo();
-        
-        };
-        };
-        reader.readAsDataURL(file);
-    }
-
-
-    
-    // Automatically submit the form when a file is selected
-    if (this.files && this.files[0]) {
-        let formData = new FormData();
-        formData.append('image', this.files[0]);
-    formData.append('business_id', document.querySelector('meta[name="business-id"]').getAttribute('content'));
-    formData.append('user_id', document.querySelector('meta[name="user-id"]').getAttribute('content'));
-
-                fetch('http://localhost:8000/api/image-upload', {
-            method: 'POST',
-            body: formData,
-            headers: {
-                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-            }
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log('Success:', data.image_id);
-
-            document.getElementById('deleteButton').setAttribute('onclick', `deleteImage('${data.image_id}')`);
+      const deleteButton = document.getElementById('deleteButton');
+      deleteButton.style.display = 'block';
+      document.getElementById('deleteButton').onclick = function() {
+          deletevideo();
+      };
+  };
+  reader.readAsDataURL(file);
+}
 
 
 
-            // Handle the response as needed
-        })
-        .catch((error) => {
-            console.error('Error:', error);
-            // Handle any errors
-        });
-    }
+// Automatically submit the form when a file is selected
+if (this.files && this.files[0]) {
+  let formData = new FormData();
+  formData.append('image', this.files[0]);
+  formData.append('business_id', document.querySelector('meta[name="business-id"]').getAttribute(
+      'content'));
+  formData.append('user_id', document.querySelector('meta[name="user-id"]').getAttribute('content'));
+
+  fetch('http://localhost:8000/api/image-upload', {
+          method: 'POST',
+          body: formData,
+          headers: {
+              'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute(
+                  'content')
+          }
+      })
+      .then(response => response.json())
+      .then(data => {
+          console.log('Success:', data.image_id);
+
+          document.getElementById('deleteButton').setAttribute('onclick',
+              `deleteImage('${data.image_id}')`);
+
+
+
+          // Handle the response as needed
+      })
+      .catch((error) => {
+          console.error('Error:', error);
+          // Handle any errors
+      });
+}
 
 
 
@@ -198,22 +222,86 @@ document.getElementById('imageUpload').addEventListener('change', function() {
 });
 
 document.getElementById('deleteButton').addEventListener('click', function() {
-    const previewImg = document.getElementById('previewImg');
-    previewImg.setAttribute('src', '');
-    previewImg.style.display = 'none';
-    this.style.display = 'none';
+const previewImg = document.getElementById('previewImg');
+previewImg.setAttribute('src', '');
+previewImg.style.display = 'none';
+this.style.display = 'none';
 
-    document.getElementById('imageUpload').value = '';
+document.getElementById('imageUpload').value = '';
 });
-
-
 </script>
 
-<!-- cloudflair image upload -->
 
 
-<script>
+          <!-- Grp img Upload With Preview -->
+          <script>
+    document.getElementById('uploadButton').addEventListener('click', function() {
+        document.getElementById('imageUpload').click();
+    });
 
+    document.getElementById('imageUpload').addEventListener('change', function() {
+        const file = this.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                const previewImg = document.getElementById('previewImg');
+                previewImg.setAttribute('src', event.target.result);
+                previewImg.style.display = 'block';
+
+                const deleteButton = document.getElementById('deleteButton');
+                deleteButton.style.display = 'block';
+                document.getElementById('deleteButton').onclick = function() {
+                    deletevideo();
+                };
+            };
+            reader.readAsDataURL(file);
+        }
+
+
+        if (this.files && this.files[0]) {
+            let formData = new FormData();
+            formData.append('image', this.files[0]);
+            formData.append('business_id', document.querySelector('meta[name="business-id"]').getAttribute(
+                'content'));
+            formData.append('user_id', document.querySelector('meta[name="user-id"]').getAttribute('content'));
+
+            fetch('http://localhost:8000/api/image-upload', {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute(
+                            'content')
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Success:', data.image_id);
+
+                    document.getElementById('deleteButton').setAttribute('onclick',
+                        `deleteImage('${data.image_id}')`);
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                });
+        }
+
+
+    });
+
+    document.getElementById('deleteButton').addEventListener('click', function() {
+        const previewImg = document.getElementById('previewImg');
+        previewImg.setAttribute('src', '');
+        previewImg.style.display = 'none';
+        this.style.display = 'none';
+
+        document.getElementById('imageUpload').value = '';
+    });
+</script>
+
+
+
+
+          <script>
 // document.getElementById('uploadButton').addEventListener('click', function() {
 //     const imageInput = document.getElementById('imageInput');
 //     const uploadStatus = document.getElementById('uploadStatus');
@@ -263,12 +351,9 @@ document.getElementById('deleteButton').addEventListener('click', function() {
 //         uploadStatus.textContent = 'Error uploading image: ' + error.message;
 //     });
 // });
+          </script>
 
-
-</script>
-
-<script>
-
+          <script>
 //       $(document).ready(function () {
 //     $('#selectImagesButton').on('click', function () {
 //         $('#images').click();
@@ -282,7 +367,7 @@ document.getElementById('deleteButton').addEventListener('click', function() {
 //     // Create a new FileReader instance
 //     var reader = new FileReader();
 
-        
+
 //         // Show image previews in a column-wise layout
 //         for (var i = 0; i < files.length; i++) {
 //             var reader = new FileReader();
@@ -303,7 +388,7 @@ document.getElementById('deleteButton').addEventListener('click', function() {
 //         var formData = new FormData($('#imageUploadForm')[0]);
 //     formData.append('business_id', document.querySelector('meta[name="business-id"]').getAttribute('content'));
 //     formData.append('user_id', document.querySelector('meta[name="user-id"]').getAttribute('content'));
-    
+
 //         $('#progress-bar').width('0%');
 
 //         $.ajax({
@@ -317,7 +402,7 @@ document.getElementById('deleteButton').addEventListener('click', function() {
 //                         var percentLoaded = Math.round((e.loaded / e.total) * 100);
 //                         // Update the progress bar width
 //                         $('#' + progressId).css('width', percentLoaded + '%');
-            
+
 //                     }
 //                 },
 //                 xhr.onload = function() {
@@ -333,8 +418,8 @@ document.getElementById('deleteButton').addEventListener('click', function() {
 //                 return xhr;
 //             },
 
-            
-            
+
+
 //             type: 'POST',
 //             url: '/api/image-uploads',
 //             data: formData,
@@ -349,12 +434,12 @@ document.getElementById('deleteButton').addEventListener('click', function() {
 //         });
 //     });
 // });
-$(document).ready(function () {
-    $('#selectImagesButton').on('click', function () {
+$(document).ready(function() {
+    $('#selectImagesButton').on('click', function() {
         $('#images').click();
     });
 
-    $('#images').on('change', function () {
+    $('#images').on('change', function() {
         // $('#imageMultiplePreview').empty(); // Clear previous previews
         var files = this.files;
 
@@ -363,18 +448,18 @@ $(document).ready(function () {
                 // Create a new FileReader instance
                 var reader = new FileReader();
 
-                reader.onload = function (e) {
+                reader.onload = function(e) {
                     $('#imageMultiplePreview').prepend(
-                        
-                        
+
+
                         '<li class="lg:w-1/4 sm:w-1/3 w-1/2 p-4" tabindex="-1">' +
-            '<div class="card uk-transition-toggle">' +
-                '<div class="card-media sm:aspect-[2/1.9] h-40">' +
-                    '<img src="' + e.target.result + '" alt="">' +
-                    '<div class="card-overly"></div>' +
-                '</div>' +
-            '</div>' +
-        '</li>'
+                        '<div class="card uk-transition-toggle">' +
+                        '<div class="card-media sm:aspect-[2/1.9] h-40">' +
+                        '<img src="' + e.target.result + '" alt="">' +
+                        '<div class="card-overly"></div>' +
+                        '</div>' +
+                        '</div>' +
+                        '</li>'
                     );
                 };
 
@@ -383,8 +468,10 @@ $(document).ready(function () {
                 // Create a new FormData object for each image
                 var formData = new FormData();
                 formData.append('image', file); // Append the individual file
-                formData.append('business_id', document.querySelector('meta[name="business-id"]').getAttribute('content'));
-                formData.append('user_id', document.querySelector('meta[name="user-id"]').getAttribute('content'));
+                formData.append('business_id', document.querySelector('meta[name="business-id"]')
+                    .getAttribute('content'));
+                formData.append('user_id', document.querySelector('meta[name="user-id"]')
+                    .getAttribute('content'));
 
                 $.ajax({
                     type: 'POST',
@@ -392,12 +479,13 @@ $(document).ready(function () {
                     data: formData,
                     contentType: false,
                     processData: false,
-                    success: function (response) {
+                    success: function(response) {
                         console.log('File uploaded successfully:', response);
-                        
-            document.getElementById('deleteButton').setAttribute('onclick', `deleteImage('${response.image_id}')`);
+
+                        document.getElementById('deleteButton').setAttribute('onclick',
+                            `deleteImage('${response.image_id}')`);
                     },
-                    error: function (response) {
+                    error: function(response) {
                         console.error('Image upload failed:', response);
                     }
                 });
@@ -406,91 +494,105 @@ $(document).ready(function () {
         }
     });
 });
+          </script>
 
-
-
-
-
-
-
-</script>
-
-<script>
-    
+          <script>
 function deleteImage(imageId) {
     var formData = new FormData();
 
     formData.append('image_id', imageId);
 
-var business_id = document.querySelector('meta[name="business-id"]').getAttribute('content');
-var user_id = document.querySelector('meta[name="user-id"]').getAttribute('content');
+    var business_id = document.querySelector('meta[name="business-id"]').getAttribute('content');
+    var user_id = document.querySelector('meta[name="user-id"]').getAttribute('content');
 
     // Send the delete request using AJAX
     fetch(`/api/delete-business-logo?image_id=${imageId}&business_id=${business_id}&user_id=${user_id}`, {
-        method: 'DELETE',
-        headers: {
-            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content') // For Laravel CSRF protection
-        },
-        body: formData
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            // alert('Image deleted successfully.');
-        toastr.success('Logo Deleted Successfully!');
-        } else {
-            
-        toastr.warning('Someting Went Wrong!');
-        }
-    })
-    .catch(error => {
-        console.error('Error:', error);
-    });
-    
+            method: 'DELETE',
+            headers: {
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute(
+                    'content') // For Laravel CSRF protection
+            },
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                // alert('Image deleted successfully.');
+                toastr.success('Logo Deleted Successfully!');
+            } else {
+
+                toastr.warning('Someting Went Wrong!');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+
 }
-</script>
-
-<link rel="stylesheet" href="{{asset('front/js')}}/toastr.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+          </script>
 
 
-<script>
-    
-function deleteBusinessImage(button,imageId) {
+          <script>
+function deleteBusinessImage(button, imageId) {
 
     button.disabled = true;
 
     var formData = new FormData();
-formData.append('image_id', imageId);
+    formData.append('image_id', imageId);
 
-var business_id = document.querySelector('meta[name="business-id"]').getAttribute('content');
-var user_id = document.querySelector('meta[name="user-id"]').getAttribute('content');
+    var business_id = document.querySelector('meta[name="business-id"]').getAttribute('content');
+    var user_id = document.querySelector('meta[name="user-id"]').getAttribute('content');
 
-fetch(`/api/delete-business-image?image_id=${imageId}&business_id=${business_id}&user_id=${user_id}`, {
-    method: 'DELETE',
-    headers: {
-        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content') // For Laravel CSRF protection
-    },
-    body: formData
-})
-.then(response => response.json())
-.then(data => {
-    if (data.success) {
-        
-    var grandparentElement = button.parentElement.parentElement;
+    fetch(`/api/delete-business-image?image_id=${imageId}&business_id=${business_id}&user_id=${user_id}`, {
+            method: 'DELETE',
+            headers: {
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute(
+                    'content') // For Laravel CSRF protection
+            },
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
 
-// Remove the row div from the DOM
-if (grandparentElement) {
-    grandparentElement.remove();
+                var grandparentElement = button.parentElement.parentElement;
+
+                // Remove the row div from the DOM
+                if (grandparentElement) {
+                    grandparentElement.remove();
+                }
+                toastr.success('Image Deleted Successfully!');
+            } else {
+                toastr.warning('Someting Went Wrong!');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
 }
-        toastr.success('Image Deleted Successfully!');
+          </script>
+
+
+          <script>
+document.getElementById('toggleOtpVisibility').addEventListener('click', function() {
+    const otpInput = document.getElementById('otp');
+    const eyeIcon = document.getElementById('eyeIcon');
+    if (otpInput.type === 'password') {
+        otpInput.type = 'text';
+        eyeIcon.setAttribute('d',
+            'M15 12c0 1.656-1.344 3-3 3s-3-1.344-3-3 1.344-3 3-3 3 1.344 3 3zM12 4.5c4.418 0 8 3.582 8 8s-3.582 8-8 8-8-3.582-8-8 3.582-8 8-8z'
+            );
     } else {
-        toastr.warning('Someting Went Wrong!');
+        otpInput.type = 'password';
+        eyeIcon.setAttribute('d',
+            'M15 12c0 1.656-1.344 3-3 3s-3-1.344-3-3 1.344-3 3-3 3 1.344 3 3zM12 4.5c4.418 0 8 3.582 8 8s-3.582 8-8 8-8-3.582-8-8 3.582-8 8-8z'
+            );
     }
-})
-.catch(error => {
-    console.error('Error:', error);
 });
-}
-</script>
 
+// Resend OTP button action
+document.getElementById('resendOtp').addEventListener('click', function() {
+    // Logic for resending OTP goes here
+    alert('OTP has been resent!'); // Example action
+});
+          </script>

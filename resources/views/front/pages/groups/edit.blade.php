@@ -3,7 +3,7 @@
 @section('content')
 
 <!-- main contents -->
-    <main id="site__main" class="2xl:ml-[--w-side]  xl:ml-[--w-side-sm] py-10 p-2.5 h-[calc(100vh-var(--m-top))] mt-[--m-top]">
+    <main id="site__main" class="2xl:ml-[--w-side]  xl:ml-[--w-side-sm] py-10 2xl:ml-[--w-side]  xl:ml-[--w-side-sm] py-10 p-2.5 h-[calc(100vh-var(--m-top))] mt-[--m-top]">
 
             
 <div class="box 2xl:max-w-[1020px] max-w-[1065px] mt-10 px-10 py-10">

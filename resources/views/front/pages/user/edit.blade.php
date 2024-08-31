@@ -22,7 +22,7 @@
 
         <!-- form -->
         {{-- <form method="#" action="#" class="space-y-7 text-sm text-black font-medium dark:text-white"  uk-scrollspy="target: > *; cls: uk-animation-scale-up; delay: 100 ;repeat: true"> --}}
-          <form class="needs-validation data-form" action="{{ route('register') }}" method="POST" enctype="multipart/form-data">
+          <form class="needs-validation data-form" action="{{ route('registration') }}" method="POST" enctype="multipart/form-data">
             @csrf
             
           <div class="grid grid-cols-2 gap-4 gap-y-7">

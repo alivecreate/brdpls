@@ -13,21 +13,28 @@ return new class extends Migration
     {
         Schema::create('groups', function (Blueprint $table) {
             $table->id();
-            $table->string('group_code')->nullable();
+            $table->string('cid')->nullable();
             $table->string('name')->nullable();
+            $table->string('decoration')->nullable();
+            $table->string('organizer')->nullable();
             $table->string('description')->nullable();
             $table->string('category')->nullable();
             $table->string('privacy')->nullable();
-            $table->string('members')->nullable();
-            $table->string('cover')->nullable();
+            $table->text('cover')->nullable();
             $table->string('year')->nullable();
-            $table->string('location')->nullable();
+            $table->string('address')->nullable();
+            $table->string('lat')->nullable();
+            $table->string('long')->nullable();
             $table->string('city')->nullable();
             $table->string('status')->nullable();
             $table->string('slug')->nullable();
             
             $table->unsignedBigInteger('user_id')->nullable();
-            $table->foreign('user_id')->references('id')->on('users')->nullable();
+
+            $table->foreign('user_id')
+            ->references('id')
+            ->on('users')
+            ->onDelete('cascade');
 
             $table->timestamps();
         });

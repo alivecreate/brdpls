@@ -19,6 +19,17 @@ use App\Http\Controllers\MyBusinessController;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\ListingController;
 use App\Http\Controllers\SocialShareController;
+use App\Http\Controllers\GaneshFestivalController;
+use App\Http\Controllers\GaneshFestivalGroupController;
+use App\Http\Controllers\GaneshFestivalCompetition;
+use App\Http\Controllers\FestivalCompetitionVoting;
+
+use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\LiveCompetitionStatus;
+use App\Http\Controllers\GaneshCompetitionPaymentController;
+
+
+
 
 
 
@@ -26,7 +37,12 @@ use App\Http\Controllers\SocialShareController;
 Route::get('/theme', [PageController::class, 'theme'])->name('theme');
                                                                                                
 
-Route::get('/', [PageController::class, 'index'])->name('index')->middleware(ValidUser::class);
+Route::get('/', [PageController::class, 'index'])->name('index');
+Route::get('/about-us', [PageController::class, 'about'])->name('about');
+Route::get('/terms-and-conditions', [PageController::class, 'termsAndConditions'])->name('termsAndConditions');
+Route::get('/privacy-policy', [PageController::class, 'privacyPolicy'])->name('privacyPolicy');
+Route::get('/refund-and-cancellation', [PageController::class, 'refundAndCancellation'])->name('refundAndCancellation');
+Route::get('/contact', [PageController::class, 'contact'])->name('contact');
 
 Route::get('/messages', [PageController::class, 'messages'])->name('messages')->middleware(ValidUser::class);
 
@@ -113,9 +129,11 @@ Route::post('/business-list/step-4-category', [BusinessController::class, 'store
 
 
 Route::get('/components', [PageController::class, 'components'])->name('components');
-
-
 Route::get('/test/rss', [TestController::class, 'rssFeed'])->name('rssFeed');
+Route::get('/test/create-collage', [TestController::class, 'createCollage'])->name('createCollage');
+
+
+
 
 
 // Auth User
@@ -123,7 +141,10 @@ Route::get('/test/rss', [TestController::class, 'rssFeed'])->name('rssFeed');
 // Route::get('/login', [PageController::class, 'login'])->name('login');
 // Route::get('/register', [PageController::class, 'register'])->name('register');
 
-Route::get('/register', [PageController::class, 'register'])->name('register')->middleware(IsCheckLogin::class);
+Route::get('/registration', [PageController::class, 'registration'])->name('registration')->middleware(IsCheckLogin::class);
+Route::get('/user-verification', [PageController::class, 'userVerification'])->name('userVerification');
+
+Route::post('/user-verification', [PageController::class, 'checkUserVerification'])->name('checkUserVerification');
 
 Route::get('login', [PageController::class, 'login'])->name('login')->middleware(IsCheckLogin::class);
 
@@ -136,7 +157,47 @@ Route::get('/share-whatsapp', [SocialShareController::class, 'whatsappShare'])->
 
 
 
+Route::get('/create-order', [PaymentController::class, 'createOrder'])->name('payment.create');
+Route::post('/payment-callback', [PaymentController::class, 'paymentCallback'])->name('payment.callback');
+
+Route::get('/ganesh-festival/payment-success', [GaneshCompetitionPaymentController::class, 'competitionPaymentSuccess'])->name('competitionPaymentSuccess');
+Route::get('/ganesh-festival/payment-failed', [GaneshCompetitionPaymentController::class, 'competitionPaymentFailed'])->name('competitionPaymentFailed');
+
+
+
+Route::get('/payment-success', function () {
+    return 'Payment Successful';
+})->name('payment.success');
+
+
+Route::get('/payment-failed', function () {
+    return 'Payment Failed';
+})->name('payment.failed');
+
+
+
+
+
+
+
+
 Route::middleware(ValidUser::class)->group(function () {
+
+
+Route::get('/ganesh-festival/group/upload-photos', [GaneshFestivalGroupController::class, 'groupUploadPhotos'])->name('groupUploadPhotos');
+Route::post('/ganesh-festival/upload/cover', [GaneshFestivalGroupController::class, 'uploadGaneshGroupCover'])->name('uploadGaneshGroupCover');
+Route::get('/ganesh-festival/photo', [GaneshFestivalGroupController::class, 'ganeshFestivalGroupphotos'])->name('ganeshFestivalGroupphotos');
+Route::get('/ganesh-festival/my-group', [GaneshFestivalGroupController::class, 'ganeshFestivalMyGroup'])->name('ganeshFestivalMyGroup');
+
+Route::get('/ganesh-festival', [GaneshFestivalController::class, 'index']);
+
+
+Route::get('/ganesh-festival/competition/payment', [GaneshCompetitionPaymentController::class, 'create'])->name('ganeshCompetitionPaymentCreate');
+Route::post('/ganesh-festival/competition/home-payment', [GaneshCompetitionPaymentController::class, 'homeCompetitionCallback'])->name('homeCompetitionCallback');
+
+
+// Route::get('/components', [PageController::class, 'components'])->name('components');
+
 
 Route::get('/my-business', [MyBusinessController::class, 'index'])->name('myBusiness');
 Route::get('/my-business/{cid}', [MyBusinessController::class, 'show'])->name('myBusiness.show');
@@ -147,22 +208,29 @@ Route::put('/my-business/{cid}/contact', [MyBusinessController::class, 'updateMy
 Route::delete('/my-business/{id}', [MyBusinessController::class, 'deleteMyBusiness'])->name('deleteMyBusiness');
 
 
+
+
 Route::get('/{slug}', [ListingController::class, 'listing'])->name('listingList');
+
+
+Route::resource('/live-competition-status', LiveCompetitionStatus::class)->names('LiveCompetitionStatus');
+
 });
 
 
 
 
+Route::get('/ganesh-festival/competition/rules', [GaneshFestivalCompetition::class, 'rules'])->name('GaneshFestivalCompetitionRules');
+Route::get('/ganesh-festival/competition/live', [GaneshFestivalCompetition::class, 'live'])->name('GaneshFestivalCompetitionLive');
+Route::post('/ganesh-festival/competition/store-home-ganesh', [GaneshFestivalCompetition::class, 'storeHomeGaneshCompetition'])->name('storeHomeGaneshCompetition');
 
 
 
+Route::resource('/ganesh-festival/competition', GaneshFestivalCompetition::class)->names('ganeshFestivalCompetition');
+Route::resource('/ganesh-festival/voting', FestivalCompetitionVoting::class)->names('FestivalCompetitionVoting');
 
 
-
-
-
-
-
+Route::resource('/ganesh-festival', GaneshFestivalGroupController::class)->names('ganeshFestivalGroup');
 
 
 

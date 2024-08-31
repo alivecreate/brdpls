@@ -406,7 +406,7 @@
                             <p class="py-4 group-hover:text-black"> login </p> 
                         </div>
                     </a>
-                    <a href="{{route('register')}}" target="_blank">
+                    <a href="{{route('registration')}}" target="_blank">
                         <div class="group"> 
                             <div class="md:rounded-lg rounded-md shadow-md overflow-hidden duration-300 group-hover:-translate-y-1 group-hover:scale-[1.01] group-hover:shadow-lg">
                                 <img src="{{asset('front')}}/images/demos/form-register.png" alt="" class="w-full h-full object-cover inset-0">

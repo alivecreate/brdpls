@@ -1,11 +1,9 @@
-@extends('front.layout.main-layout')
+@extends('front.layout.ganesh-festival-layout')
 
 @section('content')
     
 
     @include('front.widget.user-setting')
-
-    @include('front.widget.chat-box')
 
 
 @endsection

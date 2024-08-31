@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
+use App\Models\User;
+
 class ValidUser
 {
     /**
@@ -17,6 +19,9 @@ class ValidUser
     public function handle(Request $request, Closure $next): Response
     {
         // dd(Auth::id());
+        
+
+        $user = User::find(Auth::id());
 
         if(Auth::check()){
             return $next($request);

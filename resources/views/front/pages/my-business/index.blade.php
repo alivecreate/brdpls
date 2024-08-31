@@ -127,7 +127,7 @@
                                         <a href="#"> <ion-icon class="text-xl" name="share-outline"></ion-icon> Share  </a>  
                                         <a href="#"> <ion-icon class="text-xl" name="link-outline"></ion-icon>  Copy link </a> 
 
-                                        <a href="#" class="delete-biz-button text-danger" data-cid="{{$business->cid}}" data-name="{{$business->name}}"
+                                        <a href="#" class="delete-button text-danger" data-cid="{{$business->cid}}" data-name="{{$business->name}}"
                                           uk-toggle="target: #confirm-delete-mybusiness-popup"> <ion-icon class="text-xl" name="trash-outline"></ion-icon>  Delete Business </a>  
   
                                     </nav>

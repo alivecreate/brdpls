@@ -16,14 +16,19 @@
                     <ion-icon name="close-outline" class="hidden text-2xl group-aria-expanded:block"></ion-icon>
             </button>
 
+          
             <div id="logo">
-                <a href="{{route('theme')}}"> 
-                    <img src="https://barodaplus.com/wp-content/uploads/2024/02/barodaplus-logo-old-Copy-2.png" alt="" class="main-logo md:block hidden dark:!hidden">
-                    <img src="https://barodaplus.com/wp-content/uploads/2024/02/barodaplus-logo-old-Copy-2.png" alt="" class="main-logo dark:md:block hidden">
-                    <img src="https://barodaplus.com/wp-content/uploads/2024/02/barodaplus-logo-old-Copy-2.png" class="main-logo hidden max-md:block w-20 dark:!hidden" alt="">
-                    <img src="https://barodaplus.com/wp-content/uploads/2024/02/barodaplus-logo-old-Copy-2.png" class="main-logo hidden dark:max-md:block w-20" alt="">
-                </a>
-            </div>
+                    <a href="{{route('index')}}">
+                        <img src="{{asset('front/images/web')}}/barodaplus-logo.png" alt=""
+                            class="main-logo md:block hidden dark:!hidden">
+                        <img src="{{asset('front/images/web')}}/barodaplus-logo.png" alt=""
+                            class="main-logo dark:md:block hidden">
+                        <img src="{{asset('front/images/web')}}/barodaplus-logo.png"
+                            class="main-logo hidden max-md:block w-20 dark:!hidden" alt="">
+                        <img src="{{asset('front/images/web')}}/barodaplus-logo.png"
+                            class="main-logo hidden dark:max-md:block w-20" alt="">
+                    </a>
+                </div>
              
         </div>
 

@@ -17,6 +17,8 @@ class GroupController extends Controller
      */
     public function index()
     {
+
+        // dd('tesst');
         
         $groups = Group::where(['status' => 'active'])->get();
         return view('front.pages.groups', compact('groups'));   
@@ -27,6 +29,7 @@ class GroupController extends Controller
      */
     public function create()
     {
+        
         $groups = Group::orderBy('name', 'asc')->get();
 
         return view('front.pages.groups.create', compact('groups'));

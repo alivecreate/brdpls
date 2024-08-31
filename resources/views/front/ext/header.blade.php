@@ -17,11 +17,11 @@
             </button>
 
             <div id="logo">
-                <a href="{{route('theme')}}"> 
-                    <img src="https://barodaplus.com/wp-content/uploads/2024/02/barodaplus-logo-old-Copy-2.png" alt="" class="main-logo md:block hidden dark:!hidden">
-                    <img src="https://barodaplus.com/wp-content/uploads/2024/02/barodaplus-logo-old-Copy-2.png" alt="" class="main-logo dark:md:block hidden">
-                    <img src="https://barodaplus.com/wp-content/uploads/2024/02/barodaplus-logo-old-Copy-2.png" class="main-logo hidden max-md:block w-20 dark:!hidden" alt="">
-                    <img src="https://barodaplus.com/wp-content/uploads/2024/02/barodaplus-logo-old-Copy-2.png" class="main-logo hidden dark:max-md:block w-20" alt="">
+                <a href="{{route('index')}}"> 
+                    <img src="{{asset('front/images/web')}}/barodaplus-logo.png" alt="" class="main-logo md:block hidden dark:!hidden">
+                    <img src="{{asset('front/images/web')}}/barodaplus-logo.png" alt="" class="main-logo dark:md:block hidden">
+                    <img src="{{asset('front/images/web')}}/barodaplus-logo.png" class="main-logo hidden max-md:block w-20 dark:!hidden" alt="">
+                    <img src="{{asset('front/images/web')}}/barodaplus-logo.png" class="main-logo hidden dark:max-md:block w-20" alt="">
                 </a>
             </div>
              
@@ -66,120 +66,10 @@
             </div>
             
             @if(Auth::check())
-                <!-- header icons -->
                  
-                <a href="{{route('businessList')}}">Create Listing</a>
                 <div class="flex items-center sm:gap-4 gap-2 absolute right-5 top-1/2 -translate-y-1/2 text-black">
-                <!-- create -->
-                    <button type="button" class="sm:p-2 p-1 rounded-full relative sm:bg-secondery dark:text-white">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 max-sm:hidden">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"></path>
-                        </svg>
-                        <ion-icon name="add-circle-outline" class="sm:hidden text-2xl "></ion-icon>
-                    </button>
-
-
-                    <div    class="hidden bg-white p-4 rounded-lg overflow-hidden drop-shadow-xl dark:bg-slate-700 md:w-[324px] w-screen border2"
-                            uk-drop="offset:6;pos: bottom-right; mode: click; animate-out: true; animation: uk-animation-scale-up uk-transform-origin-top-right ">
-                        
-                            <h3 class="font-bold text-md"> Create  </h3>
-
-                            <!-- slider -->
-                            <div class="mt-4" tabindex="-1" uk-slider="finite:true;sets: true">
-
-                                <div class="uk-slider-container pb-1">
-                                
-                                    <ul class="uk-slider-items grid-small" uk-scrollspy="target: > li; cls: uk-animation-scale-up , uk-animation-slide-right-small; delay: 20 ;repeat: true">
-                                        <li class="w-28" uk-scrollspy-class="uk-animation-fade">
-                                            <div class="p-3 px-4 rounded-lg bg-teal-100/60 text-teal-600 dark:text-white dark:bg-dark4">
-                                                <ion-icon name="book" class="text-2xl drop-shadow-md"></ion-icon>
-                                                <div class="mt-1.5 text-sm font-medium"> Story </div>
-                                            </div>
-                                        </li>   
-                                        <li class="w-28">
-                                            <div class="p-3 px-4 rounded-lg bg-sky-100/60 text-sky-600 dark:text-white dark:bg-dark4">
-                                                <ion-icon name="camera" class="text-2xl drop-shadow-md"></ion-icon>
-                                                <div class="mt-1.5 text-sm font-medium"> Post </div>
-                                            </div>
-                                        </li> 
-                                        <li class="w-28">
-                                            <div class="p-3 px-4 rounded-lg bg-purple-100/60 text-purple-600 dark:text-white dark:bg-dark4">
-                                                <ion-icon name="videocam" class="text-2xl drop-shadow-md"></ion-icon>
-                                                <div class="mt-1.5 text-sm font-medium"> Reel </div>
-                                            </div>
-                                        </li> 
-                                        <li class="w-28">
-                                            <div class="p-3 px-4 rounded-lg bg-pink-100/60 text-pink-600 dark:text-white dark:bg-dark4">
-                                                <ion-icon name="location" class="text-2xl drop-shadow-md"></ion-icon>
-                                                <div class="mt-1.5 text-sm font-medium"> location </div>
-                                            </div>
-                                        </li> 
-                                        <li class="w-28">
-                                            <div class="p-3 px-4 rounded-lg bg-sky-100/70 text-sky-600 dark:text-white dark:bg-dark4">
-                                                <ion-icon name="happy" class="text-2xl  drop-shadow-md"></ion-icon>
-                                                <div class="mt-1.5 text-sm font-medium"> Status </div>
-                                            </div> 
-                                        </li> 
-                                    </ul>
-                            
-                                </div>
-                            
-                                <!-- slide nav icons -->
-                                <div class="dark:hidden">
-                                    <a class="absolute -translate-y-1/2 top-1/2 -left-4 flex items-center w-8 h-full px-1.5 justify-start bg-gradient-to-r from-white via-white dark:from-slate-600 dark:via-slate-500 dark:from-transparent dark:via-transparent" href="#" uk-slider-item="previous"> <ion-icon name="chevron-back" class="text-xl dark:text-white"></ion-icon> </a>
-                                    <a class="absolute -translate-y-1/2 top-1/2 -right-4 flex items-center w-8 h-full px-1.5 justify-end bg-gradient-to-l from-white via-white dark:from-transparent dark:via-transparent" href="#" uk-slider-item="next">  <ion-icon name="chevron-forward" class="text-xl dark:text-white"></ion-icon> </a>
-                                </div>
-        
-
-                                <!-- slide nav -->
-                                <div class="justify-center mt-2 -mb-2 hidden dark:flex">
-                                    <ul class="inline-flex flex-wrap justify-center gap-1 uk-dotnav uk-slider-nav"> </ul>
-                                </div>
-
-                            </div>
-
-                            <!-- list -->
-                            <ul class="-m-1 mt-4 pb-1 text-xs text-gray-500 dark:text-white" uk-scrollspy="target: > li; cls: uk-animation-scale-up , uk-animation-slide-bottom-small ;repeat: true">
-                                <li class="flex items-center gap-4 hover:bg-secondery rounded-md p-1.5 cursor-pointer dark:hover:bg-white/10">
-                                    <img src="{{asset('front')}}/images/icons/group.png" alt="" class="w-7">
-                                    <div class="flex-1">
-                                        <a href="{{route('timeline')}}"><h4 class="font-medium text-sm text-black dark:text-white"> Groups </h4></a>
-                                        <div class="mt-1 text-xs text-gray-500 dark:text-white"> Meet people with similar interests. </div>
-                                    </div>
-                                </li>
-                                <li class="flex items-center gap-4 hover:bg-secondery rounded-md p-1.5 cursor-pointer dark:hover:bg-white/10">
-                                    <img src="{{asset('front')}}/images/icons/page.png" alt="" class="w-7">
-                                    <div class="flex-1">
-                                        <a href="{{route('pages')}}"><h4 class="font-medium text-sm text-black dark:text-white"> Pages </h4></a>
-                                        <div class="mt-1"> Find and connect with businesses.
-                                    </div>
-                                </li>
-                                <li class="flex items-center gap-4 hover:bg-secondery rounded-md p-1.5 cursor-pointer dark:hover:bg-white/10">
-                                    <img src="{{asset('front')}}/images/icons/event.png" class="w-7">
-                                    <div class="flex-1">
-                                        <a href="{{route('event')}}"><h4 class="font-medium text-sm text-black dark:text-white"> Event </h4></a>
-                                        <div class="mt-1">Discover fun activities near you .</div>
-                                    </div>
-                                </li>
-                                <li class="flex items-center gap-4 hover:bg-secondery rounded-md p-1.5 cursor-pointer dark:hover:bg-white/10">
-                                    <img src="{{asset('front')}}/images/icons/market.png" class="w-8 -ml-1">
-                                    <div class="flex-1">
-                                        <a href="{{route('event-2')}}"><h4 class="font-medium text-sm text-black dark:text-white"> Event </h4></a>
-                                        <div class="mt-1">Find local buyers and sellers .</div>
-                                    </div>
-                                </li>
-                                <li class="flex items-center gap-4 hover:bg-secondery rounded-md p-1.5 cursor-pointer dark:hover:bg-white/10">
-                                    <img src="{{asset('front')}}/images/icons/game.png" alt="" class="w-7">
-                                    <div class="flex-1">
-                                        <a href="{{route('games')}}"><h4 class="font-medium text-sm text-black dark:text-white"> Games </h4></a>
-                                        <div class="mt-1"> play game with friends have fun. </div>
-                                    </div>
-                                </li>
-                            </ul>
-
-
-                    </div>
-
+              
+                
                     <!-- notification -->
                     <button type="button" class="sm:p-2 p-1 rounded-full relative sm:bg-secondery dark:text-white" uk-tooltip="title: Notification; pos: bottom; offset:6">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 max-sm:hidden">
@@ -209,8 +99,6 @@
                         </div>
 
                         <div class="text-sm h-[400px] w-full overflow-y-auto pr-2">
-                            
-                            <!-- contents list -->
                             <div class="pl-2 p-1 text-sm font-normal dark:text-white">
                                 
                                 <a href="#" class="relative flex items-center gap-3 p-2 duration-200 rounded-xl pr-10 hover:bg-secondery dark:hover:bg-white/10 bg-teal-500/5">
@@ -411,15 +299,12 @@
                         uk-drop="offset:6;pos: bottom-right;animate-out: true; animation: uk-animation-scale-up uk-transform-origin-top-right ">
                         
                         <a href="{{route('timeline')}}">
-                            
                             <div class="p-4 py-5 flex items-center gap-4">
-                                <img src="{{asset('front')}}/images/avatars/avatar-2.jpg" alt="" class="w-10 h-10 rounded-full shadow"> {{getUserData()['first_name']}} {{getUserData()['last_name']}}
-                            
+                                <img src="{{asset('front')}}/images/avatars/avatar-2.jpg" alt="" class="w-10 h-10 rounded-full shadow"> @if(getUserData()){{getUserData()['first_name']}} {{getUserData()['last_name']}}@endif
                             </div>
                         </a>
 
                         <hr class="dark:border-gray-600/60">
-
                         <nav class="p-2 text-sm text-black font-normal dark:text-white">
                             <a href="{{route('upgrade')}}">
                                 <div class="flex items-center gap-2.5 hover:bg-secondery p-2 px-2.5 rounded-md dark:hover:bg-white/10 text-blue-600">
@@ -429,22 +314,7 @@
                                     Upgrade To Premium 
                                 </div>
                             </a>  
-                            <a href="{{route('setting')}}">
-                                <div class="flex items-center gap-2.5 hover:bg-secondery p-2 px-2.5 rounded-md dark:hover:bg-white/10"> 
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 004.5 19.5z" />
-                                    </svg>
-                                    My Billing 
-                                </div>
-                            </a>
-                            <a href="{{route('setting')}}">
-                                <div class="flex items-center gap-2.5 hover:bg-secondery p-2 px-2.5 rounded-md dark:hover:bg-white/10"> 
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M10.34 15.84c-.688-.06-1.386-.09-2.09-.09H7.5a4.5 4.5 0 110-9h.75c.704 0 1.402-.03 2.09-.09m0 9.18c.253.962.584 1.892.985 2.783.247.55.06 1.21-.463 1.511l-.657.38c-.551.318-1.26.117-1.527-.461a20.845 20.845 0 01-1.44-4.282m3.102.069a18.03 18.03 0 01-.59-4.59c0-1.586.205-3.124.59-4.59m0 9.18a23.848 23.848 0 018.835 2.535M10.34 6.66a23.847 23.847 0 008.835-2.535m0 0A23.74 23.74 0 0018.795 3m.38 1.125a23.91 23.91 0 011.014 5.395m-1.014 8.855c-.118.38-.245.754-.38 1.125m.38-1.125a23.91 23.91 0 001.014-5.395m0-3.46c.495.413.811 1.035.811 1.73 0 .695-.316 1.317-.811 1.73m0-3.46a24.347 24.347 0 010 3.46" />
-                                    </svg>
-                                    Advatacing
-                                </div>
-                            </a>
+
                             <a href="{{route('setting')}}">
                                 <div class="flex items-center gap-2.5 hover:bg-secondery p-2 px-2.5 rounded-md dark:hover:bg-white/10"> 
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -454,17 +324,7 @@
                                     My Account
                                 </div>
                             </a>
-                            <button type="button" class="w-full">
-                                <div class="flex items-center gap-2.5 hover:bg-secondery p-2 px-2.5 rounded-md dark:hover:bg-white/10"> 
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" />
-                                    </svg>
-                                    Night mode
-                                    <span class="bg-slate-200/40 ml-auto p-0.5 rounded-full w-9 dark:hover:bg-white/20">
-                                        <span class="bg-white block h-4 relative rounded-full shadow-md w-2 w-4 dark:bg-blue-600"></span>
-                                    </span>
-                                </div>
-                            </button>   
+
                             <hr class="-mx-2 my-2 dark:border-gray-600/60">
                             <a href="{{route('logout')}}">
                                 <div class="flex items-center gap-2.5 hover:bg-secondery p-2 px-2.5 rounded-md dark:hover:bg-white/10"> 

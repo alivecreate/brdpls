@@ -6,7 +6,9 @@
     <link href="{{asset('front')}}/images/favicon.png" rel="icon" type="image/png">
 
     <!-- title and description-->
-    <title>Socialite</title>
+    
+    <title>@yield('title', 'Ganesh Festival - Barodaplus.com')</title>
+
     <meta name="description" content="Socialite - Social sharing network HTML Template">
    
     <!-- css files -->

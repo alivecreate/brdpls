@@ -1,23 +1,20 @@
     <!-- main contents -->
-    <main id="site__main" class=" py-10 px-4 p-2.5 h-[calc(100vh-var(--m-top))] mt-[--m-top]">
+    <main id="site__main" class=" py-10 px-4 2xl:ml-[--w-side]  xl:ml-[--w-side-sm] py-10 p-2.5 h-[calc(100vh-var(--m-top))] mt-[--m-top]">
 
                 
     <div class="w-full md:w-auto md:px-20">
 
 
     
-                        <!-- categories -->
                         <div class="sm:mt-6 mt-3 flex items-center justify-between border-t pt-3 dark:border-slate-800">
                                 <div>
-                                    <h2 class="md:text-lg text-base font-semibold text-black">Top Business Categories </h2>
+                                    <h2 class="md:text-lg text-base font-semibold text-black">Ganesh Mandal </h2>
                                     <p class="font-normal text-sm text-gray-500 leading-6"> Find a group by browsing top categories. </p>
                                 </div>
                                 <a href="#" class="text-blue-500 sm:block hidden text-sm"> See all </a>
                             </div>
                         
-                        <!-- categories slider-->
                         <div class="relative" tabindex="-1" uk-slider="auto play: true;finite: true">
-        
                             <div class="py-5 uk-slider-container">
                                
                                 <ul class="uk-slider-items w-[calc(100%+12px)]" uk-scrollspy="target: > li; cls: uk-animation-scale-up; delay: 20;repeat:true">

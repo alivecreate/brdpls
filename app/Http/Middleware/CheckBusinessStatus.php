@@ -21,7 +21,7 @@ class CheckBusinessStatus
 
         if ($user && $user->business) {
             $business = $user->business;
-            dd($business);
+            // dd($business);
 
             if ($business->status !== $status) {
                 // Redirect or return an error response if the business is not active

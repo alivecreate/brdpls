@@ -6,8 +6,11 @@ use Illuminate\Http\Request;
 
 use App\Models\Social_Link;
 use App\Models\Group;
+use App\Models\User;
+
 use Illuminate\Support\Facades\Cookie;
 use Carbon\Carbon;
+use Auth;
 
 class PageController extends Controller
 {
@@ -19,9 +22,35 @@ class PageController extends Controller
 
     public function index(){
 
-        $groups = Group::get();
-        return view('front.pages.landing-page', compact('groups')); 
-        return view('front.pages.index');
+        // dd(getUserData());
+        
+        $groups = Group::orderBy('name', 'asc')->get();
+        return view('front.pages.groups.list', compact('groups'));
+
+        // $groups = Group::get();
+        // return view('front.pages.landing-page', compact('groups')); 
+        // return view('front.pages.index');
+    }
+
+    
+    public function about(){
+        return view('front.pages.about');
+    }
+
+    public function termsAndConditions(){
+        return view('front.pages.terms-and-conditions');
+    }
+
+    public function privacyPolicy(){
+        return view('front.pages.privacy-policy');
+    }
+
+    public function refundAndCancellation(){
+        return view('front.pages.refund-and-cancellation');
+    }
+
+    public function contact(){
+        return view('front.pages.contact');
     }
 
     public function messages(){
@@ -179,13 +208,78 @@ class PageController extends Controller
         return view('front.pages.form-login');
     }
 
-    public function register(Request $request){
+    public function registration(Request $request){
 
         $cookieValue = Cookie::get('authuser');
-        // $cookieValue = $request->cookie('authuser');
-        // return response()->json(['value' => $cookieValue]);
+        return view('front.pages.form-registration');
+    }
+
+    
+    public function userVerification(Request $request){
+
+        $cid = $request->query('cid');
+        $page = $request->query('page');
         
-        // return response('Cookie has been set')->cookie('authuser', 'value', 60 * 24 * 365); // 1 year
+
+        $user = User::where(['cid' => $cid])->first();
+
+        if(!$user){
+        return redirect(route('login'));
+    }
+        
+        
+        if($user->status == 'active'){
+        return redirect(route('login'));
+
+        }
+        
+        elseif($user->status == 'pending'){
+            return view('front.pages.register-verify', compact('user'));
+        }
+        else{
+            return redirect(route('registration'));
+        }
+
+        $cookieValue = Cookie::get('authuser');
+        return view('front.pages.form-register');
+    }
+
+    
+    public function checkUserVerification(Request $request){
+
+        // dd($request->all());
+        // $cid = $request->query('cid');
+        // $otp = $request->query('otp');
+        
+
+        $checkotp = User::where(['cid' => $request->cid, 'otp' => $request->otp])->first(); 
+
+        $user = User::where('cid', $request->cid)->first();
+        // return true;
+        // return true;
+
+    
+        if($checkotp){
+            // return 'verified';
+            
+            $checkotp->update([
+                'status' => 'active',
+                'phone_verified_at' => now()
+            ]);
+            return redirect()->route('index')->with('success', 'Account Verified Successfully.');
+
+            return redirect(route('index'));
+        }
+        // return 'not verified';
+        // return redirect9
+
+        return redirect()->route('userVerification', ['cid' => $request->cid])->with('error', 'OTP does not matched.');
+
+
+            return view('front.pages.register-verify', compact('user'));    
+        
+
+        $cookieValue = Cookie::get('authuser');
         return view('front.pages.form-register');
     }
 

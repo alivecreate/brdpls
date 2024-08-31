@@ -1,0 +1,327 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\Models\Group;
+use App\Models\GaneshCompetitionCategory;
+use App\Models\GaneshCompetition;
+
+use Illuminate\Support\Str;
+use App\Models\User;
+use Auth;
+
+class GaneshFestivalCompetition extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     */
+    public function index()
+    {
+        // dd('test');
+        
+        if(checkCompetitionSchedule()['status'] == 'scheduled'){
+            return redirect()->route('ganeshFestivalGroup.index')->with('success', 'Voting is not started now.');
+        }
+
+        $groups = Group::orderBy('name', 'asc')->get();
+        return view('front.pages.ganesh.competition.list', compact('groups'));
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create(Request $request)
+    {
+        // dd($request->all());
+
+        if(!Auth::check()){
+            return redirect('registration')->with('error', 'Please Create User Account First.');
+        }
+
+        $type = request()->query('type');
+        // dd($type);
+
+        
+
+        $groups = Group::orderBy('name', 'asc')->get();
+        $group = Group::where('user_id', Auth::id())->first();
+        // dd($group);
+        
+        $ganeshCompetitionCategories = GaneshCompetitionCategory::get();
+        if($group){
+            // dd('grp available');
+
+            $competition = GaneshCompetition::where(['participant_id' => $group->id])->first();
+            return redirect()->route('ganeshCompetitionPaymentCreate', ['type' => 'group']);
+            if($competition){
+                return view('front.pages.ganesh.competition.create', compact('groups', 'group', 'type', 'ganeshCompetitionCategories', 'competition'));
+            }
+        }
+        else{
+            
+        $homeCompetition = GaneshCompetition::where(['participant_id' => Auth::id()])->first();
+
+        if($homeCompetition){
+            
+        // dd($homeCompetition);
+        
+            return redirect()->route('ganeshCompetitionPaymentCreate', ['type' => 'home'])->with('success', 'Ganesh Competition Registeration Successfully.');
+        }
+            
+        // return redirect('')
+
+        }
+        
+        $competition = null;
+
+
+        
+        return view('front.pages.ganesh.competition.create', compact('groups', 'group', 'type', 'ganeshCompetitionCategories', 'competition'));
+        
+        // dd($competition);
+        
+
+        return view('front.pages.ganesh.competition.create', compact('groups', 'group', 'type', 'ganeshCompetitionCategories'));
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
+    {
+// dd( $request->all());
+
+
+
+$competition = GaneshCompetition::where('participant_id', $request->participant_id)
+->where('competition_type', $request->competition_type)
+->first();
+
+$participant = Group::where(['id' => $request->participant_id, 'user_id' => Auth::id()])->first(); // Replace with actual group ID
+
+if($participant && !$competition)
+{
+    GaneshCompetition::create([
+        'competition_type' => $request->competition_type,
+        'name' =>  null,
+        'status' => 'pending',
+        'participant_id' => $participant->id,
+        'participant_type' => Group::class,
+    ]);
+
+    return redirect()->route('ganeshCompetitionPaymentCreate', ['type'=>'group'])->with('success', 'Ganesh Competition Registered Successfully');
+}
+
+return redirect()->back()->with('error', 'Something went wrong, please try again.');
+
+
+
+$participantId = $request->participant_id;
+$participantType = $request->participant_type; // Should be 'user' or 'group'
+
+// Validate participant_type to ensure it is either 'user' or 'group'
+if (!in_array($participantType, ['1-2', '3'])) {
+    return response()->json(['message' => 'Invalid participant type.'], 400);
+}
+
+// Check if a participant is already assigned to this competition
+if ($competition->participant_id && $competition->participant_type) {
+    return response()->json(['message' => 'This competition already has a participant.'], 400);
+}
+
+// Validate the participant ID based on the type
+if ($participantType === '1-2') {
+    $exists = Group::find($participantId);
+} elseif ($participantType === '3') {
+    $exists = User::find($participantId);
+}
+
+if (!$exists) {
+    return response()->json(['message' => 'Participant does not exist.'], 404);
+}
+
+// Assign participant to the competition
+$competition->participant_id = $participantId;
+$competition->participant_type = $participantType;
+$competition->save();
+
+return response()->json(['message' => 'Participant added to competition successfully!']);
+
+
+
+
+// $competition = GaneshCompetition::findOrFail($request->group_id);
+
+    // dd($competition);
+
+        if($request->competition_type == '1-2'){
+            $participant = Group::where(['id' => $request->group_id, 'user_id' => Auth::id()])->first(); // Replace with actual group ID
+           
+
+            if($participant){
+                // $checkIfParticipated = GaneshCompetition::find
+
+                GaneshCompetition::create([
+                    'competition_type' => $request->competition_type,
+                    'name' =>  null,
+                    'status' => 'pending',
+                    'participant_id' => $participant->id,
+                    'participant_type' => Group::class,
+                ]);
+            }
+            else{        
+                return redirect()->back()->with('error', 'Something went wrong, please try again.');
+            }
+        }
+        // dd($request->all());
+    }
+
+    public function storeHomeGaneshCompetition(Request $request){
+        
+
+$competition = GaneshCompetition::where('participant_id', $request->participant_id)
+->where('competition_type', $request->competition_type)
+->first();
+
+// dd($request->all());
+
+if(!$competition){
+   $ganeshCompetition =  GaneshCompetition::create([
+        'competition_type' => $request->competition_type,
+        'name' =>  $request->name,
+        'status' => 'pending',
+        'participant_id' => $request->participant_id,
+        'participant_type' => User::class,
+    ]);
+    
+    return redirect()->route('ganeshCompetitionPaymentCreate', ['type' => 'home'])->with('success', 'Ganesh Competition Registeration Successfully.');
+
+}
+
+return redirect()->back()->with('error', 'Something went wrong, please try again.');
+
+    }
+    
+    public function live(Request $request)
+    {
+
+        // dd(checkCompetitionSchedule()['status'] == 'scheduled');
+        if(checkCompetitionSchedule()['status'] == 'scheduled'){
+            return redirect()->route('ganeshFestivalGroup.index')->with('success', 'Voting is not started now.');
+
+        }
+        $gid = $request->query('gid');
+
+        if($gid == null || $gid == 1){
+
+            $GaneshCompetitions = GaneshCompetition::where('competition_type', '1-2')
+            ->whereHas('participant')  // Only include records where 'participant' relationship is not null
+            ->with('participant')
+            ->get();
+            
+            return view('front.pages.ganesh.competition.live-competition', compact('GaneshCompetitions'));
+        }
+
+        elseif ($gid == 2) {
+            $GaneshCompetitions = GaneshCompetition::where('competition_type', '1-2')
+            ->whereHas('participant')  // Only include records where 'participant' relationship is not null
+            ->with('participant')   
+            ->get();
+            return view('front.pages.ganesh.competition.live-competition2', compact('GaneshCompetitions'));
+        }
+
+
+        
+        // dd($gid);
+
+        $GaneshCompetitions = GaneshCompetition::where('competition_type', $gid)
+        ->whereHas('participant')  // Only include records where 'participant' relationship is not null
+        ->with('participant')   
+        ->get();
+        
+        return view('front.pages.ganesh.competition.live-competition', compact('GaneshCompetitions'));
+
+
+        // dd($GaneshCompetitions);
+
+        $competition = GaneshCompetition::find(1); // Replace with an actual 
+        if($competition){
+            $votesCount = $competition->votesForCat1()->count();
+            dd($votesCount);
+        }
+        $GaneshCompetitions = GaneshCompetition::where('competition_type', '1-2')
+        ->with('participant')
+        ->withCount(['votesForCat1'])
+        ->toSql(); // Du
+        dd($competition);
+
+$votesCount = $competition->votesForCat1()->count();
+// dd($votesCount);
+        $GaneshCompetitions = GaneshCompetition::where('competition_type', '1-2')
+    ->with('participant')
+    ->withCount(['votesForCat1'])
+    ->toSql(); // Dump the SQL query
+
+// dd($GaneshCompetitions);
+
+        $GaneshCompetitions = GaneshCompetition::where('competition_type', '1-2')
+        ->with('participant')
+        ->with('votesForCat1')
+        ->get();
+
+        dd($GaneshCompetitions);
+    
+
+        // $GaneshCompetitions = GaneshCompetition::where('competition_type', '1-2')->with('participant')->get();
+        
+        // dd($GaneshCompetitions);
+
+        // $GaneshCompetitions = GaneshCompetition::with('participant')->get();
+        return view('front.pages.ganesh.competition.live-competition', compact('GaneshCompetitions'));
+    }
+
+    
+    public function rules()
+    {
+        return view('front.pages.ganesh.competition.rules');
+    }
+
+    public function payment()
+    {
+        return view('front.pages.ganesh.competition.payment');
+    }
+
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(string $id)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(string $id)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, string $id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(string $id)
+    {
+        //
+    }
+}

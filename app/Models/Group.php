@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Str;
+
 
 class Group extends Model
 {
@@ -11,23 +13,23 @@ class Group extends Model
 
     protected $table = 'groups';
 
-    protected $fillable = ['name', 'description', 'category', 'privacy', 'cover', 'year', 'location', 'city', 'user_id', 'slug','status'];
+    protected $fillable = ['name', 'decoration', 'description', 'cid', 'category', 'privacy', 'cover', 'year', 'address', 'city', 'user_id', 'slug','status'];
 
     
     protected static function boot()
     {
         parent::boot();
-
-        static::creating(function ($group) {
-            $group->group_code = generateRandomNumericString(10);
-            $group->status = 'active';
-        });
         
-        // static::creating(function ($model) {
-        //     do {
-        //         $model->id = generateRandomNumericString(10); // Adjust the length as needed
-        //     } while (DB::table($model->getTable())->where('id', $model->id)->exists());
-        // });
+        static::creating(function ($business) {
+            $slug = Str::slug($business->name);
+            $originalSlug = $slug;
+            $count = 1;
+
+            while (static::whereSlug($slug)->exists()) {
+                $slug = $originalSlug . '-' . $count++;
+            }
+            $business->slug = $slug;
+        });
 
     }
 
@@ -41,5 +43,44 @@ class Group extends Model
      {
          return $this->morphMany(GroupReports::class, 'reportable');
      }
+
+     
+public function gallery($limit = null)
+{
+    return $this->morphMany(BusinessGallery::class, 'imageable')->orderBy('id', 'desc')->limit($limit);
+}
+
+public function competitions()
+{
+    return $this->morphMany(GaneshCompetition::class, 'participant');
+    
+}
+
+
+public function myCompetition()
+{
+    return $this->morphMany(GaneshCompetition::class, 'participant');
+}
+
+
+public function competition($id)
+{
+    return GaneshCompetition::where('participant_id', $id)->first();
+
+    return GaneshCompetition::where('participant_id', $id)->first();
+}
+
+public function checkCompetitionVote($id)
+{
+    return GaneshCompetition::where('participant_id', $id)->first();
+}
+
+
+public function delete()
+{
+    $this->competitions()->delete();
+    parent::delete();
+}
+
 
 }

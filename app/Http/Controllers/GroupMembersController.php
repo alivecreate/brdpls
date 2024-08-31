@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\GroupMember;
 use App\Models\User;
 use App\Models\Group;
-
+use Auth;
 class GroupMembersController extends Controller
 {
     /**
@@ -32,9 +32,19 @@ class GroupMembersController extends Controller
     public function store(Request $request)
     {
         // dd($request->all());
-        // dd(getUserData()['id']);
+        // dd(Auth::id());
         
-      
+
+        
+        $groupMember = GroupMember::where(
+            ['group_id' => $request->group_id, 'user_id' => getUserData()['id']],
+            ['status' => 'active']
+        )->first();
+
+        if($groupMember){
+            $groupMember->delete();
+            return redirect()->back()->with('success', 'Unfollowed this page.');
+        }
 
             // Assuming you have a group and a user already created
 
@@ -46,7 +56,7 @@ class GroupMembersController extends Controller
             );
 
 
-            return redirect()->back()->with('success', 'Successfully Joined.');
+            return redirect()->back()->with('success', 'Successfully Followed.');
 
     }
 

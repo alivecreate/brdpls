@@ -4,10 +4,8 @@
 
 
         <!-- main contents -->
-        <main id="site__main" class="p-2.5 h-[calc(100vh-var(--m-top))] mt-[--m-top]">
-
+        <main id="site__main" class="2xl:ml-[--w-side]  xl:ml-[--w-side-sm] py-10 p-2.5 h-[calc(100vh-var(--m-top))] mt-[--m-top]">
             <div class="lg:flex 2xl:gap-12 gap-10 2xl:max-w-[1220px] max-w-[1065px] mx-auto mt-10" id="js-oversized">
-
 
     <div class="lg:flex 2xl:gap-12 gap-10 2xl:max-w-[1220px] max-w-[1065px] mx-auto">
         <div class="2xl:w-[380px] lg:w-[330px] w-full">

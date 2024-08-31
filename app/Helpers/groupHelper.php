@@ -2,19 +2,25 @@
 use App\Models\User;
 use App\Models\Group;
 use App\Models\GroupMember;
+use Illuminate\Support\Facades\Auth;
+
+
 
 
 
 function checkIsGroupJoin($group_id){
-    // dd('test');
+    // dd($group_id);
     // dd(getUserData());
-    $user_id = getUserData()['id'];
+    if(Auth::check()){
 
-    $data = GroupMember::where(['group_id' => $group_id, 'user_id' => $user_id])->whereNot(['status' => 'active'])->first();
-    if($data){
-        return true;
+        $user_id = Auth::id();
+        $data = GroupMember::where(['group_id' => $group_id, 'user_id' => $user_id])->first(); 
+        // dd($user_id);
+        if($data){
+            return true;
+        }
+        return false;
     }
-    return false;
 }
 
 function countGroupMembers($group_id){

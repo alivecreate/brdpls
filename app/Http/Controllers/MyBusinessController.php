@@ -109,9 +109,7 @@ class MyBusinessController extends Controller
                 'status' => 1
              ]);
             }
-
          return redirect()->back()->with('success', 'Business Profile Updated');
-
     }
 
     public function deleteMyBusiness(Request $request, string $cid)

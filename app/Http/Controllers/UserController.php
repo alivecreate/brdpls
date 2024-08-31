@@ -7,6 +7,7 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+
 use Auth;
 use Cookie;
 
@@ -26,8 +27,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        $users = User::orderBy('first_name', 'asc')->get();
 
+        $users = User::orderBy('first_name', 'asc')->get();
         return view('front.pages.form-register', compact('users'));
     }
 
@@ -37,63 +38,81 @@ class UserController extends Controller
     public function store(Request $request)
     {
         // dd($request->all());
-
         $request->validate([
             'first_name' => 'required|string',
             'last_name' => 'required|string',
+            'gender' => 'required|string',
           
             // 'phone' => 'required|string',
         ]);
         
         $rules = [
-            'phone' => 'required|unique:users,phone',
-            'password' => 'required|min:8|confirmed',
+            'phone' =>  ['required', 'regex:/^\d{10}$/', 'unique:users,phone'],
+            'password' => 'required|min:6',
         ];
     
         // Validation messages (optional)
         $messages = [
             'phone.unique' => 'The phone number has already been used.',
+            'phone.regex' => 'The phone number must be exactly 10 digits.',
             'password.required' => 'The password field is required.',
-            'password.min' => 'The password must be at least 8 characters.',
+            'password.min' => 'The password must be at least 6 characters.',
             'password.confirmed' => 'The password confirmation does not match.',
 
             // Add custom error messages for other rules as needed
         ];
+
         $validator = Validator::make($request->all(), $rules, $messages);
 
         // Check if the validation fails
         if ($validator->fails()) {
             // dd('failed');
+            
+            // return redirect()->back()->with('error', 'Something Went Wrong');
             return redirect()->back()->withErrors($validator)->withInput();
         }  
-        // dd('success');
+        
+        
+
+        $otp = str_pad(mt_rand(0, 999999), 6, '0', STR_PAD_LEFT);
+        sendOTP($request->first_name.' '.$request->last_name, $otp, $request->phone);
+        
+        $cid = Str::lower(Str::random(12));
 
 
 
-        $users = User::create([
+        $user = User::create([
+            'cid'=> $cid,
             'first_name' => $request->first_name, 
             'last_name' => $request->last_name, 
             'phone' => $request->phone, 
+            'otp' => $otp,
             'password' => Hash::make($request->password), 
             'username' => $request->username, 
             'email' => $request->email, 
             'bio' => $request->bio, 
             'gender' => $request->gender,
             'relationship' =>$request->relationship,
-            'status' => 1
+            'status' => 'pending'
         ]);
 
+        // $user = Auth::user();
 
-        $request->session()->put('isLoginSession', $users->id);
-        return redirect()->route('setting')->with('success', 'Account Created Successfully.');
+        // // dd($user);
+        
+        //     $rememberToken = $user->createRememberToken(); // Assume this method generates a unique token and saves it with the user
+        //     Cookie::queue('remember', $rememberToken, 365 * 24 * 60 * 60); // 2 weeks
+                        
+        //     $request->session()->put('isLoginSession', $user->id);
 
-            // $rememberToken = $user->createRememberToken(); // Assume this method generates a unique token and saves it with the user
-            // Cookie::queue('remember', $rememberToken, 365 * 24 * 60 * 60); // 2 weeks
+Auth::login($user);
+
+$request->session()->put('isLoginSession', $user->id);
+
+            return redirect()->route('userVerification', ['cid' => $cid])->with('success', 'Account Created Successfully.');
             
-
     }
     public function checkAuth(Request $request){
-       
         {
             // dd($request->all());
 
@@ -102,6 +121,7 @@ class UserController extends Controller
         
             if (Auth::attempt($credentials, $rememberMe)) {
                 $user = Auth::user();
+                // dd($user);
         
                 if ($rememberMe) {
                     $rememberToken = $user->createRememberToken(); // Assume this method generates a unique token and saves it with the user
@@ -116,7 +136,7 @@ class UserController extends Controller
             }
         
             return back()->withErrors([
-                'phone' => 'The provided credentials do not match our records.',
+                'phone' => 'The phone number or password is incorrect.',
             ]);
         }
     }
@@ -157,6 +177,17 @@ class UserController extends Controller
     {
         // dd($request->all());
 
+        $validator = Validator::make($request->all(), [
+            'first_name' => 'required|string',
+            'last_name' => 'required|string',
+        ]);
+    
+        // Check if validation fails
+        if ($validator->fails()) {
+            return redirect()->back()
+                             ->withErrors($validator)
+                             ->withInput();
+        }
 
         $users = User::find($id);
 
@@ -171,7 +202,8 @@ class UserController extends Controller
         if ($users) {
             $users->update([
                
-                'username' => $request->username, 
+                'first_name' => $request->first_name, 
+                'last_name' => $request->last_name, 
                 'email' => $request->email, 
                 'bio' => $request->bio, 
                 'gender' => $request->gender,
@@ -179,12 +211,11 @@ class UserController extends Controller
                 'status' => 1
 
             ]);
+            return redirect()->back()->with('success', 'Profile updated successfully');
             
-            return redirect()->route('index')
-                ->with('success', 'profile updated successfully');
             }
             else {
-                return redirect()->route('setting')->with('error', 'Profile not found');
+                return redirect()->back()->with('error', 'Something went wrong, please try again.');
             }
     }
 

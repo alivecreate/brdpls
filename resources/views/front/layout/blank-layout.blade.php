@@ -3,6 +3,13 @@
 <head>
 
     @include('front.ext.head')
+    
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    
+    @yield('meta-content')
+    
+    @yield('custom-head')
+
  
 </head>
 <body>
@@ -14,6 +21,23 @@
 
 
 		@include('front.ext.scripts')
+        
+        @yield('custom-script')
+
+        
+        @if (session('error'))
+        <script>
+            toastr.error('{{ session('error') }}');
+            </script>
+        @endif
+
+        @if (session('success'))
+        <script>
+            toastr.success('{{ session('success') }}');
+            </script>
+        @endif
+
+      
   
  
 

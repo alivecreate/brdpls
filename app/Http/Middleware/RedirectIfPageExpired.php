@@ -13,10 +13,11 @@ class RedirectIfPageExpired
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
+    
     public function handle(Request $request, Closure $next): Response
     {
         $response = $next($request);
-        dd($response->getStatusCode());
+        // dd($response->getStatusCode());
         // Check if the response status code is 419 (Page Expired)
         if ($response->getStatusCode() == 419) {
             // Redirect to the login page with an appropriate message
