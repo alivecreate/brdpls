@@ -39,10 +39,10 @@
     <meta name="theme-color" content="#ffffff">
 
     <!-- Apple Touch Icon for iOS -->
-    <link rel="apple-touch-icon" href="{{asset('front/images/web')}}/favicons/apple-touch-icon.png">
+    <link rel="apple-touch-icon" href="{{asset('front/images')}}/favicons/apple-touch-icon.png">
 
     <!-- Favicon for All Devices -->
-    <link rel="icon" href="{{asset('front/images/web')}}/favicons/favicon.ico" sizes="16x16 32x32 48x48" type="image/x-icon">
+    <link rel="icon" href="{{asset('front/images')}}/favicons/favicon.ico" sizes="16x16 32x32 48x48" type="image/x-icon">
 
 
 
