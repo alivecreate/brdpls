@@ -8,7 +8,7 @@
 <div class="2xl:max-w-[1220px] max-w-[1065px] mx-auto mt-10">
 
     <div class="page-heading">
-        <h1 class="page-title mb-2">About Us:</h1>
+        <h1 class="page-title mb-2 text-underline">About Us:</h1>
         <div class="section">
             <h2 class="subheading-h2">Welcome to BarodaPlus</h2>
             <p>BarodaPlus is your go-to platform for everything related to Vadodara – the city we all love and cherish. From festivals and competitions to local business opportunities and marketplaces, we bring the essence of Vadodara to your fingertips.</p>
