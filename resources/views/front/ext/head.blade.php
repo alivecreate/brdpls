@@ -23,8 +23,8 @@
     <meta property="og:description" content="LIVE - ગણેશ સ્પર્ધા વડોદરા, બરોડા પ્લસ આપનું હાર્દિક સ્વાગત કરે છે.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ url('/') }}">
-    <meta property="og:image" content="https://yourdomain.com/image.jpg">
-    <meta property="og:site_name" content="{{asset('front/images/web')}}/login-image.webp">
+    <meta property="og:image" content="{{asset('front/images/web')}}/login-image.webp">
+    <meta property="og:site_name" content="Barodaplus.com">
     <meta property="og:locale" content="en_US">
 
     <!-- Twitter Card Meta Tags -->
