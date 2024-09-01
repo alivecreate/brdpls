@@ -55,6 +55,10 @@
 
 
 @media (min-width: 768px) {
+    
+.login-page-wrapper{
+    margin-top: 100px;
+}
     .timeline-cover{
         height: 30rem;
     }
@@ -77,6 +81,11 @@
 }
 
 @media (max-width: 769px) {
+    
+.login-page-wrapper{
+    margin-top: 0;
+}
+
     .timeline-cover{
         height: 20rem;
     }
@@ -469,6 +478,7 @@ background: #ececec;
     border-radius: 20px;
     font-weight: bold;
 }
+
 .payment-fail {
     text-align: center;
     margin-top: 20px;

@@ -19,16 +19,13 @@
 </style>
 
 
-<div class="sm:flex">
+<div class="sm:flex login-page-wrapper">
     <div
         class="relative lg:w-[580px] md:w-96 w-full p-10 min-h-screen bg-white shadow-xl flex items-center pt-10 dark:bg-slate-900 z-10">
         <div class="w-full lg:max-w-sm mx-auto space-y-10"
             uk-scrollspy="target: > *; cls: uk-animation-scale-up; delay: 100 ;repeat: true">
 
             <div>
-                <a href="{{route('index')}}"> <img src="{{asset('front/images/web')}}/barodaplus-logo.png"
-                        class="w-40 dark:hidden text-center mb-3" alt=""></a>
-
                 <h2 class="text-2xl font-semibold mb-1.5">Sign in to your account </h2>
                 <p class="text-sm text-gray-700 font-normal">If you haven’t signed up yet. <a
                         href="{{route('registration')}}" class="text-blue-700">Register here!</a></p>

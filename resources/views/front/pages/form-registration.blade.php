@@ -19,7 +19,7 @@
   
   </style>
   
-  <div class="sm:flex">
+  <div class="sm:flex login-page-wrapper">
       
       <div class="relative lg:w-[580px] md:w-96 w-full p-10 min-h-screen bg-white shadow-xl flex items-center pt-10 dark:bg-slate-900 z-10">
   
@@ -27,11 +27,9 @@
   
           <div>
             
-          <a href="{{route('index')}}"> <img src="{{asset('front/images/web')}}/barodaplus-logo.png"
-           class="w-40 dark:hidden text-center mb-3" alt=""></a>
                             
-
-            <h2 class="text-2xl font-semibold mb-1.5"> Sign up to get started </h2>
+          <p class="text-md font-semibold mt-6 mb-4">ગણેશ સ્પર્ધામાં ભાગ લેવા અને વોટિંગ કરવા અકાઉંટ બનાવવું ફરજિયાત છે.</p>
+          <h2 class="text-2xl font-semibold mb-1.5"> Sign up to get started </h2>
             <p class="text-sm text-gray-700 font-normal">If you already have an account, <a href="{{route('login')}}" class="text-blue-700">Login here!</a></p>
           </div>
    

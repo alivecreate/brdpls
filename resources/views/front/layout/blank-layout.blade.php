@@ -16,6 +16,7 @@
  
     <div id="wrapper">
 
+    @include('front.ext.header-ganesh-festival')
 
         @yield('content')
 
