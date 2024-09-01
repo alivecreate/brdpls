@@ -136,7 +136,9 @@
 label {
     margin: 5px 0px;
 }
-
+.competition-form{
+margin-bottom: 20px;
+}
 #site__main {
 	margin-top: 78px;
 }
