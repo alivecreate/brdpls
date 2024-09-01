@@ -17,7 +17,7 @@ class GaneshFestivalGroupController extends Controller
      */
     public function index()
     {
-        return 'rest';
+        // return 'rest';
         $groups = Group::orderBy('name', 'asc')->get();
         return view('front.pages.groups.list', compact('groups'));
     }
