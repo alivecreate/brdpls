@@ -2,10 +2,10 @@
 
 @section('content')
 
-<main id="site__main" class="2xl:ml-[--w-side]  xl:ml-[--w-side-sm] py-10 2xl:ml-[--w-side]  xl:ml-[--w-side-sm] py-10 p-2.5 h-[calc(100vh-var(--m-top))] mt-[--m-top]">
+<main id="site__main" class="2xl:ml-[--w-side]  xl:ml-[--w-side-sm] 2xl:ml-[--w-side]  xl:ml-[--w-side-sm] h-[calc(100vh-var(--m-top))] mt-[--m-top] p-6">
 
             
-<div class="2xl:max-w-[1220px] max-w-[1065px] mx-auto">
+<div class="2xl:max-w-[1220px] max-w-[1065px] mx-auto lg:mt-2 mt-6">
 
 <div class="p-4 mb-4 text-lg text-blue-800 rounded-lg {{$errorCode}} dark:bg-gray-800 dark:text-blue-400" role="alert">
   <strong class="font-bold">Error!</strong>

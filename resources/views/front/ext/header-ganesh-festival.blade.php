@@ -3,7 +3,7 @@
 <header
     class="z-[100] header-topbar w-full md:w-auto fixed top-0 left-0 w-full flex items-center bg-white/80 sky-50 backdrop-blur-xl border-b border-slate-200 dark:bg-dark2 dark:border-slate-800">
 
-    <div class="flex items-center w-full xl:px-6 px-2 max-lg:gap-10">
+    <div class="flex items-center w-full xl:px-6 px-2 max-lg:gap-10 ">
 
         <div class="2xl:w-[--w-side] lg:w-[--w-side-sm]">
 
@@ -53,8 +53,6 @@
 
                                 <div class="text-sm font-medium text-capitalize font-semibold"> ગણેશ મંડળનું રજીસ્ટ્રેશન
                                 </div>
-
-
                                 @endif
                             </a>
                         </li>
@@ -170,7 +168,7 @@
 
 </header>
 
-<div class="lg:hidden">
+<div class="lg:block hidden">
     <ul class="uk-slider-items grid-small "
         uk-scrollspy="target: > li; cls: uk-animation-scale-up , uk-animation-slide-right-small; delay: 20 ;repeat: true"
         style="transform: translate3d(0px, 0px, 0px);">
@@ -203,3 +201,4 @@
 
     </ul>
 </div>
+

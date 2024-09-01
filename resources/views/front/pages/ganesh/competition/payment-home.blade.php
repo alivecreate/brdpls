@@ -25,12 +25,14 @@ toastr.success("{{ session('success') }}");
 
 
 <main id="site__main"
-    class="2xl:ml-[--w-side]  xl:ml-[--w-side-sm] py-10 2xl:ml-[--w-side]  xl:ml-[--w-side-sm] py-10 p-2.5 h-[calc(100vh-var(--m-top))] mt-[--m-top]">
+    class="2xl:ml-[--w-side]  xl:ml-[--w-side-sm] 2xl:ml-[--w-side]  xl:ml-[--w-side-sm] h-[calc(100vh-var(--m-top))] mt-[--m-top] p-6">
 
-    <div class="flex max-lg:flex-col 2xl:gap-12 gap-10 2xl:max-w-[1220px] max-w-[1065px] mx-auto lg-mt-4"
+    <div class="2xl:max-w-[1220px] max-w-[1065px] mx-auto lg:mt-2 mt-6 mt-2"
         id="js-oversized">
+        
+@include('front.ext.nav-mobile-menu')
 
-        <div class="flex-1">
+        <div class="flex-1 px-6">
 
 
             <div class="w-full">
@@ -110,6 +112,11 @@ toastr.success("{{ session('success') }}");
                 uk-sticky="media: 1024; end: #js-oversized; offset: 80">
 
 
+                <div class="bg-white rounded-xl shadow p-5 px-6 border1 dark:bg-dark2">
+
+                   <img src="{{asset('front/images/web')}}/advertise-and-sponsorship-barodaplus.webp"/>
+
+                </div>
 
                 <div class="box p-5 px-6">
 
@@ -146,11 +153,6 @@ toastr.success("{{ session('success') }}");
 
                 </div>
 
-                <div class="bg-white rounded-xl shadow p-5 px-6 border1 dark:bg-dark2">
-
-                   <img src="{{asset('front/images/web')}}/advertise-and-sponsorship-barodaplus.webp"/>
-
-                </div>
 
             </div>
 

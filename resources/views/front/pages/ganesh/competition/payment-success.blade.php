@@ -25,12 +25,14 @@ toastr.success('{{ session('success') }}');
 
 
 <main id="site__main"
-    class="2xl:ml-[--w-side]  xl:ml-[--w-side-sm] py-10 2xl:ml-[--w-side]  xl:ml-[--w-side-sm] py-10 p-2.5 h-[calc(100vh-var(--m-top))] mt-[--m-top]">
+    class="2xl:ml-[--w-side]  xl:ml-[--w-side-sm] 2xl:ml-[--w-side]  xl:ml-[--w-side-sm] h-[calc(100vh-var(--m-top))] mt-[--m-top] p-6">
 
-    <div class="flex max-lg:flex-col 2xl:gap-12 gap-10 2xl:max-w-[1220px] max-w-[1065px] mx-auto lg-mt-4"
+    <div class="2xl:max-w-[1220px] max-w-[1065px] mx-auto lg:mt-2 mt-6 mt-2"
         id="js-oversized">
 
-        <div class="flex-1">
+        @include('front.ext.nav-mobile-menu')
+
+        <div class="flex-1 px-6">
 
         <h1 class="text-success payment-success" >
         <span>Hello {{$user->first_name}} {{$user->last_name}},</span>  <br>  
@@ -82,58 +84,9 @@ toastr.success('{{ session('success') }}');
 
                 </div>
 
+                
                 <div class="bg-white rounded-xl shadow p-5 px-6 border1 dark:bg-dark2">
-
-                    <div class="flex items-baseline justify-between text-black dark:text-white">
-                        <h3 class="font-bold text-base"> Suggested pages </h3>
-                        <a href="#" class="text-sm text-blue-500">See all</a>
-                    </div>
-
-                    <div class="side-list">
-
-                        <div class="side-list-item">
-                            <a href="">
-                                <img src="{{asset('front')}}/images/avatars/avatar-2.jpg" alt=""
-                                    class="side-list-image rounded-full">
-                            </a>
-                            <div class="flex-1">
-                                <a href="">
-                                    <h4 class="side-list-title"> John Michael</h4>
-                                </a>
-                                <div class="side-list-info"> Updated 1 week ago </div>
-                            </div>
-                            <button class="button bg-primary text-white">Like</button>
-                        </div>
-                        <div class="side-list-item">
-                            <a href="">
-                                <img src="{{asset('front')}}/images/avatars/avatar-4.jpg" alt=""
-                                    class="side-list-image rounded-full">
-                            </a>
-                            <div class="flex-1">
-                                <a href="">
-                                    <h4 class="side-list-title"> Martin Gray</h4>
-                                </a>
-                                <div class="side-list-info"> Updated 4 week ago </div>
-                            </div>
-                            <button class="button bg-primary text-white">Like</button>
-                        </div>
-                        <div class="side-list-item">
-                            <a href="">
-                                <img src="{{asset('front')}}/images/avatars/avatar-3.jpg" alt=""
-                                    class="side-list-image rounded-full">
-                            </a>
-                            <div class="flex-1">
-                                <a href="">
-                                    <h4 class="side-list-title"> Monroe Parker</h4>
-                                </a>
-                                <div class="side-list-info"> Updated 2 month ago </div>
-                            </div>
-                            <button class="button bg-primary text-white">Like</button>
-                        </div>
-
-
-                    </div>
-
+                    <img src="{{asset('front/images/web')}}/advertise-and-sponsorship-barodaplus.webp"/>
                 </div>
 
             </div>

@@ -27,7 +27,7 @@
     <li class="lg:w-1/3 md:w-1/3 sm:w-1/3 w-1/1 pr-3">
             <div class="card uk-transition-toggle">
                 <a href="{{route('ganeshFestivalGroup.create')}}">
-                    <div class="">
+                    <div class="px-6">
                         <img class='w-full' src="{{asset('front/images')}}/web/group-registration.png" alt="">
                         <div class="card-overly"></div> 
                     </div> 
@@ -43,7 +43,7 @@
         <li class="lg:w-1/3 md:w-1/3 sm:w-1/3 w-1/1 pr-3">
             <div class="card uk-transition-toggle">
                 <a href="{{route('ganeshFestivalGroup.create')}}">
-                    <div class="">
+                    <div class="px-6">
                         <img class='w-full' src="{{asset('front/images')}}/web/ganesh-competition.png" alt="">
                         <div class="card-overly"></div> 
                     </div> 
@@ -59,7 +59,7 @@
         <li class="lg:w-1/3 md:w-1/3 sm:w-1/3 w-1/1 pr-3">
             <div class="card uk-transition-toggle">
                 <a href="{{route('ganeshFestivalGroup.create')}}">
-                    <div class="">
+                    <div class="px-6">
                         <img class='w-full' src="{{asset('front/images')}}/web/group-registration.png" alt="">
                         <div class="card-overly"></div> 
                     </div> 

@@ -473,7 +473,7 @@
                 <div class="sm:w-20 w-14 sm:h-20 h-14 flex-shrink-0 rounded-lg relative"> 
                     <img src="{{asset('front')}}/images/group/group-4.jpg" class="absolute w-full h-full inset-0 rounded-md object-cover shadow-sm" alt="">
                 </div> 
-                <div class="flex-1">
+                <div class="flex-1 px-6">
                     <a href="{{route('group.show', 1)}}" class="md:text-lg text-base font-semibold capitalize text-black dark:text-white"> Delicious Foods   </a>
                     <div class="flex space-x-2 items-center text-sm font-normal">
                         <div> 16K Members</div>

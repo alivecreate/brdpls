@@ -24,12 +24,12 @@ toastr.success('{{ session('
 
 
 <main id="site__main"
-    class="2xl:ml-[--w-side]  xl:ml-[--w-side-sm] py-10 2xl:ml-[--w-side]  xl:ml-[--w-side-sm] py-10 p-2.5 h-[calc(100vh-var(--m-top))] mt-[--m-top]">
+    class="2xl:ml-[--w-side]  xl:ml-[--w-side-sm] 2xl:ml-[--w-side]  xl:ml-[--w-side-sm] h-[calc(100vh-var(--m-top))] mt-[--m-top] p-6">
 
-    <div class="flex max-lg:flex-col 2xl:gap-12 gap-10 2xl:max-w-[1220px] max-w-[1065px] mx-auto lg-mt-4"
+    <div class="2xl:max-w-[1220px] max-w-[1065px] mx-auto lg:mt-2 mt-6 mt-2"
         id="js-oversized">
 
-        <div class="flex-1">
+        <div class="flex-1 px-6">
 
 
             <div class="w-full">
@@ -82,7 +82,6 @@ toastr.success('{{ session('
 
 
                     @if(count($group->competitions) == 0)
-
                                         
                     <form action="{{route('ganeshFestivalCompetition.store')}}" method="post">
                         @csrf
@@ -113,35 +112,6 @@ toastr.success('{{ session('
             <div class="lg:space-y-6 space-y-4 lg:pb-8 max-lg:grid sm:grid-cols-2 max-lg:gap-6"
                 uk-sticky="media: 1024; end: #js-oversized; offset: 80">
 
-                
-                <!-- <div class="bg-white rounded-xl shadow p-5 px-6 border1 dark:bg-dark2">
-                    <div class="flex items-baseline justify-between text-black dark:text-white">
-                        <h3 class="font-bold text-base"> Recent Ganesh Mandal</h3>
-                        <a href="#" class="text-sm text-blue-500">See all</a>
-                    </div>
-
-                    <div class="side-list">
-
-                        <div class="side-list-item">
-                            <a href="">
-                                <img src="{{asset('front')}}/images/avatars/avatar-2.jpg" alt=""
-                                    class="side-list-image rounded-full">
-                            </a>
-                            <div class="flex-1">
-                                <a href="">
-                                    <h4 class="side-list-title"> John Michael</h4>
-                                </a>
-                                <div class="side-list-info"> Updated 6 day ago </div>
-                            </div>
-                            <button class="button bg-primary-soft text-primary dark:text-white">Like</button>
-                        </div>
-
-                    </div>
-
-                    <button
-                        class="bg-secondery w-full text-black py-1.5 font-medium px-3.5 rounded-md text-sm mt-3 dark:text-white">See
-                        all</button>
-                </div> -->
 
 
                 <div class="box p-5 px-6">
@@ -180,62 +150,9 @@ toastr.success('{{ session('
 
                 </div>
 
-                <!-- Groups You Manage  -->
                 <div class="bg-white rounded-xl shadow p-5 px-6 border1 dark:bg-dark2">
-
-                    <div class="flex items-baseline justify-between text-black dark:text-white">
-                        <h3 class="font-bold text-base"> Suggested pages </h3>
-                        <a href="#" class="text-sm text-blue-500">See all</a>
-                    </div>
-
-                    <div class="side-list">
-
-                        <div class="side-list-item">
-                            <a href="">
-                                <img src="{{asset('front')}}/images/avatars/avatar-2.jpg" alt=""
-                                    class="side-list-image rounded-full">
-                            </a>
-                            <div class="flex-1">
-                                <a href="">
-                                    <h4 class="side-list-title"> John Michael</h4>
-                                </a>
-                                <div class="side-list-info"> Updated 1 week ago </div>
-                            </div>
-                            <button class="button bg-primary text-white">Like</button>
-                        </div>
-                        <div class="side-list-item">
-                            <a href="">
-                                <img src="{{asset('front')}}/images/avatars/avatar-4.jpg" alt=""
-                                    class="side-list-image rounded-full">
-                            </a>
-                            <div class="flex-1">
-                                <a href="">
-                                    <h4 class="side-list-title"> Martin Gray</h4>
-                                </a>
-                                <div class="side-list-info"> Updated 4 week ago </div>
-                            </div>
-                            <button class="button bg-primary text-white">Like</button>
-                        </div>
-                        <div class="side-list-item">
-                            <a href="">
-                                <img src="{{asset('front')}}/images/avatars/avatar-3.jpg" alt=""
-                                    class="side-list-image rounded-full">
-                            </a>
-                            <div class="flex-1">
-                                <a href="">
-                                    <h4 class="side-list-title"> Monroe Parker</h4>
-                                </a>
-                                <div class="side-list-info"> Updated 2 month ago </div>
-                            </div>
-                            <button class="button bg-primary text-white">Like</button>
-                        </div>
-
-
-                    </div>
-
+                    <img src="{{asset('front/images/web')}}/advertise-and-sponsorship-barodaplus.webp"/>
                 </div>
-
-            </div>
 
         </div>
 

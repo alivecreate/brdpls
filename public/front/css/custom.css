@@ -129,12 +129,20 @@
     }
 }
 
-
+.flex-inline{
+    display: inline-flex;
+}
 
 label {
     margin: 5px 0px;
 }
 
+#site__main {
+	margin-top: 78px;
+}
+.nav-mobile-menu {
+    /* margin-top: 128px; */
+}
 .heading-1 {
     text-align: center;
     background: antiquewhite;

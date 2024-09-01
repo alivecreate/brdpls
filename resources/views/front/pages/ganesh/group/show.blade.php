@@ -148,28 +148,13 @@ toastr.success("{{ session('success') }}");
                                 @endif
 
                                 <div>
-                                    <button type="button"
-                                        class="rounded-lg bg-secondery flex px-2.5 py-2 dark:bg-dark2">
-                                        <ion-icon name="ellipsis-horizontal" class="text-xl">
-                                    </button>
-                                    <div class="w-[240px]"
-                                        uk-dropdown="pos: bottom-right; animation: uk-animation-scale-up uk-transform-origin-top-right; animate-out: true; mode: click;offset:10">
-                                        <nav>
-
-                                            <a href="#" id="share-button">
-                                                <ion-icon class="text-xl" name="share-outline"></ion-icon> Share
-                                            </a>
-                                            <a href="#">
-                                                <ion-icon class="text-xl" name="link-outline"></ion-icon> Copy link
-                                            </a>
-
-
-                                            <a href="#" uk-toggle="target: #group-report-popup">
-                                                <ion-icon class="text-xl" name="flag-outline"></ion-icon> Report group
-                                            </a>
-
-                                        </nav>
-                                    </div>
+                                    
+                                    
+                                    <a href="#" id="share-button" 
+                                        class="rounded-lg bg-secondery flex px-2.5 py-2 dark:bg-dark2  font-semibold">
+                                        <ion-icon class="text-xl font-semibold mr-2" name="share-outline"></ion-icon>  Share
+                                    </a>
+                                    
                                 </div>
                             </div>
                         </div>
