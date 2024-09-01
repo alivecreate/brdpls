@@ -50,6 +50,23 @@
                 </li>
                 @endif
 
+                    @if(!isGroupExists() && !isHomeCompetitionExists())
+
+                    
+                <li id="ganesh-festival">
+                    <a href="{{route('ganeshFestivalCompetition.create')}}">
+                        <img src="{{asset('front')}}/images/icons/message.png" alt="Ganesh Festival" class="w-5">
+                        <span> ગણેશ સ્પર્ધા રજિસ્ટ્રેશન</span> 
+                    </a>
+                </li> 
+                        @endif
+
+                <li id="ganesh-festival">
+                    <a href="{{route('GaneshFestivalCompetitionRules')}}">
+                        <img src="{{asset('front')}}/images/icons/message.png" alt="Ganesh Festival" class="w-5">
+                        <span> સ્પર્ધાના નિયમો</span> 
+                    </a>
+                </li> 
 
                 @if(!Auth::check())
                 <hr>
@@ -73,10 +90,7 @@
 
         @if(Auth::check())
         <nav id="side" class="font-medium text-sm text-black border-t pt-3 mt-2 dark:text-white dark:border-slate-800">
-            <div class="px-3 pb-2 text-sm font-medium"> 
-                <div class="text-black dark:text-white">Pages</div> 
-            </div>
-
+      
             <ul class="mt-2 -space-y-2" 
                 uk-nav="multiple: true">
     
@@ -87,6 +101,18 @@
                             <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                         </svg>
                         <span> Setting </span>                  
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{route('logout')}}"> 
+                    <svg class="w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1">
+                            </path>
+                        </svg>
+                        <span> Log Out </span>                  
                     </a>
                 </li>
 

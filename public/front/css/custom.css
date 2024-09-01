@@ -82,6 +82,12 @@
 
 @media (max-width: 769px) {
     
+    
+.flex-justify-space-around{
+    display: flex;
+    justify-content: space-between !important;
+}
+
 .login-page-wrapper{
     margin-top: 0;
 }
