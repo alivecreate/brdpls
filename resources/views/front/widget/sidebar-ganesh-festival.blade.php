@@ -52,7 +52,6 @@
 
                     @if(!isGroupExists() && !isHomeCompetitionExists())
 
-                    
                 <li id="ganesh-festival">
                     <a href="{{route('ganeshFestivalCompetition.create')}}">
                         <img src="{{asset('front')}}/images/icons/message.png" alt="Ganesh Festival" class="w-5">

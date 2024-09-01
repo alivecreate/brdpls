@@ -7,9 +7,23 @@
     <main id="site__main" class="2xl:ml-[--w-side]  xl:ml-[--w-side-sm] py-10 2xl:ml-[--w-side]  xl:ml-[--w-side-sm] py-10 p-2.5 h-[calc(100vh-var(--m-top))] mt-[--m-top]">
 
             
-<div class="2xl:max-w-[1220px] max-w-[1065px] mx-auto mt-10">
+<div class="2xl:max-w-[1220px] max-w-[1065px] mx-auto mt-2">
 
+<img class="mb-4 ganesh-registration-banner-responsive lg:hidden" src="{{asset('front/images/web')}}/ganesh-competition-banner1.webp"
+ alt="Baroda plus ganesh competition - Vadodara">
 
+<img class="mb-4 ganesh-registration-banner-responsive hidden lg:block" src="{{asset('front/images/web')}}/ganpati-banner-website-lg.webp"
+ alt="Baroda plus ganesh competition - Vadodara">
+
+@if(!isGroupExists() && !isHomeCompetitionExists())
+                            <a href="{{route('ganeshFestivalCompetition.create')}}"
+                                class="custom-nav-menu p-3 px-4 rounded-lg bg-sky-100/60 text-sky-600 dark:text-white dark:bg-dark4 mb-4">
+                                <ion-icon name="trophy" class="text-2xl drop-shadow-md md hydrated mr-2" role="img"
+                                    aria-label="trophy"></ion-icon>
+                                <div class="text-sm font-medium text-capitalize font-semibold"> ગણેશ સ્પર્ધા રજિસ્ટ્રેશન
+                                </div>
+                            </a>
+    @endif
     <div class="page-heading">
         
         <h1 class="page-title"> ગણેશ મંડળો (Ganesh Festival Pages) </h1>
