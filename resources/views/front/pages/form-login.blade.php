@@ -1,5 +1,10 @@
 @extends('front.layout.blank-layout')
 
+
+@section('meta-content')
+
+@endsection
+
 @section('content')
 
 <style>
@@ -102,9 +107,6 @@
 
 </div>
 
-
-<script src="assets/js/uikit.min.js"></script>
-<script src="assets/js/script.js"></script>
 
 <!-- Ion icon -->
 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>

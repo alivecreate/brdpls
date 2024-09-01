@@ -9,8 +9,7 @@
     <link href="assets/images/favicon.png" rel="icon" type="image/png">
 
     <!-- title and description-->
-    <title>Socialite</title>
-    <meta name="description" content="Socialite - Social sharing network HTML Template">
+     
    
     <!-- css files -->
     <link rel="stylesheet" href="assets/css/tailwind.css">

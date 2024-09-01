@@ -8,9 +8,6 @@
     <!-- Favicon -->
     <link href="{{asset('front')}}/images/favicon.png" rel="icon" type="image/png">
 
-    <!-- title and description-->
-    <title>Socialite</title>
-    <meta name="description" content="Socialite - Social sharing network HTML Template">
    
     <!-- css files -->
     <link rel="stylesheet" href="{{asset('front')}}/css/tailwind.css">
@@ -90,7 +87,7 @@
                             <ion-icon name="eye-outline" class="hidden"></ion-icon>
                             Check Demo 
                         </a>
-                        <a class="flex items-center gap-3 rounded-lg px-5 py-2.5 bg-black text-white shadow dark:bg-white/90 dark:text-black" target="_blank" href="https://themeforest.net/item/socialite-online-community-html-template/26345647">  
+                        <a class="flex items-center gap-3 rounded-lg px-5 py-2.5 bg-black text-white shadow dark:bg-white/90 dark:text-black" target="_blank" href="">  
                             Buy now  
                         </a>
                     </div>
@@ -508,7 +505,6 @@
                 
                 <div class="grid lg:grid-cols-2 lg:gap-10 mt-16 gap-4 text-sm">
                     <div>
-                    <h1 class="md:text-xl text-base font-semibold mb-2 text-black dark:text-white"> Can I use Socialite For React , Vue or Larval ? </h1>
                     <p class="lg:text-lg"> absolutely yes. Socialite Built <a href="https://tailwindcss.com/" class="underline">tailwindcss</a> Rapidly build modern websites without ever leaving your HTML</p>
                     </div>
                     <div>

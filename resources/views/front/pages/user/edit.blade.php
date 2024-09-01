@@ -10,7 +10,7 @@
 
         <!-- logo icon optional -->
         <div class="hidden">
-          <img class="w-12" src="{{asset('front')}}/images/logo-icon.png" alt="Socialite html template">
+          <img class="w-12" src="{{asset('front')}}/images/logo-icon.png" alt="Baroda Plus - Vadodara">
         </div>
 
         <!-- title -->
@@ -115,7 +115,7 @@
                 <img src="{{asset('front')}}/images/post/img-3.jpg"  alt="" class="w-full h-full object-cover uk-animation-kenburns uk-animation-reverse uk-transform-origin-center-left">
                 <div class="absolute bottom-0 w-full uk-tr ansition-slide-bottom-small z-10">
                     <div class="max-w-xl w-full mx-auto pb-32 px-5 z-30 relative"  uk-scrollspy="target: > *; cls: uk-animation-scale-up; delay: 100 ;repeat: true" > 
-                        <img class="w-12" src="{{asset('front')}}/images/logo-icon.png" alt="Socialite html template">
+                        <img class="w-12" src="{{asset('front')}}/images/logo-icon.png" alt="Baroda Plus - Vadodara">
                         <h4 class="!text-white text-2xl font-semibold mt-7"  uk-slideshow-parallax="y: 600,0,0">  Connect With Friends </h4> 
                         <p class="!text-white text-lg mt-7 leading-8"  uk-slideshow-parallax="y: 800,0,0;"> This phrase is more casual and playful. It suggests that you are keeping your friends updated on what’s happening in your life.</p>   
                     </div> 
@@ -126,7 +126,7 @@
               <img src="{{asset('front')}}/images/post/img-2.jpg"  alt="" class="w-full h-full object-cover uk-animation-kenburns uk-animation-reverse uk-transform-origin-center-left">
               <div class="absolute bottom-0 w-full uk-tr ansition-slide-bottom-small z-10">
                   <div class="max-w-xl w-full mx-auto pb-32 px-5 z-30 relative"  uk-scrollspy="target: > *; cls: uk-animation-scale-up; delay: 100 ;repeat: true" > 
-                      <img class="w-12" src="{{asset('front')}}/images/logo-icon.png" alt="Socialite html template">
+                      <img class="w-12" src="{{asset('front')}}/images/logo-icon.png" alt="Baroda Plus - Vadodara">
                       <h4 class="!text-white text-2xl font-semibold mt-7"  uk-slideshow-parallax="y: 800,0,0">  Connect With Friends </h4> 
                       <p class="!text-white text-lg mt-7 leading-8"  uk-slideshow-parallax="y: 800,0,0;"> This phrase is more casual and playful. It suggests that you are keeping your friends updated on what’s happening in your life.</p>   
                   </div> 
