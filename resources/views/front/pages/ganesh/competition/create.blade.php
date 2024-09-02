@@ -26,6 +26,8 @@ toastr.success('{{ session('success') }}');
 
 <div class="2xl:max-w-[1220px] max-w-[1065px] mx-auto lg:mt-2 mt-6 mt-2"
         id="js-oversized">
+        
+
 @include('front.ext.nav-mobile-menu')
 
         <div class="px-6">

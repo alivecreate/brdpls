@@ -84,7 +84,6 @@
 
                 <div class="flex items-center sm:gap-4 gap-2 absolute right-5 top-1/2 -translate-y-1/2 text-black">
 
-                   
                     <div class="rounded-full relative flex-center cursor-pointer shrink-0">
                         <img src="{{asset('front')}}/images/avatars/avatar-2.jpg" alt=""
                             class="sm:w-9 sm:h-9 w-7 h-7 rounded-full shadow shrink-0">
@@ -93,15 +92,11 @@
                     <div class="hidden bg-white rounded-lg drop-shadow-xl dark:bg-slate-700 w-64 border2"
                         uk-drop="offset:6;pos: bottom-right;animate-out: true; animation: uk-animation-scale-up uk-transform-origin-top-right ">
 
-                
-
                         <a href="#">
                             <div class="p-4 py-5 flex items-center gap-4">
-                                <img src="{{asset('front')}}/images/avatars/avatar-2.jpg" alt="" class="w-10 h-10 rounded-full shadow">
-                                <div class="flex-1">
-                                    <h4 class="text-sm font-medium text-black">@if(getUserData()){{getUserData()['first_name']}} {{getUserData()['last_name']}}@endif</h4>
-                                    <div class="text-sm mt-1 text-blue-600 font-light dark:text-white/70">@if(getUserData()){{getUserData()['phone']}}@endif</div>
-                                </div>
+                                <img src="{{asset('front')}}/images/avatars/avatar-2.jpg" alt=""
+                                    class="w-10 h-10 rounded-full shadow">
+                                @if(getUserData()){{getUserData()['first_name']}} {{getUserData()['last_name']}}@endif
                             </div>
                         </a>
 

@@ -53,14 +53,7 @@
     width: 16rem;
 }
 
-p, label, h1, h2, h3, h4, h5, h6, input, textarea{
-    color: #444 !important;
-}
 
-input, textarea{
-    
-    color: black;
-}
 
 @media (min-width: 768px) {
     
@@ -174,14 +167,6 @@ margin-bottom: 20px;
     color: red !important;
 }
 
-input[type='text'],
-select, input[type='password'], input[type='email'], input[type='number'], input[type='url'], input[type='date'], input[type='datetime-local'], input[type='month'], input[type='week'], input[type='time'], input[type='search'], input[type='tel'], input[type='checkbox'], input[type='radio'], select, select[multiple], textarea {
-    border-color: transparent;
-    --tw-bg-opacity: 1;
-    background-color: rgb(241 245 249 / var(--tw-bg-opacity));
-    border: 1px solid #d4d4d4;
-    padding: 10px 10px;
-}
 .textarea{
 border-color: transparent;
 font-size: 0.875rem;
@@ -498,10 +483,6 @@ background: #ececec;
 	background: whitesmoke;
 	border: 1px solid silver;
 	padding: 20px 16px;
-}
-.bg-white{
-    
-	background: white !important;
 }
 
 .payment-success {
