@@ -53,7 +53,7 @@
                     @if(!isGroupExists() && !isHomeCompetitionExists())
 
                 <li id="ganesh-festival">
-                    <a href="{{route('ganeshFestivalCompetition.create')}}">
+                    <a href="{{route('ganeshFestivalCompetition.create')}}" class='font-semibold'>
                         <img src="{{asset('front')}}/images/icons/message.png" alt="Ganesh Festival" class="w-5">
                         <span> ગણેશ સ્પર્ધા રજિસ્ટ્રેશન</span> 
                     </a>
@@ -61,7 +61,7 @@
                         @endif
 
                 <li id="ganesh-festival">
-                    <a href="{{route('GaneshFestivalCompetitionRules')}}">
+                    <a href="{{route('GaneshFestivalCompetitionRules')}}" class='font-semibold'>
                         <img src="{{asset('front')}}/images/icons/message.png" alt="Ganesh Festival" class="w-5">
                         <span> સ્પર્ધાના નિયમો</span> 
                     </a>

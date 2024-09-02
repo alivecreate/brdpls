@@ -27,7 +27,7 @@
 <div class="sm:flex login-page-wrapper">
     <div
         class="relative lg:w-[580px] md:w-96 w-full p-10 min-h-screen bg-white shadow-xl flex items-center pt-10 dark:bg-slate-900 z-10">
-        <div class="w-full lg:max-w-sm mx-auto space-y-10"
+        <div class="w-full lg:max-w-sm mx-auto space-y-10 m-responsive"
             uk-scrollspy="target: > *; cls: uk-animation-scale-up; delay: 100 ;repeat: true">
 
             <div>
@@ -84,12 +84,13 @@
         </div>
     </div>
 
-    <div class="flex-1 relative bg-primary max-md:hidden">
+    <div class="flex-1 relative bg-primary max-md:hidden" style="background: #6e0e1a;">
         <div class="relative w-full h-full" tabindex="-1" uk-slideshow="animation: slide; autoplay: true">
             <ul class="uk-slideshow-items w-full h-full">
                 <li class="w-full">
                     <img src="{{asset('front')}}/images/web/login-image.webp" alt=""
-                        class="w-full h-full object-cover  uk-transform-origin-center-left">
+                        class="w-full h-full uk-transform-origin-center-left" 
+                        style="object-fit: contain;">
 
                     <div class="w-full h-96 absolute bottom-0 left-0"></div>
                 </li>

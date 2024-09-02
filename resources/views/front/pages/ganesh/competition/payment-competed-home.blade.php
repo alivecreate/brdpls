@@ -7,41 +7,19 @@
 
 @section('content')
 
-@section('custom-script')
-@if (session('error'))
-
-<script>
-toastr.error("{{ session('error') }}");
-</script>
-@endif
-
-@if (session('success'))
-<script>
-toastr.success("{{ session('success') }}");
-</script>
-@endif
-
-@endsection
 
 
 <main id="site__main"
-    class="2xl:ml-[--w-side]  xl:ml-[--w-side-sm] 2xl:ml-[--w-side]  xl:ml-[--w-side-sm] h-[calc(100vh-var(--m-top))] mt-[--m-top] p-6">
+    class="2xl:ml-[--w-side]  xl:ml-[--w-side-sm] py-10 p-2.5 h-[calc(100vh-var(--m-top))] mt-[--m-top]">
+    <div class="lg:flex 2xl:gap-12 gap-10 2xl:max-w-[1220px] max-w-[1065px] mx-auto mt-10" id="js-oversized">
 
-    <div class="2xl:max-w-[1220px] max-w-[1065px] mx-auto lg:mt-2 mt-6 mt-2"
-        id="js-oversized">
         @include('front.ext.nav-mobile-menu')
 
-        <div class="flex-1  px-6">
-
+        <div class="flex-1">
 
             <div class="w-full">
-
                 <p class='heading-h1 font-semibold text-black font-semibold text-black mb-0 text-underline'>ગણેશ સ્પર્ધા ફી </p>
-
                 <p class='subheading-h3 font-semibold font-semibold mb-0'>Note: ગણેશ સ્પર્ધા તા. 07-09-2024 સવારે 10 વાગ્યેથી શરુ થશે.</p>
-
-                    
-
                 <div id="type1-2Form" class="competition-form">
                     <div class="flex md:items-center space-x-4 p-4 rounded-md box">
                         <div class="sm:w-20 w-14 sm:h-20 h-14 flex-shrink-0 rounded-lg relative">
@@ -83,11 +61,8 @@ toastr.success("{{ session('success') }}");
                         <p class="font-semibold btn-md lg:px-10 text-success text-md w-full">ગણેશ સ્પર્ધાનું પેમેન્ટ મળી ગયેલ છે.<span class="ripple-overlay"></span></p>
                     </div>
 
-                    <p class="font-semibold btn-md button lg:px-10 bg-success text-white text-24 w-full">ગણેશ સ્પર્ધાની વોટિંગ તા. 07-09-2024 એ શરૂ થશે.<span class="ripple-overlay"></span></p>
- 
-
+                    <p class="font-semibold btn-md button lg:px-10 bg-success text-white text-24 w-full text-wrap">ગણેશ સ્પર્ધાની વોટિંગ તા. 07-09-2024 એ શરૂ થશે.<span class="ripple-overlay"></span></p>
                     @endif
-
 
                 </div>
                 
@@ -132,15 +107,11 @@ toastr.success("{{ session('success') }}");
                             <!-- <a href="#" class="button bg-secondery">View</a> -->
                         </div>
                         @endforeach
-
                     </div>
-
                 </div>
 
                 <div class="bg-white rounded-xl shadow p-5 px-6 border1 dark:bg-dark2">
-
                    <img src="{{asset('front/images/web')}}/advertise-and-sponsorship-barodaplus.webp"/>
-
                 </div>
 
             </div>

@@ -623,13 +623,13 @@ body {
   background-color: rgb(var(--color-bgbody) / var(--tw-bg-opacity));
   font-weight: 400;
   --tw-text-opacity: 1;
-  color: rgb(75 85 99 / var(--tw-text-opacity));
+  color: #444 !important;
 }
 
 @media (prefers-color-scheme: dark) {
   body {
     --tw-text-opacity: 1;
-    color: rgb(255 255 255 / var(--tw-text-opacity));
+    color:white !important;
   }
 }
 
@@ -652,12 +652,12 @@ input[type='text'],
   line-height: 1.25rem;
   font-weight: 500;
   --tw-text-opacity: 1 !important;
-  color: rgb(75 85 99 / var(--tw-text-opacity)) !important;
+  color: #444 !important;
 }
 
 input[type='text']::-moz-placeholder, input[type='password']::-moz-placeholder, input[type='email']::-moz-placeholder, input[type='number']::-moz-placeholder, input[type='url']::-moz-placeholder, input[type='date']::-moz-placeholder, select::-moz-placeholder, textarea::-moz-placeholder {
   --tw-text-opacity: 1 !important;
-  color: rgb(75 85 99 / var(--tw-text-opacity)) !important;
+  color: #444 !important;
 }
 
 input[type='text']::placeholder,
@@ -669,7 +669,7 @@ input[type='text']::placeholder,
     select::placeholder, 
     textarea::placeholder {
   --tw-text-opacity: 1 !important;
-  color: rgb(75 85 99 / var(--tw-text-opacity)) !important;
+  color: #444 !important;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -988,7 +988,7 @@ input:checked + .switch-button {
   font-weight: 600;
   letter-spacing: 0.025em;
   --tw-text-opacity: 1;
-  color: rgb(255 255 255 / var(--tw-text-opacity));
+  color:white !important;
   --tw-backdrop-blur: blur(12px);
   -webkit-backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
           backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
@@ -1053,7 +1053,7 @@ input:checked + .switch-button {
 @media (prefers-color-scheme: dark) {
   .uk-dropdown nav {
     --tw-text-opacity: 1;
-    color: rgb(255 255 255 / var(--tw-text-opacity));
+    color:white !important;
   }
 }
 
@@ -1246,7 +1246,7 @@ h1, h2, h3, h4, h5, h6 {
 @media (prefers-color-scheme: dark) {
   h1, h2, h3, h4, h5, h6 {
     --tw-text-opacity: 1 !important;
-    color: rgb(255 255 255 / var(--tw-text-opacity)) !important;
+    color:white !important;
   }
 }
 
@@ -1372,7 +1372,7 @@ h1, h2, h3, h4, h5, h6 {
 @media (prefers-color-scheme: dark) {
   #side {
     --tw-text-opacity: 1;
-    color: rgb(255 255 255 / var(--tw-text-opacity));
+    color:white !important;
   }
 }
 
@@ -1419,7 +1419,7 @@ h1, h2, h3, h4, h5, h6 {
     #side .active  a , 
     #side a.uk-active {
     --tw-text-opacity: 1;
-    color: rgb(255 255 255 / var(--tw-text-opacity));
+    color:white !important;
   }
 }
 
@@ -1454,7 +1454,7 @@ h1, h2, h3, h4, h5, h6 {
 @media (prefers-color-scheme: dark) {
   .button {
     --tw-text-opacity: 1;
-    color: rgb(255 255 255 / var(--tw-text-opacity));
+    color:white !important;
   }
 }
 
@@ -1592,7 +1592,7 @@ h1, h2, h3, h4, h5, h6 {
 @media (prefers-color-scheme: dark) {
   .card-title {
     --tw-text-opacity: 1 !important;
-    color: rgb(255 255 255 / var(--tw-text-opacity)) !important;
+    color:white !important;
   }
 }
 
@@ -1614,7 +1614,7 @@ h1, h2, h3, h4, h5, h6 {
 @media (prefers-color-scheme: dark) {
   .card-text {
     --tw-text-opacity: 1 !important;
-    color: rgb(255 255 255 / var(--tw-text-opacity)) !important;
+    color:white !important;
   }
 }
 
@@ -1701,7 +1701,7 @@ h1, h2, h3, h4, h5, h6 {
 @media (prefers-color-scheme: dark) {
   .card-list-title {
     --tw-text-opacity: 1 !important;
-    color: rgb(255 255 255 / var(--tw-text-opacity)) !important;
+    color:white !important;
   }
 }
 
@@ -1720,7 +1720,7 @@ h1, h2, h3, h4, h5, h6 {
 @media (prefers-color-scheme: dark) {
   .card-list-text {
     --tw-text-opacity: 1 !important;
-    color: rgb(255 255 255 / var(--tw-text-opacity)) !important;
+    color:white !important;
   }
 }
 
@@ -1746,7 +1746,7 @@ h1, h2, h3, h4, h5, h6 {
 @media (prefers-color-scheme: dark) {
   .card-list-info {
     --tw-text-opacity: 1 !important;
-    color: rgb(255 255 255 / var(--tw-text-opacity)) !important;
+    color:white !important;
   }
 }
 
@@ -1782,7 +1782,7 @@ h1, h2, h3, h4, h5, h6 {
 @media (prefers-color-scheme: dark) {
   .page-heading .page-title {
     --tw-text-opacity: 1;
-    color: rgb(255 255 255 / var(--tw-text-opacity));
+    color:white !important;
   }
 }
 
@@ -1804,7 +1804,7 @@ h1, h2, h3, h4, h5, h6 {
     --tw-border-opacity: 1;
     border-color: rgb(255 255 255 / var(--tw-border-opacity));
     --tw-text-opacity: 1;
-    color: rgb(255 255 255 / var(--tw-text-opacity));
+    color:white !important;
   }
 }
 
@@ -1857,7 +1857,7 @@ h1, h2, h3, h4, h5, h6 {
 @media (prefers-color-scheme: dark) {
   .side-list-title {
     --tw-text-opacity: 1;
-    color: rgb(255 255 255 / var(--tw-text-opacity));
+    color:white !important;
   }
 }
 
@@ -1900,7 +1900,7 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 600;
   text-transform: capitalize;
   --tw-text-opacity: 1;
-  color: rgb(75 85 99 / var(--tw-text-opacity));
+  color: #444 !important;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -1930,7 +1930,7 @@ h1, h2, h3, h4, h5, h6 {
     --tw-border-opacity: 1;
     border-color: rgb(255 255 255 / var(--tw-border-opacity));
     --tw-text-opacity: 1;
-    color: rgb(255 255 255 / var(--tw-text-opacity));
+    color:white !important;
   }
 }
 
@@ -1991,7 +1991,7 @@ h1, h2, h3, h4, h5, h6 {
 @media (prefers-color-scheme: dark) {
   .nav__wrap nav ul .uk-active  a {
     --tw-text-opacity: 1;
-    color: rgb(255 255 255 / var(--tw-text-opacity));
+    color:white !important;
   }
 }
 
@@ -5511,7 +5511,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .\!text-gray-600 {
   --tw-text-opacity: 1 !important;
-  color: rgb(75 85 99 / var(--tw-text-opacity)) !important;
+  color: #444 !important;
 }
 
 .\!text-sky-600 {
@@ -5525,7 +5525,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .\!text-white {
   --tw-text-opacity: 1 !important;
-  color: rgb(255 255 255 / var(--tw-text-opacity)) !important;
+  color:white !important;
 }
 
 .\!text-white\/80 {
@@ -5583,7 +5583,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .text-gray-600 {
   --tw-text-opacity: 1;
-  color: rgb(75 85 99 / var(--tw-text-opacity));
+  color: #444 !important;
 }
 
 .text-gray-700 {
@@ -5757,7 +5757,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .text-white {
   --tw-text-opacity: 1;
-  color: rgb(255 255 255 / var(--tw-text-opacity));
+  color:white !important;
 }
 
 .text-white\/60 {
@@ -6109,12 +6109,12 @@ h1, h2, h3, h4, h5, h6 {
 
 .placeholder\:\!text-gray-600::-moz-placeholder {
   --tw-text-opacity: 1 !important;
-  color: rgb(75 85 99 / var(--tw-text-opacity)) !important;
+  color: #444 !important;
 }
 
 .placeholder\:\!text-gray-600::placeholder {
   --tw-text-opacity: 1 !important;
-  color: rgb(75 85 99 / var(--tw-text-opacity)) !important;
+  color: #444 !important;
 }
 
 .hover\:-rotate-2:hover {
@@ -6204,7 +6204,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .hover\:text-white:hover {
   --tw-text-opacity: 1;
-  color: rgb(255 255 255 / var(--tw-text-opacity));
+  color:white !important;
 }
 
 .hover\:underline:hover {
@@ -6434,7 +6434,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .aria-expanded\:text-white[aria-expanded="true"] {
   --tw-text-opacity: 1;
-  color: rgb(255 255 255 / var(--tw-text-opacity));
+  color:white !important;
 }
 
 .aria-expanded\:shadow[aria-expanded="true"] {
@@ -6822,7 +6822,7 @@ h1, h2, h3, h4, h5, h6 {
 
   .dark\:\!text-white {
     --tw-text-opacity: 1 !important;
-    color: rgb(255 255 255 / var(--tw-text-opacity)) !important;
+    color:white !important;
   }
 
   .dark\:\!text-white\/90 {
@@ -6849,7 +6849,7 @@ h1, h2, h3, h4, h5, h6 {
 
   .dark\:text-white {
     --tw-text-opacity: 1;
-    color: rgb(255 255 255 / var(--tw-text-opacity));
+    color:white !important;
   }
 
   .dark\:text-white\/70 {
@@ -6889,12 +6889,12 @@ h1, h2, h3, h4, h5, h6 {
 
   .dark\:placeholder\:\!text-white::-moz-placeholder {
     --tw-text-opacity: 1 !important;
-    color: rgb(255 255 255 / var(--tw-text-opacity)) !important;
+    color:white !important;
   }
 
   .dark\:placeholder\:\!text-white::placeholder {
     --tw-text-opacity: 1 !important;
-    color: rgb(255 255 255 / var(--tw-text-opacity)) !important;
+    color:white !important;
   }
 
   .dark\:placeholder\:\!text-white\/90::-moz-placeholder {
@@ -6942,7 +6942,7 @@ h1, h2, h3, h4, h5, h6 {
 
   .aria-expanded\:dark\:text-white[aria-expanded="true"] {
     --tw-text-opacity: 1;
-    color: rgb(255 255 255 / var(--tw-text-opacity));
+    color:white !important;
   }
 }
 

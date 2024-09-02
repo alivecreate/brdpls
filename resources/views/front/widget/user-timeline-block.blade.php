@@ -46,7 +46,7 @@
     
                     <!-- navigations -->
                     <div class="flex items-center justify-between mt-3 border-t border-gray-100 px-2 max-lg:flex-col dark:border-slate-700" 
-                         uk-sticky="offset:50; cls-active: bg-white/80 shadow rounded-b-2xl z-50 backdrop-blur-xl dark:!bg-slate-700/80; animation:uk-animation-slide-top ; media: 992">
+                         uk-sticky="offset:50; cls-active: bg-white shadow rounded-b-2xl z-50 backdrop-blur-xl dark:!bg-slate-700/80; animation:uk-animation-slide-top ; media: 992">
                         
                         <div class="flex items-center gap-2 text-sm py-2 pr-1 max-md:w-full lg:order-2">
                             <button class="button bg-primary flex items-center gap-2 text-white py-2 px-3.5 max-md:flex-1">  

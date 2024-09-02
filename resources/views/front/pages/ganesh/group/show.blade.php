@@ -21,13 +21,17 @@ toastr.success("{{ session('success') }}");
 
 
 <script>
+      
+        
         document.getElementById('share-button').addEventListener('click', async () => {
             // Check if the Web Share API is supported
             if (navigator.share) {
                 try {
+
+
                     await navigator.share({
                         title: '{{optional($group)->name}}',
-                        text: 'Live Ganesh Competition, First time in Vadodara - Follow Barodaplus',
+                        text: '*🚩 બરોડા પ્લસ ગણેશ સ્પર્ધા - 2024 🚩 - {{optional($group)->name}}* - મંડળને વોટ કરવા અને ફોટો તેમજ વિડિયો જોવા નીચે આપેલી લિન્ક પર ક્લિક કરો.',
                         url: window.location.href
                     });
                     console.log('Content shared successfully!');
@@ -40,6 +44,8 @@ toastr.success("{{ session('success') }}");
         });
     </script>
 
+    
+
 @endsection
 
 
@@ -50,6 +56,7 @@ toastr.success("{{ session('success') }}");
     class="2xl:ml-[--w-side]  xl:ml-[--w-side-sm] py-10 p-2.5 h-[calc(100vh-var(--m-top))] mt-[--m-top]">
 
     <div class="max-w-[1065px] mx-auto">
+        
 
         <div class="bg-white shadow lg:rounded-b-2xl lg:-mt-10 dark:bg-dark2">
 
@@ -91,19 +98,6 @@ toastr.success("{{ session('success') }}");
 
                         <div>
                             <div class="flex items-center gap-2 mt-1">
-
-                                <div class="flex -space-x-4 mr-3">
-                                    <img src="{{asset('front')}}/images/avatars/avatar-2.jpg" alt=""
-                                        class="w-10 rounded-full border-4 border-white dark:border-slate-800">
-                                    <img src="{{asset('front')}}/images/avatars/avatar-3.jpg" alt=""
-                                        class="w-10 rounded-full border-4 border-white dark:border-slate-800">
-                                    <img src="{{asset('front')}}/images/avatars/avatar-7.jpg" alt=""
-                                        class="w-10 rounded-full border-4 border-white dark:border-slate-800">
-                                    <img src="{{asset('front')}}/images/avatars/avatar-4.jpg" alt=""
-                                        class="w-10 rounded-full border-4 border-white dark:border-slate-800">
-                                    <img src="{{asset('front')}}/images/avatars/avatar-5.jpg" alt=""
-                                        class="w-10 rounded-full border-4 border-white dark:border-slate-800">
-                                </div>
 
                                 @if(!$group->competition($group->id))
 

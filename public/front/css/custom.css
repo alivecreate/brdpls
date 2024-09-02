@@ -53,11 +53,19 @@
     width: 16rem;
 }
 
+p, label, h1, h2, h3, h4, h5, h6, input, textarea{
+    color: #444 !important;
+}
+
+input, textarea{
+    
+    color: black;
+}
 
 @media (min-width: 768px) {
     
 .login-page-wrapper{
-    margin-top: 100px;
+    margin-top: 36px;
 }
     .timeline-cover{
         height: 30rem;
@@ -81,7 +89,9 @@
 }
 
 @media (max-width: 769px) {
-    
+    #site__main {
+        padding: 2px 10px;
+    }
     
 .flex-justify-space-around{
     display: flex;
@@ -120,6 +130,12 @@
     }
 }
 
+@media (max-width: 639px) {
+    .m-responsive{
+        margin-top: 87px;
+    }
+}
+
 
 
 @media (max-width: 639px) {
@@ -138,6 +154,9 @@ label {
 }
 .competition-form{
 margin-bottom: 20px;
+}
+.text-wrap{
+    text-wrap: wrap;
 }
 #site__main {
 	margin-top: 78px;

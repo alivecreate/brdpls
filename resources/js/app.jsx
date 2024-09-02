@@ -13,6 +13,4 @@ const VotingContainer = document.getElementById('voting-list');
 if (VotingContainer) {
     const root = createRoot(VotingContainer); 
     root.render(<VotingList />);
-} else {
-    console.error('Root element not found');
 }

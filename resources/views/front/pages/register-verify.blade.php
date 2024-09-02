@@ -143,7 +143,7 @@
     </div>
 
     
-    <div class="flex-1 relative bg-primary max-md:hidden">
+    <div class="flex-1 relative bg-primary max-md:hidden"  style="background: #6e0e1a;">
         <div class="relative w-full h-full" tabindex="-1" uk-slideshow="animation: slide; autoplay: true">
           <ul class="uk-slideshow-items w-full h-full">
               <li class="w-full">

@@ -1,6 +1,6 @@
 
 <!-- header -->
-   <header class="z-[100] header-topbar w-full md:w-auto md:px-20 fixed top-0 left-0 w-full flex items-center bg-white/80 sky-50 backdrop-blur-xl border-b border-slate-200 dark:bg-dark2 dark:border-slate-800">
+   <header class="z-[100] header-topbar w-full md:w-auto md:px-20 fixed top-0 left-0 w-full flex items-center bg-white sky-50 backdrop-blur-xl border-b border-slate-200 dark:bg-dark2 dark:border-slate-800">
 
 <div class="flex items-center w-full xl:px-6 px-2 max-lg:gap-10">
 

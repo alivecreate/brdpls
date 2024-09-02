@@ -7,28 +7,46 @@
 
 @section('content')
 
-@section('custom-script')
-@if (session('error'))
 
-<script>
-toastr.error("{{ session('error') }}");
-</script>
-@endif
+    @section('custom-script')
+    <script>
+            document.getElementById('share-button').addEventListener('click', async () => {
+                // Check if the Web Share API is supported
+                if (navigator.share) {
+                    try {
 
-@if (session('success'))
-<script>
-toastr.success("{{ session('success') }}");
-</script>
-@endif
+                        if (window.location.href.indexOf('?') > -1) {
+        // If there are existing parameters, append '&ref=share'
+        var link = window.location.href += '&ref=share';
+    } else {
+        // If there are no parameters, add '?ref=share'
+        var link =  window.location.href += '?ref=share';
+    }
+
+                        await navigator.share({
+                            title: '{{optional($group)->name}}',
+                            text: '*🚩 બરોડા પ્લસ ગણેશ સ્પર્ધા - 2024 🚩 - {{optional($group)->name}}* - મંડળને વોટ કરવા અને ફોટો તેમજ વિડિયો જોવા નીચે આપેલી લિન્ક પર ક્લિક કરો.',
+                            url: link
+                        });
+                        console.log('Content shared successfully!');
+                    } catch (error) {
+                        console.error('Error sharing:', error);
+                    }
+                } else {
+                    alert('Your browser does not support the Web Share API.');
+                }
+            });
+        </script>
 
 @endsection
 
 
-<main id="site__main"
-    class="2xl:ml-[--w-side]  xl:ml-[--w-side-sm] 2xl:ml-[--w-side]  xl:ml-[--w-side-sm] h-[calc(100vh-var(--m-top))] mt-[--m-top] p-6">
 
-    <div class="2xl:max-w-[1220px] max-w-[1065px] mx-auto lg:mt-2 mt-6 mt-2"
-        id="js-oversized">
+
+<main id="site__main"
+    class="2xl:ml-[--w-side]  xl:ml-[--w-side-sm] py-10 p-2.5 h-[calc(100vh-var(--m-top))] mt-[--m-top]">
+    <div class="lg:flex 2xl:gap-12 gap-10 2xl:max-w-[1220px] max-w-[1065px] mx-auto mt-10" id="js-oversized">
+
 
         @include('front.ext.nav-mobile-menu')
 
@@ -74,6 +92,17 @@ toastr.success("{{ session('success') }}");
                                 </div>
                             </div>
                         </div>
+                        
+                        <div class="flex gap-2">
+                            <a href="{{route('ganeshFestivalGroup.show', $group->slug)}}" class="button bg-primary text-white flex-1"> View</a> 
+                        
+                            <a href="#" id="share-button" 
+                                    class="rounded-lg bg-secondery flex px-2.5 py-2 dark:bg-dark2  font-semibold">
+                                    <ion-icon class="text-xl font-semibold mr-2" name="share-outline"></ion-icon>  Share
+                                </a>
+
+                        </div>
+
                     </div>
 
                     @if (session('error'))
@@ -148,7 +177,7 @@ toastr.success("{{ session('success') }}");
                             ગયેલ છે.<span class="ripple-overlay"></span></p>
                     </div>
 
-                    <p class="font-semibold btn-md button lg:px-10 bg-success text-white text-24 w-full">ગણેશ સ્પર્ધાની
+                    <p class="font-semibold btn-md button lg:px-10 bg-success text-white text-24 w-full text-wrap">ગણેશ સ્પર્ધાની
                         વોટિંગ તા. 07-09-2024 એ શરૂ થશે.<span class="ripple-overlay"></span></p>
 
                     @endif

@@ -37,8 +37,7 @@ toastr.success('{{ session('
             <div class="w-full">
 
 
-                <p class='heading-h1 font-semibold text-black font-semibold text-black mb-0 text-underline'>ગણેશ મંડળની
-                    વિગત</p>
+                <p class='heading-h1 font-semibold text-black font-semibold text-black mb-0 text-underline'>ગણેશ મંડળની વિગત</p>
                 <!-- <p class="subheading-h2">Ganesh Group Details</p> -->
                 <p class='subheading-h3 font-semibold font-semibold mb-0'>Note: એક યુઝર એકાઉન્ટ પરથી માત્ર એકજ ગણેશ
                     મંડળનું રજીસ્ટ્રેશન થઈ શકસે.</p>
@@ -112,89 +111,8 @@ toastr.success('{{ session('
             </div>
         </div>
 
-
         <!-- sidebar -->
-        <div class="2xl:w-[380px] lg:w-[330px] w-full">
-
-            <div class="lg:space-y-6 space-y-4 lg:pb-8 max-lg:grid sm:grid-cols-2 max-lg:gap-6"
-                uk-sticky="media: 1024; end: #js-oversized; offset: 80">
-
-                
-                <!-- <div class="bg-white rounded-xl shadow p-5 px-6 border1 dark:bg-dark2">
-                    <div class="flex items-baseline justify-between text-black dark:text-white">
-                        <h3 class="font-bold text-base"> Recent Ganesh Mandal</h3>
-                        <a href="#" class="text-sm text-blue-500">See all</a>
-                    </div>
-
-                    <div class="side-list">
-
-                        <div class="side-list-item">
-                            <a href="">
-                                <img src="{{asset('front')}}/images/avatars/avatar-2.jpg" alt=""
-                                    class="side-list-image rounded-full">
-                            </a>
-                            <div class="flex-1">
-                                <a href="">
-                                    <h4 class="side-list-title"> John Michael</h4>
-                                </a>
-                                <div class="side-list-info"> Updated 6 day ago </div>
-                            </div>
-                            <button class="button bg-primary-soft text-primary dark:text-white">Like</button>
-                        </div>
-
-                    </div>
-
-                    <button
-                        class="bg-secondery w-full text-black py-1.5 font-medium px-3.5 rounded-md text-sm mt-3 dark:text-white">See
-                        all</button>
-                </div> -->
-
-
-                <div class="box p-5 px-6">
-
-                    <div class="flex items-baseline justify-between text-black dark:text-white">
-                        <h3 class="font-bold text-base"> Recent Ganesh Mandal </h3>
-                        <a href="" class="text-sm text-blue-500">See all</a>
-                    </div>
-
-                    <div class="side-list">
-
-                    @foreach($homeCompetitions as $homeCompetition)    
-                        <div class="side-list-item">
-                            <a href="#">
-                                
-                            @if(optional($homeCompetition)->cover)
-                                <img src="https://imagedelivery.net/zfs38w7w3E1dJVvB3mVs9g/{{$homeCompetition->cover}}/icon" alt="{{$homeCompetition->name}}"
-                                class="side-list-image rounded-full cover" 
-                                >
-                            @else 
-                                <img src="{{asset('front/images/product/product-1.jpg')}}" alt="{{$homeCompetition->name}}"
-                                class="side-list-image rounded-full">
-                            @endif
-                            </a>
-                            <div class="flex-1">
-                                <a  href="#">
-                                    <h4 class="side-list-title">{{$homeCompetition->name}}</h4>
-                                </a>
-                                <div class="side-list-info"> {{$homeCompetition->address}} </div>
-                            </div>
-                            <a href="#" class="button bg-secondery">View</a>
-                        </div>
-                        @endforeach
-                        
-                    </div>
-
-                </div>
-
-                
-                <div class="bg-white rounded-xl shadow p-5 px-6 border1 dark:bg-dark2">
-                    <img src="{{asset('front/images/web')}}/advertise-and-sponsorship-barodaplus.webp"/>
-                </div>
-
-            </div>
-
-        </div>
-
+         @include('front.pages.ganesh.competition.sidebar')
     </div>
 
 </main>

@@ -65,6 +65,11 @@ localStorage.removeItem('theme')
 
 
 // create product upload image
+
+const createProductUrl = document.getElementById('createProductUrl');
+
+if (createProductUrl) {
+
 document.getElementById('createProductUrl').addEventListener('change', function(){
 if (this.files[0] ) {
     var picture = new FileReader();
@@ -75,6 +80,8 @@ if (this.files[0] ) {
     });
 }
 });
+}
+
 
 
 

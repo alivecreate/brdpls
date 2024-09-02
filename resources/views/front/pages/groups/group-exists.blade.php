@@ -33,11 +33,9 @@ toastr.success('{{ session('
             <div class="w-full">
 
 
-                <p class='heading-h1 font-semibold text-black font-semibold text-black mb-0 text-underline'>ગણેશ મંડળની
-                    વિગત</p>
+                <p class='heading-h1 font-semibold text-black font-semibold text-black mb-0 text-underline'>ગણેશ મંડળની વિગત</p>
                 <!-- <p class="subheading-h2">Ganesh Group Details</p> -->
-                <p class='subheading-h3 font-semibold font-semibold mb-0'>Note: એક યુઝર એકાઉન્ટ પરથી માત્ર એકજ ગણેશ
-                    મંડળનું રજીસ્ટ્રેશન થઈ શકસે.</p>
+                <p class='subheading-h3 font-semibold font-semibold mb-0'>Note: એક યુઝર એકાઉન્ટ પરથી માત્ર એકજ ગણેશ મંડળનું રજીસ્ટ્રેશન થઈ શકસે.</p>
 
 
                 <div id="type1-2Form" class="competition-form">
@@ -56,6 +54,7 @@ toastr.success('{{ session('
                         </div>
                         <div class="flex-1">
                             <a
+                                href="{{route('ganeshFestivalGroup.show', $group->slug)}}"
                                 class="md:text-lg text-base font-semibold capitalize text-black dark:text-white">{{$group->name}}</a>
 
                             <div class="flex space-x-2 items-center text-sm font-normal flex-icon">
@@ -72,6 +71,11 @@ toastr.success('{{ session('
                                 </div>
                             </div>
                         </div>
+                        
+                        <div class="flex gap-2">
+                            <a href="{{route('ganeshFestivalGroup.show', $group->slug)}}" class="button bg-primary text-white flex-1"> View</a> 
+                        </div>
+
                     </div>
 
                     @if (session('error'))
@@ -104,55 +108,7 @@ toastr.success('{{ session('
         </div>
 
 
-        <!-- sidebar -->
-        <div class="2xl:w-[380px] lg:w-[330px] w-full">
-
-            <div class="lg:space-y-6 space-y-4 lg:pb-8 max-lg:grid sm:grid-cols-2 max-lg:gap-6"
-                uk-sticky="media: 1024; end: #js-oversized; offset: 80">
-
-
-
-                <div class="box p-5 px-6">
-
-                    <div class="flex items-baseline justify-between text-black dark:text-white">
-                        <h3 class="font-bold text-base"> Recent Ganesh Mandal </h3>
-                        <a href="" class="text-sm text-blue-500">See all</a>
-                    </div>
-
-                    <div class="side-list">
-
-                    @foreach($groups as $group)    
-                        <div class="side-list-item">
-                            <a href="{{ route('ganeshFestivalGroup.show', $group->slug) }}">
-                                
-                            @if(optional($group)->cover)
-                                <img src="https://imagedelivery.net/zfs38w7w3E1dJVvB3mVs9g/{{$group->cover}}/icon" alt="{{$group->name}}"
-                                class="side-list-image rounded-full cover" 
-                                >
-                            @else 
-                                <img src="{{asset('front/images/product/product-1.jpg')}}" alt="{{$group->name}}"
-                                class="side-list-image rounded-full">
-                            @endif
-                            </a>
-                            <div class="flex-1">
-                                <a  href="{{ route('ganeshFestivalGroup.show', $group->slug) }}">
-                                    <h4 class="side-list-title">{{$group->name}}</h4>
-                                </a>
-                                <div class="side-list-info"> {{$group->address}} </div>
-                            </div>
-                            <a href="{{ route('ganeshFestivalGroup.show', $group->slug) }}" class="button bg-secondery">View</a>
-                        </div>
-                        @endforeach
-                        
-                    </div>
-
-                </div>
-
-                <div class="bg-white rounded-xl shadow p-5 px-6 border1 dark:bg-dark2">
-                    <img src="{{asset('front/images/web')}}/advertise-and-sponsorship-barodaplus.webp"/>
-                </div>
-
-        </div>
+        @include('front.pages.ganesh.competition.sidebar')
 
     </div>
 

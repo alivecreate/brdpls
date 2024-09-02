@@ -1,22 +1,6 @@
 @extends('front.layout.ganesh-festival-layout')
 
 
-@section('custom-script')
-@if (session('error'))
-
-<script>
-toastr.error('{{ session('
-    error ') }}');
-</script>
-@endif
-
-@if (session('success'))
-<script>
-toastr.success('{{ session('
-    success ') }}');
-</script>
-@endif
-@endsection
 
 
 @section('content')
@@ -120,7 +104,7 @@ toastr.success('{{ session('
 
                 @foreach($GaneshCompetitions as $GaneshCompetition)
 
-                <div class="card mb-2">
+                <div class="card mb-2"> 
                     <a href="{{route('ganeshFestivalGroup.show', $GaneshCompetition->participant->slug)}}">
                         <div class="card-media h-40">
 

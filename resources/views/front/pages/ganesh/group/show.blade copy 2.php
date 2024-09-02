@@ -1,21 +1,7 @@
 @extends('front.layout.ganesh-festival-layout')
 
-@section('custom-script')
-@if (session('error'))
 
-<script>
-toastr.error('{{ session('
-    error ') }}');
-</script>
-@endif
 
-@if (session('success'))
-<script>
-toastr.success('{{ session('
-    success ') }}');
-</script>
-@endif
-@endsection
 
 
 
@@ -25,6 +11,8 @@ toastr.success('{{ session('
     class="2xl:ml-[--w-side]  xl:ml-[--w-side-sm] py-10 p-2.5 h-[calc(100vh-var(--m-top))] mt-[--m-top]">
 
     <div class="max-w-[1065px] mx-auto">
+        
+    @include('front.ext.nav-mobile-menu')
 
         <div class="bg-white shadow lg:rounded-b-2xl lg:-mt-10 dark:bg-dark2">
 

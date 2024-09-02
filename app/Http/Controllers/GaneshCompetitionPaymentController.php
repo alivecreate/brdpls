@@ -65,6 +65,7 @@ $homeGaneshCompetitionLists = GaneshCompetition::where(['competition_type' => 3,
 if($homeGaneshCompetition){
     // dd('home');
     $group = null;
+    $group_id = null;
     $competition_id = null;
     
     $order = $api->order->create(array(
@@ -82,7 +83,7 @@ if($homeGaneshCompetition){
         $orderId = $order['id'];
         
     return view('front.pages.ganesh.competition.payment-home', 
-    compact('orderId', 'order', 'group', 'groups', 'user', 'user_id', 'competition_id',  'amount', 'homeGaneshCompetition', 'homeGaneshCompetitionLists'));
+    compact('orderId', 'order', 'group', 'group_id', 'groups', 'user', 'user_id', 'competition_id',  'amount', 'homeGaneshCompetition', 'homeGaneshCompetitionLists'));
 
 }
 
@@ -158,6 +159,7 @@ if($group){
     
     public function homeCompetitionCallback(Request $request)
     {
+        
 
     $input = $request->all(); 
 

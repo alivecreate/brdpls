@@ -17,7 +17,6 @@ class GaneshFestivalGroupController extends Controller
      */
     public function index()
     {
-        // return 'rest';
         $groups = Group::orderBy('name', 'asc')->get();
         return view('front.pages.groups.list', compact('groups'));
     }
@@ -30,6 +29,8 @@ class GaneshFestivalGroupController extends Controller
     {
         // dd('create');
 
+        // return 'rest';
+        
         $homeGaneshCompetition = GaneshCompetition::where(['participant_id' => Auth::id(), 'competition_type' => 3])->first();
         $homeGaneshCompetitionLists = GaneshCompetition::where(['competition_type' => 3, 'participant_id' => Auth::id(), 'status' => 'active'])->orderBy('id', 'desc')->get();
 

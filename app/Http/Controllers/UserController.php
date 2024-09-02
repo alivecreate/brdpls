@@ -208,7 +208,6 @@ $request->session()->put('isLoginSession', $user->id);
                 'bio' => $request->bio, 
                 'gender' => $request->gender,
                 'relationship' =>$request->relationship,
-                'status' => 1
 
             ]);
             return redirect()->back()->with('success', 'Profile updated successfully');

@@ -1,7 +1,7 @@
 
         
 <header
-    class="z-[100] header-topbar w-full md:w-auto fixed top-0 left-0 w-full flex items-center bg-white/80 sky-50 backdrop-blur-xl border-b border-slate-200 dark:bg-dark2 dark:border-slate-800">
+    class="z-[100] header-topbar w-full md:w-auto fixed top-0 left-0 w-full flex items-center bg-white sky-50 backdrop-blur-xl border-b border-slate-200 dark:bg-dark2 dark:border-slate-800">
 
     <div class="flex items-center w-full xl:px-6 px-2 max-lg:gap-10 ">
 
@@ -41,22 +41,20 @@
                         style="transform: translate3d(0px, 0px, 0px);">
 
                         <li class="custom-nav-menu-wrap" uk-scrollspy-class="uk-animation-fade" tabindex="-1" style="">
-                            <a href="{{route('ganeshFestivalGroup.create')}}"
-                                class="custom-nav-menu p-3 px-4 rounded-lg bg-teal-100/60 text-teal-600 dark:text-white dark:bg-dark4">
-                                <ion-icon name="people" class="text-2xl drop-shadow-md md hydrated mr-2" role="img"
-                                    aria-label="book"></ion-icon>
-                                @if(isGroupExists())
-                                
-                                <div class="text-sm font-medium text-capitalize font-semibold"> ગણેશ મંડળની વિગત </div>
-
-                                @else
-
-                                <div class="text-sm font-medium text-capitalize font-semibold"> ગણેશ મંડળનું રજીસ્ટ્રેશન
-                                </div>
-                                @endif
-                            </a>
+                            
+                        @if(isGroupExists()  && !isHomeCompetitionExists())
+        <a href="{{route('ganeshCompetitionPaymentCreate', ['type' => 'group'])}}" 
+            class="flex-inline p-3 px-4 rounded-lg bg-teal-100/60 text-teal-600 font-semibold dark:text-white dark:bg-dark4">
+                                    <ion-icon name="people" class="text-2xl drop-shadow-md md hydrated mr-2" role="img"
+                                    aria-label="book"></ion-icon> ગણેશ સ્પર્ધા રજિસ્ટ્રેશન</a>
+        @else
+        <a href="{{route('ganeshFestivalCompetition.create')}}" 
+            class="flex-inline p-3 px-4 rounded-lg bg-teal-100/60 text-teal-600 font-semibold dark:text-white dark:bg-dark4"> 
+                                    <ion-icon name="people" class="text-2xl drop-shadow-md md hydrated mr-2" role="img"
+                                    aria-label="book"></ion-icon> ગણેશ મંડળનું રજીસ્ટ્રેશન</a>
+       
+        @endif
                         </li>
-
 
                         @if(!isGroupExists() && !isHomeCompetitionExists())
                         <li class="custom-nav-menu-wrap" tabindex="-1" style="">

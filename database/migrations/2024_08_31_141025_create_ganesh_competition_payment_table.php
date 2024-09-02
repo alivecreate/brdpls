@@ -27,9 +27,9 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id')->nullable(); // Foreign key to the users table
             $table->timestamps();
             
-            $table->foreign('group_id')->references('id')->on('groups')->onDelete(null);
-            $table->foreign('competition_id')->references('id')->on('ganesh_competition')->onDelete(null);
-            $table->foreign('user_id')->references('id')->on('users')->onDelete(null);
+            $table->foreign('group_id')->references('id')->on('groups')->onDelete('cascade');
+            $table->foreign('competition_id')->references('id')->on('ganesh_competition')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
        
         });
     }
