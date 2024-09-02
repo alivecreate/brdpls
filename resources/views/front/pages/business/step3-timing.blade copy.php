@@ -23,7 +23,7 @@
   <div class="bg-blue-600 h-1 rounded-full" style="width: 25%"></div>
 </div>
 
-            <p class='heading-h1 font-semibold text-black font-semibold text-black mb-0'>Business timing</p>
+            <p class='heading-h1 font-semibold page-title'>Business timing</p>
             
             <p class='mb-4'>Business Opening and Closing Time</p>
             

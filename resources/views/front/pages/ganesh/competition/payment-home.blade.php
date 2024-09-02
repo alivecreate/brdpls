@@ -20,7 +20,7 @@
 
             <div class="w-full">
 
-                <p class='heading-h1 font-semibold text-black font-semibold text-black mb-0 text-underline'> ગણેશ સ્પર્ધા ફી </p>
+                <p class='heading-h1 font-semibold page-title text-underline'> ગણેશ સ્પર્ધા ફી </p>
 
                 <p class='subheading-h3 font-semibold font-semibold mb-0'>Note: ગણેશ સ્પર્ધા તા. 07-09-2024 સવારે 10 વાગ્યેથી શરુ થશે.</p>
 

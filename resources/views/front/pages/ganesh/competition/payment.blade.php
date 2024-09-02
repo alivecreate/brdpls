@@ -14,15 +14,13 @@
                 // Check if the Web Share API is supported
                 if (navigator.share) {
                     try {
-
                         if (window.location.href.indexOf('?') > -1) {
-        // If there are existing parameters, append '&ref=share'
-        var link = window.location.href += '&ref=share';
-    } else {
-        // If there are no parameters, add '?ref=share'
-        var link =  window.location.href += '?ref=share';
-    }
-
+                                // If there are existing parameters, append '&ref=share'
+                                var link = window.location.href += '&ref=share';
+                            } else {
+                                // If there are no parameters, add '?ref=share'
+                                var link =  window.location.href += '?ref=share';
+                            }
                         await navigator.share({
                             title: '{{optional($group)->name}}',
                             text: '*🚩 બરોડા પ્લસ ગણેશ સ્પર્ધા - 2024 🚩 - {{optional($group)->name}}* - મંડળને વોટ કરવા અને ફોટો તેમજ વિડિયો જોવા નીચે આપેલી લિન્ક પર ક્લિક કરો.',
@@ -41,21 +39,16 @@
 @endsection
 
 
-
-
 <main id="site__main"
     class="2xl:ml-[--w-side]  xl:ml-[--w-side-sm] py-10 p-2.5 h-[calc(100vh-var(--m-top))] mt-[--m-top]">
     <div class="lg:flex 2xl:gap-12 gap-10 2xl:max-w-[1220px] max-w-[1065px] mx-auto mt-10" id="js-oversized">
-
 
         @include('front.ext.nav-mobile-menu')
 
         <div class="flex-1 px-6">
 
-
             <div class="w-full">
-
-                <p class='heading-h1 font-semibold text-black font-semibold text-black mb-0 text-underline'>ગણેશ સ્પર્ધા ફી </p>
+                <p class='heading-h1 font-semibold page-title text-underline'>ગણેશ સ્પર્ધા ફી </p>
 
                 <p class='subheading-h3 font-semibold font-semibold mb-0'>Note: ગણેશ સ્પર્ધા તા. 07-09-2024 સવારે 10 વાગ્યેથી શરુ થશે.</p>
 

@@ -22,7 +22,7 @@
                     <div class="bg-blue-600 h-1 rounded-full" style="width: 75%"></div>
                 </div>
 
-                <p class='heading-h1 font-semibold text-black font-semibold text-black mb-0'>Business Categories</p>
+                <p class='heading-h1 font-semibold page-title'>Business Categories</p>
 
                 <p class='mb-4'>Choose Your Business Category</p>
 

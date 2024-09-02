@@ -86,6 +86,10 @@
         padding: 2px 10px;
     }
     
+.flex-inline{
+    display: inline-block;
+}
+    
 .flex-justify-space-around{
     display: flex;
     justify-content: space-between !important;
@@ -138,9 +142,7 @@
     }
 }
 
-.flex-inline{
-    display: inline-flex;
-}
+
 
 label {
     margin: 5px 0px;
@@ -167,15 +169,6 @@ margin-bottom: 20px;
     color: red !important;
 }
 
-.textarea{
-border-color: transparent;
-font-size: 0.875rem;
-    --tw-bg-opacity: 1;
-    background-color: rgb(241 245 249 / var(--tw-bg-opacity));
-    border: 1px solid #d4d4d4;
-    padding: 10px 10px;
-    border-radius: 0.375rem;
-}
 
 input[type='text']::placeholder,
 input[type='password']::placeholder,
@@ -523,7 +516,7 @@ background: #ececec;
 }
 
 a:hover {
-    color: #3a6eaa;
+    
 }
 .uk-dropdown {
     z-index: 50;

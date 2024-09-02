@@ -33,7 +33,7 @@
                     <div class="bg-blue-600 h-1 rounded-full" style="width: 10%"></div>
                 </div>
 
-                <p class='heading-h1 font-semibold text-black font-semibold text-black mb-0'>ગણેશ સ્પર્ધા રજિસ્ટ્રેશન
+                <p class='heading-h1 font-semibold page-title'>ગણેશ સ્પર્ધા રજિસ્ટ્રેશન
                 </p>
                 <p class="mb-3 subheading-h2">Ganesh Competiton Registration</p>
                 <div class="space-y-5">

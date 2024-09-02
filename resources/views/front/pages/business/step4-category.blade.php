@@ -26,7 +26,7 @@
                 <div class="text-red-500 text-sm mt-2">{{ $message }}</div>
                 @enderror
 
-                <p class='heading-h1 font-semibold text-black font-semibold text-black mb-0'>Business Categories</p>
+                <p class='heading-h1 font-semibold page-title'>Business Categories</p>
 
                 <p class='mb-4'>Choose Your Business Category</p>
 

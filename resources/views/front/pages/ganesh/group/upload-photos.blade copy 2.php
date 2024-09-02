@@ -19,7 +19,7 @@
 </div>
 
 
-            <p class='heading-h1 font-semibold text-black font-semibold text-black mb-0'>Upload Photos</p>
+            <p class='heading-h1 font-semibold page-title'>Upload Photos</p>
             <p class="mb-3 subheading-h2">ગણેશ મંડળના ફોટોગ્રાફ અપલોડ કરો.</p>
                      
 

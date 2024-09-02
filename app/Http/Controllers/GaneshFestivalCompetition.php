@@ -75,7 +75,7 @@ class GaneshFestivalCompetition extends Controller
         
         $competition = null;
 
-
+// dd('create');
         
         return view('front.pages.ganesh.competition.create', compact('groups', 'group', 'type', 'ganeshCompetitionCategories', 'competition'));
         

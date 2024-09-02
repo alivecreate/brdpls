@@ -21,7 +21,7 @@
 </div>
 
 
-            <p class='heading-h1 font-semibold text-black font-semibold text-black mb-0'>Group Registration</p>
+            <p class='heading-h1 font-semibold page-title'>Group Registration</p>
             <p class="mb-3 subheading-h2">ગણેશ મંડળ અને યુવક મંડળનું રજિસ્ટ્રેશન</p>
                         <form class="needs-validation data-form" action="{{route('business.store')}}" method="POST" enctype="multipart/form-data">
                        @csrf

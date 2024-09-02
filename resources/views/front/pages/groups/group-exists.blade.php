@@ -33,7 +33,7 @@ toastr.success('{{ session('
             <div class="w-full">
 
 
-                <p class='heading-h1 font-semibold text-black font-semibold text-black mb-0 text-underline'>ગણેશ મંડળની વિગત</p>
+                <p class='heading-h1 font-semibold page-title text-underline'>ગણેશ મંડળની વિગત</p>
                 <!-- <p class="subheading-h2">Ganesh Group Details</p> -->
                 <p class='subheading-h3 font-semibold font-semibold mb-0'>Note: એક યુઝર એકાઉન્ટ પરથી માત્ર એકજ ગણેશ મંડળનું રજીસ્ટ્રેશન થઈ શકસે.</p>
 

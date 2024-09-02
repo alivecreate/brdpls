@@ -20,7 +20,7 @@
                 </div>
 
 
-                <p class='heading-h1 font-semibold text-black font-semibold text-black mb-0'>11 ગણેશ સ્પર્ધા રજિસ્ટ્રેશન
+                <p class='heading-h1 font-semibold page-title'>11 ગણેશ સ્પર્ધા રજિસ્ટ્રેશન
                 </p>
                 <p class="mb-3 subheading-h2">Ganesh Competiton Registration</p>
                 <div class="space-y-5">
