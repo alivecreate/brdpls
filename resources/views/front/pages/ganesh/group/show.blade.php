@@ -76,9 +76,7 @@ toastr.success("{{ session('success') }}");
                 <div class="absolute bottom-0 right-0 m-4 z-20">
                     <div class="flex items-center gap-3">
                         <button
-                            class="button bg-white/20 text-white flex items-center gap-2 backdrop-blur-small">Crop</button>
-                        <button
-                            class="button bg-black/10 text-white flex items-center gap-2 backdrop-blur-small">Edit</button>
+                            class="button bg-black/10 text-white flex items-center gap-2 backdrop-blur-small"><ion-icon name="camera-outline" class="text-lg"></ion-icon> Change Photo</button>
                     </div>
                 </div>
             </div>
@@ -667,33 +665,17 @@ toastr.success("{{ session('success') }}");
                         <ul class="text-gray-700 space-y-4 mt-2 mb-1 text-sm dark:text-white">
                             <li>{{$group->description}}</li>
 
-                            @if($group->description)
+                            @if($group->decoration)
                             <li class="flex items-start gap-3">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                    stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M20.893 13.393l-1.135-1.135a2.252 2.252 0 01-.421-.585l-1.08-2.16a.414.414 0 00-.663-.107.827.827 0 01-.812.21l-1.273-.363a.89.89 0 00-.738 1.595l.587.39c.59.395.674 1.23.172 1.732l-.2.2c-.212.212-.33.498-.33.796v.41c0 .409-.11.809-.32 1.158l-1.315 2.191a2.11 2.11 0 01-1.81 1.025 1.055 1.055 0 01-1.055-1.055v-1.172c0-.92-.56-1.747-1.414-2.089l-.655-.261a2.25 2.25 0 01-1.383-2.46l.007-.042a2.25 2.25 0 01.29-.787l.09-.15a2.25 2.25 0 012.37-1.048l1.178.236a1.125 1.125 0 001.302-.795l.208-.73a1.125 1.125 0 00-.578-1.315l-.665-.332-.091.091a2.25 2.25 0 01-1.591.659h-.18c-.249 0-.487.1-.662.274a.931.931 0 01-1.458-1.137l1.411-2.353a2.25 2.25 0 00.286-.76m11.928 9.869A9 9 0 008.965 3.525m11.928 9.868A9 9 0 118.965 3.525" />
-                                </svg>
+                            <ion-icon name="newspaper-outline" class="text-2xl drop-shadow-md md hydrated mr-2"
+                            role="img" aria-label="videocam"></ion-icon>
                                 <div>
-                                    <span class="font-semibold text-black dark:text-white">Public </span>
-                                    <p>{{$group->description}}</p>
+                                    <span class="font-semibold text-black dark:text-white">Decoration / Theme </span>
+                                    <p>{{$group->decoration}}</p>
                                 </div>
                             </li>
                             @endif
 
-                            <li class="flex items-start gap-3">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                    stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                </svg>
-                                <div>
-                                    <span class="font-semibold text-black dark:text-white"> Visible </span>
-                                    <p> Anyone can find this group</p>
-                                </div>
-                            </li>
                             <li class="flex items-center gap-3">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                     stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
