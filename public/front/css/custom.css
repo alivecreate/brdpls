@@ -92,7 +92,6 @@
     
 .flex-justify-space-around{
     display: flex;
-    justify-content: space-between !important;
 }
 
 .login-page-wrapper{

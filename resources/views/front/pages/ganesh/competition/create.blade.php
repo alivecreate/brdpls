@@ -11,7 +11,7 @@
 @include('front.ext.nav-mobile-menu')
 
        
-<div class="flex-1 px-6">
+<div class="flex-1 px-6 mb-8">
 
 <div class="w-full">
                 <div class="w-full bg-gray-200 rounded-full h-1 dark:bg-gray-700">

@@ -5,21 +5,6 @@
     {{ $group->name }}, {{ $group->city }}, Ganesh Festival - Barodaplus.com
 @endsection
 
-@section('custom-script')
-@if (session('error'))
-
-<script>
-toastr.error("{{ session('error')}}");
-</script>
-@endif
-
-@if (session('success'))
-<script>
-toastr.success("{{ session('success') }}");
-</script>
-@endif
-
-
 <script>
       
         

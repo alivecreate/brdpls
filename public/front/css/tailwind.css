@@ -623,7 +623,7 @@ body {
   font-weight: 400;
   --tw-text-opacity: 1;
   color: rgb(75 85 99 / var(--tw-text-opacity))
-  
+
 }
 
 @media (prefers-color-scheme: dark) {
@@ -716,7 +716,7 @@ input[type='text'],
     input[type='radio'],
     select,
     select[multiple],
-    textarea {
+    textarea, [type='text'] {
   border-color: transparent;
   --tw-bg-opacity: 1;
   background-color: rgb(241 245 249 / var(--tw-bg-opacity));
@@ -739,7 +739,7 @@ input[type='text'],
     input[type='radio'],
     select,
     select[multiple],
-    textarea {
+    textarea, [type='text'] {
     --tw-bg-opacity: 1;
     background-color: rgb(51 65 85 / var(--tw-bg-opacity));
   }
