@@ -31,10 +31,6 @@
 
     
 
-@endsection
-
-
-
 @section('content')
 
 <main id="site__main"
