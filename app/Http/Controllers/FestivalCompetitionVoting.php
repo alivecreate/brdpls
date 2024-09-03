@@ -20,7 +20,7 @@ class FestivalCompetitionVoting extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         $GaneshCompetitions = GaneshCompetition::where('ganesh_competition', '1')->with('participant')->get();
         return view('front.pages.ganesh.competition.live-competition', compact('GaneshCompetitions'));

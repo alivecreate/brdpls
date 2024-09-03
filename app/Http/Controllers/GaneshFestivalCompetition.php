@@ -206,6 +206,10 @@ return redirect()->back()->with('error', 'Something went wrong, please try again
     public function live(Request $request)
     {
 
+        
+        // dd($request->all());
+        $cid = $request->cid;
+        
         // dd(checkCompetitionSchedule()['status'] == 'scheduled');
         if(checkCompetitionSchedule()['status'] == 'scheduled'){
             return redirect()->route('ganeshFestivalGroup.index')->with('success', 'Voting is not started now.');
@@ -214,7 +218,7 @@ return redirect()->back()->with('error', 'Something went wrong, please try again
         $gid = $request->query('gid');
 
         if($gid == null || $gid == 1){
-
+// dd($gid);
             $GaneshCompetitions = GaneshCompetition::where('competition_type', '1-2')
             ->whereHas('participant')  // Only include records where 'participant' relationship is not null
             ->with('participant')
@@ -224,17 +228,31 @@ return redirect()->back()->with('error', 'Something went wrong, please try again
         }
 
         elseif ($gid == 2) {
-            $GaneshCompetitions = GaneshCompetition::where('competition_type', '1-2')
-            ->whereHas('participant')  // Only include records where 'participant' relationship is not null
-            ->with('participant')   
-            ->get();
-            return view('front.pages.ganesh.competition.live-competition2', compact('GaneshCompetitions'));
-        }
+            // dd($gid);
+            
+                        $GaneshCompetitions = GaneshCompetition::where('competition_type', '1-2')
+                        ->whereHas('participant')  // Only include records where 'participant' relationship is not null
+                        ->with('participant')   
+                        ->get();
+                        return view('front.pages.ganesh.competition.live-competition2', compact('GaneshCompetitions'));
+                    }
 
+                    elseif ($gid == 3) {
+            // dd($gid);
+            
+                        $GaneshCompetitions = GaneshCompetition::where('competition_type', '1-2')
+                        ->whereHas('participant')  // Only include records where 'participant' relationship is not null
+                        ->with('participant')   
+                        ->get();
+                        return view('front.pages.ganesh.competition.live-competition2', compact('GaneshCompetitions'));
+                    }
+
+        // dd($gid);
 
         
         // dd($gid);
-
+        return redirect()->route('GaneshFestivalCompetitionLive');
+        
         $GaneshCompetitions = GaneshCompetition::where('competition_type', $gid)
         ->whereHas('participant')  // Only include records where 'participant' relationship is not null
         ->with('participant')   

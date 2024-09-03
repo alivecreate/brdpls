@@ -1,31 +1,13 @@
 @extends('front.layout.ganesh-festival-layout')
 
+@section('custom-head')
 
-@include('front.ext.head')
-    
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+<meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="data-user-id" content="{{ Auth::id() }}">
     <meta name="data-category-id" content="{{ csrf_token() }}">
 
-
-@yield('meta-content')
-
-@section('custom-script')
-@if (session('error'))
-
-<script>
-toastr.error('{{ session('
-    error ') }}');
-</script>
-@endif
-
-@if (session('success'))
-<script>
-toastr.success('{{ session('
-    success ') }}');
-</script>
-@endif
 @endsection
+
 
 
 @section('content')
@@ -41,18 +23,18 @@ toastr.success('{{ session('
             <h1 class="page-title"> ગણેશ સ્પર્ધા </h1>
             <nav class="nav__underline">
                 <ul class="group"
-                    uk-switcher="connect: #group-tabs ; animation: uk-animation-slide-right-medium, uk-animation-slide-left-medium">
-                    <li> <a href="#">શ્રેષ્ઠ મૂર્તિ ({{getTotalCategoryGroup('1-2')}})</a> </li>
-                    <li> <a href="#">શ્રેષ્ઠ ડેકોરેશન ({{getTotalCategoryGroup('1-2')}})</a> </li>
-                    <li> <a href="#"> ઘરની બેસ્ટ મૂર્તિ</a> </li>
+                    uk-switcher="">
+                    <a href="?cid=1">શ્રેષ્ઠ મૂર્તિ ({{getTotalCategoryGroup('1-2')}})</a>
+                    <a href="?cid=2">શ્રેષ્ઠ ડેકોરેશન ({{getTotalCategoryGroup('1-2')}})</a>
+                    <a href="?cid=3"> ઘરની બેસ્ટ મૂર્તિ</a>
                 </ul>
             </nav>
         </div>
 
-<div class="" id='voting-list'  
-    data-user-id="{{Auth::id() ? Auth::id() : 0}}"
-    data-category-id="1"
-    ></div>
+        <div class="" id='voting-list'  
+            data-user-id="{{Auth::id() ? Auth::id() : 0}}"
+            data-category-id="1"
+            ></div>
     
         </div>
     </div>

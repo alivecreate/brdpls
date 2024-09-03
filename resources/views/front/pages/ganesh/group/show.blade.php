@@ -5,6 +5,7 @@
     {{ $group->name }}, {{ $group->city }}, Ganesh Festival - Barodaplus.com
 @endsection
 
+@section('custom-script')
 <script>
       
         
@@ -30,6 +31,10 @@
     </script>
 
     
+
+@endsection
+
+
 
 @section('content')
 
