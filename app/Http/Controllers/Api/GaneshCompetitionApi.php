@@ -33,6 +33,7 @@ class GaneshCompetitionApi extends Controller
         $query->where('user_id', $userId);
     }])
     ->where('competition_type', '1-2')
+    ->whereHas('participant')
     ->get();
     
 

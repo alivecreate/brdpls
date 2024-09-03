@@ -113,7 +113,12 @@ const VotingList = () => {
                 {competitions.map((competition, index) => (
                     <div className="card mb-2" key={index}>
                         <a
-                            href={`${Global.baseUrl}/ganesh-festival/${competition.participant.slug}`}
+                            href={
+                                competition.participant
+                                  ? `${Global.baseUrl}/ganesh-festival/${competition.participant.slug}`
+                                  : '#'
+                              }
+
                         >
                             <div className="card-media h-40">
                                 <img
