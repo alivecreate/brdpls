@@ -2,35 +2,100 @@
 
 
 @section('title')
-    {{ $group->name }}, {{ $group->city }}, Ganesh Festival - Barodaplus.com
+{{ $group->name }}, {{ $group->city }}, Ganesh Festival - Barodaplus.com
+@endsection
+
+@section('custom-head')
+<style>
+/* Inline print styles */
+@media print {
+    @page {
+        size: A4;
+        margin: 1cm;
+    }
+}
+</style>
 @endsection
 
 @section('custom-script')
+
 <script>
-      
-        
-        document.getElementById('share-button').addEventListener('click', async () => {
-            // Check if the Web Share API is supported
-            if (navigator.share) {
-                try {
+document.getElementById('share-button').addEventListener('click', async () => {
+    // Check if the Web Share API is supported
+    if (navigator.share) {
+        try {
 
 
-                    await navigator.share({
-                        title: '{{optional($group)->name}}',
-                        text: '*🚩 બરોડા પ્લસ ગણેશ સ્પર્ધા - 2024 🚩 - {{optional($group)->name}}* - મંડળને વોટ કરવા અને ફોટો તેમજ વિડિયો જોવા નીચે આપેલી લિન્ક પર ક્લિક કરો.',
-                        url: window.location.href
-                    });
-                    console.log('Content shared successfully!');
-                } catch (error) {
-                    console.error('Error sharing:', error);
-                }
-            } else {
-                alert('Your browser does not support the Web Share API.');
-            }
-        });
-    </script>
+            await navigator.share({
+                title: '{{optional($group)->name}}',
+                text: '*🚩 બરોડા પ્લસ ગણેશ સ્પર્ધા - 2024 🚩 - {{optional($group)->name}}* - મંડળને વોટ કરવા અને ફોટો તેમજ વિડિયો જોવા નીચે આપેલી લિન્ક પર ક્લિક કરો.',
+                url: window.location.href
+            });
+            console.log('Content shared successfully!');
+        } catch (error) {
+            console.error('Error sharing:', error);
+        }
+    } else {
+        alert('Your browser does not support the Web Share API.');
+    }
+});
 
-    
+
+
+
+$(document).ready(function() {
+    $('.btn-print-qr').click(function() {
+        var qrName = $(this).data('name');
+        var qrAddress = $(this).data('address');
+        var qrCode = $(this).data('qr');
+        var QrImage = $(this).data('image');
+        var logo = $(this).data('logo');
+
+        // alert(logo); // Output the product name
+
+        var printWindow = window.open('', '', 'width=600,height=600');
+        printWindow.document.write(
+            `<html style="border:1px;width=200,height=200"><head><title>${qrName} - QR</title></head><body style="text-align:center;background-color: #fff4ed;">`
+            );
+
+        printWindow.document.write(
+            `<h4 style="textext-align:center;font-size: 31px;margin:10px 0px;color: #150497;background-color: #fff2b4;border: 1px solid #a0a0a0;border-radius: 2px;padding: 4px;margin-top: 32px;font-family: sans-serif;font-weight: bold;">${qrName}</h4>`
+            );
+        printWindow.document.write(
+            `<h3 style="text-align:center;font-size: 21px;margin-top: 14px;margin-bottom: 25px;">(${qrAddress})</h3>`
+            );
+
+        printWindow.document.write(
+            `<div style="width:100%;margin-bottom: 20px;"> <div style="background-color: #ffffff;padding: 13px;display: inline-block;border: 1px solid;border-radius: 11px;">${qrCode}</div></div>`
+            );
+
+        // printWindow.document.write(qrCode);
+        printWindow.document.write(
+            `<img src="${QrImage}"  style="width:80%;margin;max-height: 400px;border: 2px solid #ffb39b;padding: 6px;background-color: #ffffff;object-fit: cover;" >`
+            );
+        printWindow.document.write(
+            `<div style="margin-bottom: 20px;"> <img src="${logo}"  style="width:100px;margin;max-height: 400px;border: 1px solid #ccc2bf;padding: 6px;background-color: #ffffff;object-fit: cover;position: relative;bottom: 0px;margin-top: 30px;border-radius: 14px;" ></div>`
+            );
+
+        printWindow.document.write(
+            `<h3 style="text-align:center;font-size: 23px;margin-top: 2px;margin-bottom: 3px;color: #df6435;font-family: math;">IG: Barodaplus</h3>`
+            );
+        printWindow.document.write(
+            `<h3 style="text-align:center;font-size: 26px;margin-top: 0px;margin-bottom: 27px;color: #303030;font-family: math;">www.Barodaplus.com</h3>`
+            );
+
+
+        printWindow.document.write('</body></html>');
+
+        printWindow.document.close();
+        printWindow.print();
+
+    });
+});
+</script>
+
+
+
 
 @endsection
 
@@ -42,7 +107,7 @@
     class="2xl:ml-[--w-side]  xl:ml-[--w-side-sm] py-10 p-2.5 h-[calc(100vh-var(--m-top))] mt-[--m-top]">
 
     <div class="max-w-[1065px] mx-auto">
-        
+
 
         <div class="bg-white shadow lg:rounded-b-2xl lg:-mt-10 dark:bg-dark2">
 
@@ -61,8 +126,9 @@
 
                 <div class="absolute bottom-0 right-0 m-4 z-20">
                     <div class="flex items-center gap-3">
-                        <button
-                            class="button bg-black/10 text-white flex items-center gap-2 backdrop-blur-small"><ion-icon name="camera-outline" class="text-lg"></ion-icon> Change Photo</button>
+                        <button class="button bg-black/10 text-white flex items-center gap-2 backdrop-blur-small">
+                            <ion-icon name="camera-outline" class="text-lg"></ion-icon> Change Photo
+                        </button>
                     </div>
                 </div>
             </div>
@@ -76,7 +142,9 @@
                             <p class=" font-normal text-gray-500 mt-2 flex gap-2 flex-wrap dark:text-white/80">
                                 <span class="text-capitalize"> {{$group->address}} </span>
                                 <span class="max-lg:hidden"> • </span>
-                                <span> <b class="font-medium text-black dark:text-white"> {{countGroupMembers($group->id)}}</b> @if(countGroupMembers($group->id) >1 )Followers @else Follower @endif </span>
+                                <span> <b class="font-medium text-black dark:text-white">
+                                        {{countGroupMembers($group->id)}}</b> @if(countGroupMembers($group->id) >1
+                                    )Followers @else Follower @endif </span>
                             </p>
                         </div>
 
@@ -88,7 +156,8 @@
                                 <button
                                     class="button bg-danger flex items-center gap-1 text-white py-2 px-3.5 shadow ml-auto bg-danger font-semibold">
                                     <!-- <ion-icon name="add-outline" class="text-xl"></ion-icon>  -->
-                                    <a href="{{route('ganeshFestivalCompetition.create', ['type'=>'group'])}}"> <span class="text-sm">
+                                    <a href="{{route('ganeshFestivalCompetition.create', ['type'=>'group'])}}"> <span
+                                            class="text-sm">
                                             <ion-icon name="trophy"
                                                 class="text-lg drop-shadow-md md hydrated live-d-icon" role="img"
                                                 aria-label="trophy"></ion-icon>
@@ -103,12 +172,13 @@
 
                                 @if(checkIsGroupJoin($group->id))
 
-                                    
+
                                 <form action="{{route('group-member.store')}}" method="post">
                                     @csrf
                                     <input type="hidden" name="group_id" value="{{$group->id}}">
-                                    <button class="button bg-primary flex items-center gap-1 py-2 px-3.5 text-white shadow ml-auto">
-                                    <ion-icon name="remove-circle-outline"  class="text-xl"></ion-icon> 
+                                    <button
+                                        class="button bg-primary flex items-center gap-1 py-2 px-3.5 text-white shadow ml-auto">
+                                        <ion-icon name="remove-circle-outline" class="text-xl"></ion-icon>
                                         <span class="text-sm"> Unfollow </span>
                                     </button>
                                 </form>
@@ -126,13 +196,14 @@
                                 @endif
 
                                 <div>
-                                    
-                                    
-                                    <a href="#" id="share-button" 
+
+
+                                    <a href="#" id="share-button"
                                         class="rounded-lg bg-secondery flex px-2.5 py-2 dark:bg-dark2  font-semibold">
-                                        <ion-icon class="text-xl font-semibold mr-2" name="share-outline"></ion-icon>  Share
+                                        <ion-icon class="text-xl font-semibold mr-2" name="share-outline"></ion-icon>
+                                        Share
                                     </a>
-                                    
+
                                 </div>
                             </div>
                         </div>
@@ -174,11 +245,11 @@
 
             <div class="flex-1 xl:space-y-6 space-y-3">
 
-            @php
-            $visible = false;
-            @endphp
+                @php
+                $visible = false;
+                @endphp
                 @if(checkIsGroupOwner($group->id) && $visible == true)
-                <div class="bg-white rounded-xl shadow-sm p-4 space-y-4 text-sm font-medium border1 dark:bg-dark2">
+                <!-- <div class="bg-white rounded-xl shadow-sm p-4 space-y-4 text-sm font-medium border1 dark:bg-dark2">
                     <div class="flex items-center gap-3">
                         <div class="flex-1 bg-slate-100 hover:bg-opacity-80 transition-all rounded-lg cursor-pointer dark:bg-dark3"
                             uk-toggle="target: #create-status">
@@ -209,15 +280,16 @@
                             </svg>
                         </div>
                     </div>
-                </div>
+                </div> -->
                 @endif
 
                 <div class="bg-white rounded-xl shadow-sm text-sm font-medium border1 dark:bg-dark2">
 
                     <div class="flex gap-3 sm:p-4 p-2.5 text-sm font-medium">
-<p class="alert alert-warning" style="color: #ff6c6c;font-size: 17px;word-spacing: 3px;">ફોટો, વિડિયો અને સ્ટેટસ ટુક્જ સમયમાં શરૂ કરવામાં આવશે.</p>
-</div>
-</div>
+                        <p class="alert alert-warning" style="color: #ff6c6c;font-size: 17px;word-spacing: 3px;">ફોટો,
+                            વિડિયો અને સ્ટેટસ ટુક્જ સમયમાં શરૂ કરવામાં આવશે.</p>
+                    </div>
+                </div>
                 <!-- <div class="bg-white rounded-xl shadow-sm text-sm font-medium border1 dark:bg-dark2">
 
                     <div class="flex gap-3 sm:p-4 p-2.5 text-sm font-medium">
@@ -548,7 +620,7 @@
 
 
                     <div class="box p-5 px-6">
-                        
+
 
                         @if(checkCompetitionSchedule()->status == 'live')
 
@@ -583,7 +655,9 @@
                                     <input type="hidden" name="votable_id"
                                         value="{{$group->competition($group->id)->participant->id}}" />
 
-                                    @if(isVoted($GaneshCompetition->id, 1) && isVoted($GaneshCompetition->id,1)->votable_id == $GaneshCompetition->participant->id)
+                                    @if(isVoted($GaneshCompetition->id, 1) &&
+                                    isVoted($GaneshCompetition->id,1)->votable_id ==
+                                    $GaneshCompetition->participant->id)
                                     <p class="button text-lg bg-success text-white flex-1 btn-not-allowed">
                                         <ion-icon name="thumbs-up-outline"></ion-icon> Voted
                                     </p>
@@ -641,6 +715,23 @@
                         </div>
                         @endif
 
+                        <div class="flex items-center justify-between mb-4">
+
+
+                            <div class="w-full qr-wrapper text-center">
+                                {!! DNS2D::getBarcodeSVG(route('group.show', $group->slug), 'QRCODE', 3, 3) !!}
+
+
+                            </div><button
+                                class="bg-marron button text-lg bg-primary text-white flex-1 mt-4 button text-lg bg-secondary text-white flex-1  btn-print-qr"
+                                data-image="https://imagedelivery.net/zfs38w7w3E1dJVvB3mVs9g/{{$group->cover}}/lg"
+                                data-name="{{$group->name}}" data-address="{{$group->address}}"
+                                data-logo="{{asset('front/images/web')}}/barodaplus-logo.png"
+                                data-qr="{{ DNS2D::getBarcodeSVG(route('group.show', $group->slug), 'QRCODE', 8, 8) }}">
+                                <ion-icon name="download-outline" class="text-lg"></ion-icon> Print QR
+                            </button>
+                        </div>
+
 
 
                         <div class="flex items-ce justify-between text-black dark:text-white">
@@ -653,8 +744,8 @@
 
                             @if($group->decoration)
                             <li class="flex items-start gap-3">
-                            <ion-icon name="newspaper-outline" class="text-2xl drop-shadow-md md hydrated mr-2"
-                            role="img" aria-label="videocam"></ion-icon>
+                                <ion-icon name="newspaper-outline" class="text-2xl drop-shadow-md md hydrated mr-2"
+                                    role="img" aria-label="videocam"></ion-icon>
                                 <div>
                                     <span class="font-semibold text-black dark:text-white">Decoration / Theme </span>
                                     <p>{{$group->decoration}}</p>

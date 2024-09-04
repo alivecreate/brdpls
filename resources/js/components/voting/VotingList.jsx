@@ -10,10 +10,10 @@ const VotingList = () => {
     const [isLoading, setIsLoading] = useState(true);
 
     const votingListElement = document.getElementById("voting-list");
+
     const userId = votingListElement ? votingListElement.dataset.userId : null;
-    const categoryId = votingListElement
-        ? votingListElement.dataset.categoryId
-        : null;
+    // alert(userId);
+    const categoryId = votingListElement ? votingListElement.dataset.categoryId : null;
 
     const csrfToken = document
         .querySelector('meta[name="csrf-token"]')
@@ -35,9 +35,8 @@ const VotingList = () => {
     const fetchCompetitions = async () => {
         try {
             // Replace 'YOUR_API_ENDPOINT' with the actual endpoint that serves image data
-            const response = await axios.get(
-                `${Global.api}/get-ganesh-competition/${categoryId}/${userId}`
-            );
+            const response = await axios.get(`${Global.api}/get-ganesh-competition/${categoryId}/${userId}`);
+            
             setCompetitions(response.data.competitions);
             setUserVoted(response.data.user_voted);
             setIsLoading(false);
@@ -76,13 +75,17 @@ const VotingList = () => {
                 {}
             );
             console.log("Form submitted successfully:", response.data);
-            if (response.data.status == true) {
+            if (response.data.status === true) {
                 toastr.success(response.data.message);
+                
+                setCompetitions(response.data.competitions);
+                setUserVoted(response.data.user_voted);
+
             } else {
                 toastr.error(response.data.message);
             }
         } catch (error) {
-            alert(error);
+            // alert(error);
             console.error("Something went wrong. please try again.");
             toastr.error(error);
         }
@@ -131,7 +134,7 @@ const VotingList = () => {
                                 href={`${Global.baseUrl}/ganesh-festival/${competition.participant.slug}`}
                             >
                                 <h4 className="card-title">
-                                    {competition.participant.name}
+                                    {competition.participant.name} u{userId} ,c {categoryId}
                                 </h4>
                             </a>
                             <div className="flex">
@@ -141,6 +144,7 @@ const VotingList = () => {
                                 />
                                 <p className="text-sm">
                                     {competition.participant.address}
+                                    grp id {competition.participant.id}
                                 </p>
                             </div>
                             <div className="card-text">
@@ -156,16 +160,17 @@ const VotingList = () => {
                             </div>
 
                             <div className="flex gap-2">
-                                {userVoted &&
-                                competition.id === userVoted.competition_id ? (
+
+                                    {userVoted && competition.id === userVoted?.competition_id ? (
+
                                     <p className="button text-lg bg-success text-white flex-1 btn-not-allowed">
                                         <ion-icon name="thumbs-up-outline" />
-                                        Voted
+                                        Voted C {competition.id} Grp ID {competition.participant.id} 
                                     </p>
                                 ) : userVoted || userId == 0 ? (
                                     <p className="button text-lg bg-primary flex-1 btn-voting-disable">
                                         <ion-icon name="thumbs-up-outline" />
-                                        Vote now
+                                        Vote now {competition.id} Grp ID {competition.participant.id}
                                     </p>
                                 ) : (
                                     <button

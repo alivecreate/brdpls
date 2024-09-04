@@ -18,27 +18,65 @@ use DB;
 class GaneshCompetitionApi extends Controller
 {
 
-    
+    private function getCompetitions($userId, $cid, $status, $message)
+    {
+        // Initialize the query
+        $query = GaneshCompetition::with(['participant', 'votes'])
+            ->withCount('votes')
+            ->withCount(['votes as is_voted' => function ($query) use ($userId, $cid) {
+                $query->where('user_id', $userId);
+
+                // Add condition for competition_category_id if $cid is 2
+                if ($cid == 1) {
+                    $query->where('competition_category_id', 1);
+                }
+                
+                if ($cid == 2) {
+                    $query->where('competition_category_id', 2);
+                }
+                
+                if ($cid == 3) {
+                    $query->where('competition_category_id', 3);
+                }
+            }])
+            ->where('competition_type', '1-2')
+            ->whereHas('participant');
+
+        // Execute the query and get results
+        $GaneshCompetitions = $query->get();
+
+        // Fetch the user's vote information
+        $userVoted = CompetitionVote::where([
+            'competition_category_id' => $cid,
+             'user_id' => $userId
+             ])->first();
+
+        
+        return [
+            'competitions' => $GaneshCompetitions,
+            'user_voted' => $userVoted,
+            'status' => $status,
+            'message' => $message
+        ];
+        
+    }
 
     public function getGaneshCompetition($cid, $userId = null){
 
         // $userId = Auth::id(); // Example: Get currently authenticated user ID
-        // return $userId;
+        // return $cid;
 
     if($cid == null || $cid == 1){
         
         $GaneshCompetitions = GaneshCompetition::with(['participant', 'votes'])
-    ->withCount('votes')
+    ->withCount('voteCategory1 as votes_count')
     ->withCount(['votes as is_voted' => function ($query) use ($userId) {
         $query->where('user_id', $userId);
+        $query->where('competition_category_id', 1);
     }])
     ->where('competition_type', '1-2')
     ->whereHas('participant')
     ->get();
-
-    // dd($GaneshCompetitions);
-    
-
     
     
     $userVoted = CompetitionVote::where(['competition_category_id' => $cid, 'user_id' => $userId]) ->first();
@@ -51,11 +89,36 @@ class GaneshCompetitionApi extends Controller
     }
 
     elseif ($cid == 2) {
-        $GaneshCompetitions = GaneshCompetition::where('competition_type', $cid)
-        ->whereHas('participant')  // Only include records where 'participant' relationship is not null
-        ->with('participant')
-        ->get();
-        return response()->json($GaneshCompetitions);
+
+    $GaneshCompetitions = GaneshCompetition::with(['participant', 'votes'])
+    // ->withCount('votes')
+    // ->withCount('voteCategory2 as votes')
+    ->withCount('voteCategory2 as votes_count')
+
+    ->withCount(['votes as is_voted' => function ($query) use ($userId) {
+        $query->where('user_id', $userId)
+              ->where('competition_category_id', 2);
+    }])
+    
+    ->where('competition_type', '1-2')
+    ->whereHas('participant')
+    ->get();
+
+
+
+        // $GaneshCompetitions = GaneshCompetition::where('competition_type', '1-2')
+        // ->whereHas('participant')  // Only include records where 'participant' relationship is not null
+        // ->with('participant')
+        // ->get();
+        
+    
+    $userVoted = CompetitionVote::where(['competition_category_id' => $cid, 'user_id' => $userId]) ->first();
+
+    return response()->json([
+        'competitions' => $GaneshCompetitions,
+        'user_voted' => $userVoted
+    ]);
+
     }
 }
 
@@ -110,6 +173,12 @@ if ($existingVote) {
 
     // Save the vote
     $vote->save();
+
+
+    $result = $this->getCompetitions($user->id, $request->categoryId, true, 'Voted Successfully.');
+
+    return response()->json($result);
+
      
     return response()->json([
         'status' => true,

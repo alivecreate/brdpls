@@ -36,10 +36,27 @@
     color: white;
     background: #00000061;
 }
+a{
+    cursor: pointer;
+}
+.border-none{
+    border: none;
+}
 .header-topbar{
     height: 100px;
 }
+.qr-wrapper svg{
+    /* text-align: center; */
+    /* margin: 0 auto; */
+}
+.bg-marron {
+background: brown;
+}
 
+.active-link, .category-link:hover{
+    color: #0077ad;
+    text-decoration: underline;
+}
 .main-logo {
     height: auto;
     width: 240px;

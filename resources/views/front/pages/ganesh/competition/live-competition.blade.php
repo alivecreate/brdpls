@@ -1,14 +1,20 @@
 @extends('front.layout.ganesh-festival-layout')
 
-@section('custom-head')
+    @section('custom-head')
 
-<meta name="csrf-token" content="{{ csrf_token() }}">
-    <meta name="data-user-id" content="{{ Auth::id() }}">
-    <meta name="data-category-id" content="{{ csrf_token() }}">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+        <meta name="data-user-id" content="{{ Auth::id() }}">
+        <meta name="data-category-id" content="1">
+
+        @endsection
+
+
+    @section('custom-script')   
+    <script>
+                    $('.best-idol').addClass('active-link');
+    </script>   
 
 @endsection
-
-
 
 @section('content')
 <main id="site__main"
@@ -18,19 +24,9 @@
 
     @include('front.ext.nav-mobile-menu')
 
-        <div class="page-heading">
 
-            <h1 class="page-title"> ગણેશ સ્પર્ધા </h1>
-            <nav class="nav__underline">
-                <ul class="group"
-                    uk-switcher="">
-                    <a href="?cid=1">શ્રેષ્ઠ મૂર્તિ ({{getTotalCategoryGroup('1-2')}})</a>
-                    <a href="?cid=2">શ્રેષ્ઠ ડેકોરેશન ({{getTotalCategoryGroup('1-2')}})</a>
-                    <a href="?cid=3"> ઘરની બેસ્ટ મૂર્તિ</a>
-                </ul>
-            </nav>
-        </div>
-
+    @include('front.pages.ganesh.competition.tab-live-competition')
+   
         <div class="" id='voting-list'  
             data-user-id="{{Auth::id() ? Auth::id() : 0}}"
             data-category-id="1"

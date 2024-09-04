@@ -37,6 +37,19 @@ class GaneshCompetition extends Model
         return $this->hasMany(CompetitionVote::class, 'competition_id')->where('competition_category_id', 1); // Adjust the relationship as per your schema
         return $this->morphMany(CompetitionVote::class, 'votable'); // Adjust the relationship as per your schema
     }
+    
+    public function voteCategory1()
+    {
+        return $this->hasMany(CompetitionVote::class, 'competition_id')->where('competition_category_id', 1); // Adjust the relationship as per your schema
+    }
+    public function voteCategory2()
+    {
+        return $this->hasMany(CompetitionVote::class, 'competition_id')->where('competition_category_id', 2); // Adjust the relationship as per your schema
+    }
+    public function voteCategory3()
+    {
+        return $this->hasMany(CompetitionVote::class, 'competition_id')->where('competition_category_id', 3); // Adjust the relationship as per your schema
+    }
 
     public function isVoted($userId)
     {

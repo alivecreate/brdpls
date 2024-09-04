@@ -221,7 +221,13 @@ Route::resource('/live-competition-status', LiveCompetitionStatus::class)->names
 
 
 Route::get('/ganesh-festival/competition/rules', [GaneshFestivalCompetition::class, 'rules'])->name('GaneshFestivalCompetitionRules');
+
 Route::get('/ganesh-festival/competition/live', [GaneshFestivalCompetition::class, 'live'])->name('GaneshFestivalCompetitionLive');
+
+// Route::get('/ganesh-festival/competition/live/{category_id}', [GaneshFestivalCompetition::class, 'live'])->name('GaneshFestivalCompetitionLive');
+
+
+
 Route::post('/ganesh-festival/competition/store-home-ganesh', [GaneshFestivalCompetition::class, 'storeHomeGaneshCompetition'])->name('storeHomeGaneshCompetition');
 
 

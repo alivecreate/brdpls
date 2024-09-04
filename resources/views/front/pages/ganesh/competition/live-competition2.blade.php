@@ -5,10 +5,18 @@
 
 <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="data-user-id" content="{{ Auth::id() }}">
-    <meta name="data-category-id" content="{{ csrf_token() }}">
-
+    <meta name="data-category-id" content="2">
 @endsection
 
+
+    
+
+@section('custom-script')
+    <script>
+                    $('.best-decoration').addClass('active-link');
+        </script>   
+
+@endsection
 
 
 @section('content')
