@@ -10,30 +10,30 @@
 
     @section('custom-script')
     <script>
-            document.getElementById('share-button').addEventListener('click', async () => {
-                // Check if the Web Share API is supported
-                if (navigator.share) {
-                    try {
-                        if (window.location.href.indexOf('?') > -1) {
-                                // If there are existing parameters, append '&ref=share'
-                                var link = window.location.href += '&ref=share';
-                            } else {
-                                // If there are no parameters, add '?ref=share'
-                                var link =  window.location.href += '?ref=share';
-                            }
-                        await navigator.share({
-                            title: '{{optional($group)->name}}',
-                            text: '*🚩 બરોડા પ્લસ ગણેશ સ્પર્ધા - 2024 🚩 - {{optional($group)->name}}* - મંડળને વોટ કરવા અને ફોટો તેમજ વિડિયો જોવા નીચે આપેલી લિન્ક પર ક્લિક કરો.',
-                            url: link
-                        });
-                        console.log('Content shared successfully!');
-                    } catch (error) {
-                        console.error('Error sharing:', error);
-                    }
-                } else {
-                    alert('Your browser does not support the Web Share API.');
-                }
-            });
+            // document.getElementById('share-button').addEventListener('click', async () => {
+            //     // Check if the Web Share API is supported
+            //     if (navigator.share) {
+            //         try {
+            //             if (window.location.href.indexOf('?') > -1) {
+            //                     // If there are existing parameters, append '&ref=share'
+            //                     var link = window.location.href += '&ref=share';
+            //                 } else {
+            //                     // If there are no parameters, add '?ref=share'
+            //                     var link =  window.location.href += '?ref=share';
+            //                 }
+            //             await navigator.share({
+            //                 title: '{{optional($group)->name}}',
+            //                 text: '*🚩 બરોડા પ્લસ ગણેશ સ્પર્ધા - 2024 🚩 - {{optional($group)->name}}* - મંડળને વોટ કરવા અને ફોટો તેમજ વિડિયો જોવા નીચે આપેલી લિન્ક પર ક્લિક કરો.',
+            //                 url: link
+            //             });
+            //             console.log('Content shared successfully!');
+            //         } catch (error) {
+            //             console.error('Error sharing:', error);
+            //         }
+            //     } else {
+            //         alert('Your browser does not support the Web Share API.');
+            //     }
+            // });
         </script>
 
 @endsection

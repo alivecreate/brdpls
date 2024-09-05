@@ -34,8 +34,8 @@
 
                 @if(isHomeCompetitionExists())
                 <li  id="my-group">
-                <a href="{{route('ganeshCompetitionPaymentCreate', ['type' => 'group'])}}" >
-                    <img src="{{asset('front')}}/images/icons/group.png" alt="My Group / Mandal" class="w-6">
+                <a href="{{route('ganeshCompetitionPaymentCreate', ['type' => 'home'])}}" >
+                    <img src="{{asset('front')}}/images/icons/group.png" alt="My Home / Mandal" class="w-6">
                         <span> My Home Ganesh</span> 
                     </a>
                 </li> 
