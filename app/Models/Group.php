@@ -20,15 +20,34 @@ class Group extends Model
     {
         parent::boot();
         
-        static::creating(function ($business) {
-            $slug = Str::slug($business->name);
-            $originalSlug = $slug;
-            $count = 1;
+        // static::creating(function ($group) {
+        //     $slug = Str::slug($group->name);
+        //     $originalSlug = $slug;
+        //     $count = 1;
 
+        //     while (static::whereSlug($slug)->exists()) {
+        //         $slug = $originalSlug . '-' . $count++;
+        //     }
+        //     $group->slug = $slug;
+        // });
+
+        static::creating(function ($group) {
+            $slug = Str::slug($group->name);
+            $originalSlug = $slug;
+            
+            // Generate a unique 4-digit random number
+            $uniqueString = '-' .strtolower(Str::random(6));
+        
+            // Append the unique 4-digit number to the slug
+            $slug .= $uniqueString;
+        
+            // Check if the generated slug exists, and if so, keep appending a new random string
             while (static::whereSlug($slug)->exists()) {
-                $slug = $originalSlug . '-' . $count++;
+                $uniqueString = '-' . str_pad(mt_rand(0, 9999), 4, '0', STR_PAD_LEFT);
+                $slug = $originalSlug . $uniqueString;
             }
-            $business->slug = $slug;
+        
+            $group->slug = $slug;
         });
 
     }

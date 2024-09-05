@@ -37,7 +37,7 @@
     background: #00000061;
 }
 a{
-    cursor: pointer;
+    cursor: pointer !important;
 }
 .border-none{
     border: none;
@@ -48,6 +48,21 @@ a{
 .qr-wrapper svg{
     /* text-align: center; */
     /* margin: 0 auto; */
+}
+.bg-warning {
+	background: #e7a055;
+}
+.qr-wrapper svg {
+	background: white;
+	outline: 2px solid;
+}
+button {
+    cursor: pointer !important
+}
+.live-icon {
+	background: white;
+	padding: 0px;
+	border-radius: 50px;
 }
 .bg-marron {
 background: brown;

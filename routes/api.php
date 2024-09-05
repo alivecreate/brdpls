@@ -24,10 +24,13 @@ Route::delete('/delete-business-image', [ImageUploadController::class, 'deleteBu
 Route::post('/image-upload', [ImageUploadController::class, 'imageUpload']);
 Route::post('/image-uploads', [ImageUploadController::class, 'imageUploads']);
 
+
 // Competitons Api
-Route::get('/get-ganesh-competition/{cid}/{userid}', [GaneshCompetitionApi::class, 'getGaneshCompetition']);
+Route::get('/get-ganesh-competition/{userid}', [GaneshCompetitionApi::class, 'getGaneshCompetition']);
+Route::get('/get-ganesh-competition2/{userid}', [GaneshCompetitionApi::class, 'getGaneshCompetition2']);
 
 Route::post('/store-competition-vote', [GaneshCompetitionApi::class, 'storeCompetitionVote']);
+Route::post('/store-competition-vote2', [GaneshCompetitionApi::class, 'storeCompetitionVote2']);
 
 
 

@@ -233,3 +233,18 @@ function isUserVerified(){
     $user = User::find(Auth::id());
     return $user;
 }
+
+if (!function_exists('getLanguageName')) {
+    function getLanguageName()
+    {
+        $locales = [
+            'en' => 'English',  
+            'hi' => 'Hindi',
+            'gu' => 'Gujarati',
+            'mr' => 'Marathi',
+        ];
+
+        $currentLocale = app()->getLocale();
+        return $locales[$currentLocale] ?? 'Unknown';
+    }
+}

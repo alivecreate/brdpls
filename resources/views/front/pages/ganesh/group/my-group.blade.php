@@ -60,6 +60,22 @@
                         </div> -->
 
                         <div class="flex gap-2">
+                            
+                        @if($myGroup->competition($myGroup->id)->status == 'pending' || $myGroup->competition($myGroup->id)->status == null)
+                                    <button
+                                        class="button bg-warning flex items-center gap-1 text-white py-2 px-3.5 shadow ml-auto font-semibold">
+                                        <!-- <ion-icon name="add-outline" class="text-xl"></ion-icon>  -->
+                                        <a href="@if($myGroup->user_id == Auth::id()){{route('ganeshFestivalCompetition.create', ['type'=>'group'])}}@else # @endif"> <span
+                                                class="text-sm">
+                                                <ion-icon name="trophy"
+                                                    class="text-lg drop-shadow-md md hydrated live-d-icon" role="img"
+                                                    aria-label="trophy"></ion-icon>
+                                                    રજિસ્ટ્રેશન ફી બાકી છે.
+                                            </span> </a>
+                                    </button>
+                                @endif  
+
+
                             <!-- <button type="button" class="button bg-primary text-white flex-1">Follow</button> -->
                             <a href="{{route('ganeshFestivalGroup.show', $myGroup->slug)}}" class="button w-full bg-primary text-white flex-1">View</a>
                             <!-- <a href="{{route('ganeshFestivalGroup.show', 1)}}" class="button w-full bg-secondery !w-auto"> View</a>  -->

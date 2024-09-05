@@ -151,20 +151,31 @@ $(document).ready(function() {
                         <div>
                             <div class="flex items-center gap-2 mt-1">
 
-                                @if(!$group->competition($group->id))
+                            @if(!$group->competition($group->id))
+                                    <button
+                                        class="button bg-danger flex items-center gap-1 text-white py-2 px-3.5 shadow ml-auto bg-danger font-semibold">
+                                        <!-- <ion-icon name="add-outline" class="text-xl"></ion-icon>  -->
+                                        <a href="{{route('ganeshFestivalCompetition.create', ['type'=>'group'])}}"> <span
+                                                class="text-sm">
+                                                <ion-icon name="trophy"
+                                                    class="text-lg drop-shadow-md md hydrated live-d-icon" role="img"
+                                                    aria-label="trophy"></ion-icon>
+                                                    સ્પર્ધામાં ભાગ લીધેલ નથી
+                                            </span> </a>
+                                    </button>
 
-                                <button
-                                    class="button bg-danger flex items-center gap-1 text-white py-2 px-3.5 shadow ml-auto bg-danger font-semibold">
-                                    <!-- <ion-icon name="add-outline" class="text-xl"></ion-icon>  -->
-                                    <a href="{{route('ganeshFestivalCompetition.create', ['type'=>'group'])}}"> <span
-                                            class="text-sm">
-                                            <ion-icon name="trophy"
-                                                class="text-lg drop-shadow-md md hydrated live-d-icon" role="img"
-                                                aria-label="trophy"></ion-icon>
-
-                                            સ્પર્ધામાં ભાગ લીધેલ નથી
-                                        </span> </a>
-                                </button>
+                                @elseif($group->competition($group->id)->status == 'pending' )
+                                    <button
+                                        class="button bg-warning flex items-center gap-1 text-white py-2 px-3.5 shadow ml-auto font-semibold">
+                                        <!-- <ion-icon name="add-outline" class="text-xl"></ion-icon>  -->
+                                        <a href="@if($group->user_id == Auth::id()){{route('ganeshFestivalCompetition.create', ['type'=>'group'])}}@else # @endif"> <span
+                                                class="text-sm">
+                                                <ion-icon name="trophy"
+                                                    class="text-lg drop-shadow-md md hydrated live-d-icon" role="img"
+                                                    aria-label="trophy"></ion-icon>
+                                                    રજિસ્ટ્રેશન ફી બાકી છે.
+                                            </span> </a>
+                                    </button>
                                 @endif
 
 
@@ -716,18 +727,14 @@ $(document).ready(function() {
                         @endif
 
                         <div class="flex items-center justify-between mb-4">
-
-
                             <div class="w-full qr-wrapper text-center">
-                                {!! DNS2D::getBarcodeSVG(route('group.show', $group->slug), 'QRCODE', 3, 3) !!}
-
-
+                                {!! DNS2D::getBarcodeSVG(route('ganeshFestivalGroup.show', $group->slug), 'QRCODE', 3, 3) !!}
                             </div><button
                                 class="bg-marron button text-lg bg-primary text-white flex-1 mt-4 button text-lg bg-secondary text-white flex-1  btn-print-qr"
                                 data-image="https://imagedelivery.net/zfs38w7w3E1dJVvB3mVs9g/{{$group->cover}}/lg"
                                 data-name="{{$group->name}}" data-address="{{$group->address}}"
                                 data-logo="{{asset('front/images/web')}}/barodaplus-logo.png"
-                                data-qr="{{ DNS2D::getBarcodeSVG(route('group.show', $group->slug), 'QRCODE', 8, 8) }}">
+                                data-qr="{{ DNS2D::getBarcodeSVG(route('ganeshFestivalGroup.show', $group->slug), 'QRCODE', 8, 8) }}">
                                 <ion-icon name="download-outline" class="text-lg"></ion-icon> Print QR
                             </button>
                         </div>

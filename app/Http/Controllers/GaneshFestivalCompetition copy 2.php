@@ -25,7 +25,6 @@ class GaneshFestivalCompetition extends Controller
         }
 
         $groups = Group::orderBy('name', 'asc')->get();
-        // dd($groups);
         return view('front.pages.ganesh.competition.list', compact('groups'));
     }
 
@@ -259,6 +258,50 @@ return redirect()->back()->with('error', 'Something went wrong, please try again
         // dd($cid);
         return redirect()->route('GaneshFestivalCompetitionLive');
         
+        $GaneshCompetitions = GaneshCompetition::where('competition_type', $cid)
+        ->whereHas('participant')  // Only include records where 'participant' relationship is not null
+        ->with('participant')   
+        ->get();
+        
+        return view('front.pages.ganesh.competition.live-competition', compact('GaneshCompetitions'));
+
+
+        // dd($GaneshCompetitions);
+
+        $competition = GaneshCompetition::find(1); // Replace with an actual 
+        if($competition){
+            $votesCount = $competition->votesForCat1()->count();
+            dd($votesCount);
+        }
+        $GaneshCompetitions = GaneshCompetition::where('competition_type', '1-2')
+        ->with('participant')
+        ->withCount(['votesForCat1'])
+        ->toSql(); // Du
+        dd($competition);
+
+$votesCount = $competition->votesForCat1()->count();
+// dd($votesCount);
+        $GaneshCompetitions = GaneshCompetition::where('competition_type', '1-2')
+    ->with('participant')
+    ->withCount(['votesForCat1'])
+    ->toSql(); // Dump the SQL query
+
+// dd($GaneshCompetitions);
+
+        $GaneshCompetitions = GaneshCompetition::where('competition_type', '1-2')
+        ->with('participant')
+        ->with('votesForCat1')
+        ->get();
+
+        dd($GaneshCompetitions);
+    
+
+        // $GaneshCompetitions = GaneshCompetition::where('competition_type', '1-2')->with('participant')->get();
+        
+        // dd($GaneshCompetitions);
+
+        // $GaneshCompetitions = GaneshCompetition::with('participant')->get();
+        return view('front.pages.ganesh.competition.live-competition', compact('GaneshCompetitions'));
     }
 
     

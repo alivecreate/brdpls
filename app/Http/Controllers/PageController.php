@@ -24,7 +24,8 @@ class PageController extends Controller
 
         // dd(getUserData());
         
-        $groups = Group::orderBy('name', 'asc')->get();
+        $groups = Group::orderBy('id', 'desc')->get();
+        // dd($groups);
         return view('front.pages.groups.list', compact('groups'));
 
         // $groups = Group::get();

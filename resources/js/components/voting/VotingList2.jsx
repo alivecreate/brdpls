@@ -4,13 +4,12 @@ import Global from "../../Global";
 
 import axios from "axios";
 
-const VotingList = () => {
+const VotingList2 = () => {
     const [competitions, setCompetitions] = useState([]);
     const [userVoted, setUserVoted] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
-    const [user, setIsUser] = useState('');
 
-    const votingListElement = document.getElementById("voting-list");
+    const votingListElement = document.getElementById("voting-list2");
 
     const userId = votingListElement ? votingListElement.dataset.userId : null;
     // alert(userId);
@@ -36,18 +35,17 @@ const VotingList = () => {
     const fetchCompetitions = async () => {
         try {
             // Replace 'YOUR_API_ENDPOINT' with the actual endpoint that serves image data
-            const response = await axios.get(`${Global.api}/get-ganesh-competition/${userId}`);
+            const response = await axios.get(`${Global.api}/get-ganesh-competition2/${userId}`);
             
             setCompetitions(response.data.competitions);
             setUserVoted(response.data.user_voted);
-            setIsUser(response.data.user);
-
             setIsLoading(false);
 
             // toastr.success('Logo Deleted Successfully!');
-            console.log("get", response.data);
+            console.log("get 222", response.data);
         } catch (error) {
             setIsLoading(false);
+
             console.error("Error fetching data:", error);
         }
     };
@@ -72,7 +70,7 @@ const VotingList = () => {
         try {
             // Make POST request
             const response = await axios.post(
-                "/api/store-competition-vote",
+                "/api/store-competition-vote2",
                 data,
                 {}
             );
@@ -123,7 +121,6 @@ const VotingList = () => {
                                   ? `${Global.baseUrl}/ganesh-festival/${competition.participant.slug}`
                                   : '#'
                               }
-
                         >
                             <div className="card-media h-40">
                                 <img
@@ -146,7 +143,6 @@ const VotingList = () => {
                                 />
                                 <p className="text-sm">
                                     {competition.participant.address}
-                                    grp id {competition.participant.id}
                                 </p>
                             </div>
                             <div className="card-text">
@@ -163,14 +159,7 @@ const VotingList = () => {
 
                             <div className="flex gap-2">
 
-                                    {
-                                    user.status == 'pending'  ? (
-
-                                        <p className="button text-lg bg-primary flex-1 btn-voting-disable">
-                                        <ion-icon name="thumbs-up-outline" />
-                                        Vote now pending
-                                    </p>
-                                    ) : userVoted && competition.id === userVoted?.competition_id ? (
+                                    {userVoted && competition.id === userVoted?.competition_id ? (
 
                                     <p className="button text-lg bg-success text-white flex-1 btn-not-allowed">
                                         <ion-icon name="thumbs-up-outline" />
@@ -199,6 +188,7 @@ const VotingList = () => {
                                     </button>
                                 )}
 
+
                                 <a
                                     href={`${Global.baseUrl}/ganesh-festival/${competition.participant.slug}`}
                                     className="button text-lg bg-secondery !w-auto"
@@ -215,4 +205,4 @@ const VotingList = () => {
     );
 };
 
-export default VotingList;
+export default VotingList2;

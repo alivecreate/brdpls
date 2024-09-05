@@ -51,30 +51,56 @@ class GaneshCompetitionApi extends Controller
     }
 
 
-    public function getGaneshCompetition($userId = null){
-        
-    $GaneshCompetitions = GaneshCompetition::with(['participant', 'votes'])
-    ->withCount('votes as votes_count')
+    public function getGaneshCompetition($cid, $userId = null){
 
-    ->withCount(['votes as is_voted' => function ($query) use ($userId) {
-        $query->where('user_id', $userId)
-              ->where('competition_category_id', 1);
+    if($cid == null || $cid == 1){
+        
+        $GaneshCompetitions = GaneshCompetition::with(['participant', 'votes'])
+    ->withCount('voteCategory1 as votes_count')
+    ->withCount(['votes as is_voted' => function ($query) use ($userId, $cid) {
+        $query->where('user_id', $userId);
+        $query->where('competition_category_id', $cid);
     }])
     ->where('competition_type', '1-2')
-    ->where('status', 'active')
     ->whereHas('participant')
     ->get();
-
-    $userVoted = CompetitionVote::where(['competition_category_id' => 1, 'user_id' => $userId]) ->first();
-    $user = User::find($userId);
+    
+    $userVoted = CompetitionVote::where(['competition_category_id' => $cid, 'user_id' => $userId]) ->first();
 
     return response()->json([
         'competitions' => $GaneshCompetitions,
-        'user_voted' => $userVoted,
-        'user' => $user
+        'user_voted' => $userVoted
     ]);
 
+    }
+
+    elseif ($cid == 2) {
+
+    $GaneshCompetitions = GaneshCompetition::with(['participant', 'votes'])
+    // ->withCount('votes')
+    // ->withCount('voteCategory2 as votes')
+    ->withCount('voteCategory2 as votes_count')
+
+    ->withCount(['votes as is_voted' => function ($query) use ($userId) {
+        $query->where('user_id', $userId)
+              ->where('competition_category_id', 2);
+    }])
     
+    ->where('competition_type', '1-2')
+    ->whereHas('participant')
+    ->get();
+
+
+
+    
+    $userVoted = CompetitionVote::where(['competition_category_id' => $cid, 'user_id' => $userId]) ->first();
+
+    return response()->json([
+        'competitions' => $GaneshCompetitions,
+        'user_voted' => $userVoted
+    ]);
+
+    }
 }
 
 public function storeCompetitionVote(Request $request){
@@ -183,6 +209,7 @@ public function storeCompetitionVote2(Request $request){
         ]);
     }
 
+
     $participant = GaneshCompetition::where('participant_id', $request->participantId)->firstOrFail();
     // dd($participant);
     if(!$participant){
@@ -191,6 +218,8 @@ public function storeCompetitionVote2(Request $request){
             'message' => 'Something went wrong. please try again.'
         ]);
     }
+
+
 
     $existingVote = CompetitionVote::where('user_id', $request->userId)
     ->where('competition_category_id', $request->categoryId)
@@ -218,6 +247,8 @@ if ($existingVote) {
     // Save the vote
     $vote->save();
 
+    // dd($request->categoryId);
+
     $result = $this->getGaneshCompetition2($user->id);
 
     // dd($result);
@@ -233,6 +264,19 @@ $mergedResult = array_merge($resultData, [
 
 return response()->json($mergedResult);
 
+
+
+    return response()->json($result);
+
+     
+    return response()->json([
+        'status' => true,
+        'message' => 'Voted Successfully.'
+    ]);
+
+    return $vote;
 }
+
+
 
 }

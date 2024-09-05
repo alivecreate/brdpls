@@ -30,7 +30,7 @@ class GaneshFestivalGroupController extends Controller
         // dd('create');
 
         // return 'rest';
-        
+
         $homeGaneshCompetition = GaneshCompetition::where(['participant_id' => Auth::id(), 'competition_type' => 3])->first();
         $homeGaneshCompetitionLists = GaneshCompetition::where(['competition_type' => 3, 'participant_id' => Auth::id(), 'status' => 'active'])->orderBy('id', 'desc')->get();
 
@@ -89,6 +89,7 @@ class GaneshFestivalGroupController extends Controller
             'decoration' => 'required|string',
             'address' => 'required|string',
             'cover' => 'required|image|max:60480', // Max size 2MB
+            
         ]);
 
         $image = $request->file('cover');
@@ -112,6 +113,7 @@ class GaneshFestivalGroupController extends Controller
             'cover' => $cover,
             'address' => $request->address,
             'city' => $request->city,
+            'year' => $request->year,
             'status' => 'active',
         ]);
         // $group
@@ -164,10 +166,12 @@ class GaneshFestivalGroupController extends Controller
      */
     public function show(string $id)
     {
+
         $group = Group::where('slug', $id)->first();
+        $user = User::find(Auth::id());
         
         if($group){
-            return view('front.pages.ganesh.group.show', compact('group'));
+            return view('front.pages.ganesh.group.show', compact('group', 'user'));
         }
         return redirect('ganesh-festival');
     }
