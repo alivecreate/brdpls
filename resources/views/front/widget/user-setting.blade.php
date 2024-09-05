@@ -118,7 +118,7 @@ toastr.success('{{ session('success')}}');
                      @php
                         $userId = getUserData()['id'];
                         @endphp
-                     <form class="needs-validation data-form" action="{{ route('users.update', $userId) }}" method="POST" enctype="multipart/form-data">
+                     <form class="needs-validation data-form dark:text-white" action="{{ route('users.update', $userId) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('put')
                         <div class="space-y-6">

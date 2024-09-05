@@ -10,7 +10,7 @@
 <main id="site__main"
     class="2xl:ml-[--w-side]  xl:ml-[--w-side-sm] 2xl:ml-[--w-side]  xl:ml-[--w-side-sm] h-[calc(100vh-var(--m-top))] mt-[--m-top] p-6">
 
-    <div class=""
+    <div class="2xl:max-w-[1220px] max-w-[1065px] mx-auto lg:mt-2 mt-6 mt-2"
         id="js-oversized">
         
 @include('front.ext.nav-mobile-menu')
@@ -20,7 +20,7 @@
 
             <div class="w-full">
 
-                <p class='heading-h1 font-semibold page-title text-underline'> ગણેશ સ્પર્ધા ફી </p>
+                <p class='heading-h1 font-semibold text-black font-semibold text-black mb-0 text-underline'> ગણેશ સ્પર્ધા ફી </p>
 
                 <p class='subheading-h3 font-semibold font-semibold mb-0'>Note: ગણેશ સ્પર્ધા તા. 07-09-2024 સવારે 10 વાગ્યેથી શરુ થશે.</p>
 
@@ -63,10 +63,65 @@
                     @endif
 
                     @if($homeGaneshCompetition->status == 'pending')
-                    
-                    <img src="{{asset('front/images/web')}}/alivecreate-payment-501.jpg"  width="300"
-                    style="text-align: center;margin: 0 auto;margin-top:30px"
-                    />
+
+                    <button id="rzp-button1"
+                        class="w-full bg-blue-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        Pay Registration Fee
+                    </button>
+
+                    <form id="rzp-paymentresponse" action="{{ route('payment.callback') }}" method="POST"
+                        style="display: none;">
+                        @csrf
+
+                        <input type="hidden" id="razorpay_payment_id" name="razorpay_payment_id">
+                        <input type="hidden" id="razorpay_order_id" name="razorpay_order_id">
+                        <input type="hidden" id="razorpay_signature" name="razorpay_signature">
+
+                        <input type="hidden" name="receipt" value="{{$order->receipt}}">
+                        <input type="hidden" name="amount" value="{{$order->amount}}">
+                        <input type="hidden" name="user_id" value="{{$user_id}}">
+                        <input type="hidden" name="group_id" value="{{$group_id}}">
+                        <input type="hidden" name="competition_id" value="{{$competition_id}}">
+                        <input type="hidden" name="name" value="{{$user->first_name}} {{$user->last_name}}">
+
+
+                    </form>
+
+                    <script>
+                    var options = {
+                        "key": "{{ env('RAZORPAY_KEY') }}", // Enter the Key ID generated from the Dashboard
+                        "amount": "{{$order->amount}}", // Amount is in currency subunits. Default currency is INR. Hence, 10000 refers to 100 INR
+                        "currency": "INR",
+                        "name": "Ganesh Competition - Brodaplus",
+                        "description": "Ganesh Competitions - Barodaplus - Vadodara",
+                        "order_id": "{{ $orderId }}", //This is a sample Order ID. Pass the `id` obtained in the previous step
+                        "handler": function(response) {
+                            document.getElementById('razorpay_payment_id').value = response.razorpay_payment_id;
+                            document.getElementById('razorpay_order_id').value = response.razorpay_order_id;
+                            document.getElementById('razorpay_signature').value = response.razorpay_signature;
+                            document.getElementById('rzp-paymentresponse').submit();
+                        },
+                        "prefill": {
+                            "name": '{{$user->first_name}} {{$user->last_name}}',
+                            "contact": '{{$user->phone}}'
+                        },
+                        "notes": {
+                            "address": '{{$group->city}}'
+                        },
+                        "theme": {
+                            "color": "#3399cc"
+                        },
+
+                        "method": {
+                            "upi": true // Ensure UPI is set to true
+                        }
+                    };
+                    var rzp1 = new Razorpay(options);
+                    document.getElementById('rzp-button1').onclick = function(e) {
+                        rzp1.open();
+                        e.preventDefault();
+                    }
+                    </script>
 
                     @elseif(count($homeGaneshCompetition->competitions) == 1 && $homeGaneshCompetition->myCompetition[0]->status == 'active')
                     <div class="flex w-full items-center gap-4 mt-6">
@@ -132,11 +187,17 @@
                     </div>
 
                 </div>
+
+
             </div>
+
         </div>
+
     </div>
 
 </main>
+
+
 
 </div>
 </div>

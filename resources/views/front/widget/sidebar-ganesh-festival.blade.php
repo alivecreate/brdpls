@@ -23,14 +23,26 @@
                     </a>
                 </li> 
 
-                @if(Auth::check())
+                @if(Auth::check() && isGroupExists() )
                 <li  id="my-group">
                     <a href="{{route('ganeshFestivalMyGroup')}}">
                     <img src="{{asset('front')}}/images/icons/group.png" alt="My Group / Mandal" class="w-6">
-                        <span> My Group / Mandal </span> 
+                        <span> My Home Ganesh </span> 
                     </a>
                 </li> 
                 @endif
+
+                @if(isHomeCompetitionExists())
+                <li  id="my-group">
+                <a href="{{route('ganeshCompetitionPaymentCreate', ['type' => 'group'])}}" >
+                    <img src="{{asset('front')}}/images/icons/group.png" alt="My Group / Mandal" class="w-6">
+                        <span> My Home Ganesh</span> 
+                    </a>
+                </li> 
+                
+
+                @endif
+
 
                 @if(checkCompetitionSchedule()->status == 'live')
                 <li id="live-competition">
@@ -39,15 +51,7 @@
                         <span>Live Competition </span> 
                     </a>
                 </li>
-
                 
-
-                <li>
-                    <a href="{{route('event')}}">
-                        <img src="{{asset('front')}}/images/icons/event.png" alt="Best Home Ganesh" class="w-6">
-                        <span> Best Home Ganesh </span> 
-                    </a>
-                </li>
                 @endif
 
                     @if(!isGroupExists() && !isHomeCompetitionExists())

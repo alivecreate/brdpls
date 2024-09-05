@@ -30,7 +30,7 @@
                     <div class="bg-blue-600 h-1 rounded-full" style="width: 10%"></div>
                 </div>
 
-                <p class='heading-h1 font-semibold text-black font-semibold text-black mb-0'>Group Registration</p>
+                <p class='heading-h1 font-semibold text-black font-semibold text-black mb-0 dark:text-white'>Group Registration</p>
                 <p class="subheading-h2">ગણેશ મંડળ અને યુવક મંડળનું રજિસ્ટ્રેશન</p>
                 <p class="mb-3 text-danger">દરેક વિગત English માં લખો.</p>
                 <form class="needs-validation data-form" action="{{route('ganeshFestivalGroup.store')}}" method="POST"

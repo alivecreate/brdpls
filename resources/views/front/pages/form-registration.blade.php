@@ -21,7 +21,7 @@
   
   <div class="sm:flex login-page-wrapper">
       
-      <div class="relative lg:w-[580px] md:w-96 w-full p-10 min-h-screen bg-white shadow-xl flex items-center pt-10 dark:bg-slate-900 z-10">
+      <div class="relative lg:w-[580px] md:w-96 w-full p-10 min-h-screen bg-white shadow-xl flex items-center pt-10 dark:bg-slate-900 z-10 dark:text-white">
   
         <div class="w-full lg:max-w-sm mx-auto space-y-10 m-responsive" uk-scrollspy="target: > *; cls: uk-animation-scale-up; delay: 100 ;repeat: true">
   

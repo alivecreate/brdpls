@@ -64,7 +64,7 @@
 
                     @if($homeGaneshCompetition->status == 'pending')
                     
-                    <img src="{{asset('front/images/web')}}/alivecreate-payment-501.jpg"  width="300"
+                    <img src="{{asset('front/images/web')}}/alivecreate-payment-251.jpg"  width="300"
                     style="text-align: center;margin: 0 auto;margin-top:30px"
                     />
 
@@ -78,10 +78,7 @@
                         વોટિંગ તા. 07-09-2024 એ શરૂ થશે.<span class="ripple-overlay"></span></p>
 
                     @endif
-
-
                 </div>
-                
             </div>
         </div>
 
@@ -132,11 +129,17 @@
                     </div>
 
                 </div>
+
+
             </div>
+
         </div>
+
     </div>
 
 </main>
+
+
 
 </div>
 </div>

@@ -47,6 +47,13 @@
             class="flex-inline p-3 px-4 rounded-lg bg-teal-100/60 text-teal-600 font-semibold dark:text-white dark:bg-dark4">
                                     <ion-icon name="people" class="text-2xl drop-shadow-md md hydrated mr-2" role="img"
                                     aria-label="book"></ion-icon> ગણેશ સ્પર્ધા રજિસ્ટ્રેશન</a>
+                                    
+        @elseif(isHomeCompetitionExists())
+        <a href="{{route('ganeshCompetitionPaymentCreate', ['type' => 'home'])}}" 
+            class="flex-inline p-3 px-4 rounded-lg bg-teal-100/60 text-teal-600 font-semibold dark:text-white dark:bg-dark4"> 
+                                    <ion-icon name="people" class="text-2xl drop-shadow-md md hydrated mr-2" role="img"
+                                    aria-label="book"></ion-icon> મારા ઘરના ગણેશ</a>
+       
         @else
         <a href="{{route('ganeshFestivalCompetition.create')}}" 
             class="flex-inline p-3 px-4 rounded-lg bg-teal-100/60 text-teal-600 font-semibold dark:text-white dark:bg-dark4"> 

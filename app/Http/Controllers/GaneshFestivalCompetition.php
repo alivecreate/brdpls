@@ -238,7 +238,7 @@ return redirect()->back()->with('error', 'Something went wrong, please try again
                         ->get();
                         
         $user = User::find(Auth::id());
-                        return view('front.pages.ganesh.competition.live-competition2', compact('GaneshCompetitions'. 'user'));
+                        return view('front.pages.ganesh.competition.live-competition2', compact('GaneshCompetitions', 'user'));
                     }
 
                     elseif ($cid == 3) {

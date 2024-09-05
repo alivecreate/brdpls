@@ -59,8 +59,8 @@ if(!Auth::check()){
     return redirect('registration')->with('error', 'Please Create User Account First.');
 }
 
-$homeGaneshCompetition = GaneshCompetition::where(['competition_type' => 3, 'participant_id' => $user_id, 'status' => 'pending'])->first();
-$homeGaneshCompetitionLists = GaneshCompetition::where(['competition_type' => 3, 'participant_id' => $user_id, 'status' => 'pending'])->orderBy('id', 'desc')->get();
+$homeGaneshCompetition = GaneshCompetition::where(['competition_type' => 3, 'participant_id' => $user_id])->first();
+$homeGaneshCompetitionLists = GaneshCompetition::where(['competition_type' => 3, 'status' => 'active'])->orderBy('id', 'desc')->limit(5)->get();
 
 if($homeGaneshCompetition){
     // dd('home');

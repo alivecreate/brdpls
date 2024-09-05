@@ -155,7 +155,7 @@ $(document).ready(function() {
                                     <button
                                         class="button bg-danger flex items-center gap-1 text-white py-2 px-3.5 shadow ml-auto bg-danger font-semibold">
                                         <!-- <ion-icon name="add-outline" class="text-xl"></ion-icon>  -->
-                                        <a href="{{route('ganeshFestivalCompetition.create', ['type'=>'group'])}}"> <span
+                                        <a href="@if($group->user_id == Auth::id()){{route('ganeshFestivalCompetition.create', ['type'=>'group'])}}@else # @endif"> <span
                                                 class="text-sm">
                                                 <ion-icon name="trophy"
                                                     class="text-lg drop-shadow-md md hydrated live-d-icon" role="img"
@@ -164,18 +164,6 @@ $(document).ready(function() {
                                             </span> </a>
                                     </button>
 
-                                @elseif($group->competition($group->id)->status == 'pending' )
-                                    <button
-                                        class="button bg-warning flex items-center gap-1 text-white py-2 px-3.5 shadow ml-auto font-semibold">
-                                        <!-- <ion-icon name="add-outline" class="text-xl"></ion-icon>  -->
-                                        <a href="@if($group->user_id == Auth::id()){{route('ganeshFestivalCompetition.create', ['type'=>'group'])}}@else # @endif"> <span
-                                                class="text-sm">
-                                                <ion-icon name="trophy"
-                                                    class="text-lg drop-shadow-md md hydrated live-d-icon" role="img"
-                                                    aria-label="trophy"></ion-icon>
-                                                    રજિસ્ટ્રેશન ફી બાકી છે.
-                                            </span> </a>
-                                    </button>
                                 @endif
 
 
@@ -666,9 +654,7 @@ $(document).ready(function() {
                                     <input type="hidden" name="votable_id"
                                         value="{{$group->competition($group->id)->participant->id}}" />
 
-                                    @if(isVoted($GaneshCompetition->id, 1) &&
-                                    isVoted($GaneshCompetition->id,1)->votable_id ==
-                                    $GaneshCompetition->participant->id)
+                                    @if(isVoted($GaneshCompetition->id, 1) && isVoted($GaneshCompetition->id,1)->votable_id == $GaneshCompetition->participant->id)
                                     <p class="button text-lg bg-success text-white flex-1 btn-not-allowed">
                                         <ion-icon name="thumbs-up-outline"></ion-icon> Voted
                                     </p>

@@ -7,25 +7,52 @@
 
 @section('content')
 
-<main id="site__main"
-    class="2xl:ml-[--w-side]  xl:ml-[--w-side-sm] 2xl:ml-[--w-side]  xl:ml-[--w-side-sm] h-[calc(100vh-var(--m-top))] mt-[--m-top] p-6">
 
-    <div class=""
-        id="js-oversized">
-        
-@include('front.ext.nav-mobile-menu')
+    @section('custom-script')
+    <script>
+            document.getElementById('share-button').addEventListener('click', async () => {
+                // Check if the Web Share API is supported
+                if (navigator.share) {
+                    try {
+                        if (window.location.href.indexOf('?') > -1) {
+                                // If there are existing parameters, append '&ref=share'
+                                var link = window.location.href += '&ref=share';
+                            } else {
+                                // If there are no parameters, add '?ref=share'
+                                var link =  window.location.href += '?ref=share';
+                            }
+                        await navigator.share({
+                            title: '{{optional($group)->name}}',
+                            text: '*🚩 બરોડા પ્લસ ગણેશ સ્પર્ધા - 2024 🚩 - {{optional($group)->name}}* - મંડળને વોટ કરવા અને ફોટો તેમજ વિડિયો જોવા નીચે આપેલી લિન્ક પર ક્લિક કરો.',
+                            url: link
+                        });
+                        console.log('Content shared successfully!');
+                    } catch (error) {
+                        console.error('Error sharing:', error);
+                    }
+                } else {
+                    alert('Your browser does not support the Web Share API.');
+                }
+            });
+        </script>
+
+@endsection
+
+
+<main id="site__main"
+    class="2xl:ml-[--w-side]  xl:ml-[--w-side-sm] py-10 p-2.5 h-[calc(100vh-var(--m-top))] mt-[--m-top]">
+    <div class="lg:flex 2xl:gap-12 gap-10 2xl:max-w-[1220px] max-w-[1065px] mx-auto mt-10" id="js-oversized">
+
+        @include('front.ext.nav-mobile-menu')
 
         <div class="flex-1 px-6">
 
-
             <div class="w-full">
-
-                <p class='heading-h1 font-semibold page-title text-underline'> ગણેશ સ્પર્ધા ફી </p>
+                <p class='heading-h1 font-semibold page-title text-underline'>ગણેશ સ્પર્ધા ફી </p>
 
                 <p class='subheading-h3 font-semibold font-semibold mb-0'>Note: ગણેશ સ્પર્ધા તા. 07-09-2024 સવારે 10 વાગ્યેથી શરુ થશે.</p>
 
-                    
-
+                
                 <div id="type1-2Form" class="competition-form">
                     <div class="flex md:items-center space-x-4 p-4 rounded-md box">
                         <div class="sm:w-20 w-14 sm:h-20 h-14 flex-shrink-0 rounded-lg relative">
@@ -64,7 +91,13 @@
 
                     @if($homeGaneshCompetition->status == 'pending')
                     
-                    <img src="{{asset('front/images/web')}}/alivecreate-payment-501.jpg"  width="300"
+                 
+                    <div class="text-center">
+                        <p class="subheading-h3 font-semibold font-semibold mb-2 mt-6 dark:text-white" style="margin-bottom:0px">સ્પર્ધાનું પેમેન્ટ નીચે આપેલ QR પર કરો. પેમેન્ટ થયા પછી સ્ક્રીનશૉટ આ નંબર પીઆર Whatsapp કરો.</p>
+                        <a class="button bg-primary text-white flex-1  dark:text-white" href="https://api.whatsapp.com/send?phone=919137634193&text=*{{$homeGaneshCompetition->name}},%20ગણેશ%20સ્પર્ધાના%20પેમેન્ટની%20વિગત.*">9137634193</a>
+                    </div>
+
+                    <img src="{{asset('front/images/web')}}/alivecreate-payment-251.jpg"  width="300"
                     style="text-align: center;margin: 0 auto;margin-top:30px"
                     />
 
@@ -78,10 +111,8 @@
                         વોટિંગ તા. 07-09-2024 એ શરૂ થશે.<span class="ripple-overlay"></span></p>
 
                     @endif
-
-
                 </div>
-                
+
             </div>
         </div>
 
@@ -92,40 +123,36 @@
                 uk-sticky="media: 1024; end: #js-oversized; offset: 80">
 
 
-                <div class="bg-white rounded-xl shadow p-5 px-6 border1 dark:bg-dark2">
-
-                   <img src="{{asset('front/images/web')}}/advertise-and-sponsorship-barodaplus.webp"/>
-
-                </div>
 
                 <div class="box p-5 px-6">
 
                     <div class="flex items-baseline justify-between text-black dark:text-white">
-                        <h3 class="font-bold text-base"> Recent Home Ganesh </h3>
+                        <h3 class="font-bold text-base"> Recent Ganesh Mandal </h3>
                         <a href="" class="text-sm text-blue-500">See all</a>
                     </div>
 
                     <div class="side-list">
 
-                        @foreach($homeGaneshCompetitionLists as $homeGaneshCompetitionList)
+                        @foreach($groups as $group)
                         <div class="side-list-item">
-                            <a href="#">
+                            <a href="{{ route('ganeshFestivalGroup.show', $group->slug) }}">
 
-                                @if(optional($homeGaneshCompetitionList)->cover)
-                                <img src="https://imagedelivery.net/zfs38w7w3E1dJVvB3mVs9g/{{$homeGaneshCompetitionList->cover}}/icon"
-                                    alt="{{$homeGaneshCompetitionList->name}}" class="side-list-image rounded-full cover">
+                                @if(optional($group)->cover)
+                                <img src="https://imagedelivery.net/zfs38w7w3E1dJVvB3mVs9g/{{$group->cover}}/icon"
+                                    alt="{{$group->name}}" class="side-list-image rounded-full cover">
                                 @else
-                                <img src="{{asset('front/images/product/product-1.jpg')}}" alt="{{$homeGaneshCompetitionList->name}}"
+                                <img src="{{asset('front/images/product/product-1.jpg')}}" alt="{{$group->name}}"
                                     class="side-list-image rounded-full">
                                 @endif
                             </a>
                             <div class="flex-1">
-                                <a href="#">
-                                    <h4 class="side-list-title">{{$homeGaneshCompetitionList->name}}</h4>
+                                <a href="{{ route('ganeshFestivalGroup.show', $group->slug) }}">
+                                    <h4 class="side-list-title">{{$group->name}}</h4>
                                 </a>
-                                <div class="side-list-info"> {{$homeGaneshCompetitionList->address}} </div>
+                                <div class="side-list-info"> {{$group->address}} </div>
                             </div>
-                            <!-- <a href="#" class="button bg-secondery">View</a> -->
+                            <a href="{{ route('ganeshFestivalGroup.show', $group->slug) }}"
+                                class="button bg-secondery">View</a>
                         </div>
                         @endforeach
 
@@ -133,6 +160,10 @@
 
                 </div>
 
+                
+                <div class="bg-white rounded-xl shadow p-5 px-6 border1 dark:bg-dark2">
+                    <img src="{{asset('front/images/web')}}/advertise-and-sponsorship-barodaplus.webp"/>
+                </div>
 
             </div>
 
