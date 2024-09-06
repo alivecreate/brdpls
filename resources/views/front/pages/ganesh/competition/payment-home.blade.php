@@ -100,8 +100,8 @@
                     <img src="{{asset('front/images/web')}}/alivecreate-payment-251.jpg"  width="300"
                     style="text-align: center;margin: 0 auto;margin-top:30px"
                     />
+                    
 
-                    @elseif(count($homeGaneshCompetition->competitions) == 1 && $homeGaneshCompetition->myCompetition[0]->status == 'active')
                     <div class="flex w-full items-center gap-4 mt-6">
                         <p class="font-semibold btn-md lg:px-10 text-success text-md w-full">ગણેશ સ્પર્ધાનું પેમેન્ટ મળી
                             ગયેલ છે.<span class="ripple-overlay"></span></p>

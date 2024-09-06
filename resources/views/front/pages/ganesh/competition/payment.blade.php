@@ -95,7 +95,7 @@
                     <p class="text-danger">{{session('error')}}</p>
                     @endif
 
-                     @if (count($group->competitions) == 1 && ($group->myCompetition[0]->status == 'pending' || $group->myCompetition[0]->status == null))
+                     @if (count($group->competitions) == 1 && ($group->myCompetition[0]->status == 'pending'))
 
                      <div class="text-center">
                         <p class="subheading-h3 font-semibold font-semibold mb-2 mt-6 dark:text-white" style="margin-bottom:0px">સ્પર્ધાનું પેમેન્ટ નીચે આપેલ QR પર કરો. પેમેન્ટ થયા પછી સ્ક્રીનશૉટ આ નંબર પર Whatsapp કરો.</p>
@@ -111,6 +111,7 @@
                      
 
 
+                    @endif
                     @endif
 
                 </div>
