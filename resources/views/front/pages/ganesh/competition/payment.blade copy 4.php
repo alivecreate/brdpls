@@ -50,7 +50,7 @@
             <div class="w-full">
                 <p class='heading-h1 font-semibold page-title text-underline'>ગણેશ સ્પર્ધા ફી </p>
 
-                <p class='subheading-h3 font-semibold font-semibold mb-0'>Note: ગણેશ સ્પર્ધા તા. 07-09-2024 સવારે 10 વાગ્યેથી શરુ થશે.</p>
+                <p class='subheading-h3 font-semibold font-semibold mb-0'>Note: ગણેશ સ્પર્ધા તા. 07-09-2024 બપોરે 2 વાગ્યેથી શરુ થશે.</p>
 
                 <div id="type1-2Form" class="competition-form">
                     
@@ -103,7 +103,23 @@
                         Pay Registration Fee
                     </button>
 
-                    
+                    <form id="rzp-paymentresponse" action="{{ route('payment.callback') }}" method="POST"
+                        style="display: none;">
+                        @csrf
+
+                        <input type="hidden" id="razorpay_payment_id" name="razorpay_payment_id">
+                        <input type="hidden" id="razorpay_order_id" name="razorpay_order_id">
+                        <input type="hidden" id="razorpay_signature" name="razorpay_signature">
+
+                        <input type="hidden" name="receipt" value="{{$order->receipt}}">
+                        <input type="hidden" name="amount" value="{{$order->amount}}">
+                        <input type="hidden" name="user_id" value="{{$user_id}}">
+                        <input type="hidden" name="group_id" value="{{$group_id}}">
+                        <input type="hidden" name="competition_id" value="{{$competition_id}}">
+                        <input type="hidden" name="name" value="{{$user->first_name}} {{$user->last_name}}">
+
+
+                    </form>
 
                     <script>
                     var options = {

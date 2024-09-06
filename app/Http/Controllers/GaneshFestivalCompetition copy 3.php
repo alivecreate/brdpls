@@ -218,16 +218,14 @@ return redirect()->back()->with('error', 'Something went wrong, please try again
         $cid = $request->query('cid');
 
         if($cid == null || $cid == 1){
-            
-
-            $GaneshCompetitions = GaneshCompetition::where(
-                [
-                    'status' => 'active',
-                    'competition_type' => '1-2'
-                ])
+// dd($cid);
+            $GaneshCompetitions = 
+            GaneshCompetition::with('participant')
+            ->whereHas('participant')
+            ->where('competition_type', '1-2')
+            ->where('status', 'active')
             ->get();
-
-            // dd($GaneshCompetitions);
+            
 
         $user = User::find(Auth::id());
             
@@ -236,15 +234,12 @@ return redirect()->back()->with('error', 'Something went wrong, please try again
 
         elseif ($cid == 2) {
             // dd($cid);
-
-            $GaneshCompetitions = GaneshCompetition::where(
-                [
-                    'status' => 'active',
-                    'competition_type' => '1-2'
-                ])
-            ->get();
             
-            
+                        $GaneshCompetitions = GaneshCompetition::where('competition_type', '1-2')
+                        ->whereHas('participant')  // Only include records where 'participant' relationship is not null
+                        ->with('participant')   
+                        ->get();
+                        
         $user = User::find(Auth::id());
                         return view('front.pages.ganesh.competition.live-competition2', compact('GaneshCompetitions', 'user'));
                     }

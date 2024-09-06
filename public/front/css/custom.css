@@ -45,6 +45,28 @@ a{
 .header-topbar{
     height: 100px;
 }
+.justify-between{
+    justify-content: space-around;
+}
+.justify-around{
+    justify-content: space-around;
+}
+.cover-preview {
+	width: 300px;
+	max-height: 200px;
+	object-fit: cover;
+}
+
+.btn-choose-file {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+	background: #64656c;
+	padding: 13px;
+	border-radius: 9px;
+	width: 102px;
+}
 .qr-wrapper svg{
     /* text-align: center; */
     /* margin: 0 auto; */
@@ -599,7 +621,7 @@ font-size: 20px;
     text-wrap: nowrap;
     line-height: 2.4;
 }
-    
+        
 .no-border{
     border: none !important;
 }  

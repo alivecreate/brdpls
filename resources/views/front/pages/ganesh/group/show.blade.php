@@ -126,9 +126,14 @@ $(document).ready(function() {
 
                 <div class="absolute bottom-0 right-0 m-4 z-20">
                     <div class="flex items-center gap-3">
-                        <button class="button bg-black/10 text-white flex items-center gap-2 backdrop-blur-small">
-                            <ion-icon name="camera-outline" class="text-lg"></ion-icon> Change Photo
-                        </button>
+                        
+                        @if(Auth::check() && Auth::id() == $group->user_id)
+                            <button uk-toggle="target: #upload-cover-popup"
+                                class="button bg-black/10 text-white flex items-center gap-2 backdrop-blur-small">
+                                <ion-icon name="camera-outline" class="text-lg"></ion-icon> Change Photo
+                            </button>
+                        @endif
+
                     </div>
                 </div>
             </div>
@@ -763,12 +768,12 @@ $(document).ready(function() {
         </div>
 
     </div>
-
+    
 
 
     @include('front.widget.confirm-popup')
 
-    @include('front.widget.popup.delete-group-popup')
+    @include('front.widget.popup.upload-cover-popup')
 
 
 </main>

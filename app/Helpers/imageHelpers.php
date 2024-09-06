@@ -244,11 +244,11 @@ function uploadCloudImage($image){
     try {
         // $apiToken = env('CLOUDFLARE_API_TOKEN');
         // $accountId = env('CLOUDFLARE_ACCOUNT_ID');
+        // dd($image); 
 
         $apiToken = 'AXzA-Tlk5jwxt7bc-_u4jR9yWyAHnFk8L8VQK750';
         $accountId = 'd3c72ca07db24a2fe735ae6ff0383b19';
 
-        
 
         $client = new Client();
 

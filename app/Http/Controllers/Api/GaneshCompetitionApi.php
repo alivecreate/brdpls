@@ -63,6 +63,7 @@ class GaneshCompetitionApi extends Controller
     ->where('competition_type', '1-2')
     ->where('status', 'active')
     ->whereHas('participant')
+    ->with('participant')
     ->get();
 
     $userVoted = CompetitionVote::where(['competition_category_id' => 1, 'user_id' => $userId]) ->first();
@@ -152,18 +153,24 @@ if ($existingVote) {
 
 public function getGaneshCompetition2($userId = null){
 
-    $GaneshCompetitions = GaneshCompetition::with(['participant', 'votes'])
-    ->withCount('voteCategory2 as votes_count')
+    // $GaneshCompetitions = GaneshCompetition::with(['participant', 'votes'])
+    // ->withCount('voteCategory2 as votes_count')
 
-    ->withCount(['votes as is_voted' => function ($query) use ($userId) {
-        $query->where('user_id', $userId)
-              ->where('competition_category_id', 2);
-    }])
+    // ->withCount(['votes as is_voted' => function ($query) use ($userId) {
+    //     $query->where('user_id', $userId)
+    //           ->where('competition_category_id', 2);
+    // }])
     
-    ->where('competition_type', '1-2')
-    ->whereHas('participant')
+    // ->whereHas('participant')
+    // ->where('competition_type', '1-2')
+    // ->get();
+
+    $GaneshCompetitions = Group::join('group_competitions', 'groups.id', '=', 'group_competitions.group_id')
+    ->where('group_competitions.status', 'active')
+    ->select('groups.*') // Select the fields you need from groups
     ->get();
 
+    
     $userVoted = CompetitionVote::where(['competition_category_id' => 2, 'user_id' => $userId]) ->first();
 
     return response()->json([

@@ -154,7 +154,7 @@ if (!function_exists('isVoted')) {
 
 if (!function_exists('getTotalCategoryGroup')) {
     function getTotalCategoryGroup($category_id) {
-        return GaneshCompetition::where(['competition_type' => $category_id])->count();
+        return GaneshCompetition::where(['competition_type' => $category_id, 'status' => 'active'])->count();
         }
 }
 
@@ -165,6 +165,25 @@ if (!function_exists('isCompetitionStart')) {
         return GaneshCompetition::where(['competition_type' => $category_id])->count();
         }
 }
+
+function totalVotes($votable_id, $competition_category_id)
+{
+    // return 33;
+    return CompetitionVote::where('votable_id', $votable_id)->where('competition_category_id', $competition_category_id)->count();
+
+    return $this->votes()->count();
+}
+
+
+if (!function_exists('getCompetitionGroup')) {
+    function getCompetitionGroup($group_id) {
+        return Group::where(['id' => $group_id])->first();
+        }
+}
+
+
+
+
 
 
 

@@ -225,4 +225,41 @@ $request->session()->put('isLoginSession', $user->id);
     {
         //
     }
+
+    public function updateProfilePic(Request $request){
+        // $request = uploadCloudImage($request);
+
+        
+        try {
+            $user = User::find(Auth::id());
+            $image = $request->file('image');
+            
+            if ($image) {
+                $imageId = uploadCloudImage($image);
+                
+                if ($imageId) {
+                    $image = $imageId;
+                } else {
+                    $image = null;
+                }
+                
+                $user->update([
+                    'image' => $image,
+                ]);
+                
+                return redirect()->back()->with('success', 'Profile Picture Updated.');
+            }
+            else{
+                return redirect()->back()->with('success', 'Profile Picture Updated.');
+            }
+        } catch (\Exception $e) {
+            // Handle the exception and log the error if needed
+            \Log::error('Error updating profile picture: ' . $e->getMessage());
+            return redirect()->back()->with('error', 'Failed to update profile picture. Please try again.');
+        }
+
+       
+        }
+
+
 }

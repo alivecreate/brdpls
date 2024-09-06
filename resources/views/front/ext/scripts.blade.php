@@ -375,4 +375,13 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
 });
-          </script>
+
+
+$('#btnUpload').on('click', function() {
+    $(this).prop('disabled', true).text('Uploading...'); // Disable the button and change the text
+});
+
+
+
+
+</script>

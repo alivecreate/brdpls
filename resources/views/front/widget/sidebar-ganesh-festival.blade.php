@@ -27,7 +27,7 @@
                 <li  id="my-group">
                     <a href="{{route('ganeshFestivalMyGroup')}}">
                     <img src="{{asset('front')}}/images/icons/group.png" alt="My Group / Mandal" class="w-6">
-                        <span> My Home Ganesh </span> 
+                        <span> My Mandal </span> 
                     </a>
                 </li> 
                 @endif

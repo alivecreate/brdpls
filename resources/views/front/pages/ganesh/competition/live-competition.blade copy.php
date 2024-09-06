@@ -4,14 +4,14 @@
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
         <meta name="data-user-id" content="{{ Auth::id() }}">
-        <meta name="data-category-id" content="2">
+        <meta name="data-category-id" content="1">
 
         @endsection
 
 
     @section('custom-script')   
     <script>
-                    $('.best-decoration').addClass('active-link');
+                    $('.best-idol').addClass('active-link');
     </script>   
 
 @endsection
@@ -22,8 +22,12 @@
 
     <div class="2xl:max-w-[1220px] max-w-[1065px] mx-auto lg:mt-2 mt-6">
         
-@if(!Auth::id())
+@if(Auth::id())
     <h1>ગણેશ સ્પર્ધામાં ભાગ લેવા, યુસર એકાઉન્ટ બનાવવું ફરજિયાત છે.</h1>
+@endif
+
+@if($user->status == 'pending')
+    <h1>Hello {{$user->status}}, તમારું યુસર એકાઉન્ટ વેરિફાઈડ નથી, વોટિંગ માટે અકાઉંટ વેરિફિકેસન ફરજિયાત છે. {{$user->status}}</h1>
 @endif
 
 @include('front.ext.nav-mobile-menu')
@@ -36,11 +40,10 @@
                 @foreach($GaneshCompetitions as $GaneshCompetition)
 
                 <div class="card mb-2"> 
-                    
-                    <a href="{{route('ganeshFestivalGroup.show', getCompetitionGroup($GaneshCompetition->participant_id)->slug)}}">
+                    <a href="{{route('ganeshFestivalGroup.show', $GaneshCompetition->participant->slug)}}">
                         <div class="card-media h-40">
 
-                            <img src="{{ optional(getCompetitionGroup($GaneshCompetition->participant_id)->cover)
+                            <img src="{{ optional($GaneshCompetition->participant)->cover 
                                 ? 'https://imagedelivery.net/zfs38w7w3E1dJVvB3mVs9g/' . $GaneshCompetition->participant->cover . '/sm' 
                                 : asset('front/images/product/product-1.jpg') }}" alt="">
 
@@ -60,33 +63,37 @@
                         <div class="card-text">
                             <div class="card-list-info font-normal mt-1 bg-voting">
 
-                                <div class='font-bold text-danger text-xl'>Total Votes: {{totalVotes($GaneshCompetition->participant_id, 2)}}</div>
+                                <div class='font-bold text-danger text-xl'>Total Votes: </div>
+                                <a class='font-bold text-danger text-xl'
+                                    href="#">{{$GaneshCompetition->countVote($GaneshCompetition->id, 2)}} </a>
                             </div>
+
                         </div>
 
                         <form method="post" action="{{route('FestivalCompetitionVoting.store')}}">
                             @csrf
                             <input type="hidden" name="participant_id" value="{{$GaneshCompetition->id}}" />
-                            <input type="hidden" name="category_id" value="2" />
+                            <input type="hidden" name="category_id" value="1" />
                             <input type="hidden" name="votable_id" value="{{$GaneshCompetition->participant->id}}" />
 
-                            <div class="flex gap-2">
-                                
 
-                         
-                            @if(Auth::check())
-                                @if(isVoted($GaneshCompetition->id, 2))
+                            <div class="flex gap-2">
+
+                                @if(isVoted($GaneshCompetition->id, 2) && isVoted($GaneshCompetition->id, 2)->votable_id
+                                == $GaneshCompetition->participant->id)
                                 <p class="button text-lg bg-success text-white flex-1 btn-not-allowed">
                                     <ion-icon name="thumbs-up-outline"></ion-icon> Voted
                                 </p>
-                                @elseif(isVoted($GaneshCompetition->id, 2) == null)
+                                @elseif(isVoted($GaneshCompetition->id, 1))
                                 <button
-                                    class="button text-lg bg-primary text-white flex-1 btn-voting-disable btn-not-allowed" disabled>
+                                    class="button text-lg bg-primary text-white flex-1 btn-voting-disable btn-not-allowed">
                                     <ion-icon name="thumbs-up-outline"></ion-icon> Vote Now
                                 </button>
+                                @else
+                                <p class="button text-lg bg-primary text-white flex-1 btn-voting-disable" disabled>
+                                    <ion-icon name="thumbs-up-outline"></ion-icon> Vote Now
+                                </p>
                                 @endif
-
-                            @endif
 
                                 <a href="{{route('ganeshFestivalGroup.show', $GaneshCompetition->participant->slug)}}"
                                     class="button text-lg bg-secondery !w-auto">

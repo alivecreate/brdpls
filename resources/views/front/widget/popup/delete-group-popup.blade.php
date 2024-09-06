@@ -20,7 +20,7 @@
                 </div>              
               </div>
             
-            <div class="p-5 flex justify-between items-center">
+            <div class="p-5 flex justify-center items-center">
                 <div class="flex items-center gap-2">
                     <button type="submit" class="button bg-blue-500 text-white py-2 px-12 text-[14px] uk-modal-close">Cancel</button>
                     <button type="submit" class="button bg-red-600 text-white py-2 px-12 text-[14px]">Confirm</button>

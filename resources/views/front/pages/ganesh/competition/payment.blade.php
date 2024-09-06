@@ -50,7 +50,7 @@
             <div class="w-full">
 
                 <p class='heading-h1 font-semibold page-title text-underline'>ગણેશ સ્પર્ધા ફી </p>
-                <p class='subheading-h3 font-semibold font-semibold mb-0'>Note: ગણેશ સ્પર્ધા તા. 07-09-2024 સવારે 10 વાગ્યેથી શરુ થશે.</p>
+                <p class='subheading-h3 font-semibold font-semibold mb-0'>Note: ગણેશ સ્પર્ધા તા. 07-09-2024 બપોરે 2 વાગ્યેથી શરુ થશે.</p>
 
                 <div id="type1-2Form" class="competition-form">
                     
@@ -110,16 +110,6 @@
 					
                      
 
-                    @elseif(count($group->competitions) == 1 && $group->myCompetition[0]->status == 'active')
-                    <div class="flex w-full items-center gap-4 mt-6">
-                        <p class="font-semibold btn-md lg:px-10 text-success text-md w-full">ગણેશ સ્પર્ધાનું પેમેન્ટ મળી
-                            ગયેલ છે.<span class="ripple-overlay"></span></p>
-                    </div>
-
-                    <p class="font-semibold btn-md button lg:px-10 bg-success text-white text-24 w-full text-wrap">ગણેશ સ્પર્ધાની
-                        વોટિંગ તા. 07-09-2024 એ શરૂ થશે.<span class="ripple-overlay"></span></p>
-
-                    @endif
 
                     @endif
 

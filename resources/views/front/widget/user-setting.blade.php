@@ -12,10 +12,7 @@
       list-style-type: disc;
       margin-left: 20px;
   }
-  
   </style>
-
-
 
 @if ($errors->any())
 <div class="custom-alert">
@@ -36,40 +33,47 @@
 
         <div class="box relative rounded-lg shadow-md">
 
-            <div class="flex md:gap-8 gap-4 items-center md:p-8 p-6 md:pb-4">
+            <form method="post" enctype="multipart/form-data"
+             action="{{route('updateProfilePic')}}" class="flex md:gap-8 gap-4 items-center md:p-8 p-6 md:pb-4">
+            @csrf
 
+            
 
                 <div class="relative md:w-20 md:h-20 w-12 h-12 shrink-0"> 
-
                     <label for="file" class="cursor-pointer">
-                        <img id="img" src="{{asset('front')}}/images/avatars/avatar-3.jpg" class="object-cover w-full h-full rounded-full" alt=""/>
-                        <input type="file" id="file" class="hidden" />
-                    </label>
-
-                    <label for="file" class="md:p-1 p-0.5 rounded-full bg-slate-600 md:border-4 border-white absolute -bottom-2 -right-2 cursor-pointer dark:border-slate-700">
-
+                       
+                        @if(getUserData()['image'])
+                        
+                        <img id="img"
+                            class="object-cover w-full h-full rounded-full"
+                            src="https://imagedelivery.net/zfs38w7w3E1dJVvB3mVs9g/{{getUserData()['image']}}/xs"
+                                    alt="{{getUserData()['name']}}" />
+                        @else
+                        <img id="img" src="{{asset('front')}}/images/avatars/avatar-3.jpg"
+                                    alt="Profile Picture" />
+                        @endif
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="md:w-4 md:h-4 w-3 h-3 fill-white">
-                            <path d="M12 9a3.75 3.75 0 100 7.5A3.75 3.75 0 0012 9z" />
-                            <path fill-rule="evenodd" d="M9.344 3.071a49.52 49.52 0 015.312 0c.967.052 1.83.585 2.332 1.39l.821 1.317c.24.383.645.643 1.11.71.386.054.77.113 1.152.177 1.432.239 2.429 1.493 2.429 2.909V18a3 3 0 01-3 3h-15a3 3 0 01-3-3V9.574c0-1.416.997-2.67 2.429-2.909.382-.064.766-.123 1.151-.178a1.56 1.56 0 001.11-.71l.822-1.315a2.942 2.942 0 012.332-1.39zM6.75 12.75a5.25 5.25 0 1110.5 0 5.25 5.25 0 01-10.5 0zm12-1.5a.75.75 0 100-1.5.75.75 0 000 1.5z" clip-rule="evenodd" />
+                            <path d="M12 9a3.75 3.75 0 100 7.5A3.75 3.75 0 0012 9z"></path>
+                            <path fill-rule="evenodd" d="M9.344 3.071a49.52 49.52 0 015.312 0c.967.052 1.83.585 2.332 1.39l.821 1.317c.24.383.645.643 1.11.71.386.054.77.113 1.152.177 1.432.239 2.429 1.493 2.429 2.909V18a3 3 0 01-3 3h-15a3 3 0 01-3-3V9.574c0-1.416.997-2.67 2.429-2.909.382-.064.766-.123 1.151-.178a1.56 1.56 0 001.11-.71l.822-1.315a2.942 2.942 0 012.332-1.39zM6.75 12.75a5.25 5.25 0 1110.5 0 5.25 5.25 0 01-10.5 0zm12-1.5a.75.75 0 100-1.5.75.75 0 000 1.5z" clip-rule="evenodd"></path>
                         </svg>
-
-                        <input id="file" type="file" class="hidden" />
-
+                        
+                        <input type="file" id="file" name='image'
+                         accept=".png, .webp, .jpg, .jpeg"
+                        class="hidden" onchange="previewImageThumb(event)" />
                     </label>
-
                 </div>
-
-          
 
                 <div class="flex-1">
                     
                 </div>
 
-                <button class="inline-flex items-center gap-1 py-1 pl-2.5 pr-3 rounded-full bg-slate-50 border-2 border-slate-100 dark:text-white dark:bg-slate-700" type="button" aria-haspopup="true" aria-expanded="false"> 
-                    <ion-icon name="flash-outline" class="text-base duration-500 group-aria-expanded:rotate-180 md hydrated" role="img" aria-label="chevron down outline"></ion-icon> 
-                    <span class="font-medium text-sm"> Save Profile  </span> 
+                <button type="submit" class="inline-flex items-center gap-1 py-1 pl-2.5 pr-3 rounded-full bg-slate-50 border-2 border-slate-100 dark:text-white dark:bg-slate-700" type="button" aria-haspopup="true" aria-expanded="false"> 
+                    
+                <ion-icon onClick=disableButton(event) id="btnUpload" name="flash-outline" class="text-base duration-500 group-aria-expanded:rotate-180 md hydrated" role="img" aria-label="chevron down outline"></ion-icon> 
+                    <span class="font-medium text-sm" > Save Profile  </span> 
                 </button>
-            </div>
+                
+                </form>
 
             <!-- nav tabs -->
             <div class="relative border-b" tabindex="-1" uk-slider="finite: true">
@@ -127,7 +131,7 @@
                         <div class="md:flex items-center gap-10">
                             <label class="md:w-32"> Email </label>
                             <div class="flex-1 max-md:mt-4">
-                                <input type="text" name="email" placeholder="Your email id" class="w-full"
+                                <input type="email" name="email" placeholder="Your email id" class="w-full"
                                     value="{{ old('email') ?: getUserData()['email'] }}"
                                 >
                             </div>
@@ -176,19 +180,11 @@
                                 </div>
                             </div>
                             
-                            <div class="md:flex items-start gap-10 " hidden>
-                                <label class="md:w-32"> Avatar </label>
-                                <div class="flex-1 flex items-center gap-5 max-md:mt-4">
-                                    <img src="{{asset('front')}}/images/avatars/avatar-3.jpg" alt="" name="image" class="w-10 h-10 rounded-full">
-                                    <button type="submit" class="px-4 py-1 rounded-full bg-slate-100/60 border dark:bg-slate-700 dark:border-slate-600 dark:text-white"> Change</button>
-                                </div>
-                            </div>
 
                         </div>
 
                         <div class="flex items-center gap-4 mt-16 lg:pl-[10.5rem]">
-                            <button type="submit" class="button lg:px-6 bg-secondery max-md:flex-1"> Cancle</button>
-                            <button type="submit" class="button lg:px-10 bg-primary text-white max-md:flex-1"> Save <span class="ripple-overlay"></span></button>
+                            <button type="submit" class="button lg:px-10 bg-primary text-white max-md:flex-1"> Save User Profile <span class="ripple-overlay"></span></button>
                         </div>
                     </form>
                     
@@ -214,7 +210,7 @@
                         
                             <div>
                                 <h4 class="text-xl font-medium text-black dark:text-white"> Social Links </h4>
-                                <p class="mt-3 font-normal text-gray-600 dark:text-white">We may still send you important notifications about your account and content outside of you preferred notivications settings</p>
+                                <p class="mt-3 font-normal text-gray-600 dark:text-white">Save your private social media accounts.</p>
                             </div>
                           
                             
@@ -262,8 +258,7 @@
                         </div> 
                         
                             <div class="flex items-center justify-center gap-4 mt-16">
-                                <button type="submit" class="button lg:px-6 bg-secondery max-md:flex-1"> Cancle</button>
-                                <button type="submit" class="button lg:px-10 bg-primary text-white max-md:flex-1"> Save</button>
+                                <button type="submit" class="button lg:px-10 bg-primary text-white max-md:flex-1"> Save Social Links</button>
                             </div>
 
                         </form>

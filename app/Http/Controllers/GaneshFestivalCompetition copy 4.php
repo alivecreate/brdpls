@@ -218,7 +218,43 @@ return redirect()->back()->with('error', 'Something went wrong, please try again
         $cid = $request->query('cid');
 
         if($cid == null || $cid == 1){
-            
+// dd($cid);
+
+
+
+// $GaneshCompetitions = Group::join('ganesh_competition', 'groups.id', '=', 'ganesh_competition.participant_id')
+// ->where('ganesh_competition.status', 'active')
+// ->select('groups.*') // Select the fields you need from groups
+// ->get();
+
+// $GaneshCompetitions = Group::join('ganesh_competition', 'groups.id', '=', 'ganesh_competition.participant_id')
+//     ->join('competition_votes', function($join) {
+//         $join->on('competition_votes.votable_id', '=', 'groups.id')
+//              ->where('competition_votes.competition_category_type', '=', 1);
+//     })
+//     ->where('ganesh_competition.status', 'active')
+//     ->select('groups.*') // Select the fields you need from groups
+//     ->get();
+
+
+// $GaneshCompetitions = Group::join('ganesh_competition', 'groups.id', '=', 'ganesh_competition.participant_id')
+//     ->join('competition_votes', function($join) {
+//         $join->on('competition_votes.votable_id', '=', 'groups.id')
+//              ->where('competition_votes.competition_category_id', '=', 1); // Ensure this column exists
+//     })
+//     ->where('ganesh_competition.status', 'active')
+//     ->select('groups.*', 'competition_votes.*') 
+//     ->get();
+
+    
+// dd($GaneshCompetitions);
+
+            // $GaneshCompetitions = GaneshCompetition::with('participant')
+            // ->whereHas('participant')
+            // ->where('competition_type', '1-2')
+            // ->where('status', 'active')
+            // ->get();
+
 
             $GaneshCompetitions = GaneshCompetition::where(
                 [
@@ -237,14 +273,18 @@ return redirect()->back()->with('error', 'Something went wrong, please try again
         elseif ($cid == 2) {
             // dd($cid);
 
-            $GaneshCompetitions = GaneshCompetition::where(
-                [
-                    'status' => 'active',
-                    'competition_type' => '1-2'
-                ])
+            $GaneshCompetitions = 
+            GaneshCompetition::with('participant')
+            ->whereHas('participant')
+            ->where('competition_type', '1-2')
+            ->where('status', 'active')
             ->get();
             
-            
+                        // $GaneshCompetitions = GaneshCompetition::where('competition_type', '1-2')
+                        // ->whereHas('participant')  // Only include records where 'participant' relationship is not null
+                        // ->with('participant')   
+                        // ->get();
+                        
         $user = User::find(Auth::id());
                         return view('front.pages.ganesh.competition.live-competition2', compact('GaneshCompetitions', 'user'));
                     }

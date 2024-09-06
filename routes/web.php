@@ -7,6 +7,7 @@ use App\Http\Middleware\CheckBusinessStatus;
 use App\Http\Middleware\RedirectIfPageExpired;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\admin\UserController as AdminUserController;
 use App\Http\Controllers\PostsController;
 use App\Http\Controllers\SocialLinkController;
 use App\Http\Controllers\LoginController;
@@ -150,6 +151,10 @@ Route::get('login', [PageController::class, 'login'])->name('login')->middleware
 
 Route::post('auth/check-auth', [UserController::class, 'checkAuth'])->name('checkAuth');
 
+Route::post('setting/update-profile-pic', [UserController::class, 'updateProfilePic'])->name('updateProfilePic');
+
+
+
 Route::get('auth/logout', [UserController::class, 'logout'])->name('logout');
 
 
@@ -186,6 +191,10 @@ Route::middleware(ValidUser::class)->group(function () {
 
 Route::get('/ganesh-festival/group/upload-photos', [GaneshFestivalGroupController::class, 'groupUploadPhotos'])->name('groupUploadPhotos');
 Route::post('/ganesh-festival/upload/cover', [GaneshFestivalGroupController::class, 'uploadGaneshGroupCover'])->name('uploadGaneshGroupCover');
+
+Route::post('/ganesh-festival/upload/group-cover', [GaneshFestivalGroupController::class, 'updateGroupCoverPic'])->name('updateGroupCoverPic');
+
+
 Route::get('/ganesh-festival/photo', [GaneshFestivalGroupController::class, 'ganeshFestivalGroupphotos'])->name('ganeshFestivalGroupphotos');
 Route::get('/ganesh-festival/my-group', [GaneshFestivalGroupController::class, 'ganeshFestivalMyGroup'])->name('ganeshFestivalMyGroup');
 
@@ -215,6 +224,9 @@ Route::get('/{slug}', [ListingController::class, 'listing'])->name('listingList'
 
 Route::resource('/live-competition-status', LiveCompetitionStatus::class)->names('LiveCompetitionStatus');
 
+
+Route::resource('/adm/user', AdminUserController::class)->names('UserController');
+
 });
 
 
@@ -226,19 +238,13 @@ Route::get('/ganesh-festival/competition/live', [GaneshFestivalCompetition::clas
 
 // Route::get('/ganesh-festival/competition/live/{category_id}', [GaneshFestivalCompetition::class, 'live'])->name('GaneshFestivalCompetitionLive');
 
-
-
 Route::post('/ganesh-festival/competition/store-home-ganesh', [GaneshFestivalCompetition::class, 'storeHomeGaneshCompetition'])->name('storeHomeGaneshCompetition');
-
-
 
 Route::resource('/ganesh-festival/competition', GaneshFestivalCompetition::class)->names('ganeshFestivalCompetition');
 Route::resource('/ganesh-festival/voting', FestivalCompetitionVoting::class)->names('FestivalCompetitionVoting');
 
 
 Route::resource('/ganesh-festival', GaneshFestivalGroupController::class)->names('ganeshFestivalGroup');
-
-
 
 
 

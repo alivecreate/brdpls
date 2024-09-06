@@ -50,7 +50,7 @@
             <div class="w-full">
                 <p class='heading-h1 font-semibold page-title text-underline'>ગણેશ સ્પર્ધા ફી </p>
 
-                <p class='subheading-h3 font-semibold font-semibold mb-0'>Note: ગણેશ સ્પર્ધા તા. 07-09-2024 સવારે 10 વાગ્યેથી શરુ થશે.</p>
+                <p class='subheading-h3 font-semibold font-semibold mb-0'>Note: ગણેશ સ્પર્ધા તા. 07-09-2024 બપોરે 2 વાગ્યેથી શરુ થશે.</p>
 
                 
                 <div id="type1-2Form" class="competition-form">
@@ -93,7 +93,7 @@
                     
                  
                     <div class="text-center">
-                        <p class="subheading-h3 font-semibold font-semibold mb-2 mt-6 dark:text-white" style="margin-bottom:0px">સ્પર્ધાનું પેમેન્ટ નીચે આપેલ QR પર કરો. પેમેન્ટ થયા પછી સ્ક્રીનશૉટ આ નંબર પીઆર Whatsapp કરો.</p>
+                        <p class="subheading-h3 font-semibold font-semibold mb-2 mt-6 dark:text-white" style="margin-bottom:0px">સ્પર્ધાનું પેમેન્ટ નીચે આપેલ QR પર કરો. પેમેન્ટ થયા પછી સ્ક્રીનશૉટ આ નંબર પર Whatsapp કરો.</p>
                         <a class="button bg-primary text-white flex-1  dark:text-white" href="https://api.whatsapp.com/send?phone=919137634193&text=*{{$homeGaneshCompetition->name}},%20ગણેશ%20સ્પર્ધાના%20પેમેન્ટની%20વિગત.*">9137634193</a>
                     </div>
 

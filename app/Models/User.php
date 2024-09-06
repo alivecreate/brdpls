@@ -20,6 +20,7 @@ class User extends Authenticatable
         'item_no',
         'first_name',
         'last_name',
+        'image',
         'phone',
         'phone_verified_at',
         'password',
