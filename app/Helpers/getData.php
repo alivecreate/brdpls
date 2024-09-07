@@ -171,7 +171,12 @@ if (!function_exists('isVotedCategory')) {
 
 if (!function_exists('getTotalCategoryGroup')) {
     function getTotalCategoryGroup($category_id) {
-        return GaneshCompetition::where(['competition_type' => $category_id, 'status' => 'active'])->count();
+        return GaneshCompetition::where('competition_type', $category_id)
+    ->where('status', 'active')
+    ->whereHas('participant')
+    ->count();
+    
+        return GaneshCompetition::where(['competition_type' => $category_id, 'status' => 'active'])->whereHas('participant')->count();
         }
 }
 
