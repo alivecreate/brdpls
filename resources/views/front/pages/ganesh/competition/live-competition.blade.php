@@ -37,19 +37,19 @@
 
                 <div class="card mb-2"> 
                     
+                @if(getCompetitionGroup($GaneshCompetition->participant_id))
                     <a href="{{route('ganeshFestivalGroup.show', getCompetitionGroup($GaneshCompetition->participant_id)->slug)}}">
                         <div class="card-media h-40">
 
-                        @if(getCompetitionGroup($GaneshCompetition->participant_id))
                             <img src="{{ optional(getCompetitionGroup($GaneshCompetition->participant_id)->cover)
                                 ? 'https://imagedelivery.net/zfs38w7w3E1dJVvB3mVs9g/' . $GaneshCompetition->participant->cover . '/sm' 
                                 : asset('front/images/product/product-1.jpg') }}" alt="">
                             @else
                             <h1>No user</h1>
-                            @endif
                             <div class="card-overly"></div>
                         </div>
                     </a>
+                    @endif
 
 
                     <div class="card-body">
