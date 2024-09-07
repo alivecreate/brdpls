@@ -244,7 +244,7 @@ return redirect()->back()->with('error', 'Something went wrong, please try again
                     'status' => 'active',
                     'competition_type' => '1-2'
                 ])
-                ->whereHash('participant')
+                ->whereHas('participant')
             ->get();
             
 
