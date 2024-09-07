@@ -45,7 +45,6 @@ $('.best-idol').addClass('active-link');
                         <img src="{{ optional(getCompetitionGroup($GaneshCompetition->participant_id)->cover)
                                 ? 'https://imagedelivery.net/zfs38w7w3E1dJVvB3mVs9g/' . $GaneshCompetition->participant->cover . '/sm' 
                                 : asset('front/images/product/product-1.jpg') }}" alt="">
-                        @else
                         <h1>No user</h1>
                         <div class="card-overly"></div>
                     </div>
