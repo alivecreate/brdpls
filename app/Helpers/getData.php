@@ -161,7 +161,7 @@ return $isVotedCategory;
     }
 
     function getHomeGaneshUser($id){
-        $data = User::find(Auth::id());
+        $data = User::find($id);
         return $data;
     }
 
@@ -175,7 +175,7 @@ if (!function_exists('getTotalCategoryGroup')) {
     ->where('status', 'active')
     ->whereHas('participant')
     ->count();
-    
+
         return GaneshCompetition::where(['competition_type' => $category_id, 'status' => 'active'])->whereHas('participant')->count();
         }
 }
