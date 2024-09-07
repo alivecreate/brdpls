@@ -50,7 +50,7 @@
 
 
                     <div class="card-body">
-                        <a href="{{route('ganeshFestivalGroup.show', $GaneshCompetition->participant->slug)}}">
+                    <a href="{{ route('ganeshFestivalGroup.show', optional(getCompetitionGroup($GaneshCompetition->participant_id))->slug) }}">
                             <h4 class="card-title"> {{$GaneshCompetition->participant->name}} </h4>
                         </a>
                         <div class='flex'>
