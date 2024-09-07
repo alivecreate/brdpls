@@ -286,9 +286,7 @@ $(document).ready(function() {
 
                 <div class="bg-white rounded-xl shadow-sm text-sm font-medium border1 dark:bg-dark2">
 
-                    <div class="flex gap-3 sm:p-4 p-2.5 text-sm font-medium">
-                        <p class="alert alert-warning" style="color: #ff6c6c;font-size: 17px;word-spacing: 3px;">ફોટો,
-                            વિડિયો અને સ્ટેટસ ટુક્જ સમયમાં શરૂ કરવામાં આવશે.</p>
+                    <div class="flex gap-3 sm:p-4 p-2.5 text-sm font-medium">ગ્રૂપ માટે ફોટો અને સ્ટેટસ ટૂક સમયમાં શરૂ કરવામાં આવશે.</p>
                     </div>
                 </div>
                 <!-- <div class="bg-white rounded-xl shadow-sm text-sm font-medium border1 dark:bg-dark2">
