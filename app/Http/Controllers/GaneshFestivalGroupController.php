@@ -228,8 +228,6 @@ class GaneshFestivalGroupController extends Controller
 
     
     public function updateGroupCoverPic(Request $request){
-        // dd($request->all());
-
         try {
             $user = User::find(Auth::id());
             $group = Group::find($request->group_id);  
@@ -248,6 +246,43 @@ class GaneshFestivalGroupController extends Controller
                 
                 $group->update([
                     'cover' => $cover,
+                ]);
+                
+                return redirect()->back()->with('success', 'Cover Picture Updated.');
+            }
+            else{
+                return redirect()->back()->with('success', 'Cover Picture Updated.');
+            }
+        } catch (\Exception $e) {
+            // Handle the exception and log the error if needed
+            \Log::error('Error updating profile picture: ' . $e->getMessage());
+            return redirect()->back()->with('error', 'Failed to update profile picture. Please try again.');
+        }
+    }
+
+    
+    public function updateHomeGaneshCoverPic(Request $request){
+        try {
+            $user = User::find(Auth::id());
+            $competition = GaneshCompetition::where('id', $request->id);
+
+            // dd($request->all());
+
+
+            $cover = $request->file('image');
+            // dd($cover);
+            
+            if ($cover) {
+                $user = uploadCloudImage($cover);
+                
+                if ($user) {
+                    $cover = $user;
+                } else {
+                    $cover = null;
+                }
+                
+                $competition->update([
+                    'image' => $cover,
                 ]);
                 
                 return redirect()->back()->with('success', 'Cover Picture Updated.');

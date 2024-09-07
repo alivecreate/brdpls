@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Models\Post;
+use Auth;
 
 class PostsController extends Controller
 {
@@ -32,17 +33,21 @@ class PostsController extends Controller
     public function store(Request $request)
     {
         // dd($request->all());
+        // dd(Auth::id());
 
-        $image_name = uploadImageThumb($request, 'gallery');
+        // dd(uploadCloudFlairImage($request->file('gallery')));
+
+        $gallery = uploadCloudFlairImage($request->file('gallery'));
+
         Post::create([
             'description' => $request->description,
-            'gallery' => $image_name,
-            'visibility' => $request->visibility,
-            'status' => $request->status,
+            'gallery' => $gallery,
+            'user_id' => Auth::id()
         ]);
+        
     
 
-        return redirect()->route('index')->with('success', 'Status Created Successfully.');
+        return redirect()->back()->with('success', 'Status Created Successfully.');
     }
 
     /**
@@ -74,6 +79,16 @@ class PostsController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        //public function destroy($id)
+        {
+            $post = Post::findOrFail($id);
+            // dd($post);
+            $post->delete();
+
+            // deleteCloudImage($post->gallery);
+
+            return redirect()->back()->with('success', 'Post deleted successfully.');
+        }
+
     }
 }

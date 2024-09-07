@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('ganesh_competition', function (Blueprint $table) {
             $table->id();
             $table->string('competition_type')->nullable();
+            $table->string('image')->nullable();
             $table->string('name')->nullable();
             $table->string('description')->nullable();
             $table->string('slug')->unique()->nullable();

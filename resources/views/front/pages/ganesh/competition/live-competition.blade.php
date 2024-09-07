@@ -77,12 +77,20 @@
                                 <p class="button text-lg bg-success text-white flex-1 btn-not-allowed">
                                     <ion-icon name="thumbs-up-outline"></ion-icon> Voted
                                 </p>
-                                @elseif(isVoted($GaneshCompetition->id, 1) == null)
+                                
+                                @elseif(!isVotedCategory(1))
                                 <button
-                                    class="button text-lg bg-primary text-white flex-1 btn-voting-disable btn-not-allowed" disabled>
+                                    class="button text-lg bg-primary text-white flex-1">
                                     <ion-icon name="thumbs-up-outline"></ion-icon> Vote Now
                                 </button>
+
+                                @else
+                                <p class="button text-lg bg-secondary text-white flex-1 btn-voting-disable btn-not-allowed">
+                                    <ion-icon name="thumbs-up-outline"></ion-icon> Vote Now
+                                </p>
+                                
                                 @endif
+                               
 
                             @endif
 

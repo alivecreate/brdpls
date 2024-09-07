@@ -48,16 +48,16 @@
         <div class="flex-1 px-6">
 
             <div class="w-full">
-                <p class='heading-h1 font-semibold page-title text-underline'>ગણેશ સ્પર્ધા ફી </p>
+                <p class='heading-h1 font-semibold page-title text-underline'>ગણેશ સ્પર્ધાની વિગત </p>
 
-                <p class='subheading-h3 font-semibold font-semibold mb-0'>Note: ગણેશ સ્પર્ધા તા. 07-09-2024 બપોરે 2 વાગ્યેથી શરુ થશે.</p>
+                <!-- <p class='subheading-h3 font-semibold font-semibold mb-0'>Note: ગણેશ સ્પર્ધા તા. 07-09-2024 બપોરે 2 વાગ્યેથી શરુ થશે.</p> -->
 
                 
                 <div id="type1-2Form" class="competition-form">
                     <div class="flex md:items-center space-x-4 p-4 rounded-md box">
                         <div class="sm:w-20 w-14 sm:h-20 h-14 flex-shrink-0 rounded-lg relative">
-                            @if(optional($homeGaneshCompetition)->cover)
-                            <img src="https://imagedelivery.net/zfs38w7w3E1dJVvB3mVs9g/{{$homeGaneshCompetition->cover}}/sm"
+                            @if(optional($homeGaneshCompetition)->image)
+                            <img src="https://imagedelivery.net/zfs38w7w3E1dJVvB3mVs9g/{{$homeGaneshCompetition->image}}/sm"
                                 alt="{{$homeGaneshCompetition->name}}"
                                 class="absolute w-full h-full inset-0 rounded-md object-cover shadow-sm">
                             @else
@@ -82,6 +82,12 @@
                                     <p class='font-semibold'>  {{$user->first_name}} {{$user->last_name}}</p>
                                 </div>
                             </div>
+
+                           
+                        </div>
+                         
+                        <div class="flex gap-2">
+                            <a href="{{route('showHome', $homeGaneshCompetition->id)}}" class="button bg-primary text-white flex-1"> View</a> 
                         </div>
                     </div>
 
@@ -102,10 +108,16 @@
                     />
                     
 
-                    <div class="flex w-full items-center gap-4 mt-6">
-                        <p class="font-semibold btn-md lg:px-10 text-success text-md w-full">ગણેશ સ્પર્ધાનું પેમેન્ટ મળી
-                            ગયેલ છે.<span class="ripple-overlay"></span></p>
-                    </div>
+                    @if($homeGaneshCompetition->status == 'active')
+                        <div class="flex w-full items-center gap-4 mt-6">
+                            <p class="font-semibold btn-md lg:px-10 text-success text-md w-full text-center">ગણેશ સ્પર્ધાનું પેમેન્ટ મળી
+                                ગયેલ છે.<span class="ripple-overlay"></span></p>
+                        </div>
+                    @else
+                        <div class="flex w-full items-center gap-4 mt-6">
+                            <p class="font-semibold btn-md lg:px-10 text-danger text-md w-full text-center">ગણેશ સ્પર્ધાનું પેમેન્ટ બાકી છે.<span class="ripple-overlay"></span></p>
+                        </div>
+                    @endif
 
                     <p class="font-semibold btn-md button lg:px-10 bg-success text-white text-24 w-full text-wrap">ગણેશ સ્પર્ધાની
                         વોટિંગ તા. 07-09-2024 એ શરૂ થશે.<span class="ripple-overlay"></span></p>

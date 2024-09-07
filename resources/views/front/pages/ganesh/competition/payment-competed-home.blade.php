@@ -55,6 +55,7 @@
                     <p class="text-danger">{{session('error')}}</p>
                     @endif
 
+
                     @if($homeGaneshCompetition->status == 'active')
                     <div class="flex w-full items-center gap-4 mt-6">
                         <p class="font-semibold btn-md lg:px-10 text-success text-md w-full">ગણેશ સ્પર્ધાનું પેમેન્ટ મળી ગયેલ છે.<span class="ripple-overlay"></span></p>

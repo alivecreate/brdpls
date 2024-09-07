@@ -52,16 +52,15 @@
                         <img id="img" src="{{asset('front')}}/images/avatars/avatar-3.jpg"
                                     alt="Profile Picture" />
                         @endif
-                        
                     </label>
                 </div>
 
                 <div class="flex-1">
                     
+                <input type="file" name='image' 
+                         accept=".png, .webp, .jpg, .jpeg" style="max-width: 100px;"/>
                 </div>
 
-                <input type="file" name='image'
-                         accept=".png, .webp, .jpg, .jpeg" />
                 <button type="submit" class="inline-flex items-center gap-1 py-1 pl-2.5 pr-3 rounded-full bg-slate-50 border-2 border-slate-100 dark:text-white dark:bg-slate-700" type="button" aria-haspopup="true" aria-expanded="false"> 
                     
                 <ion-icon onClick=disableButton(event) id="btnUpload" name="flash-outline" class="text-base duration-500 group-aria-expanded:rotate-180 md hydrated" role="img" aria-label="chevron down outline"></ion-icon> 

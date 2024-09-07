@@ -209,8 +209,9 @@ function uploadImagesThumb($request, $fileName = null, $prefix = null){
 
 function deleteCloudImage($imageId = null){
           
-    $apiToken = env('CLOUDFLARE_API_TOKEN');
-    $accountId = env('CLOUDFLARE_ACCOUNT_ID');
+    $apiToken = 'AXzA-Tlk5jwxt7bc-_u4jR9yWyAHnFk8L8VQK750';
+    $accountId = 'd3c72ca07db24a2fe735ae6ff0383b19';
+
 
         $client = new Client();
         $url = 'https://api.cloudflare.com/client/v4/accounts/' . env('CLOUDFLARE_ACCOUNT_ID') . '/images/v1/' . $imageId;
@@ -285,6 +286,50 @@ function uploadCloudImage($image){
                 'message' => 'Image uploaded successfully.',
             ]);
 
+        } else {
+            return 'false';
+            return response()->json([
+                'success' => false,
+                'message' => $result->errors[0]->message ?? 'Failed to upload image.',
+            ], 500);
+        }
+    } catch (\Exception $e) {
+        return response()->json([
+            'success' => false,
+            'message' => $e->getMessage(),
+        ], 500);
+    }
+}
+
+
+function uploadCloudFlairImage($image){
+      
+    try {
+        $apiToken = 'AXzA-Tlk5jwxt7bc-_u4jR9yWyAHnFk8L8VQK750';
+        $accountId = 'd3c72ca07db24a2fe735ae6ff0383b19';
+
+
+        $client = new Client();
+
+        $response = $client->request('POST', "https://api.cloudflare.com/client/v4/accounts/{$accountId}/images/v1", [
+            
+        'headers' => [
+                'Authorization' => "Bearer {$apiToken}",
+            ],
+            'multipart' => [
+                [
+                    'name'     => 'file',
+                    'contents' => fopen($image->getPathname(), 'r'),
+                    'filename' => $image->getClientOriginalName(), // Explicitly set the filename
+                ],
+            ],
+        ]);
+
+        $body = $response->getBody();
+        $result = json_decode($body);
+
+        if ($result->success) {
+            return $result->result->id;
         } else {
             return 'false';
             return response()->json([

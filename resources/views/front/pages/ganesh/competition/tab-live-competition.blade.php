@@ -7,7 +7,7 @@
         uk-switcher="">
         <a class="category-link best-idol" href="?cid=1">શ્રેષ્ઠ મૂર્તિ ({{getTotalCategoryGroup('1-2')}})</a>
         <a class="category-link best-decoration" href="?cid=2">શ્રેષ્ઠ ડેકોરેશન ({{getTotalCategoryGroup('1-2')}})</a>
-        <a class="category-link best-home-idol" href="?cid=3"> ઘરની બેસ્ટ મૂર્તિ</a>
+        <a class="category-link best-home-idol" href="?cid=3"> ઘરની બેસ્ટ મૂર્તિ({{getTotalCategoryGroup('3')}})</a>
     </ul>
 </nav>
 </div>

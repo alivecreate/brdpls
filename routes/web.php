@@ -193,6 +193,7 @@ Route::get('/ganesh-festival/group/upload-photos', [GaneshFestivalGroupControlle
 Route::post('/ganesh-festival/upload/cover', [GaneshFestivalGroupController::class, 'uploadGaneshGroupCover'])->name('uploadGaneshGroupCover');
 
 Route::post('/ganesh-festival/upload/group-cover', [GaneshFestivalGroupController::class, 'updateGroupCoverPic'])->name('updateGroupCoverPic');
+Route::post('/ganesh-festival/upload/home-cover', [GaneshFestivalGroupController::class, 'updateHomeGaneshCoverPic'])->name('updateHomeGaneshCoverPic');
 
 
 Route::get('/ganesh-festival/photo', [GaneshFestivalGroupController::class, 'ganeshFestivalGroupphotos'])->name('ganeshFestivalGroupphotos');
@@ -242,6 +243,8 @@ Route::post('/ganesh-festival/competition/store-home-ganesh', [GaneshFestivalCom
 
 Route::resource('/ganesh-festival/competition', GaneshFestivalCompetition::class)->names('ganeshFestivalCompetition');
 Route::resource('/ganesh-festival/voting', FestivalCompetitionVoting::class)->names('FestivalCompetitionVoting');
+
+Route::get('/ganesh-festival/home/{id}', [GaneshFestivalCompetition::class, 'showHome'])->name('showHome');
 
 
 Route::resource('/ganesh-festival', GaneshFestivalGroupController::class)->names('ganeshFestivalGroup');

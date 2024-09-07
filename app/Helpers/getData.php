@@ -151,6 +151,23 @@ if (!function_exists('isVoted')) {
         }
 }
 
+function isVotedCategory($category_id) {
+        
+    $isVotedCategory = CompetitionVote::where([ 'competition_category_id' => $category_id, 'user_id' => Auth::id()])->first();
+// dd($isVotedCategory);
+return $isVotedCategory;
+
+
+    }
+
+    function getHomeGaneshUser($id){
+        $data = User::find(Auth::id());
+        return $data;
+    }
+
+if (!function_exists('isVotedCategory')) {
+}
+
 
 if (!function_exists('getTotalCategoryGroup')) {
     function getTotalCategoryGroup($category_id) {
@@ -204,6 +221,17 @@ function checkIsGroupOwner($id){
     // dd(Auth::id());
     $group = Group::where(['id' => $id, 'user_id' => Auth::id()])->first();
     if($group){
+        return true;
+    }
+    return false;
+}
+
+
+function checkIsHomeOwner($id){
+    // dd(Auth::id());
+    $isUser =  GaneshCompetition::where(['id' => $id, 'participant_id' => Auth::id()])->first();
+
+    if($isUser){
         return true;
     }
     return false;

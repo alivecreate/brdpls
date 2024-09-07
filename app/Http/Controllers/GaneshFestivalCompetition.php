@@ -9,6 +9,8 @@ use App\Models\GaneshCompetition;
 
 use Illuminate\Support\Str;
 use App\Models\User;
+use App\Models\Post;
+
 use Auth;
 
 class GaneshFestivalCompetition extends Controller
@@ -244,7 +246,7 @@ return redirect()->back()->with('error', 'Something went wrong, please try again
                 ])
             ->get();
             
-            
+
         $user = User::find(Auth::id());
                         return view('front.pages.ganesh.competition.live-competition2', compact('GaneshCompetitions', 'user'));
                     }
@@ -252,10 +254,14 @@ return redirect()->back()->with('error', 'Something went wrong, please try again
                     elseif ($cid == 3) {
             // dd($cid);
             
-                        $GaneshCompetitions = GaneshCompetition::where('competition_type', '1-2')
-                        ->whereHas('participant')  // Only include records where 'participant' relationship is not null
-                        ->with('participant')   
-                        ->get();
+
+            $GaneshCompetitions = GaneshCompetition::where(
+                [
+                    'status' => 'active',
+                    'competition_type' => '3',
+                ])
+            ->get();
+            
                         
         $user = User::find(Auth::id());
                         return view('front.pages.ganesh.competition.live-competition3', compact('GaneshCompetitions', 'user'));
@@ -288,6 +294,26 @@ return redirect()->back()->with('error', 'Something went wrong, please try again
     {
         //
     }
+
+    
+    public function showHome(string $id)
+    {
+
+        // dd($id);
+        $homeGanesh = GaneshCompetition::where('id', $id)->first();
+
+        // $userAccount = User::find('')
+        $posts = Post::where('user_id', $homeGanesh->participant_id)->orderBy('id', 'desc')->get();
+        // dd($posts);
+        $user = User::find(Auth::id());
+        
+        if($homeGanesh){
+            return view('front.pages.ganesh.group.home-ganesh-show', compact('homeGanesh', 'user', 'posts'));
+        }
+        return redirect('ganesh-festival');
+    }
+
+
 
     /**
      * Show the form for editing the specified resource.
