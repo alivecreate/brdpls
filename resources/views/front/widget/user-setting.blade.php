@@ -58,7 +58,7 @@
                 <div class="flex-1">
                     
                 <input type="file" name='image' 
-                         accept=".png, .webp, .jpg, .jpeg" style="max-width: 100px;"/>
+                         accept=".png, .webp, .jpg, .jpeg" style="max-width: 106px;"/>
                 </div>
 
                 <button type="submit" class="inline-flex items-center gap-1 py-1 pl-2.5 pr-3 rounded-full bg-slate-50 border-2 border-slate-100 dark:text-white dark:bg-slate-700" type="button" aria-haspopup="true" aria-expanded="false"> 

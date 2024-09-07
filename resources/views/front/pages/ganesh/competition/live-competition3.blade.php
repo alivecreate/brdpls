@@ -57,10 +57,14 @@
                         <a href="{{route('showHome', $GaneshCompetition->id)}}">
                             <h4 class="card-title"> {{$GaneshCompetition->name}} </h4>
                         </a>
+
+                    @if(getHomeGaneshUser($GaneshCompetition->participant_id))
                         <div class='flex'>
                             <ion-icon name="person"></ion-icon>
                             <p class="text-sm ml-2 mb-2"> {{getHomeGaneshUser($GaneshCompetition->participant_id)->first_name}} {{getHomeGaneshUser($GaneshCompetition->participant_id)->last_name}} </p>
                         </div>
+                        @endif
+
                         <div class="card-text">
                             <div class="card-list-info font-normal mt-1 bg-voting">
                                 <div class='font-bold text-danger text-xl'>Total Votes: {{totalVotes($GaneshCompetition->participant_id, 3)}}</div>
