@@ -301,6 +301,9 @@ return redirect()->back()->with('error', 'Something went wrong, please try again
 
         // dd($id);
         $homeGanesh = GaneshCompetition::where('id', $id)->first();
+        if(!$homeGanesh){
+            return redirect()->route('index');
+        }
 
         // $userAccount = User::find('')
         $posts = Post::where('user_id', $homeGanesh->participant_id)->orderBy('id', 'desc')->get();
