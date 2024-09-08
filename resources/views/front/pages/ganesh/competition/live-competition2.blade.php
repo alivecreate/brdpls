@@ -74,7 +74,7 @@
                                 
 
                          
-                            @if(Auth::check())
+                            @if(Auth::check() && $user->status == 'active')
                                 @if(isVoted($GaneshCompetition->id, 2))
                                 <p class="button text-lg bg-success text-white flex-1 btn-not-allowed">
                                     <ion-icon name="thumbs-up-outline"></ion-icon> Voted
