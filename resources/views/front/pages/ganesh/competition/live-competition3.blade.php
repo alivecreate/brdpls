@@ -67,7 +67,7 @@
 
                         <div class="card-text">
                             <div class="card-list-info font-normal mt-1 bg-voting">
-                                <div class='font-bold text-danger text-xl'>Total Votes: {{totalVotes($GaneshCompetition->participant_id, 3)}}</div>
+                                <div class='font-bold text-danger text-xl'> Total Votes: {{totalVotes($GaneshCompetition->participant_id, 3)}}</div>
                             </div>
                         </div>
 
@@ -80,14 +80,13 @@
                             <div class="flex gap-2">
                                 
 
-                         
-                            @if(Auth::check())
+                            @if(Auth::check() && $user->status == 'active')
                                 @if(isVoted($GaneshCompetition->id, 3))
                                 <p class="button text-lg bg-success text-white flex-1 btn-not-allowed">
                                     <ion-icon name="thumbs-up-outline"></ion-icon> Voted
                                 </p>
                                 
-                                @elseif(!isVotedCategory(3))
+                                @elseif(!isVotedCategory(3) && $user->status == 'active')
                                 <button
                                     class="button text-lg bg-primary text-white flex-1">
                                     <ion-icon name="thumbs-up-outline"></ion-icon> Vote Now
@@ -97,7 +96,6 @@
                                 <p class="button text-lg bg-secondary text-white flex-1 btn-voting-disable btn-not-allowed">
                                     <ion-icon name="thumbs-up-outline"></ion-icon> Vote Now
                                 </p>
-                                
                                 @endif
                                
 

@@ -125,8 +125,7 @@ $(document).ready(function() {
 
                 <div class="absolute bottom-0 right-0 m-4 z-20">
                     <div class="flex items-center gap-3">
-                        
-                        @if(Auth::check() && Auth::id() == $user->id)
+                        @if(Auth::check() && Auth::id() == $homeGanesh->id)
                             <button uk-toggle="target: #home-upload-cover-popup"
                                 class="button bg-black/10 text-white flex items-center gap-2 backdrop-blur-small">
                                 <ion-icon name="camera-outline" class="text-lg"></ion-icon> Change Photo
@@ -206,6 +205,7 @@ $(document).ready(function() {
 $visible = false;
 @endphp
 
+
 @if(checkIsHomeOwner($homeGanesh->id))
 
 <div class="bg-white rounded-xl shadow-sm p-4 space-y-4 text-sm font-medium border1 dark:bg-dark2">
@@ -281,7 +281,6 @@ $visible = false;
             </div>
         </div>
         @endif
-
     </div>
 
     
@@ -293,8 +292,6 @@ $visible = false;
             <img src="https://imagedelivery.net/zfs38w7w3E1dJVvB3mVs9g/{{$post->gallery}}/lg" alt=""
             class="sm:rounded-lg w-full h-full object-cover">
     </div>
-
-  
 
 </div>
     @endforeach
