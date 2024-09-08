@@ -10,7 +10,8 @@ use App\Models\GaneshCompetition;
 use App\Models\LiveCompetitionStatus;
 
 use Carbon\Carbon;
-use DB;
+use Illuminate\Support\Facades\DB;
+
 
 
 
@@ -192,14 +193,22 @@ if (!function_exists('isCompetitionStart')) {
 function totalVotes($votable_id, $competition_category_id)
 {
     // return 33;
+
+    // $totalVotes = DB::table('competition_votes as cv')
+//     ->join('users as u', 'cv.user_id', '=', 'u.id')
+//     ->where('cv.competition_category_id', $competition_category_id)
+//     ->where('votable_id', $votable_id)
+//     ->where('u.status', 'active')
+//     ->count();
+
     return CompetitionVote::where('votable_id', $votable_id)->where('competition_category_id', $competition_category_id)->count();
 
-    // return CompetitionVote::where('votable_id', $votable_id)
-    // ->where('competition_category_id', $competition_category_id)
-    // ->whereHas('votable', function ($query) {
-    //     $query->where('status', 'pending');
-    // })
-    // ->count();
+    return CompetitionVote::where('votable_id', $votable_id)
+    ->where('competition_category_id', $competition_category_id)
+    ->whereHas('votable', function ($query) {
+        $query->where('status', 'active');
+    })
+    ->count();
 
 //     $totalVotes = DB::select("
 //     SELECT COUNT(*) AS total_votes
@@ -213,6 +222,7 @@ function totalVotes($votable_id, $competition_category_id)
 // $totalVotes = DB::table('competition_votes as cv')
 //     ->join('users as u', 'cv.user_id', '=', 'u.id')
 //     ->where('cv.competition_category_id', $competition_category_id)
+//     ->where('votable_id', $votable_id)
 //     ->where('u.status', 'active')
 //     ->count();
     

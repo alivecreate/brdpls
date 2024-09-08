@@ -78,6 +78,7 @@
                             <input type="hidden" name="votable_id" value="{{$GaneshCompetition->participant->id}}" />
 
                             <div class="flex gap-2">
+                                
 
                             @if(Auth::check() && $user->status == 'active')
                                 @if(isVoted($GaneshCompetition->id, 3))
@@ -96,7 +97,6 @@
                                     <ion-icon name="thumbs-up-outline"></ion-icon> Vote Now
                                 </p>
                                 @endif
-                               
 
                             @endif
 

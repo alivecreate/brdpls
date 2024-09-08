@@ -91,6 +91,13 @@ public function competitionVotes()
 }
 
 
+public function competition($id)
+{
+    return GaneshCompetition::where('participant_id', $id)->first();
+
+}
+
+
 public function delete()
 {
     $this->competitionVotes()->delete();
