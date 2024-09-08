@@ -10,6 +10,7 @@ use App\Models\GaneshCompetition;
 use App\Models\LiveCompetitionStatus;
 
 use Carbon\Carbon;
+use DB;
 
 
 
@@ -193,6 +194,30 @@ function totalVotes($votable_id, $competition_category_id)
     // return 33;
     return CompetitionVote::where('votable_id', $votable_id)->where('competition_category_id', $competition_category_id)->count();
 
+    // return CompetitionVote::where('votable_id', $votable_id)
+    // ->where('competition_category_id', $competition_category_id)
+    // ->whereHas('votable', function ($query) {
+    //     $query->where('status', 'pending');
+    // })
+    // ->count();
+
+//     $totalVotes = DB::select("
+//     SELECT COUNT(*) AS total_votes
+//     FROM competition_votes cv
+//     JOIN users u ON cv.user_id = u.id
+//     WHERE cv.competition_category_id = :competition_category_id
+//       AND u.status = 'pending'
+// ", ['competition_category_id' => $competition_category_id]);
+
+
+// $totalVotes = DB::table('competition_votes as cv')
+//     ->join('users as u', 'cv.user_id', '=', 'u.id')
+//     ->where('cv.competition_category_id', $competition_category_id)
+//     ->where('u.status', 'active')
+//     ->count();
+    
+    return $totalVotes;
+// dd($totalVotes);
     return $this->votes()->count();
 }
 

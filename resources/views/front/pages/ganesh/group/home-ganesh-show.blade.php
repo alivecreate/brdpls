@@ -125,7 +125,7 @@ $(document).ready(function() {
 
                 <div class="absolute bottom-0 right-0 m-4 z-20">
                     <div class="flex items-center gap-3">
-                        @if(Auth::check() && Auth::id() == $homeGanesh->id)
+                        @if(Auth::check() && Auth::id())
                             <button uk-toggle="target: #home-upload-cover-popup"
                                 class="button bg-black/10 text-white flex items-center gap-2 backdrop-blur-small">
                                 <ion-icon name="camera-outline" class="text-lg"></ion-icon> Change Photo
