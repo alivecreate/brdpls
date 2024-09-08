@@ -294,8 +294,8 @@ class GaneshFestivalGroupController extends Controller
         } catch (\Exception $e) {
             // Handle the exception and log the error if needed
             \Log::error('Error updating profile picture: ' . $e->getMessage());
-            return $e;
-            // return redirect()->back()->with('error', 'Failed to update profile picture. Please try again.');
+            // return $e;
+            return redirect()->back()->with('error', 'Failed to update profile picture. Please try again.');
         }
     }
 
