@@ -25,7 +25,6 @@
 
                 <input type="file"  onchange="previewImage2(event)" 
                     name="gallery" id="imageUploadInput" accept="image/*">
-                     
                     
         <button
             class="button text-lg bg-primary text-white flex-1/2">

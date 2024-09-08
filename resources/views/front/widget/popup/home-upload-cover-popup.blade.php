@@ -43,7 +43,7 @@
                         
                         <input type="file" id="file" name='image'
                          accept=".png, .webp, .jpg, .jpeg"
-                        class="hidden" onchange="previewImageThumb(event)" />
+                        class="hidden"  />
                     </label>
                 </div>
 
