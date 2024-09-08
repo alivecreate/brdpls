@@ -267,7 +267,7 @@ class GaneshFestivalGroupController extends Controller
             $user = User::find(Auth::id());
             $competition = GaneshCompetition::where('id', $request->id);
 
-            dd($request->all());
+            // dd($request->all());
 
 
             $cover = $request->file('image');
