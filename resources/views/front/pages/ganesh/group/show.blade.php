@@ -620,7 +620,8 @@ $(document).ready(function() {
                         <div class="flex items-center justify-between mb-4">
                             <div class="w-full qr-wrapper text-center">
                                 {!! DNS2D::getBarcodeSVG(route('ganeshFestivalGroup.show', $group->slug), 'QRCODE', 3, 3) !!}
-                            </div><button
+                            </div>
+                            <button
                                 class="bg-marron button text-lg bg-primary text-white flex-1 mt-4 button text-lg bg-secondary text-white flex-1  btn-print-qr"
                                 data-image="https://imagedelivery.net/zfs38w7w3E1dJVvB3mVs9g/{{$group->cover}}/lg"
                                 data-name="{{$group->name}}" data-address="{{$group->address}}"
