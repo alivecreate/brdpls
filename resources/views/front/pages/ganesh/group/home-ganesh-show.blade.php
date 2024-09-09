@@ -242,7 +242,7 @@ $(document).ready(function() {
                                     @csrf
                                     <input type="hidden" name="participant_id"
                                         value="{{$homeGanesh->competition($homeGanesh->participant_id)->id}}" />
-                                    <input type="hidden" name="category_id" value="1" />
+                                    <input type="hidden" name="category_id" value="3" />
                                     <input type="hidden" name="votable_id"
                                         value="{{$homeGanesh->competition($homeGanesh->participant_id)->participant->id}}" />
 
@@ -451,7 +451,7 @@ $(document).ready(function() {
                                     @csrf
                                     <input type="hidden" name="participant_id"
                                         value="{{$homeGanesh->competition($homeGanesh->participant_id)->id}}" />
-                                    <input type="hidden" name="category_id" value="1" />
+                                    <input type="hidden" name="category_id" value="3" />
                                     <input type="hidden" name="votable_id"
                                         value="{{$homeGanesh->competition($homeGanesh->participant_id)->participant->id}}" />
 

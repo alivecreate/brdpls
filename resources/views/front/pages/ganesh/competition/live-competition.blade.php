@@ -93,11 +93,13 @@ $('.best-idol').addClass('active-link');
                             <p class="button text-lg bg-secondary text-white flex-1 btn-voting-disable btn-not-allowed">
                                 <ion-icon name="thumbs-up-outline"></ion-icon> Vote Now
                             </p>
-
                             @endif
-
-
-                            @endif
+                        @else
+                        
+                            <p class="button text-lg bg-secondary text-white flex-1 btn-voting-disable btn-not-allowed">
+                                <ion-icon name="thumbs-up-outline"></ion-icon> Vote Now
+                            </p>
+                        @endif
 
                             <a href="{{route('ganeshFestivalGroup.show', $GaneshCompetition->participant->slug)}}"
                                 class="button text-lg bg-secondery !w-auto">

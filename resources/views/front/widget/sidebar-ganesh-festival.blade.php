@@ -22,13 +22,14 @@
                         <span> Ganesh Festival (Groups)</span> 
                     </a>
                 </li> 
-
+                
                 @if(Auth::check() && isGroupExists() )
                 <li  id="my-group">
-                    <a href="{{route('ganeshFestivalMyGroup')}}">
+                    <a href="{{route('ganeshFestivalGroup.show', isGroupExists()->slug)}}">
                     <img src="{{asset('front')}}/images/icons/group.png" alt="My Group / Mandal" class="w-6">
                         <span> My Mandal </span> 
                     </a>
+
                 </li> 
                 @endif
 

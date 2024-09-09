@@ -56,33 +56,33 @@ $(document).ready(function() {
         var printWindow = window.open('', '', 'width=600,height=600');
         printWindow.document.write(
             `<html style="border:1px;width=200,height=200"><head><title>${qrName} - QR</title></head><body style="text-align:center;background-color: #fff4ed;">`
-            );
+        );
 
         printWindow.document.write(
             `<h4 style="textext-align:center;font-size: 31px;margin:10px 0px;color: #150497;background-color: #fff2b4;border: 1px solid #a0a0a0;border-radius: 2px;padding: 4px;margin-top: 32px;font-family: sans-serif;font-weight: bold;">${qrName}</h4>`
-            );
+        );
         printWindow.document.write(
             `<h3 style="text-align:center;font-size: 21px;margin-top: 14px;margin-bottom: 25px;">(${qrAddress})</h3>`
-            );
+        );
 
         printWindow.document.write(
             `<div style="width:100%;margin-bottom: 20px;"> <div style="background-color: #ffffff;padding: 13px;display: inline-block;border: 1px solid;border-radius: 11px;">${qrCode}</div></div>`
-            );
+        );
 
         // printWindow.document.write(qrCode);
         printWindow.document.write(
             `<img src="${QrImage}"  style="width:80%;margin;max-height: 400px;border: 2px solid #ffb39b;padding: 6px;background-color: #ffffff;object-fit: cover;" >`
-            );
+        );
         printWindow.document.write(
             `<div style="margin-bottom: 20px;"> <img src="${logo}"  style="width:100px;margin;max-height: 400px;border: 1px solid #ccc2bf;padding: 6px;background-color: #ffffff;object-fit: cover;position: relative;bottom: 0px;margin-top: 30px;border-radius: 14px;" ></div>`
-            );
+        );
 
         printWindow.document.write(
             `<h3 style="text-align:center;font-size: 23px;margin-top: 2px;margin-bottom: 3px;color: #df6435;font-family: math;">IG: Barodaplus</h3>`
-            );
+        );
         printWindow.document.write(
             `<h3 style="text-align:center;font-size: 26px;margin-top: 0px;margin-bottom: 27px;color: #303030;font-family: math;">www.Barodaplus.com</h3>`
-            );
+        );
 
 
         printWindow.document.write('</body></html>');
@@ -123,13 +123,17 @@ $(document).ready(function() {
 
                 <div class="absolute bottom-0 right-0 m-4 z-20">
                     <div class="flex items-center gap-3">
-                        
+
                         @if(Auth::check() && Auth::id() == $group->user_id)
-                            <button uk-toggle="target: #home-upload-cover-popup"
-                                class="button bg-black/10 text-white flex items-center gap-2 backdrop-blur-small">
-                                <ion-icon name="camera-outline" class="text-lg"></ion-icon> Change Photo
-                            </button>
+
+                        <button uk-toggle="target: #upload-cover-popup"
+                            class="button bg-black/10 text-white flex items-center gap-2 backdrop-blur-small">
+                            <ion-icon name="camera-outline" class="text-lg"></ion-icon> Change Photo
+                        </button>
+
                         @endif
+
+
 
                     </div>
                 </div>
@@ -153,18 +157,19 @@ $(document).ready(function() {
                         <div>
                             <div class="flex items-center gap-2 mt-1">
 
-                            @if(!$group->competition($group->id))
-                                    <button
-                                        class="button bg-danger flex items-center gap-1 text-white py-2 px-3.5 shadow ml-auto bg-danger font-semibold">
-                                        <!-- <ion-icon name="add-outline" class="text-xl"></ion-icon>  -->
-                                        <a href="@if($group->user_id == Auth::id()){{route('ganeshFestivalCompetition.create', ['type'=>'group'])}}@else # @endif"> <span
-                                                class="text-sm">
-                                                <ion-icon name="trophy"
-                                                    class="text-lg drop-shadow-md md hydrated live-d-icon" role="img"
-                                                    aria-label="trophy"></ion-icon>
-                                                    સ્પર્ધામાં ભાગ લીધેલ નથી
-                                            </span> </a>
-                                    </button>
+                                @if(!$group->competition($group->id))
+                                <button
+                                    class="button bg-danger flex items-center gap-1 text-white py-2 px-3.5 shadow ml-auto bg-danger font-semibold">
+                                    <!-- <ion-icon name="add-outline" class="text-xl"></ion-icon>  -->
+                                    <a
+                                        href="@if($group->user_id == Auth::id()){{route('ganeshFestivalCompetition.create', ['type'=>'group'])}}@else # @endif">
+                                        <span class="text-sm">
+                                            <ion-icon name="trophy"
+                                                class="text-lg drop-shadow-md md hydrated live-d-icon" role="img"
+                                                aria-label="trophy"></ion-icon>
+                                            સ્પર્ધામાં ભાગ લીધેલ નથી
+                                        </span> </a>
+                                </button>
 
                                 @endif
 
@@ -172,7 +177,6 @@ $(document).ready(function() {
 
 
                                 @if(checkIsGroupJoin($group->id))
-
 
                                 <form action="{{route('group-member.store')}}" method="post">
                                     @csrf
@@ -244,6 +248,178 @@ $(document).ready(function() {
 
         <div class="flex 2xl:gap-12 gap-10 mt-8 max-lg:flex-col" id="js-oversized">
 
+
+            <div class="lg:w-[400px] lg:hidden w-full">
+
+                <div class="lg:space-y-4 lg:pb-8 max-lg:grid sm:grid-cols-2 max-lg:gap-6"
+                    uk-sticky="media: 1024; end: #js-oversized; offset: 80">
+                    <div class="box p-5 px-6">
+
+
+                        @if(checkCompetitionSchedule()->status == 'live')
+
+                        @if($group->competition($group->id))
+                        <div class="flex-center mb-4">
+                            <h2 class="heading-h2 text-danger text-underline">ગણેશ સ્પર્ધા (Live)</h2>
+                            <img class="live-icon" src="{{asset('front/images/web')}}/live-icon.gif"
+                                alt="Barodaplus live voting">
+                        </div>
+                        @endif
+
+                        <div class="text-black dark:text-white">
+                            @if($group->competition($group->id))
+
+                            @php
+                            $GaneshCompetition = $group->competition($group->id);
+                            @endphp
+
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="flex-column">
+                                    <h3 class="font-bold text-lg mb-1"> શ્રેષ્ઠ મૂર્તિ</h3>
+
+                                    <h2 class='live-voting-counter font-semibold'>Total Votes:
+                                        <span>{{number_with_commas($GaneshCompetition->countVote($GaneshCompetition->id, 1))}}</span>
+                                    </h2>
+                                </div>
+                                <form method="post" action="{{route('FestivalCompetitionVoting.store')}}">
+                                    @csrf
+                                    <input type="hidden" name="participant_id"
+                                        value="{{$group->competition($group->id)->id}}" />
+                                    <input type="hidden" name="category_id" value="1" />
+                                    <input type="hidden" name="votable_id"
+                                        value="{{$group->competition($group->id)->participant->id}}" />
+
+
+                                    @if(Auth::check() && $user->status == 'active')
+                                    @if(isVoted($GaneshCompetition->id, 1))
+                                    <p class="button text-lg bg-success text-white flex-1 btn-not-allowed">
+                                        <ion-icon name="thumbs-up-outline"></ion-icon> Voted
+                                    </p>
+
+                                    @elseif(!isVotedCategory(1))
+                                    <button class="button text-lg bg-primary text-white flex-1">
+                                        <ion-icon name="thumbs-up-outline"></ion-icon> Vote Now
+                                    </button>
+
+                                    @else
+                                    <p
+                                        class="button text-lg bg-secondary text-white flex-1 btn-voting-disable btn-not-allowed">
+                                        <ion-icon name="thumbs-up-outline"></ion-icon> Vote Now
+                                    </p>
+                                    @endif
+                                    @else
+
+                                    <p
+                                        class="button text-lg bg-secondary text-white flex-1 btn-voting-disable btn-not-allowed">
+                                        <ion-icon name="thumbs-up-outline"></ion-icon> Vote Now
+                                    </p>
+                                    @endif
+
+
+                                </form>
+                            </div>
+
+                            <div class="flex items-center justify-between mb-4">
+
+                                <div class="flex-column">
+                                    <h3 class="font-bold text-lg mb-1"> શ્રેષ્ઠ ડેકોરેશન </h3>
+                                    <h2 class='live-voting-counter font-semibold'>Total Votes:
+                                        {{totalVotes($GaneshCompetition->participant_id, 2)}}
+                                    </h2>
+                                </div>
+
+                                <form method="post" action="{{route('FestivalCompetitionVoting.store')}}">
+                                    @csrf
+                                    <input type="hidden" name="participant_id"
+                                        value="{{$group->competition($group->id)->id}}" />
+                                    <input type="hidden" name="category_id" value="2" />
+                                    <input type="hidden" name="votable_id"
+                                        value="{{$group->competition($group->id)->participant->id}}" />
+
+
+                                    @if(Auth::check() && $user->status == 'active')
+                                    @if(isVoted($GaneshCompetition->id, 2))
+                                    <p class="button text-lg bg-success text-white flex-1 btn-not-allowed">
+                                        <ion-icon name="thumbs-up-outline"></ion-icon> Voted
+                                    </p>
+
+                                    @elseif(!isVotedCategory(2))
+                                    <button class="button text-lg bg-primary text-white flex-1">
+                                        <ion-icon name="thumbs-up-outline"></ion-icon> Vote Now
+                                    </button>
+
+                                    @else
+                                    <p
+                                        class="button text-lg bg-secondary text-white flex-1 btn-voting-disable btn-not-allowed">
+                                        <ion-icon name="thumbs-up-outline"></ion-icon> Vote Now
+                                    </p>
+                                    @endif
+                                    @else
+
+                                    <p
+                                        class="button text-lg bg-secondary text-white flex-1 btn-voting-disable btn-not-allowed">
+                                        <ion-icon name="thumbs-up-outline"></ion-icon> Vote Now
+                                    </p>
+                                    @endif
+                                </form>
+                            </div>
+                            @endif
+                        </div>
+                        @endif
+
+
+
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="w-full qr-wrapper text-center">
+                                {!! DNS2D::getBarcodeSVG(route('ganeshFestivalGroup.show', $group->slug), 'QRCODE', 3,
+                                3) !!}
+                            </div>
+                            <button
+                                class="bg-marron button text-lg bg-primary text-white flex-1 mt-4 button text-lg bg-secondary text-white flex-1  btn-print-qr"
+                                data-image="https://imagedelivery.net/zfs38w7w3E1dJVvB3mVs9g/{{$group->cover}}/lg"
+                                data-name="{{$group->name}}" data-address="{{$group->address}}"
+                                data-logo="{{asset('front/images/web')}}/barodaplus-logo.png"
+                                data-qr="{{ DNS2D::getBarcodeSVG(route('ganeshFestivalGroup.show', $group->slug), 'QRCODE', 8, 8) }}">
+                                <ion-icon name="download-outline" class="text-lg"></ion-icon> Print QR
+                            </button>
+                        </div>
+
+
+
+                        <div class="flex items-ce justify-between text-black dark:text-white">
+                            <h3 class="font-bold text-lg mb-1"> About </h3>
+                            <!-- <a href="#" class="text-sm text-blue-500">Edit</a> -->
+                        </div>
+
+                        <ul class="text-gray-700 space-y-4 mt-2 mb-1 text-sm dark:text-white">
+                            <li>{{$group->description}}</li>
+
+                            @if($group->decoration)
+                            <li class="flex items-start gap-3">
+                                <ion-icon name="newspaper-outline" class="text-2xl drop-shadow-md md hydrated mr-2"
+                                    role="img" aria-label="videocam"></ion-icon>
+                                <div>
+                                    <span class="font-semibold text-black dark:text-white">Decoration / Theme </span>
+                                    <p>{{$group->decoration}}</p>
+                                </div>
+                            </li>
+                            @endif
+
+                            <li class="flex items-center gap-3">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z" />
+                                </svg>
+                                <div> Followers <span class="font-semibold text-black dark:text-white">
+                                        {{countGroupMembers($group->id)}} People </span> </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+
             <div class="flex-1 xl:space-y-6 space-y-3">
 
                 @php
@@ -286,7 +462,8 @@ $(document).ready(function() {
 
                 <div class="bg-white rounded-xl shadow-sm text-sm font-medium border1 dark:bg-dark2">
 
-                    <div class="flex gap-3 sm:p-4 p-2.5 text-sm font-medium">ગ્રૂપ માટે ફોટો અને સ્ટેટસ ટૂક સમયમાં શરૂ કરવામાં આવશે.</p>
+                    <div class="flex gap-3 sm:p-4 p-2.5 text-sm font-medium">ગ્રૂપ માટે ફોટો અને સ્ટેટસ ટૂક સમયમાં શરૂ
+                        કરવામાં આવશે.</p>
                     </div>
                 </div>
                 <!-- <div class="bg-white rounded-xl shadow-sm text-sm font-medium border1 dark:bg-dark2">
@@ -612,14 +789,130 @@ $(document).ready(function() {
 
             </div>
 
-            <div class="lg:w-[400px]">
+            <div class="lg:w-[400px] hidden lg:block">
 
                 <div class="lg:space-y-4 lg:pb-8 max-lg:grid sm:grid-cols-2 max-lg:gap-6"
                     uk-sticky="media: 1024; end: #js-oversized; offset: 80">
                     <div class="box p-5 px-6">
+
+
+                        @if(checkCompetitionSchedule()->status == 'live')
+
+                        @if($group->competition($group->id))
+                        <div class="flex-center mb-4">
+                            <h2 class="heading-h2 text-danger text-underline">ગણેશ સ્પર્ધા (Live)</h2>
+                            <img class="live-icon" src="{{asset('front/images/web')}}/live-icon.gif"
+                                alt="Barodaplus live voting">
+                        </div>
+                        @endif
+
+                        <div class="text-black dark:text-white">
+                            @if($group->competition($group->id))
+
+                            @php
+                            $GaneshCompetition = $group->competition($group->id);
+                            @endphp
+
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="flex-column">
+                                    <h3 class="font-bold text-lg mb-1"> શ્રેષ્ઠ મૂર્તિ</h3>
+
+                                    <h2 class='live-voting-counter font-semibold'>Total Votes:
+                                        <span>{{number_with_commas($GaneshCompetition->countVote($GaneshCompetition->id, 1))}}</span>
+                                    </h2>
+                                </div>
+                                <form method="post" action="{{route('FestivalCompetitionVoting.store')}}">
+                                    @csrf
+                                    <input type="hidden" name="participant_id"
+                                        value="{{$group->competition($group->id)->id}}" />
+                                    <input type="hidden" name="category_id" value="1" />
+                                    <input type="hidden" name="votable_id"
+                                        value="{{$group->competition($group->id)->participant->id}}" />
+
+
+                                    @if(Auth::check() && $user->status == 'active')
+                                    @if(isVoted($GaneshCompetition->id, 1))
+                                    <p class="button text-lg bg-success text-white flex-1 btn-not-allowed">
+                                        <ion-icon name="thumbs-up-outline"></ion-icon> Voted
+                                    </p>
+
+                                    @elseif(!isVotedCategory(1))
+                                    <button class="button text-lg bg-primary text-white flex-1">
+                                        <ion-icon name="thumbs-up-outline"></ion-icon> Vote Now
+                                    </button>
+
+                                    @else
+                                    <p
+                                        class="button text-lg bg-secondary text-white flex-1 btn-voting-disable btn-not-allowed">
+                                        <ion-icon name="thumbs-up-outline"></ion-icon> Vote Now
+                                    </p>
+                                    @endif
+                                    @else
+
+                                    <p
+                                        class="button text-lg bg-secondary text-white flex-1 btn-voting-disable btn-not-allowed">
+                                        <ion-icon name="thumbs-up-outline"></ion-icon> Vote Now
+                                    </p>
+                                    @endif
+
+
+                                </form>
+                            </div>
+
+                            <div class="flex items-center justify-between mb-4">
+
+                                <div class="flex-column">
+                                    <h3 class="font-bold text-lg mb-1"> શ્રેષ્ઠ ડેકોરેશન </h3>
+                                    <h2 class='live-voting-counter font-semibold'>Total Votes:
+                                        {{totalVotes($GaneshCompetition->participant_id, 2)}}
+                                    </h2>
+                                </div>
+
+                                <form method="post" action="{{route('FestivalCompetitionVoting.store')}}">
+                                    @csrf
+                                    <input type="hidden" name="participant_id"
+                                        value="{{$group->competition($group->id)->id}}" />
+                                    <input type="hidden" name="category_id" value="2" />
+                                    <input type="hidden" name="votable_id"
+                                        value="{{$group->competition($group->id)->participant->id}}" />
+
+
+                                    @if(Auth::check() && $user->status == 'active')
+                                    @if(isVoted($GaneshCompetition->id, 2))
+                                    <p class="button text-lg bg-success text-white flex-1 btn-not-allowed">
+                                        <ion-icon name="thumbs-up-outline"></ion-icon> Voted
+                                    </p>
+
+                                    @elseif(!isVotedCategory(2))
+                                    <button class="button text-lg bg-primary text-white flex-1">
+                                        <ion-icon name="thumbs-up-outline"></ion-icon> Vote Now
+                                    </button>
+
+                                    @else
+                                    <p
+                                        class="button text-lg bg-secondary text-white flex-1 btn-voting-disable btn-not-allowed">
+                                        <ion-icon name="thumbs-up-outline"></ion-icon> Vote Now
+                                    </p>
+                                    @endif
+                                    @else
+
+                                    <p
+                                        class="button text-lg bg-secondary text-white flex-1 btn-voting-disable btn-not-allowed">
+                                        <ion-icon name="thumbs-up-outline"></ion-icon> Vote Now
+                                    </p>
+                                    @endif
+                                </form>
+                            </div>
+                            @endif
+                        </div>
+                        @endif
+
+
+
                         <div class="flex items-center justify-between mb-4">
                             <div class="w-full qr-wrapper text-center">
-                                {!! DNS2D::getBarcodeSVG(route('ganeshFestivalGroup.show', $group->slug), 'QRCODE', 3, 3) !!}
+                                {!! DNS2D::getBarcodeSVG(route('ganeshFestivalGroup.show', $group->slug), 'QRCODE', 3,
+                                3) !!}
                             </div>
                             <button
                                 class="bg-marron button text-lg bg-primary text-white flex-1 mt-4 button text-lg bg-secondary text-white flex-1  btn-print-qr"
@@ -666,15 +959,17 @@ $(document).ready(function() {
 
                 </div>
             </div>
+
         </div>
 
     </div>
-    
+
 
 
     @include('front.widget.confirm-popup')
 
     @include('front.widget.popup.upload-cover-popup')
+
 
 
 </main>
