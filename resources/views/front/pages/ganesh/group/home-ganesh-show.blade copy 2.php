@@ -320,11 +320,10 @@ $(document).ready(function() {
 
                 @php
                 $visible = false;
-                
                 @endphp
 
-                
-                @if(checkIsHomeOwner($homeGanesh->id))
+
+                @if(checkIsHomeOwner($homeGanesh->participant_id))
 
                 <div class="bg-white rounded-xl shadow-sm p-4 space-y-4 text-sm font-medium border1 dark:bg-dark2">
 
