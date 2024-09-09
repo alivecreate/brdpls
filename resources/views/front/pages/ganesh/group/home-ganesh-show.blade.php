@@ -9,7 +9,7 @@
 @section('url'){{route('showHome', $homeGanesh->id)}}@endsection
 
 
-@section('image')https://imagedelivery.net/zfs38w7w3E1dJVvB3mVs9g/{{$homeGanesh->image}}/lg@endsection
+@section('image')https://imagedelivery.net/zfs38w7w3E1dJVvB3mVs9g/{{$homeGanesh->image}}/lg @endsection
 
 
 @section('custom-head')
@@ -206,12 +206,13 @@ $(document).ready(function() {
 
         <div class="flex 2xl:gap-12 gap-10 mt-8 max-lg:flex-col" id="js-oversized">
 
+           
+            
             <div class="lg:w-[400px]  lg:hidden w-full">
+                
                 <div class="lg:space-y-4 lg:pb-8 max-lg:grid sm:grid-cols-2 max-lg:gap-6"
                     uk-sticky="media: 1024; end: #js-oversized; offset: 80">
 
-
-                   
 
                     <div class="box p-5 px-6">
                         @if($homeGanesh->competition($homeGanesh->participant_id))
@@ -272,16 +273,15 @@ $(document).ready(function() {
                         </div>
                         <div class="flex items-center justify-between mb-4">
                             <div class="w-full qr-wrapper text-center">
-                                {!! DNS2D::getBarcodeSVG(route('showHome', $homeGanesh->id), 'QRCODE', 3, 3) !!}
+                                {!! DNS2D::getBarcodeSVG(route('showHome', [$homeGanesh->id, 'catid' => 3, 'slug' => $homeGanesh->id]), 'QRCODE', 3, 3) !!}
                             </div>
-
-                          
+                            
                             <button
                                 class="bg-marron button text-lg bg-primary text-white flex-1 mt-4 button text-lg bg-secondary text-white flex-1  btn-print-qr"
                                 data-image="https://imagedelivery.net/zfs38w7w3E1dJVvB3mVs9g/{{$homeGanesh->image}}/lg"
                                 data-name="{{$homeGanesh->name}}"
                                 data-logo="{{asset('front/images/web')}}/barodaplus-logo.png"
-                                data-qr="{{ DNS2D::getBarcodeSVG(route('showHome', [$homeGanesh->id, 'catid' => $homeGanesh->id, 'slug' =>$homeGanesh->id]), 'QRCODE', 8, 8) }}">
+                                data-qr="{{ DNS2D::getBarcodeSVG(route('showHome', [$homeGanesh->id, 'catid' => 3, 'slug' => $homeGanesh->id]), 'QRCODE', 8, 8) }}">
                                 <ion-icon name="download-outline" class="text-lg"></ion-icon> Print QR
                             </button>
                         </div>
