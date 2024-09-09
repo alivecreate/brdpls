@@ -78,15 +78,8 @@ $('.best-idol').addClass('active-link');
 
                         <form method="post" action="{{route('FestivalCompetitionVoting.store')}}">
                             @csrf
-                            <input type="hidden" name="participant_id" value="{{$GaneshCompetition->id}}" />
-                            <input type="hidden" name="category_id" value="1" />
-                            <input type="hidden" name="votable_id" value="{{$GaneshCompetition->participant->id}}" />
-
+                           
                             <div class="flex gap-2">
-                            <button class="button text-lg bg-primary text-white flex-1">
-                                    <ion-icon name="thumbs-up-outline"></ion-icon> Vote Now
-                                </button>
-
                                 
                             @if(Auth::check() && $user->status == 'active')
                                 @if(isVoted($GaneshCompetition->id, 1))
@@ -95,6 +88,11 @@ $('.best-idol').addClass('active-link');
                                 </p>
 
                                 @elseif(!isVotedCategory(1))
+                                <input type="hidden" name="participant_id" value="{{$GaneshCompetition->id}}" />
+                            <input type="hidden" name="category_id" value="1" />
+                            <input type="hidden" name="votable_id" value="{{$GaneshCompetition->participant->id}}" />
+
+                            
                                 <button class="button text-lg bg-primary text-white flex-1">
                                     <ion-icon name="thumbs-up-outline"></ion-icon> Vote Now
                                 </button>

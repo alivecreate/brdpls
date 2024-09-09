@@ -73,10 +73,7 @@
 
                         <form method="post" action="{{route('FestivalCompetitionVoting.store')}}">
                             @csrf
-                            <input type="hidden" name="participant_id" value="{{$GaneshCompetition->id}}" />
-                            <input type="hidden" name="category_id" value="2" />
-                            <input type="hidden" name="votable_id" value="{{$GaneshCompetition->participant->id}}" />
-
+                          
                             <div class="flex gap-2">
                                 
 
@@ -88,6 +85,11 @@
                                 </p>
                                 
                                 @elseif(!isVotedCategory(2))
+                                <input type="hidden" name="participant_id" value="{{$GaneshCompetition->id}}" />
+                            <input type="hidden" name="category_id" value="2" />
+                            <input type="hidden" name="votable_id" value="{{$GaneshCompetition->participant->id}}" />
+
+                            
                                 <button
                                     class="button text-lg bg-primary text-white flex-1">
                                     <ion-icon name="thumbs-up-outline"></ion-icon> Vote Now

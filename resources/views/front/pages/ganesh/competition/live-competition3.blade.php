@@ -23,7 +23,7 @@
     <div class="2xl:max-w-[1220px] max-w-[1065px] mx-auto lg:mt-2 mt-6">
 
     @if(!Auth::id() || getUserData()->status != 'active')
-    
+
         <div class="text-center" style="color: #d70000 !important;
     background: #e0e0e0;font-size: 30px; ">
         <h2><ion-icon name="alert-circle-outline" style="font-size: 60px;color: #b40000;"></ion-icon></h2>
@@ -80,10 +80,7 @@
 
                         <form method="post" action="{{route('FestivalCompetitionVoting.store')}}">
                             @csrf
-                            <input type="hidden" name="participant_id" value="{{$GaneshCompetition->id}}" />
-                            <input type="hidden" name="category_id" value="3" />
-                            <input type="hidden" name="votable_id" value="{{$GaneshCompetition->participant->id}}" />
-
+                           
                             <div class="flex gap-2">
                                 
 
@@ -94,6 +91,10 @@
                                 </p>
                                 
                                 @elseif(!isVotedCategory(3) && $user->status == 'active')
+                                <input type="hidden" name="participant_id" value="{{$GaneshCompetition->id}}" />
+                            <input type="hidden" name="category_id" value="3" />
+                            <input type="hidden" name="votable_id" value="{{$GaneshCompetition->participant->id}}" />
+
                                 <button
                                     class="button text-lg bg-primary text-white flex-1">
                                     <ion-icon name="thumbs-up-outline"></ion-icon> Vote Now
