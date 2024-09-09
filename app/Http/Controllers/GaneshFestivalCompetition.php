@@ -226,8 +226,7 @@ return redirect()->back()->with('error', 'Something went wrong, please try again
                 [
                     'status' => 'active',
                     'competition_type' => '1-2'
-                ])
-                ->whereHas('participant')
+                ])->orderBy('id', 'desc')
             ->get();
 
             // dd($GaneshCompetitions);
@@ -246,6 +245,7 @@ return redirect()->back()->with('error', 'Something went wrong, please try again
                     'competition_type' => '1-2'
                 ])
                 ->whereHas('participant')
+                ->orderBy('id', 'desc')
             ->get();
             
 
@@ -262,7 +262,7 @@ return redirect()->back()->with('error', 'Something went wrong, please try again
                     'status' => 'active',
                     'competition_type' => '3',
                 ])
-                ->whereHas('participant')
+                ->orderBy('id', 'desc')
             ->get();
             
                         

@@ -9,7 +9,6 @@
     
     <title>@yield('title', 'Ganesh Festival Live Competition - Barodaplus.com')</title>
 
-
     @yield('meta-content')
 
     <meta name="description" content="LIVE - ગણેશ સ્પર્ધા વડોદરા, બરોડા પ્લસ આપનું હાર્દિક સ્વાગત કરે છે.">    
