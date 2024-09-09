@@ -23,96 +23,104 @@ $('.best-idol').addClass('active-link');
     <div class="2xl:max-w-[1220px] max-w-[1065px] mx-auto lg:mt-2 mt-6">
 
         @if(!Auth::id())
-        <h1>ગણેશ સ્પર્ધામાં ભાગ લેવા, યુસર એકાઉન્ટ બનાવવું ફરજિયાત છે.</h1>
-        @endif
+        <div class="text-center" style="color: #d70000 !important;
+    background: #e0e0e0;font-size: 30px; ">
+        <h2><ion-icon name="alert-circle-outline" style="font-size: 60px;color: #b40000;"></ion-icon></h2>
+        <h1 class="text-center"   style="font-weight: bold;padding: 10px;">ગણેશ સ્પર્ધામાં ભાગ લેવા, યુસર એકાઉન્ટ બનાવવું ફરજિયાત છે.</h1>
+    <h3 style="color: #d70000 !important;
+    background: #e0e0e0;font-size: 30px;">Unverified યુસરના વોટ કાઉન્ટ કરવામાં આવશે નહીં, OTP સાથે વેરિફાઈડ યુસરના વોટજ કાઉન્ટ કરવામાં આવશે.</h3>
+</div>
+        @else
 
-        @include('front.ext.nav-mobile-menu')
+            @include('front.ext.nav-mobile-menu')
 
-        @include('front.pages.ganesh.competition.tab-live-competition')
-
-
-        <div class="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-2 grid-cols-1 p-1 gap-4">
-
-            @foreach($GaneshCompetitions as $GaneshCompetition)
-
-            <div class="card mb-2">
-
-                @if(getCompetitionGroup($GaneshCompetition->participant_id))
-                <a
-                    href="{{route('ganeshFestivalGroup.show', getCompetitionGroup($GaneshCompetition->participant_id)->slug)}}">
-                    <div class="card-media h-40">
-
-                        <img src="{{ optional(getCompetitionGroup($GaneshCompetition->participant_id)->cover)
-                                ? 'https://imagedelivery.net/zfs38w7w3E1dJVvB3mVs9g/' . $GaneshCompetition->participant->cover . '/sm' 
-                                : asset('front/images/product/product-1.jpg') }}" alt="">
-                        <h1>No user</h1>
-                        <div class="card-overly"></div>
-                    </div>
-                </a>
-                @endif
+            @include('front.pages.ganesh.competition.tab-live-competition')
 
 
-                @if(getCompetitionGroup($GaneshCompetition->participant_id))
-                <div class="card-body">
+            <div class="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-2 grid-cols-1 p-1 gap-4">
+
+                @foreach($GaneshCompetitions as $GaneshCompetition)
+
+                <div class="card mb-2">
+
+                    @if(getCompetitionGroup($GaneshCompetition->participant_id))
                     <a
-                        href="{{ route('ganeshFestivalGroup.show', optional(getCompetitionGroup($GaneshCompetition->participant_id))->slug) }}">
-                        <h4 class="card-title"> {{$GaneshCompetition->participant->name}} </h4>
+                        href="{{route('ganeshFestivalGroup.show', getCompetitionGroup($GaneshCompetition->participant_id)->slug)}}">
+                        <div class="card-media h-40">
+
+                            <img src="{{ optional(getCompetitionGroup($GaneshCompetition->participant_id)->cover)
+                                    ? 'https://imagedelivery.net/zfs38w7w3E1dJVvB3mVs9g/' . $GaneshCompetition->participant->cover . '/sm' 
+                                    : asset('front/images/product/product-1.jpg') }}" alt="">
+                            <h1>No user</h1>
+                            <div class="card-overly"></div>
+                        </div>
                     </a>
-                    <div class='flex'>
-                        <ion-icon class='text-md live-d-icon' name="location-outline"></ion-icon>
-                        <p class="text-sm"> {{$GaneshCompetition->participant->address}}</p>
-                    </div>
-                    <div class="card-text">
-                        <div class="card-list-info font-normal mt-1 bg-voting">
+                    @endif
 
-                            <div class='font-bold text-danger text-xl'>Total Votes:
-                                {{totalVotes($GaneshCompetition->participant_id, 1)}}</div>
+
+                    @if(getCompetitionGroup($GaneshCompetition->participant_id))
+                    <div class="card-body">
+                        <a
+                            href="{{ route('ganeshFestivalGroup.show', optional(getCompetitionGroup($GaneshCompetition->participant_id))->slug) }}">
+                            <h4 class="card-title"> {{$GaneshCompetition->participant->name}} </h4>
+                        </a>
+                        <div class='flex'>
+                            <ion-icon class='text-md live-d-icon' name="location-outline"></ion-icon>
+                            <p class="text-sm"> {{$GaneshCompetition->participant->address}}</p>
                         </div>
-                    </div>
+                        <div class="card-text">
+                            <div class="card-list-info font-normal mt-1 bg-voting">
 
-                    <form method="post" action="{{route('FestivalCompetitionVoting.store')}}">
-                        @csrf
-                        <input type="hidden" name="participant_id" value="{{$GaneshCompetition->id}}" />
-                        <input type="hidden" name="category_id" value="1" />
-                        <input type="hidden" name="votable_id" value="{{$GaneshCompetition->participant->id}}" />
+                                <div class='font-bold text-danger text-xl'>Total Votes:
+                                    {{totalVotes($GaneshCompetition->participant_id, 1)}}</div>
+                            </div>
+                        </div>
 
-                        <div class="flex gap-2">
+                        <form method="post" action="{{route('FestivalCompetitionVoting.store')}}">
+                            @csrf
+                            <input type="hidden" name="participant_id" value="{{$GaneshCompetition->id}}" />
+                            <input type="hidden" name="category_id" value="1" />
+                            <input type="hidden" name="votable_id" value="{{$GaneshCompetition->participant->id}}" />
 
-                        @if(Auth::check() && $user->status == 'active')
-                            @if(isVoted($GaneshCompetition->id, 1))
-                            <p class="button text-lg bg-success text-white flex-1 btn-not-allowed">
-                                <ion-icon name="thumbs-up-outline"></ion-icon> Voted
-                            </p>
+                            <div class="flex gap-2">
 
-                            @elseif(!isVotedCategory(1))
-                            <button class="button text-lg bg-primary text-white flex-1">
-                                <ion-icon name="thumbs-up-outline"></ion-icon> Vote Now
-                            </button>
+                            @if(Auth::check() && $user->status == 'active')
+                                @if(isVoted($GaneshCompetition->id, 1))
+                                <p class="button text-lg bg-success text-white flex-1 btn-not-allowed">
+                                    <ion-icon name="thumbs-up-outline"></ion-icon> Voted
+                                </p>
 
+                                @elseif(!isVotedCategory(1))
+                                <button class="button text-lg bg-primary text-white flex-1">
+                                    <ion-icon name="thumbs-up-outline"></ion-icon> Vote Now
+                                </button>
+
+                                @else
+                                <p class="button text-lg bg-secondary text-white flex-1 btn-voting-disable btn-not-allowed">
+                                    <ion-icon name="thumbs-up-outline"></ion-icon> Vote Now
+                                </p>
+                                @endif
                             @else
-                            <p class="button text-lg bg-secondary text-white flex-1 btn-voting-disable btn-not-allowed">
-                                <ion-icon name="thumbs-up-outline"></ion-icon> Vote Now
-                            </p>
+                            
+                                <p class="button text-lg bg-secondary text-white flex-1 btn-voting-disable btn-not-allowed">
+                                    <ion-icon name="thumbs-up-outline"></ion-icon> Vote Now
+                                </p>
                             @endif
-                        @else
-                        
-                            <p class="button text-lg bg-secondary text-white flex-1 btn-voting-disable btn-not-allowed">
-                                <ion-icon name="thumbs-up-outline"></ion-icon> Vote Now
-                            </p>
-                        @endif
 
-                            <a href="{{route('ganeshFestivalGroup.show', $GaneshCompetition->participant->slug)}}"
-                                class="button text-lg bg-secondery !w-auto">
-                                <ion-icon name="eye-outline"></ion-icon> View
-                            </a>
-                        </div>
-                    </form>
+                                <a href="{{route('ganeshFestivalGroup.show', $GaneshCompetition->participant->slug)}}"
+                                    class="button text-lg bg-secondery !w-auto">
+                                    <ion-icon name="eye-outline"></ion-icon> View
+                                </a>
+                            </div>
+                        </form>
+                    </div>
+                    @endif
                 </div>
-                @endif
-            </div>
-            @endforeach
+                @endforeach
 
-        </div>
+            </div>
+
+        @endif
 
     </div>
 
