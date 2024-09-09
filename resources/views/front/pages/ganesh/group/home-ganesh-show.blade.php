@@ -1,9 +1,17 @@
 @extends('front.layout.ganesh-festival-layout')
 
 
-@section('title')
-{{ $homeGanesh->name }}, {{ $homeGanesh->city }}, Ganesh Festival - Barodaplus.com
-@endsection
+@section('title'){{ $homeGanesh->name }}, {{ $homeGanesh->city }}, Ganesh Festival - Barodaplus.com @endsection
+
+@section('description')બરોડા પ્લસ ગણેશ સ્પર્ધા - 2024 - {{optional($homeGanesh)->name}} - મંડળને વોટ કરવા અને ફોટો તેમજ વિડિયો જોવા નીચે આપેલી લિન્ક પર ક્લિક કરો. @endsection
+
+
+@section('url') route('showHome', $homeGanesh->id) @endsection
+
+
+@section('image') https://imagedelivery.net/zfs38w7w3E1dJVvB3mVs9g/{{$homeGanesh->image}}/lg @endsection
+
+
 
 @section('custom-head')
 <style>
@@ -60,10 +68,7 @@ $(document).ready(function() {
         printWindow.document.write(
             `<h4 style="textext-align:center;font-size: 31px;margin:10px 0px;color: #150497;background-color: #fff2b4;border: 1px solid #a0a0a0;border-radius: 2px;padding: 4px;margin-top: 32px;font-family: sans-serif;font-weight: bold;">${qrName}</h4>`
         );
-        printWindow.document.write(
-            `<h3 style="text-align:center;font-size: 21px;margin-top: 14px;margin-bottom: 25px;">(${qrAddress})</h3>`
-        );
-
+        
         printWindow.document.write(
             `<div style="width:100%;margin-bottom: 20px;"> <div style="background-color: #ffffff;padding: 13px;display: inline-block;border: 1px solid;border-radius: 11px;">${qrCode}</div></div>`
         );
@@ -206,6 +211,9 @@ $(document).ready(function() {
                 <div class="lg:space-y-4 lg:pb-8 max-lg:grid sm:grid-cols-2 max-lg:gap-6"
                     uk-sticky="media: 1024; end: #js-oversized; offset: 80">
 
+
+                   
+
                     <div class="box p-5 px-6">
                         @if($homeGanesh->competition($homeGanesh->participant_id))
                         <div class="flex-center mb-4">
@@ -267,14 +275,14 @@ $(document).ready(function() {
                             <div class="w-full qr-wrapper text-center">
                                 {!! DNS2D::getBarcodeSVG(route('showHome', $homeGanesh->id), 'QRCODE', 3, 3) !!}
                             </div>
-                            
 
+                          
                             <button
                                 class="bg-marron button text-lg bg-primary text-white flex-1 mt-4 button text-lg bg-secondary text-white flex-1  btn-print-qr"
                                 data-image="https://imagedelivery.net/zfs38w7w3E1dJVvB3mVs9g/{{$homeGanesh->image}}/lg"
                                 data-name="{{$homeGanesh->name}}"
                                 data-logo="{{asset('front/images/web')}}/barodaplus-logo.png"
-                                data-qr="{{ DNS2D::getBarcodeSVG(route('showHome', $homeGanesh->id), 'QRCODE', 8, 8) }}">
+                                data-qr="{{ DNS2D::getBarcodeSVG(route('showHome', [$homeGanesh->id, 'catid' => $homeGanesh->id, 'slug' =>$homeGanesh->id]), 'QRCODE', 8, 8) }}">
                                 <ion-icon name="download-outline" class="text-lg"></ion-icon> Print QR
                             </button>
                         </div>
@@ -414,6 +422,7 @@ $(document).ready(function() {
                 <div class="lg:space-y-4 lg:pb-8 max-lg:grid sm:grid-cols-2 max-lg:gap-6"
                     uk-sticky="media: 1024; end: #js-oversized; offset: 80">
 
+
                     <div class="box p-5 px-6">
                         @if($homeGanesh->competition($homeGanesh->participant_id))
                         <div class="flex-center mb-4">
@@ -473,8 +482,7 @@ $(document).ready(function() {
                         </div>
                         <div class="flex items-center justify-between mb-4">
                             <div class="w-full qr-wrapper text-center">
-                                {!! DNS2D::getBarcodeSVG(route('showHome', $homeGanesh->id), 'QRCODE', 3, 3)
-                                !!}
+                                {!! DNS2D::getBarcodeSVG(route('showHome', [$homeGanesh->id, 'catid' => 3, 'slug' => $homeGanesh->id]), 'QRCODE', 3, 3) !!}
                             </div>
                             
                             <button
@@ -482,7 +490,7 @@ $(document).ready(function() {
                                 data-image="https://imagedelivery.net/zfs38w7w3E1dJVvB3mVs9g/{{$homeGanesh->image}}/lg"
                                 data-name="{{$homeGanesh->name}}"
                                 data-logo="{{asset('front/images/web')}}/barodaplus-logo.png"
-                                data-qr="{{ DNS2D::getBarcodeSVG(route('showHome', $homeGanesh->id), 'QRCODE', 8, 8) }}">
+                                data-qr="{{ DNS2D::getBarcodeSVG(route('showHome', [$homeGanesh->id, 'catid' => 3, 'slug' => $homeGanesh->id]), 'QRCODE', 8, 8) }}">
                                 <ion-icon name="download-outline" class="text-lg"></ion-icon> Print QR
                             </button>
                         </div>

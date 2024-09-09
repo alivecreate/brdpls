@@ -19,21 +19,21 @@
       <meta name="robots" content="index, follow">
       
     <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="Ganesh Festival Live Competition - Barodaplus.com">
-    <meta property="og:description" content="LIVE - ગણેશ સ્પર્ધા વડોદરા, બરોડા પ્લસ આપનું હાર્દિક સ્વાગત કરે છે.">
+    <meta property="og:title" content="@yield('title', 'Ganesh Festival Live Competition - Barodaplus.com')">
+    <meta property="og:description" content="@yield('description', 'LIVE - ગણેશ સ્પર્ધા વડોદરા, બરોડા પ્લસ આપનું હાર્દિક સ્વાગત કરે છે.')">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="{{ url('/') }}">
-    <meta property="og:image" content="{{asset('front/images/web')}}/login-image.webp">
+    <meta property="og:url" content="@yield('url', url('/'))">
+    <meta property="og:image" content="@yield('image', asset('front/images/web'))/login-image.webp">
     <meta property="og:site_name" content="Barodaplus.com">
     <meta property="og:locale" content="en_US">
 
     <!-- Twitter Card Meta Tags -->
-    <meta name="twitter:card" content="Ganesh Festival Live Competition - Barodaplus.com">
-    <meta name="twitter:title" content="Ganesh Festival Live Competition - Barodaplus">
-    <meta name="twitter:description" content="LIVE - ગણેશ સ્પર્ધા વડોદરા, બરોડા પ્લસ આપનું હાર્દિક સ્વાગત કરે છે.">
-    <meta name="twitter:image" content="{{asset('front/images/web')}}/login-image.webp">
-    <meta name="twitter:site" content="@krishnakahar92">
-    <meta name="twitter:creator" content="@krishnakahar92">
+    <meta name="twitter:card" content="બરોડા પ્લસ આપનું હાર્દિક સ્વાગત કરે છે.">
+    <meta name="twitter:title" content="@yield('title', 'Ganesh Festival Live Competition - Barodaplus.com')">
+    <meta name="twitter:description" content="@yield('description', 'LIVE - ગણેશ સ્પર્ધા વડોદરા, બરોડા પ્લસ આપનું હાર્દિક સ્વાગત કરે છે.')">
+    <meta name="twitter:image" content="@yield('title', asset('front/images/web'))/login-image.webp">
+    <meta name="twitter:site" content="Barodaplus.com">
+    <meta name="twitter:creator" content="Barodaplus.com">
 
     <!-- Mobile Browser Theme Color -->
     <meta name="theme-color" content="#ffffff">
