@@ -22,8 +22,13 @@
     <meta property="og:title" content="@yield('title', 'Ganesh Festival Live Competition - Barodaplus.com')">
     <meta property="og:description" content="@yield('description', 'LIVE - ગણેશ સ્પર્ધા વડોદરા, બરોડા પ્લસ આપનું હાર્દિક સ્વાગત કરે છે.')">
     <meta property="og:type" content="website">
+    
+    
     <meta property="og:url" content="@yield('url', url('/'))">
-    <meta property="og:image" content="@yield('image', asset('front/images/web'))/login-image.webp">
+    
+    
+    <meta property="og:image" content="@yield('image', asset('front/images/web/login-image.webp'))">
+
     <meta property="og:site_name" content="Barodaplus.com">
     <meta property="og:locale" content="en_US">
 
@@ -31,7 +36,7 @@
     <meta name="twitter:card" content="બરોડા પ્લસ આપનું હાર્દિક સ્વાગત કરે છે.">
     <meta name="twitter:title" content="@yield('title', 'Ganesh Festival Live Competition - Barodaplus.com')">
     <meta name="twitter:description" content="@yield('description', 'LIVE - ગણેશ સ્પર્ધા વડોદરા, બરોડા પ્લસ આપનું હાર્દિક સ્વાગત કરે છે.')">
-    <meta name="twitter:image" content="@yield('title', asset('front/images/web'))/login-image.webp">
+    <meta name="twitter:image" content="@yield('image', asset('front/images/web'))/login-image.webp">
     <meta name="twitter:site" content="Barodaplus.com">
     <meta name="twitter:creator" content="Barodaplus.com">
 

@@ -6,11 +6,10 @@
 @section('description')બરોડા પ્લસ ગણેશ સ્પર્ધા - 2024 - {{optional($homeGanesh)->name}} - મંડળને વોટ કરવા અને ફોટો તેમજ વિડિયો જોવા નીચે આપેલી લિન્ક પર ક્લિક કરો. @endsection
 
 
-@section('url') route('showHome', $homeGanesh->id) @endsection
+@section('url'){{route('showHome', $homeGanesh->id)}}@endsection
 
 
-@section('image') https://imagedelivery.net/zfs38w7w3E1dJVvB3mVs9g/{{$homeGanesh->image}}/lg @endsection
-
+@section('image')https://imagedelivery.net/zfs38w7w3E1dJVvB3mVs9g/{{$homeGanesh->image}}/lg@endsection
 
 
 @section('custom-head')
