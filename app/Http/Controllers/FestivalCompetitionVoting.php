@@ -48,6 +48,9 @@ class FestivalCompetitionVoting extends Controller
         if(!$user){
             return redirect()->back()->with('error', 'User Registration is Required for Voting.');
         }
+        if($user->status !== 'active'){
+            return redirect()->back()->with('error', 'User Registration Verification is Required for Voting.');
+        }
 
         // Find the competition category
         // $competitionCategory = GaneshCompetitionCategory::findOrFail($request->category_id);

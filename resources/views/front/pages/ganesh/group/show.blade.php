@@ -283,12 +283,7 @@ $(document).ready(function() {
                                 </div>
                                 <form method="post" action="{{route('FestivalCompetitionVoting.store')}}">
                                     @csrf
-                                    <input type="hidden" name="participant_id"
-                                        value="{{$group->competition($group->id)->id}}" />
-                                    <input type="hidden" name="category_id" value="1" />
-                                    <input type="hidden" name="votable_id"
-                                        value="{{$group->competition($group->id)->participant->id}}" />
-
+                                   
 
                                     @if(Auth::check() && $user->status == 'active')
                                     @if(isVoted($GaneshCompetition->id, 1))
@@ -297,6 +292,12 @@ $(document).ready(function() {
                                     </p>
 
                                     @elseif(!isVotedCategory(1))
+                                    <input type="hidden" name="participant_id"
+                                        value="{{$group->competition($group->id)->id}}" />
+                                    <input type="hidden" name="category_id" value="1" />
+                                    <input type="hidden" name="votable_id"
+                                        value="{{$group->competition($group->id)->participant->id}}" />
+
                                     <button class="button text-lg bg-primary text-white flex-1">
                                         <ion-icon name="thumbs-up-outline"></ion-icon> Vote Now
                                     </button>
@@ -798,20 +799,23 @@ $(document).ready(function() {
 
                         @if(checkCompetitionSchedule()->status == 'live')
 
-                        @if($group->competition($group->id))
+                        @if(getUserData()->status != 'active')
+                        
+                        @endif
+                    
+
+                        @if($group->competition($group->id) && $group->competition($group->id)->status == 'active')
                         <div class="flex-center mb-4">
                             <h2 class="heading-h2 text-danger text-underline">ગણેશ સ્પર્ધા (Live)</h2>
                             <img class="live-icon" src="{{asset('front/images/web')}}/live-icon.gif"
                                 alt="Barodaplus live voting">
                         </div>
-                        @endif
 
                         <div class="text-black dark:text-white">
                             @if($group->competition($group->id))
-
-                            @php
-                            $GaneshCompetition = $group->competition($group->id);
-                            @endphp
+                                @php
+                                $GaneshCompetition = $group->competition($group->id);
+                                @endphp
 
                             <div class="flex items-center justify-between mb-4">
                                 <div class="flex-column">
@@ -823,11 +827,6 @@ $(document).ready(function() {
                                 </div>
                                 <form method="post" action="{{route('FestivalCompetitionVoting.store')}}">
                                     @csrf
-                                    <input type="hidden" name="participant_id"
-                                        value="{{$group->competition($group->id)->id}}" />
-                                    <input type="hidden" name="category_id" value="1" />
-                                    <input type="hidden" name="votable_id"
-                                        value="{{$group->competition($group->id)->participant->id}}" />
 
 
                                     @if(Auth::check() && $user->status == 'active')
@@ -837,6 +836,12 @@ $(document).ready(function() {
                                     </p>
 
                                     @elseif(!isVotedCategory(1))
+                                    
+                                    <input type="hidden" name="participant_id"
+                                        value="{{$group->competition($group->id)->id}}" />
+                                    <input type="hidden" name="category_id" value="1" />
+                                    <input type="hidden" name="votable_id"
+                                        value="{{$group->competition($group->id)->participant->id}}" />
                                     <button class="button text-lg bg-primary text-white flex-1">
                                         <ion-icon name="thumbs-up-outline"></ion-icon> Vote Now
                                     </button>
@@ -907,6 +912,7 @@ $(document).ready(function() {
                         </div>
                         @endif
 
+                        @endif
 
 
                         <div class="flex items-center justify-between mb-4">

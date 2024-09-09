@@ -233,8 +233,7 @@ class PageController extends Controller
         return redirect(route('login'));
 
         }
-        
-        elseif($user->status == 'pending'){
+        elseif($user->status && $user->status  == 'pending'){
             return view('front.pages.register-verify', compact('user'));
         }
         else{

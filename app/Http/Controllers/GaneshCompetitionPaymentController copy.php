@@ -32,7 +32,7 @@ $user = User::where(['id' => Auth::id()])->first();
 
 
 $api = new Api('rzp_live_jNnuOXSAHlPWjB', 'D33oGQInRgnCV0jnyxYPgLxw');
-// $receipt = str_pad(mt_rand(0, 99999999), 6, '0', STR_PAD_LEFT);
+$receipt = str_pad(mt_rand(0, 99999999), 6, '0', STR_PAD_LEFT);
 
 $groups = Group::where('status', 'active')->orderBy('id', 'desc')->limit(6)->get();
         
@@ -82,7 +82,6 @@ if($homeGaneshCompetition){
         
         $orderId = $order['id'];
         
-    $group_id = null;
     return view('front.pages.ganesh.competition.payment-home', 
     compact('orderId', 'order', 'group', 'group_id', 'groups', 'user', 'user_id', 'competition_id',  'amount', 'homeGaneshCompetition', 'homeGaneshCompetitionLists'));
 
@@ -131,25 +130,22 @@ if(!$competition){
 $group_id = $group->id;
 $competition_id = $competition->id;
 
-// $order = $api->order->create(array(
-// 'receipt' => $receipt,
-//  'amount' => $amount*100,
+$order = $api->order->create(array(
+'receipt' => $receipt,
+ 'amount' => $amount*100,
  
 
-//  'currency' => 'INR',
-//   'notes'=> array(
-//     'user_id'=> Auth::id(),
-//     'group_id'=> $group,
-//     'competition_id' => $competition->id
-// )));
+ 'currency' => 'INR',
+  'notes'=> array(
+    'user_id'=> Auth::id(),
+    'group_id'=> $group,
+    'competition_id' => $competition->id
+)));
 
 //   dd($order['amount']);
-  $order['amount'] = null;
 
-// $orderId = $order['id'];
-$orderId = null;
+$orderId = $order['id'];
 
-// $group_id = null;
 if($group){
     $competition = GaneshCompetition::where(['participant_id' => $group->id])->first();
     return view('front.pages.ganesh.competition.payment', 

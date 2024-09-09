@@ -240,12 +240,7 @@ $(document).ready(function() {
                                 </div>
                                 <form method="post" action="{{route('FestivalCompetitionVoting.store')}}">
                                     @csrf
-                                    <input type="hidden" name="participant_id"
-                                        value="{{$homeGanesh->competition($homeGanesh->participant_id)->id}}" />
-                                    <input type="hidden" name="category_id" value="3" />
-                                    <input type="hidden" name="votable_id"
-                                        value="{{$homeGanesh->competition($homeGanesh->participant_id)->participant->id}}" />
-
+                                  
 
                                     @if(Auth::check() && $user->status == 'active')
                                     @if(isVoted($GaneshCompetition->id, 3))
@@ -254,6 +249,12 @@ $(document).ready(function() {
                                     </p>
 
                                     @elseif(!isVotedCategory(3) && $user->status == 'active')
+                                    <input type="hidden" name="participant_id"
+                                        value="{{$homeGanesh->competition($homeGanesh->participant_id)->id}}" />
+                                    <input type="hidden" name="category_id" value="3" />
+                                    <input type="hidden" name="votable_id"
+                                        value="{{$homeGanesh->competition($homeGanesh->participant_id)->participant->id}}" />
+
                                     <button class="button text-lg bg-primary text-white flex-1">
                                         <ion-icon name="thumbs-up-outline"></ion-icon> Vote Now
                                     </button>
@@ -449,12 +450,7 @@ $(document).ready(function() {
                                 </div>
                                 <form method="post" action="{{route('FestivalCompetitionVoting.store')}}">
                                     @csrf
-                                    <input type="hidden" name="participant_id"
-                                        value="{{$homeGanesh->competition($homeGanesh->participant_id)->id}}" />
-                                    <input type="hidden" name="category_id" value="3" />
-                                    <input type="hidden" name="votable_id"
-                                        value="{{$homeGanesh->competition($homeGanesh->participant_id)->participant->id}}" />
-
+                                 
 
                                     @if(Auth::check() && $user->status == 'active')
                                     @if(isVoted($GaneshCompetition->id, 3))
@@ -463,6 +459,12 @@ $(document).ready(function() {
                                     </p>
 
                                     @elseif(!isVotedCategory(3) && $user->status == 'active')
+                                    <input type="hidden" name="participant_id"
+                                        value="{{$homeGanesh->competition($homeGanesh->participant_id)->id}}" />
+                                    <input type="hidden" name="category_id" value="3" />
+                                    <input type="hidden" name="votable_id"
+                                        value="{{$homeGanesh->competition($homeGanesh->participant_id)->participant->id}}" />
+
                                     <button class="button text-lg bg-primary text-white flex-1">
                                         <ion-icon name="thumbs-up-outline"></ion-icon> Vote Now
                                     </button>
