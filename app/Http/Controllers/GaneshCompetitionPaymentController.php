@@ -31,7 +31,9 @@ $user = User::where(['id' => Auth::id()])->first();
 
 
 
-$api = new Api('rzp_live_jNnuOXSAHlPWjB', 'N9TyzDVHjAs2hwhvDvdGSAhw');
+// $api = new Api('rzp_live_jNnuOXSAHlPWjB', 'N9TyzDVHjAs2hwhvDvdGSAhw');
+
+$api = new Api('rzp_live_jNnuOXSAHlPWjB', 'D33oGQInRgnCV0jnyxYPgLxw');
 $receipt = str_pad(mt_rand(0, 99999999), 6, '0', STR_PAD_LEFT);
 
 $groups = Group::where('status', 'active')->orderBy('id', 'desc')->limit(6)->get();

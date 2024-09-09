@@ -265,10 +265,10 @@ $(document).ready(function() {
                         </div>
                         <div class="flex items-center justify-between mb-4">
                             <div class="w-full qr-wrapper text-center">
-                                {!! DNS2D::getBarcodeSVG(route('showHome', $homeGanesh->id), 'QRCODE', 3, 3)
-                                !!}
+                                {!! DNS2D::getBarcodeSVG(route('showHome', $homeGanesh->id), 'QRCODE', 3, 3) !!}
                             </div>
                             
+
                             <button
                                 class="bg-marron button text-lg bg-primary text-white flex-1 mt-4 button text-lg bg-secondary text-white flex-1  btn-print-qr"
                                 data-image="https://imagedelivery.net/zfs38w7w3E1dJVvB3mVs9g/{{$homeGanesh->image}}/lg"
