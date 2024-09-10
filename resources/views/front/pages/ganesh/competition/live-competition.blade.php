@@ -31,13 +31,8 @@ $('.best-idol').addClass('active-link');
     background: #e0e0e0;font-size: 30px;">Unverified યુસરના વોટ કાઉન્ટ કરવામાં આવશે નહીં, OTP સાથે વેરિફાઈડ યુસરના વોટજ કાઉન્ટ કરવામાં આવશે.</h3>
     
     @if(!Auth::id() || (getUserData() && getUserData()->status != 'active'))
-        <a href="{{route('userVerification',['cid' => getUserData()['cid']])}}">
-            <div
-                class="button bg-primary text-white flex-1 mb-6">
-                <ion-icon name="checkmark" style="font-size: 23px;"></ion-icon>
-                Verify User Account
-            </div>
-        </a>
+       
+    
     @endif
 
 </div>
