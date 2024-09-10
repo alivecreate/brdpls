@@ -21,8 +21,8 @@ $('.best-idol').addClass('active-link');
     class="2xl:ml-[--w-side]  xl:ml-[--w-side-sm] 2xl:ml-[--w-side]  xl:ml-[--w-side-sm] h-[calc(100vh-var(--m-top))] mt-[--m-top] p-6">
 
     <div class="2xl:max-w-[1220px] max-w-[1065px] mx-auto lg:mt-2 mt-6">
-
-    @if(!Auth::id() || ($userData && $userData->status != 'active'))
+        
+    @if(!Auth::id() && getUserData()->status != 'active')
         <div class="text-center" style="color: #d70000 !important;
     background: #e0e0e0;font-size: 30px; ">
         <h2><ion-icon name="alert-circle-outline" style="font-size: 60px;color: #b40000;"></ion-icon></h2>
@@ -31,8 +31,13 @@ $('.best-idol').addClass('active-link');
     background: #e0e0e0;font-size: 30px;">Unverified યુસરના વોટ કાઉન્ટ કરવામાં આવશે નહીં, OTP સાથે વેરિફાઈડ યુસરના વોટજ કાઉન્ટ કરવામાં આવશે.</h3>
     
     @if(!Auth::id() || (getUserData() && getUserData()->status != 'active'))
-       
-    
+        <a href="{{route('userVerification',['cid' => getUserData()['cid']])}}">
+            <div
+                class="button bg-primary text-white flex-1 mb-6">
+                <ion-icon name="checkmark" style="font-size: 23px;"></ion-icon>
+                Verify User Account
+            </div>
+        </a>
     @endif
 
 </div>
