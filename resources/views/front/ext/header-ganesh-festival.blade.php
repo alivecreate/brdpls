@@ -121,7 +121,6 @@
                          src="{{asset('front')}}/images/avatars/avatar-3.jpg"
                                     alt="Profile Picture" />
                         @endif
-                        
                                 <div class="flex-1">
                                     <h4 class="text-sm font-medium text-black">@if(getUserData()){{getUserData()['first_name']}} {{getUserData()['last_name']}}@endif</h4>
                                     <div class="text-sm mt-1 text-blue-600 font-light dark:text-white/70">@if(getUserData()){{getUserData()['phone']}}@endif</div>
@@ -132,7 +131,8 @@
                         <hr class="dark:border-gray-600/60">
                         <nav class="p-2 text-sm text-black font-normal dark:text-white">
 
-                        <a href="{{route('userVerification',['cid' => getUserData()['cid']])}}">
+                        @if(getUserData()->status == 'active')
+                            <a href="{{route('userVerification',['cid' => getUserData()['cid']])}}">
                                 <div
                                     class="flex items-center gap-2.5 hover:bg-secondery p-2 px-2.5 rounded-md dark:hover:bg-white/10">
                                    
@@ -141,6 +141,7 @@
                                     Verify User Account
                                 </div>
                             </a>
+                            @endif
 
                             <a href="{{route('setting')}}">
                                 <div

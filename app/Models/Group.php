@@ -89,7 +89,7 @@ public function myCompetition()
 
 public function competition($id)
 {
-    return GaneshCompetition::where('participant_id', $id)->first();
+    return GaneshCompetition::where(['participant_id' => $id, 'status' => 'active'])->first();
 
     return GaneshCompetition::where('participant_id', $id)->first();
 }
