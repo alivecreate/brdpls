@@ -799,7 +799,7 @@ $(document).ready(function() {
 
                         @if(checkCompetitionSchedule()->status == 'live')
 
-                        @if(getUserData()->status != 'active')
+                        @if(!Auth::id() || (getUserData() && getUserData()->status != 'active'))
                         
                         @endif
                     
