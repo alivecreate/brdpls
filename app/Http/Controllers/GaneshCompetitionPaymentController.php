@@ -29,9 +29,15 @@ class GaneshCompetitionPaymentController extends Controller
 $user = User::where(['id' => Auth::id()])->first();
 
 
+$RAZORPAY_KEY = env('RAZORPAY_KEY');
+$RAZORPAY_SECRET = env('RAZORPAY_SECRET');
+        // dd($RAZORPAY_SECRET);
 
 // Live Mode
-$api = new Api('rzp_live_tikv5K0KsgzLkq', 'QxfSqoCiQmRJdeXD1LYxF7xn');
+
+
+
+$api = new Api($RAZORPAY_KEY, $RAZORPAY_SECRET);
 $receipt = str_pad(mt_rand(0, 99999999), 6, '0', STR_PAD_LEFT);
 
 // Test 
@@ -171,8 +177,11 @@ if($group){
     $input = $request->all(); 
 
     // dd($input);
+$RAZORPAY_KEY = env('RAZORPAY_KEY');
+$RAZORPAY_SECRET = env('RAZORPAY_SECRET');
 
-    $api = new Api('rzp_live_jNnuOXSAHlPWjB', 'D33oGQInRgnCV0jnyxYPgLxw');
+    // $api = new Api('rzp_live_jNnuOXSAHlPWjB', 'D33oGQInRgnCV0jnyxYPgLxw');
+    $api = new Api($RAZORPAY_KEY, $RAZORPAY_SECRET);
 
     $attributes = [
         'razorpay_payment_id' => $request['razorpay_payment_id'],
@@ -203,8 +212,11 @@ if($group){
             'name' => $request->name,
             'competition_id' => $request->competition_id,
         ]);
+        // $records = ModelName::where('status', '!=', 'active')->get();
 
-        $ganeshCompetition = GaneshCompetition::where(['participant_id' => $request->user_id, 'status' => 'pending'])->first();
+        $ganeshCompetition = GaneshCompetition::where('participant_id', $request->user_id)->where('status', '!=', 'active')->first();
+
+        
 
         $ganeshCompetition->update(
             ['status' => 'active']
