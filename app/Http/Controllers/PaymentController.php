@@ -18,7 +18,7 @@ class PaymentController extends Controller
     public function createOrder()
     {
         
-        $api = new Api('rzp_live_jNnuOXSAHlPWjB', 'D33oGQInRgnCV0jnyxYPgLxw');
+        $api = new Api('rzp_live_tikv5K0KsgzLkq', 'QxfSqoCiQmRJdeXD1LYxF7xn');
 
         $order = $api->order->create(array('receipt' => '123', 'amount' => 1 * 100, 'currency' => 'INR', 'notes'=> array('key1'=> 'value3','key2'=> 'value2')));
 
