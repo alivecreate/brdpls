@@ -28,6 +28,8 @@ class GaneshCompetitionPaymentController extends Controller
         
 $user = User::where(['id' => Auth::id()])->first();
 
+
+
 // Live Mode
 $api = new Api('rzp_live_tikv5K0KsgzLkq', 'QxfSqoCiQmRJdeXD1LYxF7xn');
 $receipt = str_pad(mt_rand(0, 99999999), 6, '0', STR_PAD_LEFT);
