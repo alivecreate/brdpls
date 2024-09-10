@@ -131,7 +131,7 @@
                         <hr class="dark:border-gray-600/60">
                         <nav class="p-2 text-sm text-black font-normal dark:text-white">
 
-                        @if(getUserData()->status == 'active')
+                        @if(getUserData()->status != 'active')
                             <a href="{{route('userVerification',['cid' => getUserData()['cid']])}}">
                                 <div
                                     class="flex items-center gap-2.5 hover:bg-secondery p-2 px-2.5 rounded-md dark:hover:bg-white/10">

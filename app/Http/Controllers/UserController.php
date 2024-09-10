@@ -132,8 +132,13 @@ $request->session()->put('isLoginSession', $user->id);
                     $user = User::where('phone',  $request->phone)->select('id')->first();
                     $request->session()->put('isLoginSession', $user->id);
         
+
+                if ($user->status != 'active') {
+                    return redirect()->route('userVerification',['cid' => getUserData()['cid']]);
+                }
                 return redirect()->route('index');
-            }
+
+        }
         
             return back()->withErrors([
                 'phone' => 'The phone number or password is incorrect.',
