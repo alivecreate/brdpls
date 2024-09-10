@@ -57,7 +57,7 @@ class FestivalCompetitionVoting extends Controller
         // return '1';
         
         $participant = GaneshCompetition::findOrFail($request->participant_id);
-        // dd($participant);
+        dd($participant);
 
         $existingVote = CompetitionVote::where('user_id', Auth::id())
         ->where('competition_category_id', $request->category_id)

@@ -224,19 +224,20 @@ class PageController extends Controller
 
         $user = User::where(['cid' => $cid])->first();
 
+        // dd($user);
+
         if(!$user){
         return redirect(route('login'));
     }
-        
-        
-        if($user->status == 'active'){
-        return redirect(route('login'));
-
+        elseif($user->status == 'active'){
+            return redirect(route('login'));
         }
-        elseif($user->status && $user->status  == 'pending'){
+
+        elseif($user->status != 'active'){
             return view('front.pages.register-verify', compact('user'));
         }
         else{
+                    // dd('reg');       
             return redirect(route('registration'));
         }
 

@@ -3,7 +3,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Favicon -->
-    <link href="{{asset('front')}}/images/favicon.png" rel="icon" type="image/png">
+    <link href="{{asset('front')}}/images/favicons/apple-touch-icon.png" rel="icon" type="image/png">
 
     <!-- title and description-->
     
