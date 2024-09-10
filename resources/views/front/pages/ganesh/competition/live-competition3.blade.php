@@ -27,7 +27,7 @@
         <div class="text-center" style="color: #d70000 !important;
     background: #e0e0e0;font-size: 30px; ">
         <h2><ion-icon name="alert-circle-outline" style="font-size: 60px;color: #b40000;"></ion-icon></h2>
-        <h1 class="text-center"   style="font-weight: bold;padding: 10px;color: black !important;">ગણેશ સ્પર્ધામાં ભાગ લેવા, યુસર એકાઉન્ટ બનાવવું ફરજિયાત છે.</h1>
+        <h1 class="text-center"   style="font-weight: bold;padding: 10px;color: black !important;">ગણેશ સ્પર્ધામાં ભાગ લેવા અને વોટ કરવા, યુસર એકાઉન્ટ બનાવવું ફરજિયાત છે.</h1>
     <h3 style="color: #d70000 !important;
     background: #e0e0e0;font-size: 30px;">Unverified યુસરના વોટ કાઉન્ટ કરવામાં આવશે નહીં, OTP સાથે વેરિફાઈડ યુસરના વોટજ કાઉન્ટ કરવામાં આવશે.</h3>
 </div>
