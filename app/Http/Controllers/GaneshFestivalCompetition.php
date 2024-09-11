@@ -56,7 +56,6 @@ class GaneshFestivalCompetition extends Controller
             // dd('grp available');
 
             $competition = GaneshCompetition::where(['participant_id' => $group->id])->first();
-            return redirect()->route('ganeshCompetitionPaymentCreate', ['type' => 'group']);
             if($competition){
                 return view('front.pages.ganesh.competition.create', compact('groups', 'group', 'type', 'ganeshCompetitionCategories', 'competition'));
             }
