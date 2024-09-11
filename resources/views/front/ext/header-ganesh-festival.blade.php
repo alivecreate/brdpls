@@ -45,8 +45,8 @@
                         @if(isGroupExists()  && !isHomeCompetitionExists())
         <a href="{{route('ganeshCompetitionPaymentCreate', ['type' => 'group'])}}" 
             class="flex-inline p-3 px-4 rounded-lg bg-teal-100/60 text-teal-600 font-semibold dark:text-white dark:bg-dark4">
-                                    <ion-icon name="people" class="text-2xl drop-shadow-md md hydrated mr-2" role="img"
-                                    aria-label="book"></ion-icon> ગણેશ સ્પર્ધા રજિસ્ટ્રેશન</a>
+            <ion-icon name="people" class="text-2xl drop-shadow-md md hydrated mr-2" role="img"
+            aria-label="book"></ion-icon> ગણેશ સ્પર્ધા રજિસ્ટ્રેશન</a>
                                     
         @elseif(isHomeCompetitionExists())
         <a href="{{route('ganeshCompetitionPaymentCreate', ['type' => 'home'])}}" 
@@ -56,8 +56,8 @@
        
         @endif
                         </li>
+                        @if(!isGroupExists() && !isHomeCompetitionExists() && getUserData() && getUserData()->status == 'active')
 
-                        @if(!isGroupExists() && !isHomeCompetitionExists())
                         <li class="custom-nav-menu-wrap" tabindex="-1" style="">
                             <a href="{{route('ganeshFestivalCompetition.create')}}"
                                 class="custom-nav-menu p-3 px-4 rounded-lg bg-sky-100/60 text-sky-600 dark:text-white dark:bg-dark4">
@@ -67,7 +67,31 @@
                                 </div>
                             </a>
                         </li>
+
                         @endif
+
+                        
+                    @if(!Auth::check())
+                    <li class="custom-nav-menu-wrap" tabindex="-1" style="">
+                    <a href="{{route('ganeshCompetitionPaymentCreate', ['type' => 'group'])}}" 
+            class="flex-inline p-3 px-4 rounded-lg bg-teal-100/60 text-teal-600 font-semibold dark:text-white dark:bg-dark4">
+            <ion-icon name="people" class="text-2xl drop-shadow-md md hydrated mr-2" role="img"
+            aria-label="book"></ion-icon> ગણેશ સ્પર્ધા રજિસ્ટ્રેશન</a>
+                                   
+                        </li>
+                    @elseif(getUserData() && getUserData()->status != 'active')
+
+                        <li class="custom-nav-menu-wrap" tabindex="-1" style="">
+                            <a href="{{route('userVerification',['cid' => getUserData()['cid']])}}"
+                                class="custom-nav-menu p-3 px-4 rounded-lg bg-sky-100/60 text-sky-600 dark:text-white dark:bg-dark4">
+                                <ion-icon name="trophy" class="text-2xl drop-shadow-md md hydrated mr-2" role="img"
+                                    aria-label="trophy"></ion-icon>
+                                <div class="text-sm font-medium text-capitalize font-semibold"> એકાઉન્ટ વેરિફાઈ કરો
+                                </div>
+                            </a>
+                        </li>
+                        @endif	
+
 
                         <li class="custom-nav-menu-wrap " tabindex="-1" style="">
                             <a href="{{route('GaneshFestivalCompetitionRules')}}"
@@ -202,6 +226,9 @@
     <ul class="uk-slider-items grid-small "
         uk-scrollspy="target: > li; cls: uk-animation-scale-up , uk-animation-slide-right-small; delay: 20 ;repeat: true"
         style="transform: translate3d(0px, 0px, 0px);">
+        
+              
+
         <li class="custom-nav-menu-wrap" uk-scrollspy-class="uk-animation-fade" tabindex="-1" style="">
 
             <a href="{{route('ganeshFestivalGroup.create')}}"
