@@ -1,5 +1,6 @@
 <a href="https://chat.whatsapp.com/JjCoTMCPKy4AiaJLcIedO3" target="_blank">
-    <img src="https://imagedelivery.net/zfs38w7w3E1dJVvB3mVs9g/bb4df606-909e-4884-343d-0cbea8007300/md" class="whatsapp_message" />
+    <img src="https://imagedelivery.net/zfs38w7w3E1dJVvB3mVs9g/bb4df606-909e-4884-343d-0cbea8007300/md" 
+        style="width: 100px;height: auto;position: fixed;right: 0;top: 172px;z-index: 9999;" />
 </a>
 <!-- Javascript  -->
           <script src="{{asset('front')}}/js/uikit.min.js"></script>
