@@ -283,7 +283,7 @@ $(document).ready(function() {
                                 </div>
                                 <form method="post" action="{{route('FestivalCompetitionVoting.store')}}">
                                     @csrf
-                                   
+
 
                                     @if(Auth::check() && $user->status == 'active')
                                     @if(isVoted($GaneshCompetition->id, 1))
@@ -800,9 +800,9 @@ $(document).ready(function() {
                         @if(checkCompetitionSchedule()->status == 'live')
 
                         @if(!Auth::id() || (getUserData() && getUserData()->status != 'active'))
-                        
+
                         @endif
-                    
+
 
                         @if($group->competition($group->id) && $group->competition($group->id)->status == 'active')
                         <div class="flex-center mb-4">
@@ -812,14 +812,14 @@ $(document).ready(function() {
                         </div>
 
                         <div class="text-black dark:text-white">
-                            
-                        
-                            @if($group->competition($group->id))
-                                @php
-                                $GaneshCompetition = $group->competition($group->id);
-                                @endphp
 
-                                 <div class="flex items-center justify-between mb-4">
+
+                            @if($group->competition($group->id))
+                            @php
+                            $GaneshCompetition = $group->competition($group->id);
+                            @endphp
+
+                            <div class="flex items-center justify-between mb-4">
                                 <div class="flex-column">
                                     <h3 class="font-bold text-lg mb-1"> શ્રેષ્ઠ મૂર્તિ</h3>
 
@@ -838,7 +838,7 @@ $(document).ready(function() {
                                     </p>
 
                                     @elseif(!isVotedCategory(1))
-                                    
+
                                     <input type="hidden" name="participant_id"
                                         value="{{$group->competition($group->id)->id}}" />
                                     <input type="hidden" name="category_id" value="1" />
@@ -968,22 +968,20 @@ $(document).ready(function() {
                     <div class="lg:space-y-4 lg:pb-8 max-lg:grid sm:grid-cols-2 max-lg:gap-6 mb-10"
                         uk-sticky="media: 1024; end: #js-oversized; offset: 80">
                         <div class="box p-5 px-6">
-                            <a 
-                            	target="_blank"
-                            	href="https://api.whatsapp.com/send?phone=919137634193&text=*Hello%20Alivecreate%20Web%20Solutions-%20Inquiry%20from%Barodaplus%20-%20Website%206,999/-.%20*"></a>
-                                <img  
-                                src="https://imagedelivery.net/zfs38w7w3E1dJVvB3mVs9g/fa365b8e-eacd-4063-a145-a1a909220f00/md" style="width:100%;"/>
+                            <a target="_blank"
+                                href="https://api.whatsapp.com/send?phone=919137634193&text=*Hello%20Alivecreate%20Web%20Solutions-%20Inquiry%20from%Barodaplus%20-%20Website%206,999/-.%20*">
+                                <img src="https://imagedelivery.net/zfs38w7w3E1dJVvB3mVs9g/fa365b8e-eacd-4063-a145-a1a909220f00/md"
+                                    style="width:100%;" />
                             </a>
                         </div>
 
                         <div class="box p-5 px-6 mb-6">
-                            <a
-                            	target="_blank"
-                            	 href="https://api.whatsapp.com/send?phone=918401194152&text=*Hello%20મેહુલભાઈ,%20લોન,%20જમીન%20અને%20મકાન%20માટેની%20વધુ%20માહિતી%20જણાવો%20-%20,From-%20બરોડાપ્લસ.*"></a>
-                                <img src="https://imagedelivery.net/zfs38w7w3E1dJVvB3mVs9g/3316dc6e-4992-4be7-63f6-41b0dcbbaf00/md" style="width:100%;"/>
+                            <a target="_blank"
+                                href="https://api.whatsapp.com/send?phone=918401194152&text=*Hello%20મેહુલભાઈ,%20લોન,%20જમીન%20અને%20મકાન%20માટેની%20વધુ%20માહિતી%20જણાવો%20-%20,From-%20બરોડાપ્લસ.*">
+                                <img src="https://imagedelivery.net/zfs38w7w3E1dJVvB3mVs9g/3316dc6e-4992-4be7-63f6-41b0dcbbaf00/md"
+                                    style="width:100%;" />
                             </a>
                         </div>
-
                     </div>
 
                 </div>
