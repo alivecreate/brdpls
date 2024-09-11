@@ -1,5 +1,6 @@
-<img src="{{asset('front/images/web')}}/join-whatsapp.png" class="whatsapp_message" />
-
+<a href="https://chat.whatsapp.com/JjCoTMCPKy4AiaJLcIedO3" target="_blank">
+    <img src="https://imagedelivery.net/zfs38w7w3E1dJVvB3mVs9g/bb4df606-909e-4884-343d-0cbea8007300/md" class="whatsapp_message" />
+</a>
 <!-- Javascript  -->
           <script src="{{asset('front')}}/js/uikit.min.js"></script>
           <script src="{{asset('front')}}/js/simplebar.js"></script>
