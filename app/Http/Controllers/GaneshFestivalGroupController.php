@@ -90,7 +90,6 @@ class GaneshFestivalGroupController extends Controller
             'decoration' => 'required|string',
             'address' => 'required|string',
             'cover' => 'required|image|max:60480', // Max size 2MB
-            
         ]);
 
         $image = $request->file('cover');
@@ -119,8 +118,10 @@ class GaneshFestivalGroupController extends Controller
             'status' => 'active',
         ]);
         // $group
-        
 
+             
+        return redirect()->route('ganeshCompetitionPaymentCreate',['type' => 'group'])->with('success', 'Ganesh Festival Group Created.');
+        
         return redirect()->route('ganeshFestivalGroup.show', $group->slug)->with('success', 'Ganesh Festival Group Created.');
 
         $slug = Str::slug($request->name);

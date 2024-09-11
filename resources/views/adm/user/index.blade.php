@@ -60,6 +60,7 @@
                             <div>
                                 <p>Name:   {{$group->user->first_name}}{{$group->user->first_name}}</p>
                                 <p>Phone:   {{$group->user->phone}}</p>
+                                {{$group->competition}}
                                 <p>Competition Status:   {{$group->competition($group->id)->status}}</p>
                                 
                             </div> 

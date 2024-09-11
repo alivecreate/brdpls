@@ -10,7 +10,7 @@ class GaneshFestivalController extends Controller
 {
     public function index(){
         
-        $groups = Group::orderBy('name', 'asc')->get();
+        $groups = Group::orderBy('name', 'asc')->limit(6)->get();
         // dd($groups);
 
         return view('front.pages.groups.create', compact('groups'));

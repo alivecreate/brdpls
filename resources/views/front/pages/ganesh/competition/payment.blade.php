@@ -49,7 +49,7 @@
 
             <div class="w-full">
 
-                <p class='heading-h1 font-semibold page-title text-underline'>ગણેશ સ્પર્ધા ફી </p>
+                <p class='heading-h1 font-semibold page-title text-underline'>ગણેશ સ્પર્ધા ફી (મંડળ) : 501 </p>
                 <!-- <p class='subheading-h3 font-semibold font-semibold mb-0'>Note: ગણેશ સ્પર્ધા તા. 07-09-2024 બપોરે 2 વાગ્યેથી શરુ થશે.</p> -->
 
                 <div id="type1-2Form" class="competition-form">
@@ -86,9 +86,9 @@
                             </div>
                         </div>
                         
-                        <div class="flex gap-2">
+                        <!-- <div class="flex gap-2">
                             <a href="{{route('ganeshFestivalGroup.show', $group->slug)}}" class="button bg-primary text-white flex-1"> View</a> 
-                        </div>
+                        </div> -->
                     </div>
 
                     @if (session('error'))
@@ -106,22 +106,92 @@
                      <img src="{{asset('front/images/web')}}/alivecreate-payment-501.jpg"  width="300"
                         style="text-align: center;margin: 0 auto;margin-top:30px"
                     />
-					
-					
-                     
-
-
                     @endif
+
+
                     @endif
 
                 </div>
 
+                
+                    @if (count($group->competitions) == 1 && ($group->myCompetition[0]->status == 'active'))
+
+                    
+                    <div class="flex w-full items-center gap-4 mt-6">
+                        <p class="font-semibold btn-md lg:px-10 text-success text-md w-full text-center">ગણેશ સ્પર્ધાનું પેમેન્ટ મળી ગયેલ છે.<span class="ripple-overlay"></span></p>
+                    </div>
+
+                    <p class="font-semibold btn-md button lg:px-10 bg-success text-white text-24 w-full text-wrap">ગણેશ સ્પર્ધાની વોટિંગ ચાલુ થઈ ગયેલ છે.<span class="ripple-overlay"></span></p>
+                    
+                    <p class="font-semibold btn-md button lg:px-10 text-danger text-white text-24 w-full text-wrap">પેમેન્ટ કે કોઈ પણ પ્રકારની સમસ્યા હોય તો આ નંબર પર કોલ કરો. <a href="+919137634193">91376341930</a><span class="ripple-overlay"></span></p>
+                    
+                     @elseif (count($group->competitions) == 0)
+
+                <button id="rzp-button1"
+                        class="w-full bg-blue-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        Pay Registration Fee
+                    </button>
+
+                    <form id="rzp-paymentresponse" action="{{ route('groupCompetitionCallback') }}" method="POST"
+                        style="display: none;">
+                        @csrf
+
+                        <input type="hidden" id="razorpay_payment_id" name="razorpay_payment_id">
+                        <input type="hidden" id="razorpay_order_id" name="razorpay_order_id">
+                        <input type="hidden" id="razorpay_signature" name="razorpay_signature">
+
+                        <input type="hidden" name="receipt" value="{{$order->receipt}}">
+                        <input type="hidden" name="amount" value="{{$order->amount}}">
+                        <input type="hidden" name="user_id" value="{{$user_id}}">
+                        <input type="hidden" name="group_id" value="{{$group->id}}">
+                        <input type="hidden" name="name" value="{{$user->first_name}} {{$user->last_name}}">
+
+                    </form>
+
+                    <script>
+                    var options = {
+                        "key": "{{ env('RAZORPAY_KEY') }}", // Enter the Key ID generated from the Dashboard
+                        "amount": "{{$order->amount}}", // Amount is in currency subunits. Default currency is INR. Hence, 10000 refers to 100 INR
+                        "currency": "INR",
+                        "name": "Ganesh Competition - Brodaplus",
+                        "description": "Ganesh Competitions - Barodaplus - Vadodara",
+                        "order_id": "{{ $orderId }}", //This is a sample Order ID. Pass the `id` obtained in the previous step
+                        "handler": function(response) {
+                            document.getElementById('razorpay_payment_id').value = response.razorpay_payment_id;
+                            document.getElementById('razorpay_order_id').value = response.razorpay_order_id;
+                            document.getElementById('razorpay_signature').value = response.razorpay_signature;
+                            document.getElementById('rzp-paymentresponse').submit();
+                        },
+                        "prefill": {
+                            "name": '{{$user->first_name}} {{$user->last_name}}',
+                            "contact": '{{$user->phone}}'
+                        },
+                        "notes": {
+                            "address": '{{$user->city}}'
+                        },
+                        "theme": {
+                            "color": "#3399cc"
+                        },
+
+                        "method": {
+                            "upi": true // Ensure UPI is set to true
+                        }
+                    };
+                    var rzp1 = new Razorpay(options);
+                    document.getElementById('rzp-button1').onclick = function(e) {
+                        rzp1.open();
+                        e.preventDefault();
+                    }
+                    </script>
+                    @endif
+
+
             </div>
         </div>
 
+        
 
         <div class="2xl:w-[380px] lg:w-[330px] w-full">
-
             <div class="lg:space-y-6 space-y-4 lg:pb-8 max-lg:grid sm:grid-cols-2 max-lg:gap-6"
                 uk-sticky="media: 1024; end: #js-oversized; offset: 80">
 

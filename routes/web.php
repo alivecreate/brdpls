@@ -204,6 +204,7 @@ Route::get('/ganesh-festival', [GaneshFestivalController::class, 'index']);
 
 Route::get('/ganesh-festival/competition/payment', [GaneshCompetitionPaymentController::class, 'create'])->name('ganeshCompetitionPaymentCreate');
 Route::post('/ganesh-festival/competition/home-payment', [GaneshCompetitionPaymentController::class, 'homeCompetitionCallback'])->name('homeCompetitionCallback');
+Route::post('/ganesh-festival/competition/group-payment', [GaneshCompetitionPaymentController::class, 'groupCompetitionCallback'])->name('groupCompetitionCallback');
 
 
 // Route::get('/components', [PageController::class, 'components'])->name('components');

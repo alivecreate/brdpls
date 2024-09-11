@@ -812,12 +812,14 @@ $(document).ready(function() {
                         </div>
 
                         <div class="text-black dark:text-white">
+                            
+                        
                             @if($group->competition($group->id))
                                 @php
                                 $GaneshCompetition = $group->competition($group->id);
                                 @endphp
 
-                            <div class="flex items-center justify-between mb-4">
+                                 <div class="flex items-center justify-between mb-4">
                                 <div class="flex-column">
                                     <h3 class="font-bold text-lg mb-1"> શ્રેષ્ઠ મૂર્તિ</h3>
 

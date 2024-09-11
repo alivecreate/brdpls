@@ -48,7 +48,7 @@
         <div class="flex-1 px-6">
 
             <div class="w-full">
-                <p class='heading-h1 font-semibold page-title text-underline'>ગણેશ સ્પર્ધાની વિગત </p>
+                <p class='heading-h1 font-semibold page-title text-underline'>ગણેશ સ્પર્ધા ફી (ઘરની બેસ્ટ મુર્તિ) : 251 </p>
 
                 <!-- <p class='subheading-h3 font-semibold font-semibold mb-0'>Note: ગણેશ સ્પર્ધા તા. 07-09-2024 બપોરે 2 વાગ્યેથી શરુ થશે.</p> -->
                 
@@ -164,10 +164,9 @@
                         <a class="button bg-primary text-white flex-1  dark:text-white" href="https://api.whatsapp.com/send?phone=919137634193&text=*{{$homeGaneshCompetition->name}},%20ગણેશ%20સ્પર્ધાના%20પેમેન્ટની%20વિગત.*">9137634193</a>
                     </div>
 
-                    <img src="{{asset('front/images/web')}}/alivecreate-payment-251.jpg"  width="300"
+                    <!-- <img src="{{asset('front/images/web')}}/alivecreate-payment-251.jpg"  width="300"
                     style="text-align: center;margin: 0 auto;margin-top:30px"
-                    />
-                    
+                    /> -->
 
                     @elseif($homeGaneshCompetition->status == 'active')
                         <div class="flex w-full items-center gap-4 mt-6">

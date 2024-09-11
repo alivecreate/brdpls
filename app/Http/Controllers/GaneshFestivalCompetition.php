@@ -93,7 +93,7 @@ class GaneshFestivalCompetition extends Controller
      */
     public function store(Request $request)
     {
-// dd( $request->all());
+dd( $request->all());
 
 
 
@@ -220,7 +220,6 @@ return redirect()->back()->with('error', 'Something went wrong, please try again
         $cid = $request->query('cid');
 
         if($cid == null || $cid == 1){
-            
 
             $GaneshCompetitions = GaneshCompetition::where(
                 [

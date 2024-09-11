@@ -34,6 +34,8 @@ class GaneshFestivalCompetition extends Controller
     public function create(Request $request)
     {
         // dd($request->all());
+        
+            dd('grp available');
 
         if(!Auth::check()){
             return redirect('registration')->with('error', 'Please Create User Account First.');
@@ -50,7 +52,6 @@ class GaneshFestivalCompetition extends Controller
         
         $ganeshCompetitionCategories = GaneshCompetitionCategory::get();
         if($group){
-            // dd('grp available');
 
             $competition = GaneshCompetition::where(['participant_id' => $group->id])->first();
             return redirect()->route('ganeshCompetitionPaymentCreate', ['type' => 'group']);

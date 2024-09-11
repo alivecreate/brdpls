@@ -19,7 +19,6 @@
                 </div>
 
 
-
                 @if(isUserVerified() && isUserVerified()->status == 'pending')
 
                 <p class="mb-3 mt-100 text-primary text-xl text-center mt-6">

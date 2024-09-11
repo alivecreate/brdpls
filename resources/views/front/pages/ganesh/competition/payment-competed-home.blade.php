@@ -18,7 +18,7 @@
         <div class="flex-1">
             <div class="w-full">
                 <p class='heading-h1 font-semibold page-title text-underline'>ગણેશ સ્પર્ધા ફી </p>
-                <!-- <p class='subheading-h3 font-semibold font-semibold mb-0'>Note: ગણેશ સ્પર્ધા તા. 07-09-2024 બપોરે 2 વાગ્યેથી શરુ થશે.</p> -->
+                <p class='subheading-h3 font-semibold font-semibold mb-0'>Note: ગણેશ સ્પર્ધા તા. 07-09-2024 બપોરે 2 વાગ્યેથી શરુ થશે.</p>
                 <div id="type1-2Form" class="competition-form">
                     <div class="flex md:items-center space-x-4 p-4 rounded-md box">
                         <div class="sm:w-20 w-14 sm:h-20 h-14 flex-shrink-0 rounded-lg relative">
@@ -54,7 +54,7 @@
                     @if (session('error'))
                     <p class="text-danger">{{session('error')}}</p>
                     @endif
-
+                    
 
                     @if($homeGaneshCompetition->status == 'active')
                     <div class="flex w-full items-center gap-4 mt-6">
