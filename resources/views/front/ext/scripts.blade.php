@@ -1,4 +1,6 @@
-          <!-- Javascript  -->
+<img src="{{asset('front/images/web')}}/join-whatsapp.png" class="whatsapp_message" />
+
+<!-- Javascript  -->
           <script src="{{asset('front')}}/js/uikit.min.js"></script>
           <script src="{{asset('front')}}/js/simplebar.js"></script>
           <script src="{{asset('front')}}/js/script.js"></script>

@@ -17,6 +17,14 @@
     object-fit: cover;
     border-radius: 8px;
 }
+.whatsapp_message {
+    width: 72px;
+    height: auto;
+    position: fixed;
+    right: 0;
+    top: 172px;
+    z-index: 9999;
+}
 
 .color-block-item
 {

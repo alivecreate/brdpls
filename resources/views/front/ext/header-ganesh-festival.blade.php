@@ -124,7 +124,6 @@
                     <div class="hidden bg-white rounded-lg drop-shadow-xl dark:bg-slate-700 w-64 border2"
                         uk-drop="offset:6;pos: bottom-right;animate-out: true; animation: uk-animation-scale-up uk-transform-origin-top-right ">
 
-                
 
                         <a href="#">
                             <div class="p-4 py-5 flex items-center gap-4">

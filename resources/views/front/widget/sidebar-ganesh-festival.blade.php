@@ -57,22 +57,25 @@
                 
                 @endif
 
-                    @if(!isGroupExists() && !isHomeCompetitionExists())
+                @if(Auth::check() && getUserData()->status == 'active')
+                    @if(!isGroupExists() && !isHomeCompetitionExists() )
 
-                <li id="ganesh-festival">
-                    <a href="{{route('ganeshFestivalCompetition.create')}}" class='font-semibold'>
-                        <img src="{{asset('front')}}/images/icons/message.png" alt="Ganesh Festival" class="w-5">
-                        <span> ગણેશ સ્પર્ધા રજિસ્ટ્રેશન</span> 
-                    </a>
-                </li> 
-                        @endif
+                    <li id="ganesh-festival">
+                        <a href="{{route('ganeshFestivalCompetition.create')}}" class='font-semibold'>
+                            <img src="{{asset('front')}}/images/icons/message.png" alt="Ganesh Festival" class="w-5">
+                            <span> ગણેશ સ્પર્ધા રજિસ્ટ્રેશન</span> 
+                        </a>
+                    </li> 
+                            @endif
 
-                <li id="ganesh-festival">
-                    <a href="{{route('GaneshFestivalCompetitionRules')}}" class='font-semibold'>
-                        <img src="{{asset('front')}}/images/icons/message.png" alt="Ganesh Festival" class="w-5">
-                        <span> સ્પર્ધાના નિયમો</span> 
-                    </a>
-                </li> 
+                    <li id="ganesh-festival">
+                        <a href="{{route('GaneshFestivalCompetitionRules')}}" class='font-semibold'>
+                            <img src="{{asset('front')}}/images/icons/message.png" alt="Ganesh Festival" class="w-5">
+                            <span> સ્પર્ધાના નિયમો</span> 
+                        </a>
+                    </li> 
+
+                    @endif
 
                 @if(!Auth::check())
                 <hr>
@@ -118,10 +121,9 @@
                                 d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1">
                             </path>
                         </svg>
-                        <span> Log Out </span>                  
+                        <span> Log Out </span>
                     </a>
                 </li>
-
 
             </ul>
         </nav>
@@ -131,16 +133,13 @@
             <div class="w-full">
                 <h2>Usefull Links</h2>
             </div>
-
             <a href="{{route('about')}}" class="hover:underline">About</a> |
             <a href="{{route('termsAndConditions')}}" class="hover:underline">Terms & Conditions </a> |
             <a href="{{route('privacyPolicy')}}" class="hover:underline">Privacy Policies</a> |
             <a href="{{route('refundAndCancellation')}}" class="hover:underline">Refund and Cancellation</a> |
             <a href="{{route('contact')}}" class="hover:underline">Contact Us</a>
         </div>
-
     </div>
-
 </div>
 
 <!-- sidebar overly -->
