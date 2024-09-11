@@ -425,13 +425,12 @@ $(document).ready(function() {
 
 
                     <div class="box p-5 px-6">
-                        @if($homeGanesh->competition($homeGanesh->participant_id))
+                    @if($homeGanesh->competition($homeGanesh->participant_id) && $homeGanesh->competition($homeGanesh->participant_id)->status == 'active')
                         <div class="flex-center mb-4">
                             <h2 class="heading-h2 text-danger text-underline">ગણેશ સ્પર્ધા (Live)</h2>
                             <img class="live-icon" src="{{asset('front/images/web')}}/live-icon.gif"
                                 alt="Barodaplus live voting">
                         </div>
-                        @endif
 
                         <div class="text-black dark:text-white">
                             @if($homeGanesh->competition($homeGanesh->participant_id))
@@ -482,6 +481,8 @@ $(document).ready(function() {
 
                             @endif
                         </div>
+                        @endif
+
                         <div class="flex items-center justify-between mb-4">
                             <div class="w-full qr-wrapper text-center">
                                 {!! DNS2D::getBarcodeSVG(route('showHome', [$homeGanesh->id, 'catid' => 3, 'slug' => $homeGanesh->id]), 'QRCODE', 3, 3) !!}
