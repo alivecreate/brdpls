@@ -3,6 +3,11 @@
         style="width: 100px;height: auto;position: fixed;right: 0;top: 172px;z-index: 9999;" />
 </a>
 
+<a href="https://www.instagram.com/barodaplus?utm_source=qr&igsh=MWFreGFvb3ppYTBzbQ==" target="_blank">
+    <img src="https://imagedelivery.net/zfs38w7w3E1dJVvB3mVs9g/818042d8-de96-46e6-f576-dda2a1cd5b00/md" 
+        style="width: 100px;height: auto;position: fixed;right: 0;top: 288px;z-index: 9999;" />
+</a>
+
 <!-- Javascript  -->
           <script src="{{asset('front')}}/js/uikit.min.js"></script>
           <script src="{{asset('front')}}/js/simplebar.js"></script>
