@@ -431,7 +431,7 @@ $(document).ready(function() {
                 <div class="lg:space-y-4 lg:pb-8 max-lg:grid sm:grid-cols-2 max-lg:gap-6 mb-10 mt-4"
                     uk-sticky="media: 1024; end: #js-oversized; offset: 80">
                     <div class="box p-5 px-6">
-                        <a target="_blank"
+                        <a target="_blank"  
                         href="https://api.whatsapp.com/send?phone=918401194152&text=*Hello%20Mehulbhai,%20loan,%20insurance,%20jamin-makan%20Inquiry%20from%20Barodaplus*">
                             <img src="https://imagedelivery.net/zfs38w7w3E1dJVvB3mVs9g/fa365b8e-eacd-4063-a145-a1a909220f00/md"
                                 style="width:100%;" />
