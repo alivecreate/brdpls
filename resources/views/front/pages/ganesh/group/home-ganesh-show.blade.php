@@ -204,19 +204,19 @@ $(document).ready(function() {
 
         <div class="flex 2xl:gap-12 gap-10 mt-8 max-lg:flex-col" id="js-oversized">           
             
-            <div class="lg:w-[400px]  lg:hidden w-full">
+            <div class="lg:w-[400px] lg:hidden w-full">
                 <div class="lg:space-y-4 lg:pb-8 max-lg:grid sm:grid-cols-2 max-lg:gap-6"
                     uk-sticky="media: 1024; end: #js-oversized; offset: 80">
 
 
                     <div class="box p-5 px-6">
-                        @if($homeGanesh->competition($homeGanesh->participant_id))
+                        @if($homeGanesh->competition($homeGanesh->participant_id) && $homeGanesh->competition($homeGanesh->participant_id)->status == 'active')
+                        
                         <div class="flex-center mb-4">
                             <h2 class="heading-h2 text-danger text-underline">ગણેશ સ્પર્ધા (Live)</h2>
                             <img class="live-icon" src="{{asset('front/images/web')}}/live-icon.gif"
                                 alt="Barodaplus live voting">
                         </div>
-                        @endif
 
                         <div class="text-black dark:text-white">
                             @if($homeGanesh->competition($homeGanesh->participant_id))
@@ -307,6 +307,49 @@ $(document).ready(function() {
                             </li>
                         </ul>
                     </div>
+                    
+                    @endif
+
+                    
+                    <div class="flex items-center justify-between mb-4">
+                            <div class="w-full qr-wrapper text-center">
+                                {!! DNS2D::getBarcodeSVG(route('showHome', [$homeGanesh->id, 'catid' => 3, 'slug' => $homeGanesh->id]), 'QRCODE', 3, 3) !!}
+                            </div>
+                            
+                            <button
+                                class="bg-marron button text-lg bg-primary text-white flex-1 mt-4 button text-lg bg-secondary text-white flex-1  btn-print-qr"
+                                data-image="https://imagedelivery.net/zfs38w7w3E1dJVvB3mVs9g/{{$homeGanesh->image}}/lg"
+                                data-name="{{$homeGanesh->name}}"
+                                data-logo="{{asset('front/images/web')}}/barodaplus-logo.png"
+                                data-qr="{{ DNS2D::getBarcodeSVG(route('showHome', [$homeGanesh->id, 'catid' => 3, 'slug' => $homeGanesh->id]), 'QRCODE', 8, 8) }}">
+                                <ion-icon name="download-outline" class="text-lg"></ion-icon> Print QR
+                            </button>
+                        </div>
+
+                        <div class="flex text-black dark:text-white">
+                            <h3 class="font-bold text-lg mb-1"> About </h3>
+                        </div>
+
+                        <ul class="text-gray-700 space-y-4 mt-2 mb-1 text-sm dark:text-white">
+                            <li>{{$homeGanesh->description}}</li>
+
+                            @if($homeGanesh->decoration)
+                            <li class="flex items-start gap-3">
+                                <ion-icon name="newspaper-outline" class="text-2xl drop-shadow-md md hydrated mr-2"
+                                    role="img" aria-label="videocam"></ion-icon>
+                                <div>
+                                    <span class="font-semibold text-black dark:text-white">Decoration / Theme </span>
+                                    <p>{{$homeGanesh->decoration}}</p>
+                                </div>
+                            </li>
+                            @endif
+
+                            <li class="flex items-center gap-3">
+
+                                <div> Totals Posts <span class="font-semibold text-black dark:text-white">
+                                        : {{count($posts)}} </span> </div>
+                            </li>
+                        </ul>
 
                 </div>
 
@@ -440,7 +483,7 @@ $(document).ready(function() {
             <div class="lg:w-[400px]  hidden lg:block">
                 <div class="lg:space-y-4 lg:pb-8 max-lg:grid sm:grid-cols-2 max-lg:gap-6"
                     uk-sticky="media: 1024; end: #js-oversized; offset: 80">
-
+                    
 
                     <div class="box p-5 px-6">
                         @if($homeGanesh->competition($homeGanesh->participant_id) && $homeGanesh->competition($homeGanesh->participant_id)->status == 'active')

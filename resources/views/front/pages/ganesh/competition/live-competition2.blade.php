@@ -79,12 +79,12 @@
                         <div class="card-media h-40">
 
                  
-                            @if(getCompetitionGroup($GaneshCompetition->participant_id)->cover)
-                            
-                                <img src="https://imagedelivery.net/zfs38w7w3E1dJVvB3mVs9g/{{getCompetitionGroup($GaneshCompetition->participant_id)->cover}}/md" alt="">       
-                            @else
-                                <img src="https://imagedelivery.net/zfs38w7w3E1dJVvB3mVs9g/59e4502a-977e-45f7-c153-522a80d42300/md" alt="">       
-                            @endif
+                @if(getCompetitionGroup($GaneshCompetition->participant_id)->cover)
+                
+                    <img src="https://imagedelivery.net/zfs38w7w3E1dJVvB3mVs9g/{{getCompetitionGroup($GaneshCompetition->participant_id)->cover}}/md" alt="">       
+                @else
+                    <img src="https://imagedelivery.net/zfs38w7w3E1dJVvB3mVs9g/59e4502a-977e-45f7-c153-522a80d42300/md" alt="">       
+                @endif
 
 
 
