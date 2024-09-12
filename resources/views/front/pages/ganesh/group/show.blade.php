@@ -251,8 +251,12 @@ $(document).ready(function() {
 
             <div class="lg:w-[400px] lg:hidden w-full">
 
+
+
+
                 <div class="lg:space-y-4 lg:pb-8 max-lg:grid sm:grid-cols-2 max-lg:gap-6"
                     uk-sticky="media: 1024; end: #js-oversized; offset: 80">
+
                     <div class="box p-5 px-6">
 
 
@@ -418,7 +422,33 @@ $(document).ready(function() {
                         </ul>
                     </div>
 
+
+
+
+
                 </div>
+                    
+                <div class="lg:space-y-4 lg:pb-8 max-lg:grid sm:grid-cols-2 max-lg:gap-6 mb-10 mt-4"
+                    uk-sticky="media: 1024; end: #js-oversized; offset: 80">
+                    <div class="box p-5 px-6">
+                        <a target="_blank"
+                        href="https://api.whatsapp.com/send?phone=918401194152&text=*Hello%20Mehulbhai,%20loan,%20insurance,%20jamin-makan%20Inquiry%20from%20Barodaplus*">
+                            <img src="https://imagedelivery.net/zfs38w7w3E1dJVvB3mVs9g/fa365b8e-eacd-4063-a145-a1a909220f00/md"
+                                style="width:100%;" />
+                        </a>
+                    </div>
+
+                    <div class="box p-5 px-6 mb-6">
+                        <a target="_blank"
+                        href="https://api.whatsapp.com/send?phone=919137634193&text=*Hello%20Alivecreate%20Web%20Solutions%20-%20Inquiry%20from%20Barodaplus*">
+                            <img src="https://imagedelivery.net/zfs38w7w3E1dJVvB3mVs9g/3316dc6e-4992-4be7-63f6-41b0dcbbaf00/md"
+                                style="width:100%;" />
+                        </a>
+                    </div>
+                </div>
+
+
+
             </div>
 
             <div class="flex-1 xl:space-y-6 space-y-3">
@@ -965,24 +995,30 @@ $(document).ready(function() {
                         </ul>
                     </div>
 
-                    <div class="lg:space-y-4 lg:pb-8 max-lg:grid sm:grid-cols-2 max-lg:gap-6 mb-10"
-                        uk-sticky="media: 1024; end: #js-oversized; offset: 80">
-                        <div class="box p-5 px-6">
-                            <a target="_blank"
-                                href="https://api.whatsapp.com/send?phone=919137634193&text=*Hello%20Alivecreate%20Web%20Solutions-%20Inquiry%20from%Barodaplus%20-%20Website%206,999/-.%20*">
-                                <img src="https://imagedelivery.net/zfs38w7w3E1dJVvB3mVs9g/fa365b8e-eacd-4063-a145-a1a909220f00/md"
-                                    style="width:100%;" />
-                            </a>
-                        </div>
-
-                        <div class="box p-5 px-6 mb-6">
-                            <a target="_blank"
-                                href="https://api.whatsapp.com/send?phone=918401194152&text=*Hello%20મેહુલભાઈ,%20લોન,%20જમીન%20અને%20મકાન%20માટેની%20વધુ%20માહિતી%20જણાવો%20-%20,From-%20બરોડાપ્લસ.*">
-                                <img src="https://imagedelivery.net/zfs38w7w3E1dJVvB3mVs9g/3316dc6e-4992-4be7-63f6-41b0dcbbaf00/md"
-                                    style="width:100%;" />
-                            </a>
-                        </div>
+                   
+                    
+                <div class="lg:space-y-4 lg:pb-8 max-lg:grid sm:grid-cols-2 max-lg:gap-6 mb-10 mt-4"
+                    uk-sticky="media: 1024; end: #js-oversized; offset: 80">
+                    <div class="box p-5 px-6">
+                        <a target="_blank"
+                        href="https://api.whatsapp.com/send?phone=918401194152&text=*Hello%20Mehulbhai,%20loan,%20insurance,%20jamin-makan%20Inquiry%20from%20Barodaplus*">
+                            
+                            <img src="https://imagedelivery.net/zfs38w7w3E1dJVvB3mVs9g/fa365b8e-eacd-4063-a145-a1a909220f00/md"
+                                style="width:100%;" />
+                        </a>
                     </div>
+
+                    <div class="box p-5 px-6 mb-6">
+                        <a target="_blank"
+                        href="https://api.whatsapp.com/send?phone=919137634193&text=*Hello%20Alivecreate%20Web%20Solutions%20-%20Inquiry%20from%20Barodaplus*">
+                            
+                            <img src="https://imagedelivery.net/zfs38w7w3E1dJVvB3mVs9g/3316dc6e-4992-4be7-63f6-41b0dcbbaf00/md"
+                                style="width:100%;" />
+                        </a>
+                    </div>
+                </div>
+
+
 
                 </div>
             </div>

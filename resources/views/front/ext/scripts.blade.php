@@ -33,6 +33,25 @@
         });
     </script> -->
 
+    
+    <script>
+        function filterGroups() {
+            const input = document.getElementById('searchGroup').value.toUpperCase();
+            const groupCards = document.querySelectorAll('.group-card');
+
+            groupCards.forEach(card => {
+                const groupName = card.querySelector('.group-name').textContent.toUpperCase();
+                if (groupName.includes(input)) {
+                    card.style.display = "";  // Show card
+                } else {
+                    card.style.display = "none";  // Hide card
+                }
+            });
+        }
+    </script>
+
+
+
 
           <script>
 const setDefaultTimesButton = document.getElementById('set-default-times');

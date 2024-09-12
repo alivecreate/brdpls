@@ -26,6 +26,16 @@
     z-index: 9999;
 }
 
+#searchGroup {
+	font-size: 18px;
+	font-weight: bold;
+	background: #fff;
+	border: 1px solid #d5d5d5;
+	min-width: 195px;
+	padding: 10px;
+}
+
+
 .color-block-item
 {
         display: flex;

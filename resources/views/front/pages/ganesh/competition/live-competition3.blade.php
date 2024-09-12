@@ -59,11 +59,18 @@
     @include('front.pages.ganesh.competition.tab-live-competition')
    
     
-            <div class="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-2 grid-cols-1 p-1 gap-4">
+    <div class='flex'>
+        <label for="" class='font-semibold mr-2'>Search: </label>
+        <input type="text" id="searchGroup" class="mb-4 w-full lg:w-1/2" style='align-items: baseline;' placeholder="મંડળને સર્ચ કરો."
+        onkeyup="filterGroups()">
+        </div>      
+
+    
+            <div class="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-2 grid-cols-1 p-1 gap-4"  id="groupContainer">
 
                 @foreach($GaneshCompetitions as $GaneshCompetition)
 
-                <div class="card mb-2"> 
+                <div class="card mb-2 group-card">
                     
                     <a href="{{route('showHome', $GaneshCompetition->id)}}">
                         <div class="card-media h-40">
@@ -83,7 +90,7 @@
 
                     <div class="card-body">
                         <a href="{{route('showHome', $GaneshCompetition->id)}}">
-                            <h4 class="card-title"> {{$GaneshCompetition->name}} </h4>
+                            <h4 class="card-title group-name"> {{$GaneshCompetition->name}} </h4>
                         </a>
 
                     @if(getHomeGaneshUser($GaneshCompetition->participant_id))
