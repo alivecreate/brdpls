@@ -61,7 +61,7 @@
     
     <div class='flex'>
         <label for="" class='font-semibold mr-2'>Search: </label>
-        <input type="text" id="searchGroup" class="mb-4 w-full lg:w-1/2" style='align-items: baseline;' placeholder="મંડળને સર્ચ કરો."
+        <input type="text" id="searchGroup" class="mb-4 w-full lg:w-1/2" style='align-items: baseline;' placeholder="ઘરના ગણેશજી સર્ચ કરો."
         onkeyup="filterGroups()">
         </div>      
 
