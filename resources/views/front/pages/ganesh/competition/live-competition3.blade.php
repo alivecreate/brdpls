@@ -77,10 +77,9 @@
                             
                 @if($GaneshCompetition->image)
                 
-                    <img src="https://imagedelivery.net/zfs38w7w3E1dJVvB3mVs9g/{{$GaneshCompetition->image}}/sm" alt="">       
+                    <img src="https://imagedelivery.net/zfs38w7w3E1dJVvB3mVs9g/{{$GaneshCompetition->image}}/md" alt="">       
                 @else
-                                
-                <img src="{{asset('front/images/product/product-1.jpg') }}" alt="">
+                    <img src="https://imagedelivery.net/zfs38w7w3E1dJVvB3mVs9g/59e4502a-977e-45f7-c153-522a80d42300/md" alt="">       
                 @endif
 
                             <div class="card-overly"></div>
