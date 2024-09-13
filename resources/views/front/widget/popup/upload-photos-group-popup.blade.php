@@ -1,5 +1,5 @@
  <!-- create status -->
- <div class="hidden lg:p-20 uk- open" id="create-status" uk-modal="">
+ <div class="hidden lg:p-20 uk- open" id="create-photo-group" uk-modal="">
    
    <div class="uk-modal-dialog tt relative overflow-hidden mx-auto bg-white shadow-xl rounded-lg md:w-[520px] w-full dark:bg-dark2">
 
@@ -23,8 +23,8 @@
 
         <div class="flex items-center gap-2 text-sm py-2 px-4 font-medium flex-wrap">           
 
-                <input type="file"  onchange="previewImage2(event)"
-                    name="gallery" id="imageUploadInput" accept="image/jpeg, image/png, image/webp" >
+                <input type="file"  onchange="previewImage2(event)" multiple
+                    name="gallery[]" id="imageUploadInput" accept="image/jpeg, image/png, image/webp" >
                     
                 <button
                     class="button text-lg bg-primary text-white flex-1/2">

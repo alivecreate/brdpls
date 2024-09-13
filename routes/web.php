@@ -9,6 +9,7 @@ use App\Http\Controllers\PageController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\admin\UserController as AdminUserController;
 use App\Http\Controllers\PostsController;
+use App\Http\Controllers\GroupPostController;
 use App\Http\Controllers\SocialLinkController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\SecurityController;
@@ -105,6 +106,9 @@ Route::get('/home', [PageController::class, 'home'])->name('home')->middleware(V
 Route::resource('users', UserController::class);
 
 Route::resource('posts', PostsController::class);
+Route::resource('group-posts', GroupPostController::class);
+
+
 
 Route::resource('social_links', SocialLinkController::class);
 

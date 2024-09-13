@@ -3,11 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
-use App\Models\Post;
-use Auth;
 
-class PostsController extends Controller
+class GroupPostController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -22,9 +19,7 @@ class PostsController extends Controller
      */
     public function create()
     {
-        $posts = Post::orderBy('description', 'asc')->get();
-
-        return view('front.widget.status-block', compact('posts'));
+        //
     }
 
     /**
@@ -45,9 +40,6 @@ class PostsController extends Controller
             'user_id' => Auth::id()
         ]);
         
-    
-
-        return redirect()->back()->with('success', 'Status Created Successfully.');
     }
 
     /**
@@ -79,16 +71,6 @@ class PostsController extends Controller
      */
     public function destroy(string $id)
     {
-        //public function destroy($id)
-        {
-            $post = Post::findOrFail($id);
-            // dd($post);
-            $post->delete();
-
-            // deleteCloudImage($post->gallery);
-
-            return redirect()->back()->with('success', 'Post deleted successfully.');
-        }
-
+        //
     }
 }

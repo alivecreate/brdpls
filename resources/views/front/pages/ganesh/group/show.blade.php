@@ -425,7 +425,6 @@ $(document).ready(function() {
 
 
 
-
                 </div>
                     
                 <div class="lg:space-y-4 lg:pb-8 max-lg:grid sm:grid-cols-2 max-lg:gap-6 mb-10 mt-4"
@@ -446,9 +445,6 @@ $(document).ready(function() {
                         </a>
                     </div>
                 </div>
-
-
-
             </div>
 
             <div class="flex-1 xl:space-y-6 space-y-3">
@@ -491,13 +487,48 @@ $(document).ready(function() {
                 </div> -->
                 @endif
 
-                <div class="bg-white rounded-xl shadow-sm text-sm font-medium border1 dark:bg-dark2">
+                
+                @if(Auth::check() && Auth::id() && Auth::id() == $group->participant_id)
+                    <button uk-toggle="target: #home-upload-cover-popup"
+                        class="button bg-black/10 text-white flex items-center gap-2 backdrop-blur-small">
+                        <ion-icon name="camera-outline" class="text-lg"></ion-icon> Change Photo
+                    </button>
+                @endif
+
+                <!-- <div class="bg-white rounded-xl shadow-sm text-sm font-medium border1 dark:bg-dark2">
 
                     <div class="flex gap-3 sm:p-4 p-2.5 text-sm font-medium">ગ્રૂપ માટે ફોટો અને સ્ટેટસ ટૂક સમયમાં શરૂ
                         કરવામાં આવશે.</p>
                     </div>
+                </div> -->
+
+
+                <div class="bg-white rounded-xl shadow-sm p-4 space-y-4 text-sm font-medium border1 dark:bg-dark2">
+                    <form>
+                        <div class="flex items-center gap-3">
+                            <div class="flex-1 bg-slate-100 hover:bg-opacity-80 transition-all rounded-lg cursor-pointer dark:bg-dark3"
+                                uk-toggle="target: #create-photo-group">
+                                <div class="py-2.5 text-center dark:text-white"> What do you have in mind? </div>
+                            </div>
+                            <div class="cursor-pointer hover:bg-opacity-80 p-1 px-1.5 rounded-lg transition-all bg-pink-100/60 hover:bg-pink-100"
+                                uk-toggle="target: #create-photo-group">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 stroke-pink-600 fill-pink-200/70"
+                                    viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                    <path d="M15 8h.01" />
+                                    <path d="M12 3c7.2 0 9 1.8 9 9s-1.8 9 -9 9s-9 -1.8 -9 -9s1.8 -9 9 -9z" />
+                                    <path d="M3.5 15.5l4.5 -4.5c.928 -.893 2.072 -.893 3 0l5 5" />
+                                    <path d="M14 14l1 -1c.928 -.893 2.072 -.893 3 0l2.5 2.5" />
+                                </svg>
+                            </div>
+
+                        </div>
+                    </form>
                 </div>
-                <!-- <div class="bg-white rounded-xl shadow-sm text-sm font-medium border1 dark:bg-dark2">
+                
+
+                 <div class="bg-white rounded-xl shadow-sm text-sm font-medium border1 dark:bg-dark2">
 
                     <div class="flex gap-3 sm:p-4 p-2.5 text-sm font-medium">
                         <a href="{{route('timeline')}}"> <img src="{{asset('front')}}/images/avatars/avatar-3.jpg"
@@ -816,7 +847,7 @@ $(document).ready(function() {
 
                         <button type="submit" class="text-sm rounded-full py-1.5 px-3.5 bg-secondery"> Replay</button>
                     </div>
-                </div> -->
+                </div> 
 
             </div>
 
@@ -1032,6 +1063,7 @@ $(document).ready(function() {
     @include('front.widget.confirm-popup')
 
     @include('front.widget.popup.upload-cover-popup')
+    @include('front.widget.popup.upload-photos-group-popup')
 
 
 
