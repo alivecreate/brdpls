@@ -83,13 +83,20 @@
                     </li> 
 
                     @endif
-
+ 
                 @if(!Auth::check())
                 <hr>
                     <li>
                         <a href="{{route('login')}}"> 
                             <ion-icon name="log-in-outline" style="height: 27px;width: 27px;"></ion-icon>
                             <span> Login Now </span>       
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{{route('registration')}}"> 
+                            <ion-icon name="log-in-outline" style="height: 27px;width: 27px;"></ion-icon>
+                            <span> Registration Now </span>       
                         </a>
                     </li>
 
