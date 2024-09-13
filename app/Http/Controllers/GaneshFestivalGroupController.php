@@ -22,6 +22,13 @@ class GaneshFestivalGroupController extends Controller
         return view('front.pages.groups.list', compact('groups'));
     }
 
+    public function homeGaneshList()
+    {
+        
+        $homeGaneshList = GaneshCompetition::orderBy('id', 'desc')->where('ganesh_competition', 3)->get();
+        return view('front.pages.groups.list', compact('homeGaneshList'));
+    }
+
     /**
      * Show the form for creating a new resource.
      */

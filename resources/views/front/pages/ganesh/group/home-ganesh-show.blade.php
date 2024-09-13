@@ -3,7 +3,8 @@
 
 @section('title'){{ $homeGanesh->name }}, {{ $homeGanesh->city }}, Ganesh Festival - Barodaplus.com @endsection
 
-@section('description')બરોડા પ્લસ ગણેશ સ્પર્ધા - 2024 - {{optional($homeGanesh)->name}} - મંડળને વોટ કરવા અને ફોટો તેમજ વિડિયો જોવા નીચે આપેલી લિન્ક પર ક્લિક કરો. @endsection
+@section('description')બરોડા પ્લસ ગણેશ સ્પર્ધા - 2024 - {{optional($homeGanesh)->name}} - મંડળને વોટ કરવા અને ફોટો તેમજ
+વિડિયો જોવા નીચે આપેલી લિન્ક પર ક્લિક કરો. @endsection
 
 
 @section('url'){{route('showHome', $homeGanesh->id)}}@endsection
@@ -67,7 +68,7 @@ $(document).ready(function() {
         printWindow.document.write(
             `<h4 style="textext-align:center;font-size: 31px;margin:10px 0px;color: #150497;background-color: #fff2b4;border: 1px solid #a0a0a0;border-radius: 2px;padding: 4px;margin-top: 32px;font-family: sans-serif;font-weight: bold;">${qrName}</h4>`
         );
-        
+
         printWindow.document.write(
             `<div style="width:100%;margin-bottom: 20px;"> <div style="background-color: #ffffff;padding: 13px;display: inline-block;border: 1px solid;border-radius: 11px;">${qrCode}</div></div>`
         );
@@ -202,16 +203,17 @@ $(document).ready(function() {
         </div>
 
 
-        <div class="flex 2xl:gap-12 gap-10 mt-8 max-lg:flex-col" id="js-oversized">           
-            
+        <div class="flex 2xl:gap-12 gap-10 mt-8 max-lg:flex-col" id="js-oversized">
+
             <div class="lg:w-[400px] lg:hidden w-full">
                 <div class="lg:space-y-4 lg:pb-8 max-lg:grid sm:grid-cols-2 max-lg:gap-6"
                     uk-sticky="media: 1024; end: #js-oversized; offset: 80">
 
 
                     <div class="box p-5 px-6">
-                        @if($homeGanesh->competition($homeGanesh->participant_id) && $homeGanesh->competition($homeGanesh->participant_id)->status == 'active')
-                        
+                        @if($homeGanesh->competition($homeGanesh->participant_id) &&
+                        $homeGanesh->competition($homeGanesh->participant_id)->status == 'active')
+
                         <div class="flex-center mb-4">
                             <h2 class="heading-h2 text-danger text-underline">ગણેશ સ્પર્ધા (Live)</h2>
                             <img class="live-icon" src="{{asset('front/images/web')}}/live-icon.gif"
@@ -235,7 +237,6 @@ $(document).ready(function() {
                                 </div>
                                 <form method="post" action="{{route('FestivalCompetitionVoting.store')}}">
                                     @csrf
-                                  
 
                                     @if(Auth::check() && $user->status == 'active')
                                     @if(isVoted($GaneshCompetition->id, 3))
@@ -269,9 +270,10 @@ $(document).ready(function() {
                         </div>
                         <div class="flex items-center justify-between mb-4">
                             <div class="w-full qr-wrapper text-center">
-                                {!! DNS2D::getBarcodeSVG(route('showHome', [$homeGanesh->id, 'catid' => 3, 'slug' => $homeGanesh->id]), 'QRCODE', 3, 3) !!}
+                                {!! DNS2D::getBarcodeSVG(route('showHome', [$homeGanesh->id, 'catid' => 3, 'slug' =>
+                                $homeGanesh->id]), 'QRCODE', 3, 3) !!}
                             </div>
-                            
+
                             <button
                                 class="bg-marron button text-lg bg-primary text-white flex-1 mt-4 button text-lg bg-secondary text-white flex-1  btn-print-qr"
                                 data-image="https://imagedelivery.net/zfs38w7w3E1dJVvB3mVs9g/{{$homeGanesh->image}}/lg"
@@ -301,65 +303,64 @@ $(document).ready(function() {
                             @endif
 
                             <li class="flex items-center gap-3">
-
                                 <div> Totals Posts <span class="font-semibold text-black dark:text-white">
                                         : {{count($posts)}} </span> </div>
                             </li>
                         </ul>
                     </div>
-                    
+
                     @endif
 
-                    
                     <div class="flex items-center justify-between mb-4">
-                            <div class="w-full qr-wrapper text-center">
-                                {!! DNS2D::getBarcodeSVG(route('showHome', [$homeGanesh->id, 'catid' => 3, 'slug' => $homeGanesh->id]), 'QRCODE', 3, 3) !!}
+                        <div class="w-full qr-wrapper text-center">
+                            {!! DNS2D::getBarcodeSVG(route('showHome', [$homeGanesh->id, 'catid' => 3, 'slug' =>
+                            $homeGanesh->id]), 'QRCODE', 3, 3) !!}
+                        </div>
+
+                        <button
+                            class="bg-marron button text-lg bg-primary text-white flex-1 mt-4 button text-lg bg-secondary text-white flex-1  btn-print-qr"
+                            data-image="https://imagedelivery.net/zfs38w7w3E1dJVvB3mVs9g/{{$homeGanesh->image}}/lg"
+                            data-name="{{$homeGanesh->name}}"
+                            data-logo="{{asset('front/images/web')}}/barodaplus-logo.png"
+                            data-qr="{{ DNS2D::getBarcodeSVG(route('showHome', [$homeGanesh->id, 'catid' => 3, 'slug' => $homeGanesh->id]), 'QRCODE', 8, 8) }}">
+                            <ion-icon name="download-outline" class="text-lg"></ion-icon> Print QR
+                        </button>
+                    </div>
+
+                    <div class="flex text-black dark:text-white">
+                        <h3 class="font-bold text-lg mb-1"> About </h3>
+                    </div>
+
+                    <ul class="text-gray-700 space-y-4 mt-2 mb-1 text-sm dark:text-white">
+                        <li>{{$homeGanesh->description}}</li>
+
+                        @if($homeGanesh->decoration)
+                        <li class="flex items-start gap-3">
+                            <ion-icon name="newspaper-outline" class="text-2xl drop-shadow-md md hydrated mr-2"
+                                role="img" aria-label="videocam"></ion-icon>
+                            <div>
+                                <span class="font-semibold text-black dark:text-white">Decoration / Theme </span>
+                                <p>{{$homeGanesh->decoration}}</p>
                             </div>
-                            
-                            <button
-                                class="bg-marron button text-lg bg-primary text-white flex-1 mt-4 button text-lg bg-secondary text-white flex-1  btn-print-qr"
-                                data-image="https://imagedelivery.net/zfs38w7w3E1dJVvB3mVs9g/{{$homeGanesh->image}}/lg"
-                                data-name="{{$homeGanesh->name}}"
-                                data-logo="{{asset('front/images/web')}}/barodaplus-logo.png"
-                                data-qr="{{ DNS2D::getBarcodeSVG(route('showHome', [$homeGanesh->id, 'catid' => 3, 'slug' => $homeGanesh->id]), 'QRCODE', 8, 8) }}">
-                                <ion-icon name="download-outline" class="text-lg"></ion-icon> Print QR
-                            </button>
-                        </div>
+                        </li>
+                        @endif
 
-                        <div class="flex text-black dark:text-white">
-                            <h3 class="font-bold text-lg mb-1"> About </h3>
-                        </div>
+                        <li class="flex items-center gap-3">
 
-                        <ul class="text-gray-700 space-y-4 mt-2 mb-1 text-sm dark:text-white">
-                            <li>{{$homeGanesh->description}}</li>
-
-                            @if($homeGanesh->decoration)
-                            <li class="flex items-start gap-3">
-                                <ion-icon name="newspaper-outline" class="text-2xl drop-shadow-md md hydrated mr-2"
-                                    role="img" aria-label="videocam"></ion-icon>
-                                <div>
-                                    <span class="font-semibold text-black dark:text-white">Decoration / Theme </span>
-                                    <p>{{$homeGanesh->decoration}}</p>
-                                </div>
-                            </li>
-                            @endif
-
-                            <li class="flex items-center gap-3">
-
-                                <div> Totals Posts <span class="font-semibold text-black dark:text-white">
-                                        : {{count($posts)}} </span> </div>
-                            </li>
-                        </ul>
+                            <div> Totals Posts <span class="font-semibold text-black dark:text-white">
+                                    : {{count($posts)}} </span> </div>
+                        </li>
+                    </ul>
 
                 </div>
 
-                
+
                 <div class="lg:space-y-4 lg:pb-8 max-lg:grid sm:grid-cols-2 max-lg:gap-6 mb-10 mt-4"
                     uk-sticky="media: 1024; end: #js-oversized; offset: 80">
                     <div class="box p-5 px-6">
                         <a target="_blank"
-                        href="https://api.whatsapp.com/send?phone=918401194152&text=*Hello%20Mehulbhai,%20loan,%20insurance,%20jamin-makan%20Inquiry%20from%20Barodaplus*">
-                            
+                            href="https://api.whatsapp.com/send?phone=918401194152&text=*Hello%20Mehulbhai,%20loan,%20insurance,%20jamin-makan%20Inquiry%20from%20Barodaplus*">
+
                             <img src="https://imagedelivery.net/zfs38w7w3E1dJVvB3mVs9g/fa365b8e-eacd-4063-a145-a1a909220f00/md"
                                 style="width:100%;" />
                         </a>
@@ -367,25 +368,25 @@ $(document).ready(function() {
 
                     <div class="box p-5 px-6 mb-6">
                         <a target="_blank"
-                        href="https://api.whatsapp.com/send?phone=919137634193&text=*Hello%20Alivecreate%20Web%20Solutions%20-%20Inquiry%20from%20Barodaplus*">
-                           
-                           <img src="https://imagedelivery.net/zfs38w7w3E1dJVvB3mVs9g/3316dc6e-4992-4be7-63f6-41b0dcbbaf00/md"
+                            href="https://api.whatsapp.com/send?phone=919137634193&text=*Hello%20Alivecreate%20Web%20Solutions%20-%20Inquiry%20from%20Barodaplus*">
+
+                            <img src="https://imagedelivery.net/zfs38w7w3E1dJVvB3mVs9g/3316dc6e-4992-4be7-63f6-41b0dcbbaf00/md"
                                 style="width:100%;" />
                         </a>
                     </div>
                 </div>
-                    
+
             </div>
 
-            
+
             <div class="flex-1 xl:space-y-6 space-y-3">
 
                 @php
                 $visible = false;
-                
+
                 @endphp
 
-                
+
                 @if(checkIsHomeOwner($homeGanesh->id))
 
                 <div class="bg-white rounded-xl shadow-sm p-4 space-y-4 text-sm font-medium border1 dark:bg-dark2">
@@ -483,10 +484,11 @@ $(document).ready(function() {
             <div class="lg:w-[400px]  hidden lg:block">
                 <div class="lg:space-y-4 lg:pb-8 max-lg:grid sm:grid-cols-2 max-lg:gap-6"
                     uk-sticky="media: 1024; end: #js-oversized; offset: 80">
-                    
+
 
                     <div class="box p-5 px-6">
-                        @if($homeGanesh->competition($homeGanesh->participant_id) && $homeGanesh->competition($homeGanesh->participant_id)->status == 'active')
+                        @if($homeGanesh->competition($homeGanesh->participant_id) &&
+                        $homeGanesh->competition($homeGanesh->participant_id)->status == 'active')
                         <div class="flex-center mb-4">
                             <h2 class="heading-h2 text-danger text-underline">ગણેશ સ્પર્ધા (Live)</h2>
                             <img class="live-icon" src="{{asset('front/images/web')}}/live-icon.gif"
@@ -510,7 +512,7 @@ $(document).ready(function() {
                                 </div>
                                 <form method="post" action="{{route('FestivalCompetitionVoting.store')}}">
                                     @csrf
-                                 
+
 
                                     @if(Auth::check() && $user->status == 'active')
                                     @if(isVoted($GaneshCompetition->id, 3))
@@ -546,9 +548,10 @@ $(document).ready(function() {
 
                         <div class="flex items-center justify-between mb-4">
                             <div class="w-full qr-wrapper text-center">
-                                {!! DNS2D::getBarcodeSVG(route('showHome', [$homeGanesh->id, 'catid' => 3, 'slug' => $homeGanesh->id]), 'QRCODE', 3, 3) !!}
+                                {!! DNS2D::getBarcodeSVG(route('showHome', [$homeGanesh->id, 'catid' => 3, 'slug' =>
+                                $homeGanesh->id]), 'QRCODE', 3, 3) !!}
                             </div>
-                            
+
                             <button
                                 class="bg-marron button text-lg bg-primary text-white flex-1 mt-4 button text-lg bg-secondary text-white flex-1  btn-print-qr"
                                 data-image="https://imagedelivery.net/zfs38w7w3E1dJVvB3mVs9g/{{$homeGanesh->image}}/lg"
@@ -585,27 +588,27 @@ $(document).ready(function() {
                         </ul>
                     </div>
 
-                    
-                <div class="lg:space-y-4 lg:pb-8 max-lg:grid sm:grid-cols-2 max-lg:gap-6 mb-10 mt-4"
-                    uk-sticky="media: 1024; end: #js-oversized; offset: 80">
-                    <div class="box p-5 px-6">
-                        <a target="_blank"
-                        href="https://api.whatsapp.com/send?phone=918401194152&text=*Hello%20Mehulbhai,%20loan,%20insurance,%20jamin-makan%20Inquiry%20from%20Barodaplus*">
-                            
-                            <img src="https://imagedelivery.net/zfs38w7w3E1dJVvB3mVs9g/fa365b8e-eacd-4063-a145-a1a909220f00/md"
-                                style="width:100%;" />
-                        </a>
-                    </div>
 
-                    <div class="box p-5 px-6 mb-6">
-                        <a target="_blank"
-                        href="https://api.whatsapp.com/send?phone=919137634193&text=*Hello%20Alivecreate%20Web%20Solutions%20-%20Inquiry%20from%20Barodaplus*">
-                            
-                            <img src="https://imagedelivery.net/zfs38w7w3E1dJVvB3mVs9g/3316dc6e-4992-4be7-63f6-41b0dcbbaf00/md"
-                                style="width:100%;" />
-                        </a>
+                    <div class="lg:space-y-4 lg:pb-8 max-lg:grid sm:grid-cols-2 max-lg:gap-6 mb-10 mt-4"
+                        uk-sticky="media: 1024; end: #js-oversized; offset: 80">
+                        <div class="box p-5 px-6">
+                            <a target="_blank"
+                                href="https://api.whatsapp.com/send?phone=918401194152&text=*Hello%20Mehulbhai,%20loan,%20insurance,%20jamin-makan%20Inquiry%20from%20Barodaplus*">
+
+                                <img src="https://imagedelivery.net/zfs38w7w3E1dJVvB3mVs9g/fa365b8e-eacd-4063-a145-a1a909220f00/md"
+                                    style="width:100%;" />
+                            </a>
+                        </div>
+
+                        <div class="box p-5 px-6 mb-6">
+                            <a target="_blank"
+                                href="https://api.whatsapp.com/send?phone=919137634193&text=*Hello%20Alivecreate%20Web%20Solutions%20-%20Inquiry%20from%20Barodaplus*">
+
+                                <img src="https://imagedelivery.net/zfs38w7w3E1dJVvB3mVs9g/3316dc6e-4992-4be7-63f6-41b0dcbbaf00/md"
+                                    style="width:100%;" />
+                            </a>
+                        </div>
                     </div>
-                </div>
 
 
                 </div>

@@ -23,6 +23,13 @@
                     </a>
                 </li> 
                 
+                <li id="ganesh-festival">
+                    <a href="{{route('ganeshFestivalGroup.index')}}">
+                        <img src="{{asset('front')}}/images/icons/message.png" alt="Ganesh Festival" class="w-5">
+                        <span> Home Ganesh List</span> 
+                    </a>
+                </li> 
+                
                 @if(Auth::check() && isGroupExists() )
                 <li  id="my-group">
                     <a href="{{route('ganeshFestivalGroup.show', isGroupExists()->slug)}}">
