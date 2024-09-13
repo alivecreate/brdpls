@@ -17,9 +17,9 @@
     <div id="wrapper">
 
     @include('front.ext.header-ganesh-festival')
-        @include('front.widget.sidebar-ganesh-festival')
+    @include('front.widget.sidebar-ganesh-festival-login')
 
-
+    
         @yield('content')
 
 
