@@ -35,14 +35,14 @@
                 @endif
 
                 @if(isHomeCompetitionExists())
-                <li  id="my-group">
+                <!-- <li  id="my-group">
                 
 
                 <a href="{{route('showHome', isHomeCompetitionExists()->id)}}" >
                     <img src="{{asset('front')}}/images/icons/group.png" alt="My Home / Mandal" class="w-6">
                         <span> My Home Ganesh</span> 
                     </a>
-                </li> 
+                </li>  -->
                 
 
                 @endif
@@ -93,8 +93,6 @@
                             <span> Registration Now </span>       
                         </a>
                     </li>
-
-
                     @endif
         </ul>
         </nav>
