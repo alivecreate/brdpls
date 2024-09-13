@@ -23,12 +23,6 @@
                     </a>
                 </li> 
                 
-                <li id="ganesh-festival">
-                    <a href="{{route('ganeshFestivalGroup.index')}}">
-                        <img src="{{asset('front')}}/images/icons/message.png" alt="Ganesh Festival" class="w-5">
-                        <span> Home Ganesh List</span> 
-                    </a>
-                </li> 
                 
                 @if(Auth::check() && isGroupExists() )
                 <li  id="my-group">
@@ -95,18 +89,12 @@
 
                     <li>
                         <a href="{{route('registration')}}"> 
-                            <ion-icon name="log-in-outline" style="height: 27px;width: 27px;"></ion-icon>
+                            <ion-icon name="arrow-redo-outline" style="height: 27px;width: 27px;"></ion-icon>
                             <span> Registration Now </span>       
                         </a>
                     </li>
 
 
-                    <li>
-                        <a href="{{route('registration')}}"> 
-                            <ion-icon name="arrow-redo-outline" style="height: 27px;width: 27px;"></ion-icon>
-                            <span> Create New Account </span>       
-                        </a>
-                    </li>
                     @endif
         </ul>
         </nav>
