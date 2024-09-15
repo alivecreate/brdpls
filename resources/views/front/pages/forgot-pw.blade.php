@@ -43,12 +43,22 @@
                 enctype="multipart/form-data">
                 @csrf
                 <div>
+                    <label for="email" class="">Phone Number</label>
+                    <div class="mt-2.5">
+                        <input id="phone" name="phone" type="tel" placeholder="Phone No." value="{{old('phone')}}"
+                            required
+                            class="w-full rounded-lg bg-transparent shadow-sm border border-slate-200 dark:border-slate-800 dark:bg-white/5 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                    </div>
+                </div>
+                
+<!--                 
+                <div>
                     <label for="email" class="">Password</label>
                     <div class="mt-2.5">
                         <input id="password" name="password" type="password" placeholder="***"
                             class="!w-full !rounded-lg !bg-transparent !shadow-sm !border-slate-200 dark:!border-slate-800 dark:!bg-white/5">
                     </div>
-                </div>
+                </div> -->
 
                 
                 @if ($errors->any())

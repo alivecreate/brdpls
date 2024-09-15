@@ -8,6 +8,7 @@ use App\Models\GaneshCompetition;
 
 use Illuminate\Support\Str;
 use App\Models\User;
+use App\Models\GroupPost;
 use Auth;
 
 class GaneshFestivalGroupController extends Controller
@@ -22,12 +23,6 @@ class GaneshFestivalGroupController extends Controller
         return view('front.pages.groups.list', compact('groups'));
     }
 
-    public function homeGaneshList()
-    {
-        
-        $homeGaneshList = GaneshCompetition::orderBy('id', 'desc')->where('ganesh_competition', 3)->get();
-        return view('front.pages.groups.list', compact('homeGaneshList'));
-    }
 
     /**
      * Show the form for creating a new resource.
@@ -176,13 +171,39 @@ class GaneshFestivalGroupController extends Controller
      */
     public function show(string $id)
     {
+        // dd('test');
 
         $group = Group::where('slug', $id)->first();
+
         $user = User::find(Auth::id());
         
         if($group){
-            return view('front.pages.ganesh.group.show', compact('group', 'user'));
+            $groupPosts = GroupPost::where('group_id', $group->id)->orderBy('id', 'desc')->get();
+            
+            // dd($groupPosts);
+
+            return view('front.pages.ganesh.group.show', compact('group','groupPosts', 'user'));
         }
+
+        return redirect('ganesh-festival');
+    }
+
+    public function showHome(string $id)
+    {
+        // dd('test');
+
+        $group = Group::where('slug', $id)->first();
+
+        $user = User::find(Auth::id());
+        
+        if($group){
+            $groupPosts = GroupPost::where('group_id', $group->id)->orderBy('id', 'desc')->get();
+            
+            // dd($groupPosts);
+
+            return view('front.pages.ganesh.group.show', compact('group','groupPosts', 'user'));
+        }
+
         return redirect('ganesh-festival');
     }
 
@@ -223,7 +244,6 @@ class GaneshFestivalGroupController extends Controller
      */
     public function destroy(string $cid)
     {
-
         $delete = Group::where(['cid' => $cid, 'user_id' => Auth::id()])->first();
         // dd( $delete);
         if($delete){
@@ -231,7 +251,17 @@ class GaneshFestivalGroupController extends Controller
             return redirect()->back()->with('success', 'Group Deleted Successfully.');
         }
         return redirect()->back()->with('error', 'Something went wrong, please try again.');
-        
+    }
+
+    public function deletePost(string $cid)
+    {
+        $delete = Group::where(['cid' => $cid, 'user_id' => Auth::id()])->first();
+        // dd( $delete);
+        if($delete){
+            $delete->delete();
+            return redirect()->back()->with('success', 'Group Deleted Successfully.');
+        }
+        return redirect()->back()->with('error', 'Something went wrong, please try again.');
     }
 
     

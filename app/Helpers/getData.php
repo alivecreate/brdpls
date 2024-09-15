@@ -335,3 +335,10 @@ if (!function_exists('getLanguageName')) {
         return $locales[$currentLocale] ?? 'Unknown';
     }
 }
+
+if (!function_exists('getUserData')) {
+    function getUserData($user_id) {
+        return User::where(['id' => $user_id])->first();
+        }   
+}
+

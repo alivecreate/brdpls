@@ -92,7 +92,7 @@ class GaneshFestivalCompetition extends Controller
      */
     public function store(Request $request)
     {
-dd( $request->all());
+// dd( $request->all());
 
 
 
@@ -294,6 +294,15 @@ return redirect()->back()->with('error', 'Something went wrong, please try again
     public function show(string $id)
     {
         //
+    }
+
+    public function homeGaneshList()
+    {
+        // dd('test home lisst');
+        
+        $homeGaneshList = GaneshCompetition::orderBy('id', 'desc')->where('competition_type', 3)->get();
+
+        return view('front.pages.groups.homeGaneshList', compact('homeGaneshList'));
     }
 
     

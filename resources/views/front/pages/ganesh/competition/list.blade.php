@@ -37,7 +37,7 @@
                                 class="absolute w-full h-full inset-0 rounded-md object-cover shadow-sm"
                                 >
                             @else 
-                                <img src="{{asset('front/images/product/product-1.jpg')}}" alt="{{$group->name}}"
+                                <img src="https://imagedelivery.net/zfs38w7w3E1dJVvB3mVs9g/59e4502a-977e-45f7-c153-522a80d42300/lg" alt="{{$group->name}}"
                                 class="absolute w-full h-full inset-0 rounded-md object-cover shadow-sm">
                             @endif
                             

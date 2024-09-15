@@ -42,7 +42,18 @@ class FestivalCompetitionVoting extends Controller
         // dd($request->all());
 
         // $user = User::findOwhererFail($request->user_id);
+
         $user = User::find(Auth::id());
+        
+
+        if(checkCompetitionSchedule()->status !== 'live'){
+            return redirect()->back()->with('error', 'Voting line is closed.');
+        }
+
+        
+        // dd(checkCompetitionSchedule());
+        $LiveCompetitionStatus = LiveCompetitionStatus::find();
+
         
         // dd($user);
         if(!$user){

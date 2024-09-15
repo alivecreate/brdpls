@@ -209,17 +209,17 @@ function uploadImagesThumb($request, $fileName = null, $prefix = null){
 
 function deleteCloudImage($imageId = null){
           
-    $apiToken = 'AXzA-Tlk5jwxt7bc-_u4jR9yWyAHnFk8L8VQK750';
-    $accountId = 'd3c72ca07db24a2fe735ae6ff0383b19';
+    $apiToken = env('CLOUDFLARE_ACCOUNT_ID');
+    $accountId = env('CLOUDFLARE_API_TOKEN');
 
 
         $client = new Client();
-        $url = 'https://api.cloudflare.com/client/v4/accounts/' . env('CLOUDFLARE_ACCOUNT_ID') . '/images/v1/' . $imageId;
+        $url = 'https://api.cloudflare.com/client/v4/accounts/'.$apiToken.'/images/v1/' . $imageId;
 
         try {
             $response = $client->delete($url, [
                 'headers' => [
-                    'Authorization' => 'Bearer ' . env('CLOUDFLARE_API_TOKEN'),
+                    'Authorization' => 'Bearer '.$accountId,
                 ],
             ]);
 
@@ -305,8 +305,11 @@ function uploadCloudImage($image){
 function uploadCloudFlairImage($image){
       
     try {
-        $apiToken = 'AXzA-Tlk5jwxt7bc-_u4jR9yWyAHnFk8L8VQK750';
-        $accountId = 'd3c72ca07db24a2fe735ae6ff0383b19';
+        
+        $apiToken = env('CLOUDFLARE_API_TOKEN');
+        $accountId = env('CLOUDFLARE_ACCOUNT_ID');
+        
+        // dd($accountId, $apiToken);
 
 
         $client = new Client();
@@ -331,19 +334,61 @@ function uploadCloudFlairImage($image){
         if ($result->success) {
             return $result->result->id;
         } else {
-            return 'false';
+            // return 'false';
             return response()->json([
                 'success' => false,
                 'message' => $result->errors[0]->message ?? 'Failed to upload image.',
             ], 500);
         }
     } catch (\Exception $e) {
+        dd($e);
         return response()->json([
             'success' => false,
             'message' => $e->getMessage(),
         ], 500);
+
     }
 }
+
+
+if (!function_exists('getPostImages')) {
+    function getPostImages($images) {
+
+        $images = explode(',', $images);
+
+        return $images;
+
+        // dd($images);
+
+        }   
+}
+
+function deleteCloudflareImage($imageId)
+{
+    
+    $apiToken = env('CLOUDFLARE_API_TOKEN');
+    $accountId = env('CLOUDFLARE_ACCOUNT_ID');
+
+    $url = "https://api.cloudflare.com/client/v4/accounts/{$accountId}/images/v1/$imageId";
+    
+    $headers = [
+        
+        'Authorization' => "Bearer {$apiToken}",
+        'Content-Type: application/json',
+    ];
+    
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'DELETE');
+    curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+    
+    $result = curl_exec($ch);
+    curl_close($ch);
+    
+    return json_decode($result);
+}
+
 
 
 

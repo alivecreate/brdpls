@@ -14,24 +14,36 @@
            </button>
 
        </div>
-       <form class="needs-validation data-form" action="{{ route('posts.store') }}" 
+       
+       <form class="needs-validation data-form" action="{{ route('group-posts.store') }}" 
        method="POST" enctype="multipart/form-data">
         @csrf
+
+        <input type="hidden" name="group_id" value="{{$group->id}}">
         <div class="space-y-5 mt-3 p-2">
             <textarea class="w-full !text-black placeholder:!text-black !bg-white !border-transparent focus:!border-transparent focus:!ring-transparent !font-normal !text-xl   dark:!text-white dark:placeholder:!text-white dark:!bg-slate-800" name="description" id=""  rows="6" placeholder="What do you have in mind?"></textarea>
         </div>
 
+
         <div class="flex items-center gap-2 text-sm py-2 px-4 font-medium flex-wrap">           
 
                 <input type="file"  onchange="previewImage2(event)" multiple
-                    name="gallery[]" id="imageUploadInput" accept="image/jpeg, image/png, image/webp" >
+                    name="images[]" id="imageUploadInput" accept="image/jpeg, image/png, image/webp" >
                     
+                    <select name="year" id="year" class="space-y-5 mt-3 p-2 w-40">
+                        <option value="">Select Year</option>
+                        @for($year = now()->year; $year >= 1925; $year--)
+                            <option value="{{ $year }}" @if($year == now()->year) selected @endif>{{ $year }}</option>
+                        @endfor
+                    </select>
+
+
+                
                 <button
                     class="button text-lg bg-primary text-white flex-1/2">
                     <ion-icon name="thumbs-up-outline"></ion-icon> Upload Post
                 </button>
-        
-                </div>
+        </div>
                 
         
 

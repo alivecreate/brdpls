@@ -32,7 +32,7 @@ class PostsController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
+        // dd($request->all());
         // dd(Auth::id());
 
         // dd(uploadCloudFlairImage($request->file('gallery')));

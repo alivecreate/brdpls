@@ -14,12 +14,13 @@ return new class extends Migration
         Schema::create('group_posts', function (Blueprint $table) {
             $table->id();
 
-            $table->string('description')->nullable();
+            $table->text('description')->nullable();
             $table->string('image')->nullable();
             $table->string('video')->nullable();
+            $table->year('year')->nullable(); // Add 'year' column to store the year
 
             $table->unsignedBigInteger('user_id')->nullable();
-            $table->foreign('user_id')->references('id')->on('users')->nullable();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 
             $table->unsignedBigInteger('group_id')->nullable();
             $table->foreign('group_id')->references('id')->on('groups')->onDelete('cascade');

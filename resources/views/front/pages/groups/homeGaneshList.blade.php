@@ -46,21 +46,22 @@
     <div class="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-2 grid-cols-1 p-1 gap-4" id="groupContainer">
         @foreach($homeGaneshList as $homeGanesh)
             <div class="card mb-2 group-card">
-                <a href="{{ route('ganeshFestivalGroup.show', $homeGanesh->slug) }}">
+                <a href="{{ route('showHome', $homeGanesh->id) }}">
                     <div class="card-media h-40">
                         <img 
-                        @if(optional($homeGanesh)->cover)
-                            src="https://imagedelivery.net/zfs38w7w3E1dJVvB3mVs9g/{{$homeGanesh->cover}}/sm"
+                            
+                        @if($homeGanesh->image)
+                            <img src="https://imagedelivery.net/zfs38w7w3E1dJVvB3mVs9g/{{$homeGanesh->image}}/md" alt="">       
                         @else
-                            src="{{ asset('front/images/product/product-1.jpg') }}"
+                            <img src="https://imagedelivery.net/zfs38w7w3E1dJVvB3mVs9g/59e4502a-977e-45f7-c153-522a80d42300/md" alt="">       
                         @endif
-                        alt="{{$homeGanesh->name}}" class="absolute w-full h-full inset-0 rounded-md object-cover shadow-sm">
-                        
+
+
                         <div class="card-overly"></div>
                     </div>
                 </a>
                 <div class="card-body">
-                    <a href="{{ route('ganeshFestivalGroup.show', $homeGanesh->slug) }}">
+                    <a href="{{ route('showHome', $homeGanesh->id) }}">
                         <h4 class="card-title group-name">{{ $homeGanesh->name }}</h4>
                     </a>
                     <div class="card-text">
@@ -71,9 +72,7 @@
                 </div>
             </div>
         @endforeach
-    </div>
-
-    
+    </div>  
 </div>
 
 

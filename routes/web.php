@@ -153,6 +153,8 @@ Route::post('/user-verification', [PageController::class, 'checkUserVerification
 
 Route::get('login', [PageController::class, 'login'])->name('login')->middleware(IsCheckLogin::class);
 
+Route::get('forgot-pw', [PageController::class, 'forgotPW'])->name('forgotPW');
+
 Route::post('auth/check-auth', [UserController::class, 'checkAuth'])->name('checkAuth');
 
 Route::post('setting/update-profile-pic', [UserController::class, 'updateProfilePic'])->name('updateProfilePic');
@@ -248,6 +250,8 @@ Route::post('/ganesh-festival/competition/store-home-ganesh', [GaneshFestivalCom
 
 Route::resource('/ganesh-festival/competition', GaneshFestivalCompetition::class)->names('ganeshFestivalCompetition');
 Route::resource('/ganesh-festival/voting', FestivalCompetitionVoting::class)->names('FestivalCompetitionVoting');
+
+Route::get('/ganesh-festival/home/', [GaneshFestivalCompetition::class, 'homeGaneshList'])->name('homeGaneshList');
 
 Route::get('/ganesh-festival/home/{id}', [GaneshFestivalCompetition::class, 'showHome'])->name('showHome');
 

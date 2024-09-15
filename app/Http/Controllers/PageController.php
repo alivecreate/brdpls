@@ -245,6 +245,10 @@ class PageController extends Controller
         return view('front.pages.form-register');
     }
 
+    public function forgotPW(Request $request){
+        return view('front.pages.forgot-pw');
+    }
+
     
     public function checkUserVerification(Request $request){
 

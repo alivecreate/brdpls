@@ -214,11 +214,14 @@ $(document).ready(function() {
                         @if($homeGanesh->competition($homeGanesh->participant_id) &&
                         $homeGanesh->competition($homeGanesh->participant_id)->status == 'active')
 
-                        <div class="flex-center mb-4">
-                            <h2 class="heading-h2 text-danger text-underline">ગણેશ સ્પર્ધા (Live)</h2>
-                            <img class="live-icon" src="{{asset('front/images/web')}}/live-icon.gif"
-                                alt="Barodaplus live voting">
-                        </div>
+                        @if(checkCompetitionSchedule()->status == 'active')
+                            <div class="flex-center mb-4">
+                                <h2 class="heading-h2 text-danger text-underline">ગણેશ સ્પર્ધા (Live)</h2>
+                                <img class="live-icon" src="{{asset('front/images/web')}}/live-icon.gif"
+                                    alt="Barodaplus live voting">
+                            </div>
+
+                        
 
                         <div class="text-black dark:text-white">
                             @if($homeGanesh->competition($homeGanesh->participant_id))
@@ -268,6 +271,20 @@ $(document).ready(function() {
 
                             @endif
                         </div>
+                           
+                        @else
+                        
+                        <div class="flex-center mb-4">
+                                <h2 class="heading-h2 text-danger text-underline">ગણેશ સ્પર્ધા-2024 ની બધી વોટિંગ લાઇન બંધ કરી દેવામાં આવેલ છે.</h2>
+                            </div>			
+                            
+                        
+                        <div class="flex-center mb-4">
+                            	<h3 class="heading-h2">સ્પર્ધામાં ભાગ લેવા બદલ ખુબ ખુબ ધન્યવાદ.</h3>
+                            </div>			
+                            
+                        @endif
+                        
                         <div class="flex items-center justify-between mb-4">
                             <div class="w-full qr-wrapper text-center">
                                 {!! DNS2D::getBarcodeSVG(route('showHome', [$homeGanesh->id, 'catid' => 3, 'slug' =>
@@ -485,15 +502,16 @@ $(document).ready(function() {
                 <div class="lg:space-y-4 lg:pb-8 max-lg:grid sm:grid-cols-2 max-lg:gap-6"
                     uk-sticky="media: 1024; end: #js-oversized; offset: 80">
 
-
                     <div class="box p-5 px-6">
                         @if($homeGanesh->competition($homeGanesh->participant_id) &&
                         $homeGanesh->competition($homeGanesh->participant_id)->status == 'active')
-                        <div class="flex-center mb-4">
-                            <h2 class="heading-h2 text-danger text-underline">ગણેશ સ્પર્ધા (Live)</h2>
-                            <img class="live-icon" src="{{asset('front/images/web')}}/live-icon.gif"
-                                alt="Barodaplus live voting">
-                        </div>
+                        
+                        @if(checkCompetitionSchedule()->status == 'active')
+                            <div class="flex-center mb-4">
+                                <h2 class="heading-h2 text-danger text-underline">ગણેશ સ્પર્ધા (Live)</h2>
+                                <img class="live-icon" src="{{asset('front/images/web')}}/live-icon.gif"
+                                    alt="Barodaplus live voting">
+                            </div>
 
                         <div class="text-black dark:text-white">
                             @if($homeGanesh->competition($homeGanesh->participant_id))
@@ -544,7 +562,22 @@ $(document).ready(function() {
 
                             @endif
                         </div>
+                        
+                        @else
+                        
+                        <div class="flex-center mb-4">
+                                <h2 class="heading-h2 text-danger text-underline">ગણેશ સ્પર્ધા-2024 ની બધી વોટિંગ લાઇન બંધ કરી દેવામાં આવેલ છે.</h2>
+                            </div>			
+                            
+                        
+                        <div class="flex-center mb-4">
+                            	<h3 class="heading-h2">સ્પર્ધામાં ભાગ લેવા બદલ ખુબ ખુબ ધન્યવાદ.</h3>
+                            </div>			
+                            
                         @endif
+                        
+                        @endif
+
 
                         <div class="flex items-center justify-between mb-4">
                             <div class="w-full qr-wrapper text-center">

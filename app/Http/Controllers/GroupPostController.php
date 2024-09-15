@@ -4,6 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Models\GroupPost;
+use App\Models\Group;
+use Auth;
+
+
 class GroupPostController extends Controller
 {
     /**
@@ -27,19 +32,57 @@ class GroupPostController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
-        // dd(Auth::id());
 
+        dd($request->all());
+
+        $uploadedImages = $request->file('images');
+
+            // Initialize an array to store the IDs returned from the helper
+            $imageIds = [];
+
+            $checkGroupOwner = Group::find(['id' => $request->group_id, 'user_id' => Auth::id()])->first();
+
+            if(!$checkGroupOwner){
+                return redirect()->back()->with('error', 'Somethin went wront, Please try again!');
+            }
+            // return redirect()->back()->with('error', 'Somethin went wront, Please try again!');
+
+            // dd($checkGroupOwner);
+
+            // Loop through each uploaded image
+            if($uploadedImages){
+                foreach ($uploadedImages as $image) {
+                    // Call the upload helper for each image and store the returned ID
+                    $imageId = uploadCloudFlairImage($image);
+                    
+                    $imageIds[] = $imageId;            
+                    $gallery = implode(',', $imageIds);
+                    
+                }
+            }
+            else{
+                $gallery = null;
+            }
+
+            // Convert the array of IDs to a comma-separated string
+
+            // Create the post with the comma-separated image IDs
+            GroupPost::create([
+                'description' => $request->description,
+                'image' => $gallery,
+                'video' => null,
+                'user_id' => Auth::id(),
+                'group_id' => $request->group_id,
+            ]);
+            
+            return redirect()->back()->with('success', 'Post created successfully.');
+
+
+        // dd($request->all());
+        // dd(Auth::id());
         // dd(uploadCloudFlairImage($request->file('gallery')));
 
-        $gallery = uploadCloudFlairImage($request->file('gallery'));
 
-        Post::create([
-            'description' => $request->description,
-            'gallery' => $gallery,
-            'user_id' => Auth::id()
-        ]);
-        
     }
 
     /**
@@ -69,8 +112,55 @@ class GroupPostController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroylll00(string $id)
     {
-        //
+        
+        $delete = GroupPost::where(['id' => $id, 'user_id' => Auth::id()])->first();
+        // dd( $delete);
+
+        if($delete){
+            $delete->delete();
+            return redirect()->back()->with('success', 'Group Deleted Successfully.');
+        }
+        return redirect()->back()->with('error', 'Something went wrong, please try again.');
     }
+
+    public function destroy($id)
+    {
+        
+        $delete = GroupPost::where(['id' => $id, 'user_id' => Auth::id()])->first();
+    
+        if ($delete) {
+            // Assuming the images are stored as a comma-separated string in 'image' column
+            $imageIds = explode(',', $delete->image);
+            // dd(count($imageIds));
+            
+            if(count($imageIds) == 1) {
+                
+                $response = deleteCloudImage($imageIds[0]);
+                // dd($imageIds[0]);
+            }
+            // dd($response);
+            
+    
+            foreach ($imageIds as $imageId) {
+                // dd($imageId);
+                $response = deleteCloudImage($imageId);
+                if (!isset($response->success) || !$response->success) {
+                    continue; // Silently skip this image and move on to the next
+                }
+                // dd($response);
+            }
+    
+            // Always delete the group post after attempting to delete images
+            $delete->delete();
+    
+            return redirect()->back()->with('success', 'Post deleted successfully.');
+        }
+    
+        return redirect()->back()->with('error', 'Something went wrong, please try again.');
+    
+    }
+
+
 }
