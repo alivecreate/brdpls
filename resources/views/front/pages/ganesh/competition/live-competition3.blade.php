@@ -74,14 +74,11 @@
                     
                     <a href="{{route('showHome', $GaneshCompetition->id)}}">
                         <div class="card-media h-40">
-                            
-                @if($GaneshCompetition->image)
-                
-                    <img src="https://imagedelivery.net/zfs38w7w3E1dJVvB3mVs9g/{{$GaneshCompetition->image}}/md" alt="">       
-                @else
-                    <img src="https://imagedelivery.net/zfs38w7w3E1dJVvB3mVs9g/59e4502a-977e-45f7-c153-522a80d42300/md" alt="">       
-                @endif
-
+                            @if($GaneshCompetition->image)
+                                <img src="https://imagedelivery.net/zfs38w7w3E1dJVvB3mVs9g/{{$GaneshCompetition->image}}/md" alt="">       
+                            @else
+                                <img src="https://imagedelivery.net/zfs38w7w3E1dJVvB3mVs9g/59e4502a-977e-45f7-c153-522a80d42300/md" alt="">       
+                            @endif
                             <div class="card-overly"></div>
                         </div>
                     </a>
@@ -92,18 +89,20 @@
                             <h4 class="card-title group-name"> {{$GaneshCompetition->name}} </h4>
                         </a>
 
-                    @if(getHomeGaneshUser($GaneshCompetition->participant_id))
+                        @if(getHomeGaneshUser($GaneshCompetition->participant_id))
                         <div class='flex'>
                             <ion-icon name="person"></ion-icon>
                             <p class="text-sm ml-2 mb-2"> {{getHomeGaneshUser($GaneshCompetition->participant_id)->first_name}} {{getHomeGaneshUser($GaneshCompetition->participant_id)->last_name}} </p>
                         </div>
                         @endif
 
+                        @if(checkCompetitionSchedule()->status == 'live')
                         <div class="card-text">
                             <div class="card-list-info font-normal mt-1 bg-voting">
                                 <div class='font-bold text-danger text-xl'> Total Votes: {{totalVotes($GaneshCompetition->participant_id, 3)}}</div>
                             </div>
                         </div>
+                        @endif
 
                         <form method="post" action="{{route('FestivalCompetitionVoting.store')}}">
                             @csrf
@@ -111,6 +110,8 @@
                             <div class="flex gap-2">
                                 
 
+
+                            @if(checkCompetitionSchedule()->status == 'live')
                             @if(Auth::check() && $user->status == 'active')
                                 @if(isVoted($GaneshCompetition->id, 3))
                                 <p class="button text-lg bg-success text-white flex-1 btn-not-allowed">
@@ -134,9 +135,10 @@
                                 @endif
 
                             @endif
+                            @endif
 
                                 <a href="{{route('showHome', $GaneshCompetition->id)}}"
-                                    class="button text-lg bg-secondery !w-auto">
+                                    class="button text-lg  @if(checkCompetitionSchedule()->status == 'live')bg-secondery !w-auto @else text-white bg-primary w-full @endif">
                                     <ion-icon name="eye-outline"></ion-icon> View
                                 </a>
                             </div>

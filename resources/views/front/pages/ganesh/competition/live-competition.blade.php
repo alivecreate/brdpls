@@ -102,19 +102,23 @@ $('.best-idol').addClass('active-link');
                             <ion-icon class='text-md live-d-icon' name="location-outline"></ion-icon>
                             <p class="text-sm"> {{$GaneshCompetition->participant->address}}</p>
                         </div>
+                    
+
+                        @if(checkCompetitionSchedule()->status == 'live')
                         <div class="card-text">
                             <div class="card-list-info font-normal mt-1 bg-voting">
-
                                 <div class='font-bold text-danger text-xl'>Total Votes:
                                     {{totalVotes($GaneshCompetition->participant_id, 1)}}</div>
                             </div>
                         </div>
+                        @endif
 
                         <form method="post" action="{{route('FestivalCompetitionVoting.store')}}">
                             @csrf
                            
                             <div class="flex gap-2">
                                 
+                        @if(checkCompetitionSchedule()->status == 'live')
                             @if(Auth::check() && $user->status == 'active')
                                 @if(isVoted($GaneshCompetition->id, 1))
                                 <p class="button text-lg bg-success text-white flex-1 btn-not-allowed">
@@ -123,9 +127,8 @@ $('.best-idol').addClass('active-link');
 
                                 @elseif(!isVotedCategory(1))
                                 <input type="hidden" name="participant_id" value="{{$GaneshCompetition->id}}" />
-                            <input type="hidden" name="category_id" value="1" />
-                            <input type="hidden" name="votable_id" value="{{$GaneshCompetition->participant->id}}" />
-
+                                <input type="hidden" name="category_id" value="1" />
+                                <input type="hidden" name="votable_id" value="{{$GaneshCompetition->participant->id}}" />
 
                                 <button class="button text-lg bg-primary text-white flex-1">
                                     <ion-icon name="thumbs-up-outline"></ion-icon> Vote Now
@@ -142,10 +145,11 @@ $('.best-idol').addClass('active-link');
                                     <ion-icon name="thumbs-up-outline"></ion-icon> Vote Now
                                 </p>
                             @endif
+                            @endif
 
                                 <a href="{{route('ganeshFestivalGroup.show', $GaneshCompetition->participant->slug)}}"
-                                    class="button text-lg bg-secondery !w-auto">
-                                    <ion-icon name="eye-outline"></ion-icon> View
+                                class="button text-lg  @if(checkCompetitionSchedule()->status == 'live')bg-secondery !w-auto @else text-white bg-primary w-full @endif">
+                                <ion-icon name="eye-outline"></ion-icon> View
                                 </a>
                             </div>
                         </form>

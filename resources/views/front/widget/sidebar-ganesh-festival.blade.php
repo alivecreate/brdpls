@@ -24,37 +24,31 @@
                 </li> 
                 
                 @if(Auth::check() && isGroupExists() )
-                <li  id="my-group">
-                    <a href="{{route('ganeshFestivalGroup.show', isGroupExists()->slug)}}">
-                    <img src="{{asset('front')}}/images/icons/group.png" alt="My Group / Mandal" class="w-6">
-                        <span> My Mandal </span> 
-                    </a>
-
-                </li> 
+                    <li  id="my-group">
+                        <a href="{{route('ganeshFestivalGroup.show', isGroupExists()->slug)}}">
+                        <img src="{{asset('front')}}/images/icons/group.png" alt="My Group / Mandal" class="w-6">
+                            <span> My Mandal </span> 
+                        </a>
+                    </li> 
                 @endif
 
                 @if(isHomeCompetitionExists())
-                <li  id="my-group">
-                
-
-                <a href="{{route('showHome', isHomeCompetitionExists()->id)}}" >
-                    <img src="{{asset('front')}}/images/icons/group.png" alt="My Home / Mandal" class="w-6">
-                        <span> My Home Ganesh</span> 
-                    </a>
-                </li> 
-                
-
+                    <li  id="my-group">
+                    <a href="{{route('showHome', isHomeCompetitionExists()->id)}}" >
+                        <img src="{{asset('front')}}/images/icons/group.png" alt="My Home / Mandal" class="w-6">
+                            <span> My Home Ganesh</span> 
+                        </a>
+                    </li> 
                 @endif
 
 
                 @if(checkCompetitionSchedule()->status == 'live')
-                <li id="live-competition">
-                    <a href="{{route('GaneshFestivalCompetitionLive')}}">
-                        <img src="{{asset('front')}}/images/icons/video.png" alt="Live Competition" class="w-6">
-                        <span>Live Competition </span> 
-                    </a>
-                </li>
-                
+                    <li id="live-competition">
+                        <a href="{{route('GaneshFestivalCompetitionLive')}}">
+                            <img src="{{asset('front')}}/images/icons/video.png" alt="Live Competition" class="w-6">
+                            <span>Live Competition </span> 
+                        </a>
+                    </li>
                 @endif
 
                 @if(Auth::check() && getUserData()->status == 'active')

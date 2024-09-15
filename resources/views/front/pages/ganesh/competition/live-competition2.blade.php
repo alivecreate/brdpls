@@ -100,20 +100,21 @@
                             <ion-icon class='text-md live-d-icon' name="location-outline"></ion-icon>
                             <p class="text-sm"> {{$GaneshCompetition->participant->address}}</p>
                         </div>
+                        
+                        @if(checkCompetitionSchedule()->status == 'live')
                         <div class="card-text">
                             <div class="card-list-info font-normal mt-1 bg-voting">
-
                                 <div class='font-bold text-danger text-xl'>Total Votes: {{totalVotes($GaneshCompetition->participant_id, 2)}}</div>
                             </div>
                         </div>
+                        @endif
 
                         <form method="post" action="{{route('FestivalCompetitionVoting.store')}}">
                             @csrf
                           
                             <div class="flex gap-2">
-                                
-
                          
+                        @if(checkCompetitionSchedule()->status == 'live')
                             @if(Auth::check() && $user->status == 'active')
                                 @if(isVoted($GaneshCompetition->id, 2))
                                 <p class="button text-lg bg-success text-white flex-1 btn-not-allowed">
@@ -122,14 +123,15 @@
                                 
                                 @elseif(!isVotedCategory(2))
                                 <input type="hidden" name="participant_id" value="{{$GaneshCompetition->id}}" />
-                            <input type="hidden" name="category_id" value="2" />
-                            <input type="hidden" name="votable_id" value="{{$GaneshCompetition->participant->id}}" />
+                                <input type="hidden" name="category_id" value="2" />
+                                <input type="hidden" name="votable_id" value="{{$GaneshCompetition->participant->id}}" />
 
 
                                 <button
                                     class="button text-lg bg-primary text-white flex-1">
                                     <ion-icon name="thumbs-up-outline"></ion-icon> Vote Now
                                 </button>
+                                @endif
 
                                 @else
                                 <p class="button text-lg bg-secondary text-white flex-1 btn-voting-disable btn-not-allowed">
@@ -143,8 +145,8 @@
                             
 
                                 <a href="{{route('ganeshFestivalGroup.show', $GaneshCompetition->participant->slug)}}"
-                                    class="button text-lg bg-secondery !w-auto">
-                                    <ion-icon name="eye-outline"></ion-icon> View
+                                 class="button text-lg  @if(checkCompetitionSchedule()->status == 'live')bg-secondery !w-auto @else text-white bg-primary w-full @endif">
+                                <ion-icon name="eye-outline"></ion-icon> View
                                 </a>
                             </div>
                         </form>

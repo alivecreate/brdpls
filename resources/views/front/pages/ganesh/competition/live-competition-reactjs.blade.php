@@ -33,7 +33,6 @@
 @include('front.ext.nav-mobile-menu')
 
     @include('front.pages.ganesh.competition.tab-live-competition')
-   
     
     <div class="uk-switcher" id="group-tabs">
             <div class="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-2 grid-cols-1 p-1 gap-4">
@@ -51,7 +50,6 @@
                             <div class="card-overly"></div>
                         </div>
                     </a>
-
 
                     <div class="card-body">
                         <a href="{{route('ganeshFestivalGroup.show', $GaneshCompetition->participant->slug)}}">

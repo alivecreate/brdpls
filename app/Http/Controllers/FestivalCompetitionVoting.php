@@ -14,7 +14,6 @@ use App\Models\CompetitionVote;
 use Auth;
 
 
-
 class FestivalCompetitionVoting extends Controller
 {
     /**
@@ -50,7 +49,6 @@ class FestivalCompetitionVoting extends Controller
             return redirect()->back()->with('error', 'Voting line is closed.');
         }
 
-        
         // dd(checkCompetitionSchedule());
         $LiveCompetitionStatus = LiveCompetitionStatus::find();
 

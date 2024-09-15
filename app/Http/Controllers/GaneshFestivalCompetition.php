@@ -226,10 +226,11 @@ return redirect()->back()->with('error', 'Something went wrong, please try again
                     'competition_type' => '1-2'
                 ])->orderBy('id', 'desc')
             ->get();
+            
 
             // dd($GaneshCompetitions);
 
-        $user = User::find(Auth::id());
+            $user = User::find(Auth::id());
             
             return view('front.pages.ganesh.competition.live-competition', compact('GaneshCompetitions', 'user'));
         }
@@ -247,7 +248,7 @@ return redirect()->back()->with('error', 'Something went wrong, please try again
             ->get();
             
 
-        $user = User::find(Auth::id());
+            $user = User::find(Auth::id());
                         return view('front.pages.ganesh.competition.live-competition2', compact('GaneshCompetitions', 'user'));
                     }
 

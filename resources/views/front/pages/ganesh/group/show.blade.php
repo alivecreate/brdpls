@@ -247,13 +247,10 @@ $(document).ready(function() {
             <div class="lg:w-[400px] lg:hidden w-full">
 
 
-
-
                 <div class="lg:space-y-4 lg:pb-8 max-lg:grid sm:grid-cols-2 max-lg:gap-6"
                     uk-sticky="media: 1024; end: #js-oversized; offset: 80">
 
                     <div class="box p-5 px-6">
-
 
                         @if(checkCompetitionSchedule()->status == 'live')
 

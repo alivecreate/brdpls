@@ -6,7 +6,6 @@
 
         <div class="2xl:w-[--w-side] lg:w-[--w-side-sm]">
 
-            <!-- left -->
             <div class="flex items-center gap-1">
 
                 <button uk-toggle="target: #site__sidebar ; cls :!-translate-x-0"
@@ -43,44 +42,35 @@
                         <li class="custom-nav-menu-wrap" uk-scrollspy-class="uk-animation-fade" tabindex="-1" style="">
                             
                         @if(isGroupExists()  && !isHomeCompetitionExists())
-        <a href="{{route('ganeshCompetitionPaymentCreate', ['type' => 'group'])}}" 
-            class="flex-inline p-3 px-4 rounded-lg bg-teal-100/60 text-teal-600 font-semibold dark:text-white dark:bg-dark4">
-            <ion-icon name="people" class="text-2xl drop-shadow-md md hydrated mr-2" role="img"
-            aria-label="book"></ion-icon> ગણેશ સ્પર્ધા રજિસ્ટ્રેશન</a>
-                                    
-        @elseif(isHomeCompetitionExists())
-        <a href="{{route('ganeshCompetitionPaymentCreate', ['type' => 'home'])}}" 
-            class="flex-inline p-3 px-4 rounded-lg bg-teal-100/60 text-teal-600 font-semibold dark:text-white dark:bg-dark4"> 
-                                    <ion-icon name="people" class="text-2xl drop-shadow-md md hydrated mr-2" role="img"
-                                    aria-label="book"></ion-icon> મારા ઘરના ગણેશ</a>
-       
-        @endif
-                        </li>
-                        @if(!isGroupExists() && !isHomeCompetitionExists() && getUserData() && getUserData()->status == 'active')
-
-                        <li class="custom-nav-menu-wrap" tabindex="-1" style="">
-                            <a href="{{route('ganeshFestivalCompetition.create')}}"
-                                class="custom-nav-menu p-3 px-4 rounded-lg bg-sky-100/60 text-sky-600 dark:text-white dark:bg-dark4">
-                                <ion-icon name="trophy" class="text-2xl drop-shadow-md md hydrated mr-2" role="img"
-                                    aria-label="trophy"></ion-icon>
-                                <div class="text-sm font-medium text-capitalize font-semibold"> ગણેશ સ્પર્ધા રજિસ્ટ્રેશન
-                                </div>
-                            </a>
-                        </li>
-
+                        <a href="{{route('ganeshCompetitionPaymentCreate', ['type' => 'group'])}}" 
+                            class="flex-inline p-3 px-4 rounded-lg bg-teal-100/60 text-teal-600 font-semibold dark:text-white dark:bg-dark4">
+                            <ion-icon name="people" class="text-2xl drop-shadow-md md hydrated mr-2" role="img"
+                            aria-label="book"></ion-icon> ગણેશ સ્પર્ધા રજિસ્ટ્રેશન</a>
                         @endif
 
-                        
-                    @if(!Auth::check())
-                    <li class="custom-nav-menu-wrap" tabindex="-1" style="">
-                    <a href="{{route('ganeshCompetitionPaymentCreate', ['type' => 'group'])}}" 
-            class="flex-inline p-3 px-4 rounded-lg bg-teal-100/60 text-teal-600 font-semibold dark:text-white dark:bg-dark4">
-            <ion-icon name="people" class="text-2xl drop-shadow-md md hydrated mr-2" role="img"
-            aria-label="book"></ion-icon> ગણેશ સ્પર્ધા રજિસ્ટ્રેશન</a>
-                                   
+                        @if(isHomeCompetitionExists())
+                        <a href="{{route('ganeshCompetitionPaymentCreate', ['type' => 'home'])}}" 
+                            class="flex-inline p-3 px-4 rounded-lg bg-teal-100/60 text-teal-600 font-semibold dark:text-white dark:bg-dark4"> 
+                                                    <ion-icon name="people" class="text-2xl drop-shadow-md md hydrated mr-2" role="img"
+                                                    aria-label="book"></ion-icon> મારા ઘરના ગણેશ</a>
+                        @endif
                         </li>
-                    @elseif(getUserData() && getUserData()->status != 'active')
 
+                        <li>
+                        <a href="{{route('ganeshCompetitionPaymentCreate', ['type' => 'group'])}}" 
+                            class="flex-inline p-3 px-4 rounded-lg bg-teal-100/60 text-teal-600 font-semibold dark:text-white dark:bg-dark4">
+                            <ion-icon name="people" class="text-2xl drop-shadow-md md hydrated mr-2" role="img"
+                            aria-label="book"></ion-icon> ગણેશ મંડળનું લિસ્ટ</a>
+                        </li>
+                        
+                        <li>
+                        <a href="{{route('ganeshCompetitionPaymentCreate', ['type' => 'group'])}}" 
+                            class="flex-inline p-3 px-4 rounded-lg bg-teal-100/60 text-teal-600 font-semibold dark:text-white dark:bg-dark4">
+                            <ion-icon name="people" class="text-2xl drop-shadow-md md hydrated mr-2" role="img"
+                            aria-label="book"></ion-icon> ઘરના ગણેશજી</a>
+                        </li>
+                        
+                    @if(getUserData() && getUserData()->status != 'active')
                         <li class="custom-nav-menu-wrap" tabindex="-1" style="">
                             <a href="{{route('userVerification',['cid' => getUserData()['cid']])}}"
                                 class="custom-nav-menu p-3 px-4 rounded-lg bg-sky-100/60 text-sky-600 dark:text-white dark:bg-dark4">
@@ -92,17 +82,14 @@
                         </li>
                         @endif	
 
-
                         <li class="custom-nav-menu-wrap " tabindex="-1" style="">
                             <a href="{{route('GaneshFestivalCompetitionRules')}}"
                                 class="custom-nav-menu p-3 px-4 rounded-lg bg-purple-100/60 text-purple-600 dark:text-white dark:bg-dark4">
                                 <ion-icon name="newspaper-outline" class="text-2xl drop-shadow-md md hydrated mr-2"
                                     role="img" aria-label="videocam"></ion-icon>
                                 <div class="text-sm font-medium text-capitalize font-semibold"> સ્પર્ધાના નિયમો </div>
-
                             </a>
                         </li>
-
                     </ul>
                 </div>
 
@@ -123,7 +110,6 @@
                     </div>
                     <div class="hidden bg-white rounded-lg drop-shadow-xl dark:bg-slate-700 w-64 border2"
                         uk-drop="offset:6;pos: bottom-right;animate-out: true; animation: uk-animation-scale-up uk-transform-origin-top-right ">
-
 
                         <a href="#">
                             <div class="p-4 py-5 flex items-center gap-4">
