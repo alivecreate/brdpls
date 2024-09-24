@@ -13,15 +13,7 @@
 <p class='subheading-h3 font-semibold font-semibold mb-0 alert-danger2 text-left'>દરેક મંડળ બરોડા પ્લ્સ પર પોતાના જુના ફોટો અને વિડિયો ફ્રી અપલોડ કરી શકશે.</p>
 <p class='subheading-h3 font-semibold font-semibold mb-0 text-left'>ગણેશ સ્પર્ધાના ઈનામ વિતરણની તારીખ ટૂક સમયમાં જાહેર થશે.</p>
 
-@if(!isGroupExists() && !isHomeCompetitionExists())
-                            <a href="{{route('ganeshFestivalCompetition.create')}}"
-                                class="custom-nav-menu p-3 px-4 rounded-lg bg-sky-100/60 text-sky-600 dark:text-white dark:bg-dark4 mb-4">
-                                <ion-icon name="trophy" class="text-2xl drop-shadow-md md hydrated mr-2" role="img"
-                                    aria-label="trophy"></ion-icon>
-                                <div class="text-sm font-medium text-capitalize font-semibold"> ગણેશ સ્પર્ધા રજિસ્ટ્રેશન
-                                </div>
-                            </a>
-    @endif
+
     <div class="page-heading">
         <h1 class="page-title"> ગણેશ મંડળો (Ganesh Festival) </h1>
         <nav class="nav__underline">

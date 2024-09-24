@@ -41,12 +41,35 @@
 
                       
 
-                        <li>
-                        <a href="{{route('ganeshCompetitionPaymentCreate', ['type' => 'group'])}}" 
-                            class="flex-inline p-3 px-4 rounded-lg bg-teal-100/60 text-teal-600 font-semibold dark:text-white dark:bg-dark4">
-                            <ion-icon name="people" class="text-2xl drop-shadow-md md hydrated mr-2" role="img"
-                            aria-label="book"></ion-icon> ગણેશ મંડળ / ઘરના ગણેશજીનું રજિસ્ટ્રેશન</a>
-                        </li>
+                        
+            @if(isGroupExists())
+                <li class="custom-nav-menu-wrap mr-2" tabindex="-1" style="">
+                    <a href="{{route('ganeshFestivalGroup.show', isGroupExists()->slug)}}" 
+                    class="mb-2 flex-inline p-3 px-4 rounded-lg bg-teal-100/60 text-teal-600 font-semibold dark:text-white dark:bg-dark4">
+                        <ion-icon name="people" class="text-2xl drop-shadow-md md hydrated mr-2" role="img"
+                        aria-label="book"></ion-icon> My Mandal</a>
+                </li>
+            @elseif(isHomeCompetitionExists())
+
+            <li class="custom-nav-menu-wrap mr-2" tabindex="-1" style="">
+                    <a href="{{route('showHome', isHomeCompetitionExists()->id)}}" 
+                    class="mb-2 flex-inline p-3 px-4 rounded-lg bg-teal-100/60 text-teal-600 font-semibold dark:text-white dark:bg-dark4">
+                        <ion-icon name="people" class="text-2xl drop-shadow-md md hydrated mr-2" role="img"
+                        aria-label="book"></ion-icon> My Home Ganesh</a>
+                </li>
+
+            @else
+
+            <li class="custom-nav-menu-wrap mr-2" tabindex="-1" style="">
+                    <a href="{{route('ganeshFestivalGroup.create')}}" >
+                        <img src="{{asset('front')}}/images/icons/group.png" alt="My Home / Mandal" class="w-6">
+                            <span> My Home Ganesh</span> 
+                        </a>
+                </li> 
+            
+            @endif
+            
+
                         
                     @if(getUserData() && getUserData()->status != 'active')
                         <li class="custom-nav-menu-wrap" tabindex="-1" style="">

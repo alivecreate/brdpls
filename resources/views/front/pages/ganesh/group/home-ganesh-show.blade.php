@@ -192,7 +192,7 @@ $(document).ready(function() {
 
             </div>
 
-            <div class="flex items-center justify-between  border-t border-gray-100 px-2 dark:border-slate-700">
+            <div class="flex items-center border-t border-gray-100 px-2 dark:border-slate-700">
 
                 <nav
                     class="flex gap-0.5 rounded-xl overflow-hidden -mb-px text-gray-500 font-medium text-sm overflow-x-auto dark:text-white">

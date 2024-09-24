@@ -115,16 +115,16 @@
 
                 
                     @if (count($group->competitions) == 1 && ($group->myCompetition[0]->status == 'active'))
-
                     
                     <div class="flex w-full items-center gap-4 mt-6">
-                        <p class="font-semibold btn-md lg:px-10 text-success text-md w-full text-center">ગણેશ સ્પર્ધાનું પેમેન્ટ મળી ગયેલ છે.<span class="ripple-overlay"></span></p>
+                        <p class="font-semibold btn-md lg:px-10 text-success text-md w-full text-center">ગણેશ સ્પર્ધા - 2024 નું પેમેન્ટ મળી ગયેલ છે.<span class="ripple-overlay"></span></p>
                     </div>
 
-                    <p class="font-semibold btn-md button lg:px-10 bg-success text-white text-24 w-full text-wrap">ગણેશ સ્પર્ધાની વોટિંગ ચાલુ થઈ ગયેલ છે.<span class="ripple-overlay"></span></p>
-                    
-                    <p class="font-semibold btn-md button lg:px-10 text-danger text-white text-24 w-full text-wrap">પેમેન્ટ કે કોઈ પણ પ્રકારની સમસ્યા હોય તો આ નંબર પર કોલ કરો. <a href="+919137634193">91376341930</a><span class="ripple-overlay"></span></p>
-                    
+                    @if(checkCompetitionSchedule()->status !== 'live')
+                        <p class="font-semibold btn-md button lg:px-10 bg-success text-white text-24 w-full text-wrap">ગણેશ સ્પર્ધાની વોટિંગ ચાલુ થઈ ગયેલ છે.<span class="ripple-overlay"></span></p>
+                        <p class="font-semibold btn-md button lg:px-10 text-danger text-white text-24 w-full text-wrap">પેમેન્ટ કે કોઈ પણ પ્રકારની સમસ્યા હોય તો આ નંબર પર કોલ કરો. <a href="+919137634193">91376341930</a><span class="ripple-overlay"></span></p>
+                    @endif
+
                      @elseif (count($group->competitions) == 0)
 
                 <button id="rzp-button1"
