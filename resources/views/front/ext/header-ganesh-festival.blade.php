@@ -60,10 +60,10 @@
 
             @else
 
-            <li class="custom-nav-menu-wrap mr-2" tabindex="-1" style="">
+                <li class="custom-nav-menu-wrap mr-2" tabindex="-1" style="">
                     <a href="{{route('ganeshFestivalGroup.create')}}" >
                         <img src="{{asset('front')}}/images/icons/group.png" alt="My Home / Mandal" class="w-6">
-                            <span> My Home Ganesh</span> 
+                            <span> ગણેશ મંડળ / ઘરના ગણેશજીનું રજીસ્ટ્રેશન</span> 
                         </a>
                 </li> 
             
@@ -122,7 +122,7 @@
                         @else
                         <img 
                             class="w-10 h-10 rounded-full shadow cover"
-                         src="{{asset('front')}}/images/avatars/avatar-3.jpg"
+                            src="{{asset('front')}}/images/avatars/avatar-3.jpg"
                                     alt="Profile Picture" />
                         @endif
                                 <div class="flex-1">
