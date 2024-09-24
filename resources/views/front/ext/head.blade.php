@@ -11,7 +11,7 @@
 
     @yield('meta-content')
 
-    <meta name="description" content="LIVE - ગણેશ સ્પર્ધા વડોદરા, બરોડા પ્લસ આપનું હાર્દિક સ્વાગત કરે છે.">    
+    <meta name="description" content="ગણેશ ફેસ્ટિવલ વડોદરા, બરોડા પ્લસ આપનું હાર્દિક સ્વાગત કરે છે.">    
 
     <meta name="keywords" content="Ganesh Festival, Barodaplus, Ganesh Chaturthi, Festival Registration, Barodaplus Event, Ganesh Utsav">
       <meta name="author" content="Barodaplus">
@@ -19,7 +19,7 @@
       
     <!-- Open Graph Meta Tags -->
     <meta property="og:title" content="@yield('title', 'Ganesh Festival Live Competition - Barodaplus.com')">
-    <meta property="og:description" content="@yield('description', 'LIVE - ગણેશ સ્પર્ધા વડોદરા, બરોડા પ્લસ આપનું હાર્દિક સ્વાગત કરે છે.')">
+    <meta property="og:description" content="@yield('description', 'ગણેશ ફેસ્ટિવલ વડોદરા, બરોડા પ્લસ આપનું હાર્દિક સ્વાગત કરે છે.')">
     <meta property="og:type" content="website">
     
     
@@ -33,8 +33,8 @@
 
     <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="બરોડા પ્લસ આપનું હાર્દિક સ્વાગત કરે છે.">
-    <meta name="twitter:title" content="@yield('title', 'Ganesh Festival Live Competition - Barodaplus.com')">
-    <meta name="twitter:description" content="@yield('description', 'LIVE - ગણેશ સ્પર્ધા વડોદરા, બરોડા પ્લસ આપનું હાર્દિક સ્વાગત કરે છે.')">
+    <meta name="twitter:title" content="@yield('title', 'Ganesh Festival - Barodaplus.com')">
+    <meta name="twitter:description" content="@yield('description', 'ગણેશ ફેસ્ટિવલ વડોદરા, બરોડા પ્લસ આપનું હાર્દિક સ્વાગત કરે છે.')">
     <meta name="twitter:image" content="@yield('image', asset('front/images/web'))/login-image.webp">
     <meta name="twitter:site" content="Barodaplus.com">
     <meta name="twitter:creator" content="Barodaplus.com">

@@ -5,6 +5,11 @@
 {{ $group->name }}, {{ $group->city }}, Ganesh Festival - Barodaplus.com
 @endsection
 
+@section('image') https://imagedelivery.net/zfs38w7w3E1dJVvB3mVs9g/{{$group->cover}}/lg @endsection
+
+@section('description') {{ $group->name }}, ગણેશજીના ફોટો, વિડિયો અને લેટેસ્ટ અપડેટ જોવા માટે લિન્ક પર ક્લિક કરો. @endsection
+
+
 @section('custom-head')
 <style>
 /* Inline print styles */
@@ -28,7 +33,7 @@ document.getElementById('share-button').addEventListener('click', async () => {
 
             await navigator.share({
                 title: '{{optional($group)->name}}',
-                text: '*🚩 બરોડા પ્લસ ગણેશ સ્પર્ધા - 2024 🚩 - {{optional($group)->name}}* - મંડળને વોટ કરવા અને ફોટો તેમજ વિડિયો જોવા નીચે આપેલી લિન્ક પર ક્લિક કરો.',
+                text: '*🚩 બરોડા પ્લસ ગણેશ સ્પર્ધા - 2024 🚩 - {{optional($group)->name}}* - ગણેશજીના ફોટો, વિડિયો અને લેટેસ્ટ અપડેટ જોવા માટે લિન્ક પર ક્લિક કરો.',
                 url: window.location.href
             });
             console.log('Content shared successfully!');
