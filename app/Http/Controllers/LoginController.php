@@ -18,7 +18,7 @@ class LoginController extends Controller
     }
 
 
-    public function checkAuth(Request $request){   
+    public function checkAuth(Request $request){
     {
     $credentials = $request->only('phone', 'password');
     $rememberMe = $request->filled('remember');
@@ -46,6 +46,8 @@ class LoginController extends Controller
     ]);
 }
 
+
+
         
 
     // $rememberMe = $request->filled('rememberMe');
@@ -72,6 +74,8 @@ class LoginController extends Controller
 
         
     }
+
+    
     
     public function logout(Request $request){
         // $request->session()->forget('userData');

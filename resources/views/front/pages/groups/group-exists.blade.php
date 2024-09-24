@@ -69,9 +69,13 @@
                         
                         <input type="hidden" name="participant_id" value="{{$group->id}}"/>
                         <input type="hidden" name="competition_type" value="1-2"/>
-                        <div class="flex w-full items-center gap-4 mt-6">
-                            <button type="submit" class="btn-md button lg:px-10 bg-primary text-white text-24 w-full font-semibold"> ગણેશ સ્પર્ધામાં રજિસ્ટ્રેશન કરો <span class="ripple-overlay"></span></button>
-                        </div>
+                        
+                        @if(checkCompetitionSchedule()->status == 'live')
+                            <div class="flex w-full items-center gap-4 mt-6">
+                                <button type="submit" class="btn-md button lg:px-10 bg-primary text-white text-24 w-full font-semibold"> ગણેશ સ્પર્ધામાં રજિસ્ટ્રેશન કરો <span class="ripple-overlay"></span></button>
+                            </div>
+                        @endif
+
                     </form>
 
 

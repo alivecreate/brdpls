@@ -1224,7 +1224,7 @@ input:checked + .switch-button {
 }
 
 .uk-slideshow-items > * {
-  position: absolute;
+  
   top: 0px;
   left: 0px;
   right: 0px;

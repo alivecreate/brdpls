@@ -79,7 +79,7 @@
 
             <!-- submit button -->
             <div class="col-span-2">
-              <button type="submit" class="button bg-primary text-white w-full">Get Started</button>
+              <button type="submit" class="button bg-primary text-sm text-white w-full">Get Started</button>
             </div>
 
           </div>

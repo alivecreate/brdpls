@@ -31,42 +31,33 @@
             uk-scrollspy="target: > *; cls: uk-animation-scale-up; delay: 100 ;repeat: true">
 
             <div>
-                <h2 class="text-2xl font-semibold mb-1.5">Sign in to your account </h2>
-                <p class="text-sm text-gray-700 font-normal">If you haven’t signed up yet. <a
-                        href="{{route('registration')}}" class="text-blue-700">Register here!</a></p>
+                <h2 class="text-2xl font-semibold mb-1.5">Change New Password </h2>
+                <p class="text-sm text-gray-700 font-normal">Update your new password. 
+                    <a href="{{route('login')}}" class="ml-2 text-blue-700">Login here!</a></p>
             </div>
 
 
-            <form method="POST" action="{{route('checkAuth')}}"
+            <form method="POST" action="{{route('saveChangePassword')}}"
                 class="space-y-7 text-sm text-black font-medium dark:text-white"
                 uk-scrollspy="target: > *; cls: uk-animation-scale-up; delay: 100 ;repeat: true"
                 enctype="multipart/form-data">
                 @csrf
+
+                <input type="hidden" name="cid" value="{{$user->cid}}">
+
                 <div>
-                    <label for="email" class="">Phone Number</label>
-                    <div class="mt-2.5">
-                        <input id="phone" name="phone" type="tel" placeholder="Phone No." value="{{old('phone')}}"
-                            required
-                            class="w-full rounded-lg bg-transparent shadow-sm border border-slate-200 dark:border-slate-800 dark:bg-white/5 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                    </div>
-                </div>
-                <div>
-                    <label for="email" class="">Password</label>
+                    <label for="email" class="">New Password</label>
                     <div class="mt-2.5">
                         <input id="password" name="password" type="password" placeholder="******"
                             class="!w-full !rounded-lg !bg-transparent !shadow-sm !border-slate-200 dark:!border-slate-800 dark:!bg-white/5">
                     </div>
                 </div>
 
-                <div class="flex items-center justify-between">
+                <div class="flex">
 
                 <div class="flex items-center gap-2.5">
                         <input id="rememberme" name="rememberme" type="checkbox">
                         <label for="rememberme" class="font-normal">Remember me</label>
-                    </div>
-
-                    <div class="flex items-center gap-2.5">
-                        <a class="text-blue-700" href="{{route('forgotPW')}}" >Forgot Password</a>
                     </div>
 
                 </div>
@@ -81,7 +72,7 @@
                 </div>
                 @endif
                 <div>
-                    <button type="submit" class="button bg-primary text-sm text-white w-full">Sign in</button>
+                    <button type="submit" class="button bg-primary text-sm text-white w-full">Update Password</button>
                 </div>
 
             </form>

@@ -6,14 +6,14 @@
 <main id="site__main"
     class="2xl:ml-[--w-side]  xl:ml-[--w-side-sm] py-10 p-2.5 h-[calc(100vh-var(--m-top))] mt-[--m-top]">
     <div class="lg:flex 2xl:gap-12 gap-10 2xl:max-w-[1220px] max-w-[1065px] mx-auto mt-10" id="js-oversized">
-   
 
-@include('front.ext.nav-mobile-menu')
 
-       
-<div class="flex-1 px-6 mb-8">
+        @include('front.ext.nav-mobile-menu')
 
-<div class="w-full">
+
+        <div class="flex-1 px-6 mb-8">
+
+            <div class="w-full">
                 <div class="w-full bg-gray-200 rounded-full h-1 dark:bg-gray-700">
                     <div class="bg-blue-600 h-1 rounded-full" style="width: 10%"></div>
                 </div>
@@ -28,9 +28,9 @@
                     href="{{route('userVerification',['cid' => isUserVerified()->cid])}}">Verify Account</a>
 
                 @else
-                <p class='heading-h1 font-semibold page-title'>ગણેશ સ્પર્ધા રજિસ્ટ્રેશન
+                <p class='heading-h1 font-semibold page-title'>ગણેશ મંડળ / હોમ ગણેશ રજિસ્ટ્રેશન
                 </p>
-                <p class="mb-3 subheading-h2">Ganesh Competiton Registration</p>
+                <p class="mb-3 subheading-h2">Ganeshji Registration</p>
                 <div class="space-y-5">
                     <div class="flex-1 max-md:mt-4">
                         <select class="!rounded-md w-full text-capitalize" id="competitionType" name="competition_type">
@@ -42,7 +42,7 @@
                             <option value="1-2">શ્રેષ્ઠ મૂર્તિ / શ્રેષ્ઠ ડેકોરેશન (ફ્ક્ત મંડળ માટે)</option>
                             @else
                             <option value="0">ગણેશ મંડળનું રજિસ્ટ્રેશન</option>
-                            <option value="2">ઘરની બેસ્ટ મૂર્તિ</option>
+                            <option value="2">ઘરની મૂર્તિનું રજિસ્ટ્રેશન</option>
                             @endif
                         </select>
                     </div>

@@ -39,35 +39,13 @@
                         uk-scrollspy="target: > li; cls: uk-animation-scale-up , uk-animation-slide-right-small; delay: 20 ;repeat: true"
                         style="transform: translate3d(0px, 0px, 0px);">
 
-                        <li class="custom-nav-menu-wrap" uk-scrollspy-class="uk-animation-fade" tabindex="-1" style="">
-                            
-                        @if(isGroupExists()  && !isHomeCompetitionExists())
-                        <a href="{{route('ganeshCompetitionPaymentCreate', ['type' => 'group'])}}" 
-                            class="flex-inline p-3 px-4 rounded-lg bg-teal-100/60 text-teal-600 font-semibold dark:text-white dark:bg-dark4">
-                            <ion-icon name="people" class="text-2xl drop-shadow-md md hydrated mr-2" role="img"
-                            aria-label="book"></ion-icon> ગણેશ સ્પર્ધા રજિસ્ટ્રેશન</a>
-                        @endif
-
-                        @if(isHomeCompetitionExists())
-                        <a href="{{route('ganeshCompetitionPaymentCreate', ['type' => 'home'])}}" 
-                            class="flex-inline p-3 px-4 rounded-lg bg-teal-100/60 text-teal-600 font-semibold dark:text-white dark:bg-dark4"> 
-                                                    <ion-icon name="people" class="text-2xl drop-shadow-md md hydrated mr-2" role="img"
-                                                    aria-label="book"></ion-icon> મારા ઘરના ગણેશ</a>
-                        @endif
-                        </li>
+                      
 
                         <li>
                         <a href="{{route('ganeshCompetitionPaymentCreate', ['type' => 'group'])}}" 
                             class="flex-inline p-3 px-4 rounded-lg bg-teal-100/60 text-teal-600 font-semibold dark:text-white dark:bg-dark4">
                             <ion-icon name="people" class="text-2xl drop-shadow-md md hydrated mr-2" role="img"
-                            aria-label="book"></ion-icon> ગણેશ મંડળનું લિસ્ટ</a>
-                        </li>
-                        
-                        <li>
-                        <a href="{{route('ganeshCompetitionPaymentCreate', ['type' => 'group'])}}" 
-                            class="flex-inline p-3 px-4 rounded-lg bg-teal-100/60 text-teal-600 font-semibold dark:text-white dark:bg-dark4">
-                            <ion-icon name="people" class="text-2xl drop-shadow-md md hydrated mr-2" role="img"
-                            aria-label="book"></ion-icon> ઘરના ગણેશજી</a>
+                            aria-label="book"></ion-icon> ગણેશ મંડળ / ઘરના ગણેશજીનું રજિસ્ટ્રેશન</a>
                         </li>
                         
                     @if(getUserData() && getUserData()->status != 'active')

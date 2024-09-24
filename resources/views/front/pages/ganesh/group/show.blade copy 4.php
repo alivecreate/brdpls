@@ -310,13 +310,13 @@ $(document).ready(function() {
                         </a>
                     </div>
 
-                    <!-- <div class="box p-5 px-6 mb-6">
+                    <div class="box p-5 px-6 mb-6">
                         <a target="_blank"
                             href="https://api.whatsapp.com/send?phone=919137634193&text=*Hello%20Alivecreate%20Web%20Solutions%20-%20Inquiry%20from%20Barodaplus*">
                             <img src="https://imagedelivery.net/zfs38w7w3E1dJVvB3mVs9g/3316dc6e-4992-4be7-63f6-41b0dcbbaf00/md"
                                 style="width:100%;" />
                         </a>
-                    </div> -->
+                    </div>
                 </div>
             </div>
 
@@ -745,14 +745,14 @@ $(document).ready(function() {
                             </a>
                         </div>
 
-                        <!-- <div class="box p-5 px-6 mb-6">
+                        <div class="box p-5 px-6 mb-6">
                             <a target="_blank"
                                 href="https://api.whatsapp.com/send?phone=919137634193&text=*Hello%20Alivecreate%20Web%20Solutions%20-%20Inquiry%20from%20Barodaplus*">
 
                                 <img src="https://imagedelivery.net/zfs38w7w3E1dJVvB3mVs9g/3316dc6e-4992-4be7-63f6-41b0dcbbaf00/md"
                                     style="width:100%;" />
                             </a>
-                        </div> -->
+                        </div>
                     </div>
 
 

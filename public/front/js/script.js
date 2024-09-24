@@ -88,8 +88,6 @@ if (this.files[0] ) {
 
 
 
-
-
     
 
 function addHours(button) {
@@ -155,3 +153,5 @@ function deleteImage(imageId) {
         console.error('Error:', error);
     });
 }
+
+

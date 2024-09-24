@@ -42,25 +42,20 @@ class GaneshFestivalCompetition extends Controller
             return redirect('registration')->with('error', 'Please Create User Account First.');
         }
 
-        $groups = Group::orderBy('name', 'asc')->get();
-        $group = Group::where('user_id', Auth::id())->first();
         $type = request()->query('type');
-        
-        $ganeshCompetitionCategories = GaneshCompetitionCategory::get();
-        return view('front.pages.ganesh.competition.create', compact('groups', 'group', 'type', 'ganeshCompetitionCategories'));
-
-
         // dd($type);
 
         
 
+        $groups = Group::orderBy('name', 'asc')->get();
+        $group = Group::where('user_id', Auth::id())->first();
         // dd($group);
         
+        $ganeshCompetitionCategories = GaneshCompetitionCategory::get();
         if($group){
             // dd('grp available');
 
             $competition = GaneshCompetition::where(['participant_id' => $group->id])->first();
-
             if($competition){
                 return view('front.pages.ganesh.competition.create', compact('groups', 'group', 'type', 'ganeshCompetitionCategories', 'competition'));
             }
@@ -266,6 +261,8 @@ return redirect()->back()->with('error', 'Something went wrong, please try again
             ->get();
         
         
+        
+        
             
             $user = User::find(Auth::id());
             
@@ -275,147 +272,36 @@ return redirect()->back()->with('error', 'Something went wrong, please try again
         elseif ($cid == 2) {
             // dd($cid);
 
-      
-            $GaneshCompetitions = GaneshCompetition::where([
-                'ganesh_competition.status' => 'active',  // Competition should be active
-                'ganesh_competition.competition_type' => '1-2' // Competition type
-            ])
-            ->leftJoin('competition_votes', function($join) {
-                // Join competition_votes with a check for active users and category
-                $join->on('ganesh_competition.id', '=', 'competition_votes.competition_id')
-                     ->leftJoin('users', 'competition_votes.user_id', '=', 'users.id')
-                     ->where('users.status', 'active')  // Only count votes from active users
-                     ->where('competition_votes.competition_category_id', 2);  // Check for competition_category_id = 1
-            })
-            ->leftJoin('groups', 'ganesh_competition.participant_id', '=', 'groups.id') // Join with the groups table
-            ->select(
-                'ganesh_competition.id', 
-                'ganesh_competition.status', 
-                'ganesh_competition.competition_type', 
-                'ganesh_competition.created_at', 
-                'ganesh_competition.updated_at', 
-                'groups.name as name', 
-                'groups.address as address', 
-                'groups.slug', 
-                'groups.cover', 
-                DB::raw('COUNT(competition_votes.id) as votes_count')
-            )
-            ->groupBy(
-                'ganesh_competition.id', 
-                'ganesh_competition.status', 
-                'ganesh_competition.competition_type', 
-                'ganesh_competition.created_at', 
-                'ganesh_competition.updated_at', 
-                'groups.name', 
-                'groups.address',
-                'groups.slug',
-                'groups.cover'
-            )
-            ->orderBy('votes_count', 'desc')
+            $GaneshCompetitions = GaneshCompetition::where(
+                [
+                    'status' => 'active',
+                    'competition_type' => '1-2'
+                ])
+                ->whereHas('participant')
+                ->orderBy('id', 'desc')
             ->get();
-        
+            
 
-                        $user = User::find(Auth::id());
+            $user = User::find(Auth::id());
                         return view('front.pages.ganesh.competition.live-competition2', compact('GaneshCompetitions', 'user'));
-                    }       
+                    }
 
                     elseif ($cid == 3) {
             // dd($cid);
             
 
-            // $GaneshCompetitions = GaneshCompetition::where(
-            //     [
-            //         'status' => 'active',
-            //         'competition_type' => '3',
-            //     ])
-            //     ->orderBy('id', 'desc')
-            // ->get();
-
-            // $GaneshCompetitions = DB::table('ganesh_competition')
-            // ->leftJoin('competition_votes', function($join) {
-            //     $join->on('ganesh_competition.id', '=', 'competition_votes.competition_id')
-            //          ->where('competition_votes.competition_category_id', 3);  // Check for competition_category_id = 1
-            // })
-            // ->leftJoin('users', function($join) {
-            //     $join->on('competition_votes.user_id', '=', 'users.id')
-            //          ->where('users.status', 'active');  // Only include votes from active users
-            // })
-
-            // ->leftJoin('users as participant_users', 'ganesh_competition.participant_id', '=', 'participant_users.id') // Alias for participant users
-   
-            // ->select(
-            //     'ganesh_competition.id', 
-            //     'ganesh_competition.name', 
-            //     'ganesh_competition.status', 
-            //     'ganesh_competition.competition_type', 
-            //     'ganesh_competition.created_at', 
-            //     'ganesh_competition.updated_at', 
-            //     'users.first_name as first_name', 
-            //     'ganesh_competition.image', 
-            //     DB::raw('COUNT(competition_votes.id) as votes_count')
-            // )
-            // ->where('ganesh_competition.status', 'active')  // Filter for active competitions
-            // ->where('ganesh_competition.competition_type', '3') // Filter for competition type 1-2
-            // ->groupBy(
-            //     'ganesh_competition.id', 
-            //     'ganesh_competition.name', 
-            //     'ganesh_competition.status', 
-            //     'ganesh_competition.competition_type', 
-            //     'ganesh_competition.created_at', 
-            //     'ganesh_competition.updated_at', 
-            //     'users.first_name', 
-            //     'ganesh_competition.image'
-            // )
-            // ->orderBy('votes_count', 'desc')
-            // ->get();
-
-            $GaneshCompetitions = DB::table('ganesh_competition')
-    ->leftJoin('competition_votes', function($join) {
-        $join->on('ganesh_competition.id', '=', 'competition_votes.competition_id')
-             ->where('competition_votes.competition_category_id', '=', 3); // Check for competition_category_id = 3
-    })
-    ->leftJoin('users as vote_users', function($join) {
-        $join->on('competition_votes.user_id', '=', 'vote_users.id')
-             ->where('vote_users.status', '=', 'active');  // Only include votes from active users
-    })
-    ->leftJoin('users as participant_users', 'ganesh_competition.participant_id', '=', 'participant_users.id') // Alias for participant users
-
-    ->select(
-        'ganesh_competition.id', 
-        'ganesh_competition.name', 
-        'ganesh_competition.status', 
-        'ganesh_competition.competition_type', 
-        'ganesh_competition.created_at', 
-        'ganesh_competition.updated_at', 
-        'participant_users.first_name as participant_first_name', // Participant user first name
-        'participant_users.last_name as participant_last_name', // Group by participant first name
-
-        'ganesh_competition.image', 
-        DB::raw('COUNT(competition_votes.id) as votes_count') // Count the votes
-    )
-    ->where('ganesh_competition.status', '=', 'active')  // Filter for active competitions
-    ->where('ganesh_competition.competition_type', '=', '3') // Filter for competition type 3
-    ->groupBy(
-        'ganesh_competition.id', 
-        'ganesh_competition.name', 
-        'ganesh_competition.status', 
-        'ganesh_competition.competition_type', 
-        'ganesh_competition.created_at', 
-        'ganesh_competition.updated_at', 
-        'participant_users.first_name', // Group by participant first name
-        'participant_users.last_name', // Group by participant first name
-        'ganesh_competition.image'
-    )
-    ->orderBy('votes_count', 'desc')
-    ->get();
-
-        
-        // dd($GaneshCompetitions);
+            $GaneshCompetitions = GaneshCompetition::where(
+                [
+                    'status' => 'active',
+                    'competition_type' => '3',
+                ])
+                ->orderBy('id', 'desc')
+            ->get();
             
                         
         $user = User::find(Auth::id());
                         return view('front.pages.ganesh.competition.live-competition3', compact('GaneshCompetitions', 'user'));
-                    }   
+                    }
 
         // dd($cid);
 

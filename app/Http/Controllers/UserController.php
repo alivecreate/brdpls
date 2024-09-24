@@ -105,9 +105,9 @@ class UserController extends Controller
                         
         //     $request->session()->put('isLoginSession', $user->id);
 
-Auth::login($user);
+            Auth::login($user);
 
-$request->session()->put('isLoginSession', $user->id);
+            $request->session()->put('isLoginSession', $user->id);
 
             return redirect()->route('userVerification', ['cid' => $cid])->with('success', 'Account Created Successfully.');
             
@@ -145,6 +145,42 @@ $request->session()->put('isLoginSession', $user->id);
             ]);
         }
     }
+
+    
+    public function saveChangePassword(Request $request){
+        {
+
+            $rules = [
+                'password' => 'required|min:6',
+            ];
+        
+            // Validation messages (optional)
+            $messages = [
+                'password.required' => 'The password field is required.',
+                'password.min' => 'The password must be at least 6 characters.',
+                'password.confirmed' => 'The password confirmation does not match.',
+    
+            ];
+    
+            $validator = Validator::make($request->all(), $rules, $messages);
+    
+            if ($validator->fails()) {
+                return redirect()->back()->withErrors($validator)->withInput();
+            }  
+        
+            
+        $user = User::where('cid', $request->cid)->first();
+
+        $user->update([
+            'password' => Hash::make($request->password)
+        ]);
+
+        Auth::login($user);
+        $request->session()->put('isLoginSession', $user->id);
+        return redirect()->route('index')->with('success', 'Password Successfully Changed.');
+ 
+    }
+}
         
     public function logout(Request $request){
         // $request->session()->forget('userData');

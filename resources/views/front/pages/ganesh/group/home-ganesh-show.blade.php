@@ -284,7 +284,7 @@ $(document).ready(function() {
                             </div>			
                             
                         @endif
-                        
+
                         <div class="flex items-center justify-between mb-4">
                             <div class="w-full qr-wrapper text-center">
                                 {!! DNS2D::getBarcodeSVG(route('showHome', [$homeGanesh->id, 'catid' => 3, 'slug' =>
@@ -452,7 +452,8 @@ $(document).ready(function() {
                         <div class="flex-1">
                             <a href="">{{$post->user->first_name}} {{$post->user->last_name}}</a>
                             <div class="text-xs text-gray-500 dark:text-white/80">
-                                <p>{{ $post->created_at->diffForHumans() }}</p>
+                                <p>{{ $post->created_at->diffForHumans() }} ({{$post->year}})</p>
+
                             </div>
                         </div>
 

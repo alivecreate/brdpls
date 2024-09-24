@@ -78,7 +78,7 @@
 
           <!-- submit button -->
           <div>
-            <button type="submit" class="button bg-primary text-white w-full">Sign in</button>
+            <button type="submit" class="button bg-primary text-sm text-white w-full">Sign in</button>
           </div>
 
           <div class="text-center flex items-center gap-6"> 

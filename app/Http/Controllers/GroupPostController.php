@@ -33,35 +33,44 @@ class GroupPostController extends Controller
     public function store(Request $request)
     {
 
-        dd($request->all());
+        // dd($request->all());
 
-        $uploadedImages = $request->file('images');
+        if($request->video){
+           $video = uploadCloudFlairVideo($request->video);
+            $gallery = null;
+            // dd('v available');
+        }
+        else{
+            $uploadedImages = $request->file('images');
+            $video = null;
+                // Initialize an array to store the IDs returned from the helper
+                $imageIds = [];
 
-            // Initialize an array to store the IDs returned from the helper
-            $imageIds = [];
+                $checkGroupOwner = Group::find(['id' => $request->group_id, 'user_id' => Auth::id()])->first();
 
-            $checkGroupOwner = Group::find(['id' => $request->group_id, 'user_id' => Auth::id()])->first();
-
-            if(!$checkGroupOwner){
-                return redirect()->back()->with('error', 'Somethin went wront, Please try again!');
-            }
-            // return redirect()->back()->with('error', 'Somethin went wront, Please try again!');
-
-            // dd($checkGroupOwner);
-
-            // Loop through each uploaded image
-            if($uploadedImages){
-                foreach ($uploadedImages as $image) {
-                    // Call the upload helper for each image and store the returned ID
-                    $imageId = uploadCloudFlairImage($image);
-                    
-                    $imageIds[] = $imageId;            
-                    $gallery = implode(',', $imageIds);
-                    
+                if(!$checkGroupOwner){
+                    return redirect()->back()->with('error', 'Somethin went wront, Please try again!');
                 }
-            }
-            else{
-                $gallery = null;
+                // return redirect()->back()->with('error', 'Somethin went wront, Please try again!');
+
+                // dd($checkGroupOwner);
+
+                // Loop through each uploaded image
+                if($uploadedImages){
+                    foreach ($uploadedImages as $image) {
+                        // Call the upload helper for each image and store the returned ID
+                        $imageId = uploadCloudFlairImage($image);
+
+                        
+                        $imageIds[] = $imageId;            
+                        $gallery = implode(',', $imageIds);
+                        
+                    }
+                }
+                else{
+                    $gallery = null;
+                }
+                
             }
 
             // Convert the array of IDs to a comma-separated string
@@ -70,9 +79,11 @@ class GroupPostController extends Controller
             GroupPost::create([
                 'description' => $request->description,
                 'image' => $gallery,
-                'video' => null,
+                'video' => $video,
                 'user_id' => Auth::id(),
                 'group_id' => $request->group_id,
+                'year' => $request->year,
+                
             ]);
             
             return redirect()->back()->with('success', 'Post created successfully.');
@@ -129,32 +140,45 @@ class GroupPostController extends Controller
     {
         
         $delete = GroupPost::where(['id' => $id, 'user_id' => Auth::id()])->first();
-    
-        if ($delete) {
-            // Assuming the images are stored as a comma-separated string in 'image' column
-            $imageIds = explode(',', $delete->image);
-            // dd(count($imageIds));
-            
-            if(count($imageIds) == 1) {
+
+        if($delete){
+            if($delete && $delete->video){
+                deleteVideo($delete->video);
+                $delete->delete();
+                return redirect()->back()->with('success', 'Post deleted successfully.');
+            }
+            elseif($delete && $delete->image) {
+                // Assuming the images are stored as a comma-separated string in 'image' column
+                $imageIds = explode(',', $delete->image);
+                // dd(count($imageIds));
                 
-                $response = deleteCloudImage($imageIds[0]);
-                // dd($imageIds[0]);
-            }
-            // dd($response);
-            
-    
-            foreach ($imageIds as $imageId) {
-                // dd($imageId);
-                $response = deleteCloudImage($imageId);
-                if (!isset($response->success) || !$response->success) {
-                    continue; // Silently skip this image and move on to the next
+                if(count($imageIds) == 1) {
+                    $response = deleteCloudImage($imageIds[0]);
+                    // dd($imageIds[0]);
                 }
-                // dd($response);
-            }
+
+                // dd(count($imageIds));
+        
+                foreach ($imageIds as $imageId) {
+                    // dd($imageId);
+                    
+                    // dd($imageId);
+
+                    $response = deleteCloudImage($imageId);
+                    // dd($response);
+                    // if (!isset($response->success)) {
+                    //     continue; // Silently skip this image and move on to the next
+                    // }
+                    
+                    // dd($response);
+                }
+                
     
             // Always delete the group post after attempting to delete images
             $delete->delete();
-    
+            return redirect()->back()->with('success', 'Post deleted successfully.');
+        }
+            $delete->delete();
             return redirect()->back()->with('success', 'Post deleted successfully.');
         }
     

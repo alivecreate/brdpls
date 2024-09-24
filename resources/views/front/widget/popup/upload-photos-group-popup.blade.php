@@ -31,17 +31,17 @@
                     name="images[]" id="imageUploadInput" accept="image/jpeg, image/png, image/webp" >
                     
                     <select name="year" id="year" class="space-y-5 mt-3 p-2 w-40">
-                        <option value="">Select Year</option>
-                        @for($year = now()->year; $year >= 1925; $year--)
-                            <option value="{{ $year }}" @if($year == now()->year) selected @endif>{{ $year }}</option>
-                        @endfor
-                    </select>
+                    <option value="">Select Year</option>
+                    @for($year = now()->year; $year >= 1925; $year--)
+                        <option value="{{ $year }}" @if($year == now()->year) selected @endif>{{ $year }}</option>
+                    @endfor
+                </select>
 
 
                 
                 <button
                     class="button text-lg bg-primary text-white flex-1/2">
-                    <ion-icon name="thumbs-up-outline"></ion-icon> Upload Post
+                     Upload Post
                 </button>
         </div>
                 

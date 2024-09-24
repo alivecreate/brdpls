@@ -38,6 +38,7 @@
         "files": [
             "app/Helpers/getData.php",
             "app/Helpers/imageHelpers.php",
+            "app/Helpers/videoHelpers.php",
             "app/Helpers/otpHelper.php",
             "app/Helpers/strHelper.php",
             "app/Helpers/groupHelper.php"

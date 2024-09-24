@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Social_Link;
 use App\Models\Group;
 use App\Models\User;
+use App\Models\PasswordReset;
 
 use Illuminate\Support\Facades\Cookie;
 use Carbon\Carbon;
@@ -246,8 +247,126 @@ class PageController extends Controller
     }
 
     public function forgotPW(Request $request){
+        
+        $cid = request()->query('cid');
+
+        if($cid){
+            $user = User::where('cid', $cid)->first();
+
+            if($user){
+                return view('front.pages.forgot-pw-verify', compact('user'));    
+            }
+
+            return redirect()->back()->with('error', 'Please check phone number, and try it again.');
+        }
+
+
+        $user = User::where('cid', $cid)->first();
+        
+        if($user){        
+            return view('front.pages.forgot-pw');
+        }
+        
         return view('front.pages.forgot-pw');
     }
+
+    public function forgotPWPost(Request $request){
+        
+       
+        $user = User::where('phone', $request->phone)->first();
+
+        // dd($request->all());
+        
+        if($user){     
+
+            $otp = str_pad(mt_rand(0, 999999), 6, '0', STR_PAD_LEFT);
+            $checkOTP = sendForgotPwOTP($user->first_name.' '.$user->last_name, $otp, $request->phone);
+            // dd($checkOTP);
+            $otpExpiresAt = Carbon::now()->addMinutes(5);  // OTP expiration time (10 minutes from now)
+            
+            PasswordReset::create([
+                'otp' => $otp,
+                'otp_expires_at' => $otpExpiresAt,
+                'user_id' => $user->id,
+            ]);
+            
+            return redirect()->route('forgotPW', ['cid' => $user->cid])->with('success', 'OTP sent on your registered mobile number.');
+        }
+        
+        return redirect()->back()->with('error', 'Please check phone number, and try it again.');
+
+    }
+
+    
+    public function checkForgotPwVerification(Request $request){
+    
+        $user = User::where('cid', $request->cid)->first();
+        // dd($user);
+
+        if(!$user){        
+            return view('front.pages.forgot-pw');
+        }
+        
+        $checkotp = PasswordReset::where(['user_id' => $user->id, 'otp' => $request->otp])->first(); 
+
+        if($checkotp){
+            if($checkotp->status != 'pending'){
+                return redirect()->back()->with('error', 'OTP has been expired. please resend OTP');
+                dd($checkotp->status);
+            }
+    
+            // dd('route test');
+    
+            $checkotp->update([
+                'status' => 'verified'
+            ]);
+
+            // dd('test');
+            return redirect()->route('newPassword',['cid' => $user->cid])->with('success', 'Account Verified Successfully.');
+        }
+        return redirect()->back()->with('error', 'OTP does not matched.');
+    }
+    
+
+    
+    public function newPassword(Request $request){
+
+        // dd('test');
+        $cid = request()->query('cid');
+// http://localhost:8000/forgot-pw?cid=w5z3w1qxirjm
+        if($cid){
+        // dd('1');
+
+            $user = User::where('cid', $cid)->first();
+            $checkotp = PasswordReset::where(['user_id' => $user->id])->orderBy('id', 'desc')->first();
+
+            if($user && $checkotp){
+                if($checkotp->status != 'verified'){
+                    return redirect()->back()->with('error', 'OTP has been expired. please resend OTP');
+                }
+    
+                elseif($checkotp->status == 'verified'){
+
+                    if (Carbon::now()->lt($checkotp->otp_expires_at)) {
+                        // dd('valid');
+                        return view('front.pages.change-pw', compact('user'));
+                    }
+                    // dd('expired');
+                    
+                    return redirect()->route('forgotPW')->with('error', 'OTP has been expired. please resend OTP');
+                    dd('expired');   
+                }
+
+                return redirect()->back()->with('error', 'Something went wrong, please try it again.');
+            }
+
+            return redirect()->back()->with('error', 'Please check phone number, and try it again.');
+        }
+
+        return redirect()->route('forgotPW')->with('error', 'Something went wrong, please try it again.');
+
+    }
+
 
     
     public function checkUserVerification(Request $request){
@@ -260,12 +379,9 @@ class PageController extends Controller
         $checkotp = User::where(['cid' => $request->cid, 'otp' => $request->otp])->first(); 
 
         $user = User::where('cid', $request->cid)->first();
-        // return true;
-        // return true;
 
     
         if($checkotp){
-            // return 'verified';
             
             $checkotp->update([
                 'status' => 'active',

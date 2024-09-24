@@ -57,3 +57,6 @@ function disableButton(button) {
     button.disabled = true; // Disable the button
     button.textContent = 'Uploading...'; // Change the text
 }
+
+
+

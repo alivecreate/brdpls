@@ -38,3 +38,6 @@ Route::post('/store-competition-vote2', [GaneshCompetitionApi::class, 'storeComp
 
 Route::post('/resend-otp', [OTPController::class, 'resendOtp']);
 
+Route::post('/resend-forgot-pw-otp', [OTPController::class, 'forgotPwOtp'])->name('forgotPwOtp');
+
+

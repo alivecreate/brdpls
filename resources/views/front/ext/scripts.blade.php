@@ -413,4 +413,28 @@ $('#btnUpload').on('click', function() {
 
 
 
+// Image BG Color
+
+
 </script>
+
+
+
+<script>
+    document.getElementById('checkPhone').addEventListener('input', function() {
+        let phoneNumber = this.value;
+        // Remove all non-digit characters, including spaces
+        phoneNumber = phoneNumber.replace(/\D/g, '');
+        // Update the input field value with the cleaned number
+        this.value = phoneNumber;
+        const errorMessage = document.getElementById('error-message');
+        // Simple validation to check if the input is a valid number and has exactly 10 digits
+        const isValid = /^\d{10}$/.test(phoneNumber);
+
+        if (!isValid) {
+            errorMessage.textContent = 'Please enter a valid 10-digit phone number.';
+        } else {
+            errorMessage.textContent = ''; // Clear the error message if valid
+        }
+    });
+    </script>

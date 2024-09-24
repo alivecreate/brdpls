@@ -90,12 +90,6 @@ $(document).ready(function() {
         printWindow.print();
 
     });
-
-
-});
-
-$(document).ready(function() {
-    $('.tab-home').addClass('border-blue-600 text-blue-600');
 });
 </script>
 
@@ -112,14 +106,128 @@ $(document).ready(function() {
     class="2xl:ml-[--w-side]  xl:ml-[--w-side-sm] py-10 p-2.5 h-[calc(100vh-var(--m-top))] mt-[--m-top]">
 
     <div class="max-w-[1065px] mx-auto">
+        <div class="bg-white shadow lg:rounded-b-2xl lg:-mt-10 dark:bg-dark2">
+            <div class="relative overflow-hidden w-full timeline-cover">
 
-        @include('front.pages.ganesh.group.navbar-group')
+                @if(optional($group)->cover)
+                <img src="https://imagedelivery.net/zfs38w7w3E1dJVvB3mVs9g/{{$group->cover}}/lg" alt="{{$group->name}}"
+                    class="absolute w-full h-full inset-0 rounded-md object-cover shadow-sm">
+                @else
+                <img src="https://imagedelivery.net/zfs38w7w3E1dJVvB3mVs9g/59e4502a-977e-45f7-c153-522a80d42300/lg"
+                    alt="{{$group->name}}" class="absolute w-full h-full inset-0 rounded-md object-cover shadow-sm">
+                @endif
+
+
+                <div class="w-full bottom-0 absolute left-0 bg-gradient-to-t from -black/60 pt-10 z-10"></div>
+
+                <div class="absolute bottom-0 right-0 m-4 z-20">
+                    <div class="flex items-center gap-3">
+
+                        @if(Auth::check() && Auth::id() == $group->user_id)
+                        <button uk-toggle="target: #upload-cover-popup"
+                            class="button bg-black/10 text-white flex items-center gap-2 backdrop-blur-small">
+                            <ion-icon name="camera-outline" class="text-lg"></ion-icon> Change Photo
+                        </button>
+                        @endif
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="lg:px-10 md:p-5 p-3">
+                <div class="flex flex-col justify-center">
+                    <div class="flex lg:items-center justify-between max-md:flex-col">
+                        <div class="flex-1">
+                            <h3 class="md:text-2xl text-base font-bold text-black dark:text-white text-capitalize">
+                                {{$group->name}} </h3>
+                            <p class=" font-md text-gray-500 mt-2 flex gap-2 flex-wrap dark:text-white/80">
+                                <span class="text-capitalize"> {{$group->address}} </span>
+                                <span class="max-lg:hidden"> • </span>
+                                <span> <b class="font-medium text-black dark:text-white">
+                                        {{countGroupMembers($group->id)}}</b> @if(countGroupMembers($group->id) >1
+                                    )Followers @else Follower @endif </span>
+                            </p>
+                        </div>
+
+                        <div>
+                            <div class="flex items-center gap-2 mt-1">
+
+
+                                @if(checkIsGroupJoin($group->id))
+
+                                <form action="{{route('group-member.store')}}" method="post">
+                                    @csrf
+                                    <input type="hidden" name="group_id" value="{{$group->id}}">
+                                    <button
+                                        class="button bg-primary flex items-center gap-1 py-2 px-3.5 text-white shadow ml-auto">
+                                        <ion-icon name="remove-circle-outline" class="text-xl"></ion-icon>
+                                        <span class="text-sm"> Unfollow </span>
+                                    </button>
+                                </form>
+
+                                @elseif(Auth::id())
+
+                                <form action="{{route('group-member.store')}}" method="post">
+                                    @csrf
+                                    <input type="hidden" name="group_id" value="{{$group->id}}">
+                                    <button class="button bg-primary flex items-center gap-1 text-white shadow ml-auto">
+                                        <ion-icon name="add-outline" class="text-xl"></ion-icon>
+                                        <span class="text-sm"> Follow </span>
+                                    </button>
+                                </form>
+                                @endif
+
+                                <div>
+
+
+                                    <a href="#" id="share-button"
+                                        class="rounded-lg bg-secondery flex px-2.5 py-2 dark:bg-dark2  font-semibold">
+                                        <ion-icon class="text-xl font-semibold mr-2" name="share-outline"></ion-icon>
+                                        Share
+                                    </a>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="flex items-center justify-between  border-t border-gray-100 px-2 dark:border-slate-700">
+
+                <!-- <nav
+                    class="flex gap-0.5 rounded-xl overflow-hidden -mb-px text-gray-500 font-medium text-sm overflow-x-auto dark:text-white">
+                    <a href="{{route('group.show', 1)}}"
+                        class="inline-block py-3 leading-8 px-3.5 border-b-2 border-blue-600 text-blue-600">Discussion</a>
+                    <a href="{{route('ganeshFestivalGroupphotos', $group->slug )}}"
+                        class="inline-block py-3 leading-8 px-3.5">Photos</a>
+
+                    <a href="{{route('ganeshFestivalGroupphotos', $group->id )}}"
+                        class="inline-block py-3 leading-8 px-3.5">Members</a>
+                    <a href="{{route('ganeshFestivalGroupphotos', $group->id )}}"
+                        class="inline-block py-3 leading-8 px-3.5">Settings</a>
+                </nav>
+                
+                <div
+                    class="flex items-center gap-1 text-sm p-3 bg-secondery py-2 mr-2 rounded-xl max-md:hidden dark:bg-white/5">
+                    <ion-icon name="search" class="text-lg"></ion-icon>
+                    <input placeholder="Search .." class="!bg-transparent">
+                </div> -->
+
+            </div>
+
+        </div>
 
 
 
         <div class="flex 2xl:gap-12 gap-10 mt-8 max-lg:flex-col" id="js-oversized">
 
+
             <div class="lg:w-[400px] lg:hidden w-full">
+
 
                 <div class="lg:space-y-4 lg:pb-8 max-lg:grid sm:grid-cols-2 max-lg:gap-6"
                     uk-sticky="media: 1024; end: #js-oversized; offset: 80">
@@ -239,7 +347,7 @@ $(document).ready(function() {
 
                         @else
 
-
+                        
                         @endif
 
 
@@ -249,11 +357,6 @@ $(document).ready(function() {
                                 {!! DNS2D::getBarcodeSVG(route('ganeshFestivalGroup.show', $group->slug), 'QRCODE', 3,
                                 3) !!}
                             </div>
-                            @php
-                            $printqr = false;
-                            @endphp
-
-                            @if(Auth::id() == $group->user_id && $printqr == true)
                             <button
                                 class="bg-marron button text-lg bg-primary text-white flex-1 mt-4 button text-lg bg-secondary text-white flex-1  btn-print-qr"
                                 data-image="https://imagedelivery.net/zfs38w7w3E1dJVvB3mVs9g/{{$group->cover}}/lg"
@@ -262,8 +365,6 @@ $(document).ready(function() {
                                 data-qr="{{ DNS2D::getBarcodeSVG(route('ganeshFestivalGroup.show', $group->slug), 'QRCODE', 8, 8) }}">
                                 <ion-icon name="download-outline" class="text-lg"></ion-icon> Print QR
                             </button>
-                            @endif
-
                         </div>
 
 
@@ -310,13 +411,13 @@ $(document).ready(function() {
                         </a>
                     </div>
 
-                    <!-- <div class="box p-5 px-6 mb-6">
+                    <div class="box p-5 px-6 mb-6">
                         <a target="_blank"
                             href="https://api.whatsapp.com/send?phone=919137634193&text=*Hello%20Alivecreate%20Web%20Solutions%20-%20Inquiry%20from%20Barodaplus*">
                             <img src="https://imagedelivery.net/zfs38w7w3E1dJVvB3mVs9g/3316dc6e-4992-4be7-63f6-41b0dcbbaf00/md"
                                 style="width:100%;" />
                         </a>
-                    </div> -->
+                    </div>
                 </div>
             </div>
 
@@ -367,10 +468,10 @@ $(document).ready(function() {
                     <ion-icon name="camera-outline" class="text-lg"></ion-icon> Change Photo
                 </button>
                 @endif
+                
 
 
-
-                @if(Auth::check() && Auth::id() && Auth::id() == $group->user_id)
+                @if(Auth::check() && Auth::id() && Auth::id() == $group->participant_id)
 
                 <div class="bg-white rounded-xl shadow-sm p-4 space-y-4 text-sm font-medium border1 dark:bg-dark2">
                     <div class="flex items-center gap-3">
@@ -391,24 +492,12 @@ $(document).ready(function() {
                             </svg>
                         </div>
 
-
-                        <div class="cursor-pointer hover:bg-opacity-80 p-1 px-1.5 rounded-xl transition-all bg-sky-100/60 hover:bg-sky-100 dark:bg-white/10 dark:hover:bg-white/20"
-                            uk-toggle="target: #create-video-group">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 stroke-sky-600 fill-sky-200/70 "
-                                viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none"
-                                stroke-linecap="round" stroke-linejoin="round">
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                <path
-                                    d="M15 10l4.553 -2.276a1 1 0 0 1 1.447 .894v6.764a1 1 0 0 1 -1.447 .894l-4.553 -2.276v-4z" />
-                                <path
-                                    d="M3 6m0 2a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v8a2 2 0 0 1 -2 2h-8a2 2 0 0 1 -2 -2z" />
-                            </svg>
-                        </div>
-
-
                     </div>
                 </div>
                 @endif
+
+
+
 
 
                 @if($groupPosts)
@@ -426,6 +515,7 @@ $(document).ready(function() {
                             <img src="https://imagedelivery.net/zfs38w7w3E1dJVvB3mVs9g/{{getUserData($groupPost->user_id)->image}}/xs"
                                 alt="" class="w-9 h-9 rounded-full cover">
                             @else
+
                             <img src="{{asset('front/images/avatars')}}/avatar-3.jpg" alt=""
                                 class="w-9 h-9 rounded-full cover">
                             @endif
@@ -436,7 +526,7 @@ $(document).ready(function() {
                             <a href="">{{getUserData($groupPost->user_id)->first_name}}
                                 {{getUserData($groupPost->user_id)->last_name}}</a>
                             <div class="text-xs text-gray-500 dark:text-white/80">
-                                <p>{{ $groupPost->created_at->diffForHumans() }} ({{$groupPost->year}})</p>
+                                <p>{{ $groupPost->created_at->diffForHumans() }}</p>
                             </div>
                         </div>
 
@@ -453,8 +543,8 @@ $(document).ready(function() {
                                         @csrf
                                         @method('DELETE')
 
-                                        <button type="submit" class="d-flex flex-center">
-                                            <ion-icon class="text-xl shrink-0 mr-2" name="trash-outline"></ion-icon>
+                                        <button type="submit" class="text-red-400 hover:!bg-red-50 dark:text-light">
+                                            <ion-icon class="text-xl shrink-0" name="stop-circle-outline"></ion-icon>
                                             Delete Post
                                         </button>
                                     </form>
@@ -476,7 +566,7 @@ $(document).ready(function() {
 
                     @if(count(getPostImages($groupPost->image)) == 1)
 
-                    <div class="relative w-full lg:h-96 h-full sm:px-4 mb-4 blur-background image-container">
+                    <div class="relative w-full lg:h-96 h-full sm:px-4 mb-4">
                         <img src="https://imagedelivery.net/zfs38w7w3E1dJVvB3mVs9g/{{getPostImages($groupPost->image)[0]}}/lg"
                             alt="" class="sm:rounded-lg w-full h-full object-cover">
                     </div>
@@ -489,6 +579,7 @@ $(document).ready(function() {
                     @endphp
 
 
+
                     <div class="relative uk-visible-toggle sm:px-4 mb-4" tabindex="-1"
                         uk-slideshow="animation: push;ratio: 4:3">
 
@@ -499,7 +590,7 @@ $(document).ready(function() {
                             <li class="w-full">
                                 <a class="inline">
                                     <img src="https://imagedelivery.net/zfs38w7w3E1dJVvB3mVs9g/{{$image}}/lg"
-                                        alt="{{ $image }}" class="w-full h-full absolute insta-0 contain">
+                                        alt="{{ $image }}" class="w-full h-full absolute object-cover insta-0">
                                 </a>
                             </li>
 
@@ -522,35 +613,9 @@ $(document).ready(function() {
                     @endif
 
 
-                    @if($groupPost->video)
-
-                    @if(getVideoStatus($groupPost->video)['status'] == 'ready')
-                    <div class="relative w-full h-full blur-background video-container">
-                        <div style="padding-top: 56.25%;height: inherit;">
-                            <iframe
-                                src="https://customer-awdbchbk0llt915y.cloudflarestream.com/{{$groupPost->video}}/watch"
-                                style="border: none; position: absolute; top: 0; height: 100%; width: 100%"
-                                allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
-                                allowfullscreen="true"></iframe>
-                        </div>
-                    </div>
-                    @elseif(getVideoStatus($groupPost->video)['status'] == 'processing')
-                    <div class="relative w-full h-full sm:px-4 mb-4 blur-background"
-                        style="text-align: center;background: black;">
-                        <img src="{{getVideoStatus($groupPost->video)['thumbnail']}}" style="margin: 0 auto;" />
-                        <p class="bg-alert-processing">Your video is under processing please wait.</p>
-                    </div>
-                    @endif
-                    @endif
-
-
 
                 </div>
                 @endforeach
-                @endif
-                
-                @if(count($groupPosts) == 0)
-                    <p class="alert-danger2">No Post Available</p>
                 @endif
 
 
@@ -687,7 +752,6 @@ $(document).ready(function() {
                                 {!! DNS2D::getBarcodeSVG(route('ganeshFestivalGroup.show', $group->slug), 'QRCODE', 3,
                                 3) !!}
                             </div>
-                            @if(Auth::id() == $group->user_id && $printqr == true)
                             <button
                                 class="bg-marron button text-lg bg-primary text-white flex-1 mt-4 button text-lg bg-secondary text-white flex-1  btn-print-qr"
                                 data-image="https://imagedelivery.net/zfs38w7w3E1dJVvB3mVs9g/{{$group->cover}}/lg"
@@ -696,8 +760,6 @@ $(document).ready(function() {
                                 data-qr="{{ DNS2D::getBarcodeSVG(route('ganeshFestivalGroup.show', $group->slug), 'QRCODE', 8, 8) }}">
                                 <ion-icon name="download-outline" class="text-lg"></ion-icon> Print QR
                             </button>
-                            @endif
-
                         </div>
 
                         @endif
@@ -745,14 +807,14 @@ $(document).ready(function() {
                             </a>
                         </div>
 
-                        <!-- <div class="box p-5 px-6 mb-6">
+                        <div class="box p-5 px-6 mb-6">
                             <a target="_blank"
                                 href="https://api.whatsapp.com/send?phone=919137634193&text=*Hello%20Alivecreate%20Web%20Solutions%20-%20Inquiry%20from%20Barodaplus*">
 
                                 <img src="https://imagedelivery.net/zfs38w7w3E1dJVvB3mVs9g/3316dc6e-4992-4be7-63f6-41b0dcbbaf00/md"
                                     style="width:100%;" />
                             </a>
-                        </div> -->
+                        </div>
                     </div>
 
 
@@ -770,11 +832,11 @@ $(document).ready(function() {
 
     @include('front.widget.popup.upload-cover-popup')
     @include('front.widget.popup.upload-photos-group-popup')
-    @include('front.widget.popup.upload-video-group-popup')
 
 
 
 </main>
 
+</div>
 
 @endsection

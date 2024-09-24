@@ -37,30 +37,30 @@
             </div>
 
 
-            <form method="POST" action="{{route('checkAuth')}}"
+            <form method="POST" action="{{route('forgotPWPost')}}"
                 class="space-y-7 text-sm text-black font-medium dark:text-white"
                 uk-scrollspy="target: > *; cls: uk-animation-scale-up; delay: 100 ;repeat: true"
                 enctype="multipart/form-data">
                 @csrf
                 <div>
-                    <label for="email" class="">Phone Number</label>
-                    <div class="mt-2.5">
-                        <input id="phone" name="phone" type="tel" placeholder="Phone No." value="{{old('phone')}}"
-                            required
-                            class="w-full rounded-lg bg-transparent shadow-sm border border-slate-200 dark:border-slate-800 dark:bg-white/5 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+
+                    <div class="col-span-2">
+                        <label for="checkPhone" class=""><span class='text-danger'>*</span>Phone Number</label>
+                        <div class="mt-2.5 flex items-center">
+                            <span
+                                class="px-3 py-2 mr-1 border border-slate-200 dark:border-slate-800 bg-slate-100 dark:bg-white/5 rounded-l-lg text-slate-600 dark:text-slate-300">
+                                +91
+                            </span>
+                            <input required id="checkPhone" name="phone" type="text" style="
+                                  border-bottom-left-radius: 0px;
+                                  border-top-left-radius: 0px;
+                              " placeholder="your mobile number"
+                                class="w-full !rounded-l-none !rounded-r-lg !bg-transparent !shadow-sm !border-slate-200 dark:!border-slate-800 dark:!bg-white/5">
+                        </div>
+                        <p id="error-message" class="text-red-500 mt-1 text-sm"></p> <!-- Error message container -->
                     </div>
                 </div>
-                
-<!--                 
-                <div>
-                    <label for="email" class="">Password</label>
-                    <div class="mt-2.5">
-                        <input id="password" name="password" type="password" placeholder="***"
-                            class="!w-full !rounded-lg !bg-transparent !shadow-sm !border-slate-200 dark:!border-slate-800 dark:!bg-white/5">
-                    </div>
-                </div> -->
 
-                
                 @if ($errors->any())
                 <div class="custom-alert">
                     <ul class="custom-list">
@@ -71,7 +71,7 @@
                 </div>
                 @endif
                 <div>
-                    <button type="submit" class="button bg-primary text-white w-full">Sign in</button>
+                    <button type="submit" class="button bg-primary text-sm text-white w-full">Send OTP</button>
                 </div>
 
             </form>
@@ -83,8 +83,7 @@
             <ul class="uk-slideshow-items w-full h-full">
                 <li class="w-full">
                     <img src="{{asset('front')}}/images/web/login-image.webp" alt=""
-                        class="w-full h-full uk-transform-origin-center-left" 
-                        style="object-fit: contain;">
+                        class="w-full h-full uk-transform-origin-center-left" style="object-fit: contain;">
 
                     <div class="w-full h-96 absolute bottom-0 left-0"></div>
                 </li>

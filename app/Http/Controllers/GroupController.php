@@ -128,27 +128,36 @@ class GroupController extends Controller
     {
         //  dd($request->all());
 
-         $groups = Group::findOrFail($id);
+        //  $group = Group::findOrFail($id);
 
-        //  if($request->file('image')){
-        //      $image_name = uploadImageThumb($request);
-        //  }
-        //  else{
-        //      $image_name = $testimonial->image;
-        //  }
+         $group = Group::where(['id' => $id, 'user_id' => Auth::id()])->first();
+        //  dd($group);
+        
+        
+        if(!$group){
+            return redirect(route('ganeshFestivalGroup.index'));
+        }
+
  
-         $groups->update([
-            'group_name' => $request->group_name,
+        if($request->name == null){
+            $name = $group->name;
+        }
+        else{
+            $name = $request->name;
+        }
+
+         $group->update([
+            'name' => $name,
             'description' => $request->description,
             'category' => $request->category,
             'privacy' => $request->privacy,
-            'members' => $request->members,
             'year' => $request->year,
-            'location' => $request->location,
+            'address' => $request->address,
             'city' => $request->city,
-            // 'cover' => $image_name,
             'status' => $request->status,
          ]);
+
+         return redirect()->back()->with('succcess', 'Group Successfully Updated.');
 
          return redirect()->route('groups.edit', ['groups' => $group->id])
              ->with('success', 'Groups updated successfully');

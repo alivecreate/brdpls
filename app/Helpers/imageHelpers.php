@@ -341,7 +341,7 @@ function uploadCloudFlairImage($image){
             ], 500);
         }
     } catch (\Exception $e) {
-        dd($e);
+        // dd($e);
         return response()->json([
             'success' => false,
             'message' => $e->getMessage(),

@@ -153,9 +153,16 @@ Route::post('/user-verification', [PageController::class, 'checkUserVerification
 
 Route::get('login', [PageController::class, 'login'])->name('login')->middleware(IsCheckLogin::class);
 
-Route::get('forgot-pw', [PageController::class, 'forgotPW'])->name('forgotPW');
+Route::get('forgot-pw', [PageController::class, 'forgotPW'])->name('forgotPW')->middleware(IsCheckLogin::class);
+Route::post('forgot-pw', [PageController::class, 'forgotPWPost'])->name('forgotPWPost')->middleware(IsCheckLogin::class);
+Route::post('forgot-pw-verification', [PageController::class, 'checkForgotPwVerification'])->name('checkForgotPwVerification')->middleware(IsCheckLogin::class);
+Route::get('change-pw', [PageController::class, 'newPassword'])->name('newPassword')->middleware(IsCheckLogin::class);
+
 
 Route::post('auth/check-auth', [UserController::class, 'checkAuth'])->name('checkAuth');
+Route::post('auth/save-change-pw', [UserController::class, 'saveChangePassword'])->name('saveChangePassword');
+
+
 
 Route::post('setting/update-profile-pic', [UserController::class, 'updateProfilePic'])->name('updateProfilePic');
 
@@ -206,6 +213,11 @@ Route::get('/ganesh-festival/photo', [GaneshFestivalGroupController::class, 'gan
 Route::get('/ganesh-festival/my-group', [GaneshFestivalGroupController::class, 'ganeshFestivalMyGroup'])->name('ganeshFestivalMyGroup');
 
 Route::get('/ganesh-festival', [GaneshFestivalController::class, 'index']);
+
+Route::get('/ganesh-festival/{slug}/photos', [GaneshFestivalController::class, 'ganeshFestivalPhotos'])->name('ganeshFestivalPhotos');
+Route::get('/ganesh-festival/{slug}/videos', [GaneshFestivalController::class, 'ganeshFestivalVideos'])->name('ganeshFestivalVideos');
+Route::get('/ganesh-festival/{slug}/settings', [GaneshFestivalController::class, 'ganeshFestivalSettings'])->name('ganeshFestivalSettings');
+
 
 
 Route::get('/ganesh-festival/competition/payment', [GaneshCompetitionPaymentController::class, 'create'])->name('ganeshCompetitionPaymentCreate');

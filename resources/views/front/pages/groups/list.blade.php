@@ -10,13 +10,8 @@
 <div class="2xl:max-w-[1220px] max-w-[1065px] mx-auto lg:mt-2 mt-6 mt-2">
 
 @include('front.ext.nav-mobile-menu')
-<!-- <p class='subheading-h3 font-semibold font-semibold mb-0'>Note: ગણેશ સ્પર્ધા તા. 07-09-2024 બપોરે 2 વાગ્યેથી શરુ થશે.</p> -->
-               
-<img class="mb-4 ganesh-registration-banner-responsive lg:hidden" src="{{asset('front/images/web')}}/ganesh-competition-banner1.webp"
- alt="Baroda plus ganesh competition - Vadodara">
-
-<img class="mb-4 ganesh-registration-banner-responsive hidden lg:block" src="{{asset('front/images/web')}}/ganpati-banner-website-lg.webp"
- alt="Baroda plus ganesh competition - Vadodara">
+<p class='subheading-h3 font-semibold font-semibold mb-0 alert-danger2 text-left'>દરેક મંડળ બરોડા પ્લ્સ પર પોતાના જુના ફોટો અને વિડિયો ફ્રી અપલોડ કરી શકશે.</p>
+<p class='subheading-h3 font-semibold font-semibold mb-0 text-left'>ગણેશ સ્પર્ધાના ઈનામ વિતરણની તારીખ ટૂક સમયમાં જાહેર થશે.</p>
 
 @if(!isGroupExists() && !isHomeCompetitionExists())
                             <a href="{{route('ganeshFestivalCompetition.create')}}"
@@ -28,7 +23,7 @@
                             </a>
     @endif
     <div class="page-heading">
-        <h1 class="page-title"> ગણેશ મંડળો (Ganesh Festival Pages) </h1>
+        <h1 class="page-title"> ગણેશ મંડળો (Ganesh Festival) </h1>
         <nav class="nav__underline">
             <ul class="group" uk-switcher="connect: #group-tabs ; animation: uk-animation-slide-right-medium, uk-animation-slide-left-medium"> 
                 <li> <a href="#" >Recent</a> </li>

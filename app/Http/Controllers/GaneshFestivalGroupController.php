@@ -30,10 +30,6 @@ class GaneshFestivalGroupController extends Controller
 
     public function create()
     {
-        // dd('create');
-
-        // return 'rest';
-
         $homeGaneshCompetition = GaneshCompetition::where(['participant_id' => Auth::id(), 'competition_type' => 3])->first();
         $homeGaneshCompetitionLists = GaneshCompetition::where(['competition_type' => 3, 'participant_id' => Auth::id(), 'status' => 'active'])->orderBy('id', 'desc')->get();
 
@@ -47,25 +43,15 @@ class GaneshFestivalGroupController extends Controller
         }
 
         $group = Group::where(['user_id' => Auth::id()])->first();
-        $groups = Group::where('status', 'active')->orderBy('id', 'desc')->get();
+        $groups = Group::where('status', 'active')->orderBy('id', 'desc')->limit(5)->get();
 
-        if ($group && $group->competitions && count($group->competitions) == 1 && $group->myCompetition[0]->status == 'pending') {
-            return redirect(route('ganeshCompetitionPaymentCreate', ['type' => 'group']));
-        }
-
-//         if(count($group->competitions) == 1 && $group->myCompetition[0]->status == 'pending'){
-// return redirect(route('ganeshCompetitionPaymentCreate', ['type' => 'group']));
-//         }
-
-
-        // dd($groups);
-        // dd($group->competitions);
         
         if($group){
             $competition = GaneshCompetition::where(['participant_id' => $group->id])->first();
             return view('front.pages.groups.group-exists', compact('group', 'competition', 'groups'));
             // dd($group);
         }
+
         return view('front.pages.ganesh.group.create', compact('group'));
     }
 
@@ -121,13 +107,15 @@ class GaneshFestivalGroupController extends Controller
         ]);
         // $group
 
-             
-        return redirect()->route('ganeshCompetitionPaymentCreate',['type' => 'group'])->with('success', 'Ganesh Festival Group Created.');
-        
         return redirect()->route('ganeshFestivalGroup.show', $group->slug)->with('success', 'Ganesh Festival Group Created.');
+             
+        // return redirect()->route('ganeshCompetitionPaymentCreate',['type' => 'group'])->with('success', 'Ganesh Festival Group Created.');
+        
 
         $slug = Str::slug($request->name);
     }
+
+   
 
     public function groupUploadPhotos(Request $request){
         // dd('test');
@@ -169,23 +157,38 @@ class GaneshFestivalGroupController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(string $slug)
     {
-        // dd('test');
+        // dd($id);
 
-        $group = Group::where('slug', $id)->first();
 
         $user = User::find(Auth::id());
         
-        if($group){
-            $groupPosts = GroupPost::where('group_id', $group->id)->orderBy('id', 'desc')->get();
-            
-            // dd($groupPosts);
+        $selectedYear = request()->query('year');
+        
+        $group = Group::where('slug', $slug)->first();
 
-            return view('front.pages.ganesh.group.show', compact('group','groupPosts', 'user'));
+        if(!$group){
+            return redirect('ganesh-festival');
+        }
+        
+
+        $years = GroupPost::selectRaw('year') // Assuming the date field is 'created_at'
+        ->distinct()    
+        ->where(['group_id' => $group->id])                
+        ->orderBy('year', 'desc')              
+        ->pluck('year');
+
+        if($selectedYear !== null){
+            
+            $groupPosts = GroupPost::where(['group_id' => $group->id, 'year' => $selectedYear])->orderBy('id', 'desc')->get();
+        }
+        else{
+            $groupPosts = GroupPost::where(['group_id' => $group->id])->orderBy('id', 'desc')->get();
         }
 
-        return redirect('ganesh-festival');
+        return view('front.pages.ganesh.group.show', compact('group','groupPosts', 'user', 'selectedYear', 'years'));
+
     }
 
     public function showHome(string $id)
@@ -210,6 +213,7 @@ class GaneshFestivalGroupController extends Controller
     
     public function ganeshFestivalMyGroup()
     {
+        // dd('test ganesh');
         $groups = Group::where('status', 'active')->get();
         $myGroup = Group::where('user_id', Auth::id())->first();
         

@@ -717,7 +717,7 @@ input[type='text'],
     select,
     select[multiple],
     textarea, [type='text'] {
-  border-color: transparent;
+  border-color: #cecece;
   --tw-bg-opacity: 1;
   background-color: rgb(241 245 249 / var(--tw-bg-opacity));
 }
@@ -7921,7 +7921,7 @@ h1, h2, h3, h4, h5, h6 {
   }
 
   .lg\:h-96 {
-    height: 24rem;
+    height: 36rem;
   }
 
   .lg\:h-\[80px\] {

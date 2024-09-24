@@ -12,11 +12,6 @@
 @include('front.ext.nav-mobile-menu')
 <!-- <p class='subheading-h3 font-semibold font-semibold mb-0'>Note: ગણેશ સ્પર્ધા તા. 07-09-2024 બપોરે 2 વાગ્યેથી શરુ થશે.</p> -->
                
-<img class="mb-4 ganesh-registration-banner-responsive lg:hidden" src="{{asset('front/images/web')}}/ganesh-competition-banner1.webp"
- alt="Baroda plus ganesh competition - Vadodara">
-
-<img class="mb-4 ganesh-registration-banner-responsive hidden lg:block" src="{{asset('front/images/web')}}/ganpati-banner-website-lg.webp"
- alt="Baroda plus ganesh competition - Vadodara">
 
 @if(!isGroupExists() && !isHomeCompetitionExists())
                             <a href="{{route('ganeshFestivalCompetition.create')}}"
