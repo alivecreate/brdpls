@@ -214,8 +214,6 @@ Route::get('/ganesh-festival/my-group', [GaneshFestivalGroupController::class, '
 
 Route::get('/ganesh-festival', [GaneshFestivalController::class, 'index']);
 
-Route::get('/ganesh-festival/{slug}/photos', [GaneshFestivalController::class, 'ganeshFestivalPhotos'])->name('ganeshFestivalPhotos');
-Route::get('/ganesh-festival/{slug}/videos', [GaneshFestivalController::class, 'ganeshFestivalVideos'])->name('ganeshFestivalVideos');
 Route::get('/ganesh-festival/{slug}/settings', [GaneshFestivalController::class, 'ganeshFestivalSettings'])->name('ganeshFestivalSettings');
 
 
@@ -269,6 +267,10 @@ Route::get('/ganesh-festival/home/{id}', [GaneshFestivalCompetition::class, 'sho
 
 
 Route::resource('/ganesh-festival', GaneshFestivalGroupController::class)->names('ganeshFestivalGroup');
+
+Route::get('/ganesh-festival/{slug}/photos', [GaneshFestivalController::class, 'ganeshFestivalPhotos'])->name('ganeshFestivalPhotos');
+Route::get('/ganesh-festival/{slug}/videos', [GaneshFestivalController::class, 'ganeshFestivalVideos'])->name('ganeshFestivalVideos');
+
 
 
 
