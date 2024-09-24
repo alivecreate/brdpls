@@ -499,7 +499,7 @@ $(document).ready(function() {
                             <li class="w-full">
                                 <a class="inline">
                                     <img src="https://imagedelivery.net/zfs38w7w3E1dJVvB3mVs9g/{{$image}}/lg"
-                                        alt="{{ $image }}" class="w-full h-full absolute insta-0 contain">
+                                        alt="{{ $image }}" class="w-full h-full absolute insta-0 cover">
                                 </a>
                             </li>
 
