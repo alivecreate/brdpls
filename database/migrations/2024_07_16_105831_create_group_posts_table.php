@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
 
             $table->text('description')->nullable();
-            $table->string('image')->nullable();
+            $table->text('image')->nullable();
             $table->string('video')->nullable();
             $table->year('year')->nullable(); // Add 'year' column to store the year
 
