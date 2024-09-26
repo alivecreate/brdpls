@@ -20,7 +20,9 @@ class GaneshFestivalCompetition extends Controller
      */
     public function index()
     {
-        // dd('test');
+            return redirect()->route('index');
+
+            // dd('test');
         
         if(checkCompetitionSchedule()['status'] == 'scheduled'){
             return redirect()->route('ganeshFestivalGroup.index')->with('success', 'Voting is not started now.');

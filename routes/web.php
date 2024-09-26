@@ -259,6 +259,7 @@ Route::get('/ganesh-festival/competition/live', [GaneshFestivalCompetition::clas
 Route::post('/ganesh-festival/competition/store-home-ganesh', [GaneshFestivalCompetition::class, 'storeHomeGaneshCompetition'])->name('storeHomeGaneshCompetition');
 
 Route::resource('/ganesh-festival/competition', GaneshFestivalCompetition::class)->names('ganeshFestivalCompetition');
+
 Route::resource('/ganesh-festival/voting', FestivalCompetitionVoting::class)->names('FestivalCompetitionVoting');
 
 Route::get('/ganesh-festival/home/', [GaneshFestivalCompetition::class, 'homeGaneshList'])->name('homeGaneshList');
@@ -270,7 +271,6 @@ Route::resource('/ganesh-festival', GaneshFestivalGroupController::class)->names
 
 Route::get('/ganesh-festival/{slug}/photos', [GaneshFestivalController::class, 'ganeshFestivalPhotos'])->name('ganeshFestivalPhotos');
 Route::get('/ganesh-festival/{slug}/videos', [GaneshFestivalController::class, 'ganeshFestivalVideos'])->name('ganeshFestivalVideos');
-
 
 
 
