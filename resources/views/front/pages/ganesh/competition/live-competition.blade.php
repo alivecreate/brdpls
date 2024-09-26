@@ -98,14 +98,15 @@ $('.best-idol').addClass('active-link');
                                 <p class="text-sm"> {{$GaneshCompetition->address}}</p>
                             </div>
                         
-                            @if(getUserData()->phone=='9137634193')
-                            <div class="card-text">
-                                <div class="card-list-info font-normal mt-1 bg-voting">
-                                    <div class='font-bold text-danger text-xl'>Total Votes:
-                                        {{$GaneshCompetition->votes_count}}</div>
+                            @if(getUserData()->phone && getUserData()->phone =='9137634193')
+                                <div class="card-text">
+                                    <div class="card-list-info font-normal mt-1 bg-voting">
+                                        <div class='font-bold text-danger text-xl'>Total Votes:
+                                            {{$GaneshCompetition->votes_count}}</div>
+                                    </div>
                                 </div>
-                            </div>
                             @endif
+
                             <form method="post" action="{{route('FestivalCompetitionVoting.store')}}">
                                 @csrf
                             
