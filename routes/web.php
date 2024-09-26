@@ -252,14 +252,13 @@ Route::resource('/adm/user', AdminUserController::class)->names('UserController'
 
 Route::get('/ganesh-festival/competition/rules', [GaneshFestivalCompetition::class, 'rules'])->name('GaneshFestivalCompetitionRules');
 
-Route::get('/ganesh-festival/competition/live', [GaneshFestivalCompetition::class, 'live'])->name('GaneshFestivalCompetitionLive');
+Route::get('/ganesh-festival/competition/live', [GaneshFestivalCompetition::class, 'live'])->name('GaneshFestivalCompetitionLive')->middleware(ValidUser::class);
 
 // Route::get('/ganesh-festival/competition/live/{category_id}', [GaneshFestivalCompetition::class, 'live'])->name('GaneshFestivalCompetitionLive');
 
 Route::post('/ganesh-festival/competition/store-home-ganesh', [GaneshFestivalCompetition::class, 'storeHomeGaneshCompetition'])->name('storeHomeGaneshCompetition');
 
 Route::resource('/ganesh-festival/competition', GaneshFestivalCompetition::class)->names('ganeshFestivalCompetition');
-
 Route::resource('/ganesh-festival/voting', FestivalCompetitionVoting::class)->names('FestivalCompetitionVoting');
 
 Route::get('/ganesh-festival/home/', [GaneshFestivalCompetition::class, 'homeGaneshList'])->name('homeGaneshList');
