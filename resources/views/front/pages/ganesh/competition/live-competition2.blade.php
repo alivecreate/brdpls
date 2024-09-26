@@ -75,7 +75,7 @@
 
                 <div class="card mb-2 group-card">
                     
-                    <a href="{{route('ganeshFestivalGroup.show', $GaneshCompetition->slug)}}">
+                    <a href="@if($GaneshCompetition->slug){{route('ganeshFestivalGroup.show', $GaneshCompetition->slug)}}@endif">
                         <div class="card-media h-40">
 
                  
@@ -95,7 +95,7 @@
                     
                     <div class="card-body">
                             <a
-                                href="{{ route('ganeshFestivalGroup.show', $GaneshCompetition->slug) }}">
+                                href="@if($GaneshCompetition->slug){{ route('ganeshFestivalGroup.show', $GaneshCompetition->slug) }}@endif">
                                 <h4 class="card-title group-name"> {{$GaneshCompetition->id}} {{$GaneshCompetition->name}} </h4>
                             </a>
                             <div class='flex'>
@@ -145,7 +145,7 @@
                                 @endif
                                 @endif
 
-                                    <a href="{{route('ganeshFestivalGroup.show', $GaneshCompetition->slug)}}"
+                                    <a href="@if($GaneshCompetition->slug){{route('ganeshFestivalGroup.show', $GaneshCompetition->slug)}}@endif"
                                     class="button text-lg  @if(checkCompetitionSchedule()->status == 'live')bg-secondery !w-auto @else text-white bg-primary w-full @endif">
                                     <ion-icon name="eye-outline"></ion-icon> View
                                     </a>

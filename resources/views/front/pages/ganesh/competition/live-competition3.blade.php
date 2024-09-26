@@ -43,7 +43,7 @@
     background: #e0e0e0;font-size: 30px;">Unverified યુસરના વોટ કાઉન્ટ કરવામાં આવશે નહીં, OTP સાથે વેરિફાઈડ યુસરના વોટજ કાઉન્ટ કરવામાં આવશે.</h3>
     
     @if(!Auth::id() || (getUserData() && getUserData()->status != 'active'))
-        <a href="{{route('userVerification',['cid' => getUserData()['cid']])}}">
+        <a href="@if($GaneshCompetition->id){{route('userVerification',['cid' => getUserData()['cid']])}}@endif">
             <div
                 class="button bg-primary text-white flex-1 mb-6">
                 <ion-icon name="checkmark" style="font-size: 23px;"></ion-icon>
@@ -75,7 +75,7 @@
 
                 <div class="card mb-2 group-card">
                     
-                    <a href="{{route('ganeshFestivalGroup.show', $GaneshCompetition->id)}}">
+                    <a href="@if($GaneshCompetition->id){{route('ganeshFestivalGroup.show', $GaneshCompetition->id)}}@endif">
                         <div class="card-media h-40">
 
                  
@@ -95,7 +95,7 @@
                     
                     <div class="card-body">
                             <a
-                                href="{{ route('ganeshFestivalGroup.show', $GaneshCompetition->id) }}">
+                                href="@if($GaneshCompetition->id){{ route('ganeshFestivalGroup.show', $GaneshCompetition->id) }}@endif">
                                 <h4 class="card-title group-name"> {{$GaneshCompetition->id}} {{$GaneshCompetition->name}} </h4>
                             </a>
                             <div class='flex'>
@@ -146,7 +146,7 @@
                                 @endif
                                 @endif
 
-                                    <a href="{{route('ganeshFestivalGroup.show', $GaneshCompetition->id)}}"
+                                    <a href="@if($GaneshCompetition->id){{route('ganeshFestivalGroup.show', $GaneshCompetition->id)}}@endif"
                                     class="button text-lg  @if(checkCompetitionSchedule()->status == 'live')bg-secondery !w-auto @else text-white bg-primary w-full @endif">
                                     <ion-icon name="eye-outline"></ion-icon> View
                                     </a>
