@@ -96,7 +96,7 @@
                     <div class="card-body">
                             <a
                                 href="@if($GaneshCompetition->id){{ route('ganeshFestivalGroup.show', $GaneshCompetition->id) }}@endif">
-                                <h4 class="card-title group-name"> {{$GaneshCompetition->id}} {{$GaneshCompetition->name}} </h4>
+                                <h4 class="card-title group-name"> {{$GaneshCompetition->name}} </h4>
                             </a>
                             <div class='flex'>
                                 <ion-icon class='text-md live-d-icon' name="location-outline"></ion-icon>
