@@ -19,7 +19,6 @@ $whatsappLink = 'https://wa.me/?text=' . urlencode($message);
 
 @endphp
 
-{{dd($whatsappLink)}}
 @section('custom-script')
 
 @section('layout-type', 'head-business')
