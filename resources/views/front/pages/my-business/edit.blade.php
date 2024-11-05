@@ -1,15 +1,38 @@
 @extends('front.layout.my-business-layout')
 
 @section('meta')
-<meta name="business-id" content="{{$business->id}}">
+<meta name="business-id" content="{{$myBusiness->id}}">
 <meta name="user-id" content="{{Auth::id()}}">
 @endsection
+
+
+@section('custom-script')
+    
+<script>
+    
+    $(document).ready(function() {
+        $('.mybusiness').addClass('active');
+        
+        $('#{{$myBusiness->id}}').addClass('link-active');
+
+        $('.uk-parent').addClass('uk-open');
+        $('.uk-parent ul').removeAttr('hidden');
+    });
+
+</script>
+
+
+
+@endsection
+
+
 
 @section('content')
 
 
 <main id="site__main" class="p-2.5 h-[calc(100vh-var(--m-top))] mt-20">
     <div class="2xl:gap-12 gap-10 2xl:max-w-[1220px] max-w-[828px] mx-auto mt-10 container-w" id="js-oversized">
+
         <nav class="flex mb-6" aria-label="Breadcrumb">
             <ol class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
                 <li class="inline-flex items-center">
@@ -44,7 +67,7 @@
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="m1 9 4-4-4-4" />
                         </svg>
-                        {{$business->name}}
+                        {{$myBusiness->name}}
                     </a>
                 </li>
             </ol>
@@ -52,11 +75,21 @@
 
 
         <div class="2xl:gap-12 gap-10 2xl:max-w-[1220px] mx-auto bg-white">
+        
+        <ul class="uk-switcher">
+            <li id="home">Home Content</li>
+            <li id="profile">Profile Content</li>
+            <li id="settings">Settings Content</li>
+        </ul>
 
             <div class="relative border-b" tabindex="-1" uk-slider="finite: true">
 
+             
+
                 <nav class="uk-slider-container overflow-hidden nav__underline px-6 p-0 border-transparent -mb-px">
-                    <ul class="uk-slider-items w-[calc(100%+10px)] !overflow-hidden"
+       
+
+                    <ul class="uk-slider-items w-[calc(100%+10px)] !overflow-hidden" id="myTab"
                         uk-switcher="connect: #setting_tab ; animation: uk-animation-slide-right-medium, uk-animation-slide-left-medium">
 
                         <li class="w-auto pr-2.5"> <a href="#logo"> Logo & Photos</a> </li>
@@ -81,7 +114,31 @@
             </div>
 
 
-            <div id="setting_tab" class="uk-switcher md:py-12 p-6 overflow-hidden text-black text-sm">
+            <script>
+                document.addEventListener("DOMContentLoaded", function() {
+                    const tabLinks = document.querySelectorAll('#myTab li a');
+
+                    tabLinks.forEach(link => {
+                        link.addEventListener('click', function(event) {
+                            const targetID = this.getAttribute('href'); // e.g., #profile
+                            history.pushState(null, null, targetID); // Update the URL with the target ID
+                        });
+                    });
+                });
+
+                // Handle back/forward navigation
+                window.addEventListener('popstate', function() {
+                    const hash = window.location.hash;
+                    if (hash) {
+                        const targetTab = document.querySelector(`#myTab li a[href="${hash}"]`);
+                        if (targetTab) {
+                            UIkit.tab("#myTab").show(targetTab.closest('li').index);
+                        }
+                    }
+                });
+            </script>
+
+            <div id="setting_tab" class="uk-switcher md:py-6 p-6 overflow-hidden text-black text-sm">
 
                 <div>
                     <div>
@@ -102,18 +159,17 @@
                                         <div class="card uk-transition-toggle shadow-none">
                                             <div id="imagePreview" class="image-preview">
                                                 <img id="previewImg"
-                                                src="@if($business->logo)https://imagedelivery.net/zfs38w7w3E1dJVvB3mVs9g/{{$business->logo}}/sm @else {{asset('front')}}/images/web/no-logo.png @endif"
+                                                src="@if($myBusiness->logo)https://imagedelivery.net/zfs38w7w3E1dJVvB3mVs9g/{{$myBusiness->logo}}/sm @else {{asset('front')}}/images/web/no-logo.png @endif"
                                                     alt="">
                                                 <div class="card-overly"></div>
                                             </div>
                                             <button type="button" id="deleteButton"
-                                                onclick="deleteImage('{{$business->logo}}')"
+                                                onclick="deleteImage('{{$myBusiness->logo}}')"
                                                 class="uk-transition-fade absolute top-0 right-0 m-2 z-10 bg-black/20 rounded-full flex p-1 thumb-delete">
                                                 <ion-icon name="close" class="text-white md hydrated icon" role="img"
                                                     aria-label="close"></ion-icon>
                                             </button>
                                         </div>
-
                                     </div>
                                 </div>
                             </div>
@@ -149,7 +205,7 @@
                                 <ul id="imageMultiplePreview" class="flex-wrap flex"
                                     style="transform: translate3d(0px, 0px, 0px);">
 
-                                    @foreach($business->gallery as $gallery)
+                                    @foreach($myBusiness->gallery as $gallery)
 
                                     <li class="lg:w-1/4 sm:w-1/3 w-1/2 p-4" tabindex="-1">
                                         <div class="card uk-transition-toggle">
@@ -178,7 +234,7 @@
                 <div id="profile">
                     <div>
                         <form class="needs-validation data-form"
-                            action="{{ route('updateMyBusinessProfile', $business->id) }}" method="POST"
+                            action="{{ route('updateMyBusinessProfile', $myBusiness->id) }}" method="POST"
                             enctype="multipart/form-data">
                             @csrf
                             @method('put')
@@ -192,9 +248,9 @@
                                 <div class="md:flex items-center gap-10">
                                     <label class="md:w-32"> Business Name </label>
                                     <div class="flex-1 max-md:mt-4">
-                                        <input type="text" name="name" value="{{$business->name}}"
+                                        <input type="text" name="name" value="{{$myBusiness->name}}"
                                             placeholder="Your Business Name" class="w-full"
-                                            value="{{old('name', $business->description)}}">
+                                            value="{{old('name', $myBusiness->description)}}">
                                     </div>
                                 </div>
 
@@ -202,7 +258,7 @@
                                     <label class="md:w-32"> Description </label>
                                     <div class="flex-1 max-md:mt-4">
                                         <textarea class="w-full" name="description" rows="5"
-                                            placeholder="About Your Business">{{old('description', $business->description)}}</textarea>
+                                            placeholder="About Your Business">{{old('description', $myBusiness->description)}}</textarea>
                                     </div>
                                 </div>
 
@@ -211,7 +267,7 @@
                                     <label class="md:w-32"> Building / Apartment</label>
                                     <div class="flex-1 max-md:mt-4">
                                         <input type="text" name="building" placeholder="" class="w-full"
-                                            value="{{old('building', $business->building)}}">
+                                            value="{{old('building', $myBusiness->building)}}">
                                     </div>
                                 </div>
 
@@ -219,27 +275,18 @@
                                 <div class="md:flex items-center gap-10 w-full">
                                     <label class="md:w-32"> Street / Lane</label>
                                     <div class="flex-1 max-md:mt-4">
-                                        <input type="text" name="street" value="{{$business->street}}" placeholder=""
-                                            class="lg:w-1/2 w-full" value="{{old('street', $business->street)}}">
-                                    </div>
-                                </div>
-
-                                <div class="md:flex items-center gap-10 w-full">
-                                    <label class="md:w-32"> Landmark</label>
-                                    <div class="flex-1 max-md:mt-4">
-                                        <input type="text" name="landmark" value="{{$business->landmark}}"
-                                            placeholder="" class="lg:w-1/2 w-full"
-                                            value="{{old('landmark', $business->landmark)}}">
+                                        <input type="text" name="street" value="{{$myBusiness->street}}" placeholder=""
+                                            class="lg:w-1/2 w-full" value="{{old('street', $myBusiness->street)}}">
                                     </div>
                                 </div>
 
                                 <div class="md:flex items-center gap-10 w-full">
                                     <label class="md:w-32"> City</label>
                                     <div class="flex-1 max-md:mt-4">
-                                        <select class="!border-0 !rounded-md w-full text-capitalize lg:w-1/2 w-full"
+                                        <select class="w-full text-capitalize lg:w-1/2 w-full"
                                             name="city">
                                             @foreach(getGujaratCities() as $city)
-                                            <option value="{{$city->name}}" @if($city->name == $business->city) selected
+                                            <option value="{{$city->name}}" @if($city->name == $myBusiness->city) selected
                                                 @endif>{{$city->name}}</option>
                                             @endforeach
                                         </select>
@@ -251,10 +298,10 @@
                                 <div class="md:flex items-center gap-10 w-full ">
                                     <label class="md:w-32"> State</label>
                                     <div class="flex-1 max-md:mt-4">
-                                        <select class="!border-0 !rounded-md w-full text-capitalize lg:w-1/2 w-full"
+                                        <select class="w-full text-capitalize lg:w-1/2 w-full"
                                             name="state">
                                             @foreach(getStates() as $state)
-                                            <option value="{{$state->name}}" @if($state->name == $business->state)
+                                            <option value="{{$state->name}}" @if($state->name == $myBusiness->state)
                                                 selected @endif>{{$state->name}}</option>
                                             @endforeach
                                         </select>
@@ -266,8 +313,8 @@
                                 <div class="md:flex items-center gap-10">
                                     <label class="md:w-32"> Pin Code </label>
                                     <div class="flex-1 max-md:mt-4">
-                                        <input type="text" name="pincode" value="{{$business->pincode}}" placeholder=""
-                                            class="lg:w-1/2 w-full" value="{{old('pincode', $business->pincode)}}">
+                                        <input type="text" name="pincode" value="{{$myBusiness->pincode}}" placeholder=""
+                                            class="lg:w-1/2 w-full" value="{{old('pincode', $myBusiness->pincode)}}">
                                     </div>
                                 </div>
 
@@ -276,16 +323,27 @@
                                 <div class="md:flex items-center gap-10">
                                     <label class="md:w-32"> Establishment Year </label>
                                     <div class="flex-1 max-md:mt-4">
-                                        <select class="!border-0 !rounded-md lg:w-1/2 w-full" name="establishment_year"
-                                            value="{{old('establishment_year', $business->establishment_year)}}">
+                                        <select class="lg:w-1/2 w-full" name="establishment_year"
+                                            value="{{old('establishment_year', $myBusiness->establishment_year)}}">
                                             <option value="">Select Year</option>
                                             @for($i = 2024; $i >= 1850; $i--)
-                                            <option value="{{$i}}" @if($i==$business->establishment_year) selected
+                                            <option value="{{$i}}" @if($i==$myBusiness->establishment_year) selected
                                                 @endif>{{$i}}</option>
                                             @endfor
                                         </select>
                                     </div>
                                 </div>
+
+                                
+                                <div class="md:flex items-center gap-10 w-full">
+                                    <label class="md:w-32"> GST No</label>
+                                    <div class="flex-1 max-md:mt-4">
+                                        <input type="text" name="gst" value="{{$myBusiness->gst}}" placeholder=""
+                                            class="lg:w-1/2 w-full" value="{{old('gst', $myBusiness->gst)}}">
+                                    </div>
+                                </div>
+
+
                             </div>
 
                             <div class="flex items-center gap-4 mt-16 lg:pl-[10.5rem]">
@@ -313,7 +371,7 @@
 
 
                             <form class="needs-validation data-form"
-                                action="{{route('updateMyBusinessSocialLinks', $business->id)}}" method="POST"
+                                action="{{route('updateMyBusinessSocialLinks', $myBusiness->id)}}" method="POST"
                                 enctype="multipart/form-data">
                                 @csrf
                                 @method('put')
@@ -327,7 +385,7 @@
 
                                         <div class="flex-1">
                                             <input type="text" name="facebook" class="w-full"
-                                                value="{{ isset($business->socialLinks->facebook) ? $business->socialLinks->facebook : '' }}"
+                                                value="{{ isset($myBusiness->socialLinks->facebook) ? $myBusiness->socialLinks->facebook : '' }}"
                                                 placeholder="http://www.facebook.com/myname">
                                         </div>
                                     </div>
@@ -337,7 +395,7 @@
                                         </div>
                                         <div class="flex-1">
                                             <input type="text" name="instagram" class="w-full"
-                                                value="{{ isset($business->socialLinks->instagram) ? $business->socialLinks->instagram : '' }}"
+                                                value="{{ isset($myBusiness->socialLinks->instagram) ? $myBusiness->socialLinks->instagram : '' }}"
                                                 placeholder="http://www.instagram.com/myname">
                                         </div>
                                     </div>
@@ -347,7 +405,7 @@
                                         </div>
                                         <div class="flex-1">
                                             <input type="text" name="twitter" class="w-full"
-                                                value="{{ isset($business->socialLinks->twitter) ? $business->socialLinks->twitter : '' }}"
+                                                value="{{ isset($myBusiness->socialLinks->twitter) ? $myBusiness->socialLinks->twitter : '' }}"
                                                 placeholder="http://www.twitter.com/myname">
                                         </div>
                                     </div>
@@ -357,7 +415,7 @@
                                         </div>
                                         <div class="flex-1">
                                             <input type="text" name="youtube" class="w-full"
-                                                value="{{ isset($business->socialLinks->youtube) ? $business->socialLinks->youtube : '' }}"
+                                                value="{{ isset($myBusiness->socialLinks->youtube) ? $myBusiness->socialLinks->youtube : '' }}"
                                                 placeholder="http://www.youtube.com/myname">
                                         </div>
                                     </div>
@@ -367,7 +425,7 @@
                                         </div>
                                         <div class="flex-1">
                                             <input type="text" name="pinterest" class="w-full"
-                                                value="{{ isset($business->socialLinks->pinterest) ? $business->socialLinks->pinterest : '' }}"
+                                                value="{{ isset($myBusiness->socialLinks->pinterest) ? $myBusiness->socialLinks->pinterest : '' }}"
                                                 placeholder="http://www.pinterest.com/myname">
                                         </div>
                                     </div>
@@ -390,10 +448,7 @@
 
                 <div>
                     <div class="w-full">
-                        <div class="w-full bg-gray-200 rounded-full h-1 dark:bg-gray-700">
-                            <div class="bg-blue-600 h-1 rounded-full" style="width: 75%"></div>
-                        </div>
-
+                        
                         @error('selected_item')
                         <div class="text-red-500 text-sm mt-2">{{ $message }}</div>
                         @enderror
@@ -407,8 +462,8 @@
                             method="POST" enctype="multipart/form-data">
 
                             <input type="hidden" name="selected_item" id="selected_item"
-                                value='{{$business->categoryIds()}}'>
-                            <input type="hidden" name="cid" value="{{$business->cid}}">
+                                value='{{$myBusiness->categoryIds()}}'>
+                            <input type="hidden" name="cid" value="{{$myBusiness->cid}}">
 
                             @csrf
 
@@ -418,7 +473,7 @@
                                         <p class="block heading-h2 font-medium text-gray-700">Selected Categories:</p>
                                         <ul id="selected-items" class="list-none">
 
-                                            @foreach($business->categories as $selectedCategory)
+                                            @foreach($myBusiness->categories as $selectedCategory)
                                             <li id="selected-{{$selectedCategory->id}}"
                                                 class="selected-item flex justify-between items-center py-1"
                                                 data-id="{{$selectedCategory->id}}">{{$selectedCategory->name}}</li>
@@ -627,34 +682,30 @@
 
                 <div>
                     <div class="w-full">
-                        <!-- Content for the second column (60%) -->
-
-                        <div class="w-full bg-gray-200 rounded-full h-1 dark:bg-gray-700">
-                            <div class="bg-blue-600 h-1 rounded-full" style="width: 25%"></div>
-                        </div>
+                       
 
                         <p class='heading-h1 font-semibold text-black font-semibold text-black mb-5'>Contact Details</p>
                         <form class="needs-validation data-form"
-                            action="{{route('updateMyBusinessContact', $business->id)}}" method="POST"
+                            action="{{route('updateMyBusinessContact', $myBusiness->id)}}" method="POST"
                             enctype="multipart/form-data">
                             @csrf
                             @method('put')
 
                             <div class="space-y-5">
-                                <input type="hidden" name="cid" value="{{$business->cid}}">
+                                <input type="hidden" name="cid" value="{{$myBusiness->cid}}">
                                 <div class="md:flex items-center gap-10">
                                     <div class="flex flex-1 max-md:mt-4">
 
                                         <select class="form-title float-left" name="title">
                                             @foreach(getContactTitles() as $title)
-                                            <option value="{{$title}}" @if($title==$business->title) selected
+                                            <option value="{{$title}}" @if($title==$myBusiness->title) selected
                                                 @endif>{{$title}}</option>
                                             @endforeach
 
                                         </select>
 
                                         <input type="text" name="contact_person" placeholder="Contact Person Name"
-                                            value="@if($business->contact_person){{$business->contact_person}}@endif"
+                                            value="@if($myBusiness->contact_person){{$myBusiness->contact_person}}@endif"
                                             class="flex-auto float-left">
                                     </div>
                                 </div>
@@ -665,7 +716,7 @@
                                     <div class="flex flex-1 max-md:mt-4 form-group">
                                         <input type="text" class="form-title float-left" disabled value="+91">
                                         <input type="number" name="phone1"
-                                            value="@if($business->phone1){{$business->phone1}}@endif"
+                                            value="@if($myBusiness->phone1){{$myBusiness->phone1}}@endif"
                                             placeholder="Primary Mobile No" class="flex-auto float-left">
                                     </div>
                                 </div>
@@ -674,57 +725,41 @@
                                     <div class="flex flex-1 max-md:mt-4 form-group">
                                         <input type="text" class="form-title float-left" disabled value="+91">
                                         <input type="number" name="phone2"
-                                            value="@if($business->phone2){{$business->phone2}}@endif"
+                                            value="@if($myBusiness->phone2){{$myBusiness->phone2}}@endif"
                                             placeholder="Secondary Mobile No" class="flex-auto float-left">
                                     </div>
                                 </div>
 
                                 <p>Whatsapp Number:</p>
 
-
                                 <div class="md:flex items-center gap-10">
                                     <div class="flex flex-1 max-md:mt-4 form-group">
                                         <input type="text" class="form-title float-left" disabled value="+91">
                                         <input type="number" name="whatsapp1"
-                                            value="@if($business->whatsapp1){{$business->whatsapp1}}@endif"
+                                            value="@if($myBusiness->whatsapp1){{$myBusiness->whatsapp1}}@endif"
                                             placeholder="Primary Whatsapp" class="flex-auto float-left">
                                     </div>
                                 </div>
 
 
-
-                                <div class="md:flex items-center gap-10">
-                                    <div class="flex flex-1 max-md:mt-4 form-group">
-                                        <input type="text" class="form-title float-left" disabled value="+91">
-                                        <input type="number" name="whatsapp2"
-                                            value="@if($business->whatsapp2){{$business->whatsapp2}}@endif"
-                                            placeholder="Secondary Whatsapp" class="flex-auto float-left">
-                                    </div>
-                                </div>
-
-
-
                                 <p>Email Accounts:</p>
-
 
                                 <div class="md:flex items-center gap-10">
                                     <div class="flex flex-1 max-md:mt-4 form-group">
                                         <input type="email" name="email1"
-                                            value="@if($business->email1){{$business->email1}}@endif"
+                                            value="@if($myBusiness->email1){{$myBusiness->email1}}@endif"
                                             placeholder="Primary Email" class="flex-auto float-left">
                                     </div>
                                 </div>
 
 
-
                                 <div class="md:flex items-center gap-10">
                                     <div class="flex flex-1 max-md:mt-4 form-group">
                                         <input type="email" name="email2"
-                                            value="@if($business->email2){{$business->email2}}@endif"
+                                            value="@if($myBusiness->email2){{$myBusiness->email2}}@endif"
                                             placeholder="Secondary Email" class="flex-auto float-left">
                                     </div>
                                 </div>
-
 
 
 

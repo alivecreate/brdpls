@@ -16,7 +16,6 @@ use Auth;
 class PageController extends Controller
 {
     public function theme(){
-        
         return view('front.pages.index');
         // return view('front.pages.theme');
     }
@@ -25,7 +24,9 @@ class PageController extends Controller
 
         // dd(getUserData());
         
+
         $groups = Group::orderBy('id', 'desc')->get();
+        return view('front.pages.landing-page', compact('groups')); 
         // dd($groups);
         return view('front.pages.groups.list', compact('groups'));
 
@@ -49,6 +50,10 @@ class PageController extends Controller
 
     public function refundAndCancellation(){
         return view('front.pages.refund-and-cancellation');
+    }
+    
+    public function infringementPolicy(){
+        return view('front.pages.infringement-policy');
     }
 
     public function contact(){

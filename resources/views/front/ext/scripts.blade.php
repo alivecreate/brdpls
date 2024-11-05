@@ -1,32 +1,22 @@
-<a href="https://chat.whatsapp.com/JjCoTMCPKy4AiaJLcIedO3" target="_blank">
-    <img src="https://imagedelivery.net/zfs38w7w3E1dJVvB3mVs9g/bb4df606-909e-4884-343d-0cbea8007300/md" 
-        style="width: 100px;height: auto;position: fixed;right: 0;top: 172px;z-index: 9999;" />
-</a>
-
-<a href="https://www.instagram.com/barodaplus?utm_source=qr&igsh=MWFreGFvb3ppYTBzbQ==" target="_blank">
-    <img src="https://imagedelivery.net/zfs38w7w3E1dJVvB3mVs9g/818042d8-de96-46e6-f576-dda2a1cd5b00/md" 
-        style="width: 100px;height: auto;position: fixed;right: 0;top: 288px;z-index: 9999;" />
-</a>
-
 <!-- Javascript  -->
-          <script src="{{asset('front')}}/js/uikit.min.js"></script>
-          <script src="{{asset('front')}}/js/simplebar.js"></script>
-          <script src="{{asset('front')}}/js/script.js"></script>
-          <script src="{{asset('front')}}/js/custom.js"></script>
+<script src="{{asset('front')}}/js/uikit.min.js"></script>
+<script src="{{asset('front')}}/js/simplebar.js"></script>
+<script src="{{asset('front')}}/js/script.js"></script>
+<script src="{{asset('front')}}/js/custom.js"></script>
 
 
-          <!-- Ion icon -->
-          <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-          <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+<!-- Ion icon -->
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
 
-          <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 
-          <link rel="stylesheet" href="{{asset('front/js')}}/toastr.min.css">
-          <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<link rel="stylesheet" href="{{asset('front/js')}}/toastr.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
-          <!-- <script>
+<!-- <script>
         // Ensure jQuery is loaded
         $(document).ready(function() {
             $('.business_hours').change(function (e) { 
@@ -38,27 +28,27 @@
         });
     </script> -->
 
-    
-    <script>
-        function filterGroups() {
-            const input = document.getElementById('searchGroup').value.toUpperCase();
-            const groupCards = document.querySelectorAll('.group-card');
 
-            groupCards.forEach(card => {
-                const groupName = card.querySelector('.group-name').textContent.toUpperCase();
-                if (groupName.includes(input)) {
-                    card.style.display = "";  // Show card
-                } else {
-                    card.style.display = "none";  // Hide card
-                }
-            });
+<script>
+function filterGroups() {
+    const input = document.getElementById('searchGroup').value.toUpperCase();
+    const groupCards = document.querySelectorAll('.group-card');
+
+    groupCards.forEach(card => {
+        const groupName = card.querySelector('.group-name').textContent.toUpperCase();
+        if (groupName.includes(input)) {
+            card.style.display = ""; // Show card
+        } else {
+            card.style.display = "none"; // Hide card
         }
-    </script>
+    });
+}
+</script>
 
 
 
 
-          <script>
+<script>
 const setDefaultTimesButton = document.getElementById('set-default-times');
 
 if (setDefaultTimesButton) {
@@ -97,11 +87,11 @@ if (setDefaultTimesButton) {
 } else {
     console.log("Element with ID 'set-default-times' not found.");
 }
-          </script>
+</script>
 
 
 
-          <script>
+<script>
 document.addEventListener('DOMContentLoaded', function() {
 
     const deleteButtons = document.querySelectorAll('.delete-biz-button');
@@ -123,10 +113,10 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
-          </script>
+</script>
 
-          <!-- Custom Image Uploading With Preview -->
-          <script>
+<!-- Custom Image Uploading With Preview -->
+<script>
 document.addEventListener("DOMContentLoaded", function() {
 
     const uploadButton = document.getElementById('uploadButton');
@@ -181,10 +171,10 @@ document.addEventListener("DOMContentLoaded", function() {
                     .then(data => {
                         console.log('Success:', data.image_id);
 
+                        toastr.success('Logo Updated Successfully!');
+
                         document.getElementById('deleteButton').setAttribute('onclick',
                             `deleteImage('${data.image_id}')`);
-
-
 
                         // Handle the response as needed
                     })
@@ -219,7 +209,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 });
-          </script>
+</script>
 
 
 
@@ -227,7 +217,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 
-          <script>
+<script>
 $(document).ready(function() {
     $('#selectImagesButton').on('click', function() {
         $('#images').click();
@@ -288,9 +278,9 @@ $(document).ready(function() {
         }
     });
 });
-          </script>
+</script>
 
-          <script>
+<script>
 function deleteImage(imageId) {
     var formData = new FormData();
 
@@ -323,10 +313,10 @@ function deleteImage(imageId) {
         });
 
 }
-          </script>
+</script>
 
 
-          <script>
+<script>
 function deleteBusinessImage(button, imageId) {
 
     button.disabled = true;
@@ -364,11 +354,11 @@ function deleteBusinessImage(button, imageId) {
             console.error('Error:', error);
         });
 }
-          </script>
+</script>
 
 
 
-          <script>
+<script>
 document.addEventListener('DOMContentLoaded', function() {
 
     const toggleOtpVisibility = document.getElementById('toggleOtpVisibility');
@@ -376,31 +366,31 @@ document.addEventListener('DOMContentLoaded', function() {
     if (toggleOtpVisibility) {
 
         document.getElementById('toggleOtpVisibility').addEventListener('click', function() {
-                const otpInput = document.getElementById('otp');
-                const eyeIcon = document.getElementById('eyeIcon');
-                if (otpInput.type === 'password') {
-                    otpInput.type = 'text';
-                    eyeIcon.setAttribute('d',
-                        'M15 12c0 1.656-1.344 3-3 3s-3-1.344-3-3 1.344-3 3-3 3 1.344 3 3zM12 4.5c4.418 0 8 3.582 8 8s-3.582 8-8 8-8-3.582-8-8 3.582-8 8-8z'
-                    );
-                } else {
-                    otpInput.type = 'password';
-                    eyeIcon.setAttribute('d',
-                        'M15 12c0 1.656-1.344 3-3 3s-3-1.344-3-3 1.344-3 3-3 3 1.344 3 3zM12 4.5c4.418 0 8 3.582 8 8s-3.582 8-8 8-8-3.582-8-8 3.582-8 8-8z'
-                    );
-                }
+            const otpInput = document.getElementById('otp');
+            const eyeIcon = document.getElementById('eyeIcon');
+            if (otpInput.type === 'password') {
+                otpInput.type = 'text';
+                eyeIcon.setAttribute('d',
+                    'M15 12c0 1.656-1.344 3-3 3s-3-1.344-3-3 1.344-3 3-3 3 1.344 3 3zM12 4.5c4.418 0 8 3.582 8 8s-3.582 8-8 8-8-3.582-8-8 3.582-8 8-8z'
+                );
+            } else {
+                otpInput.type = 'password';
+                eyeIcon.setAttribute('d',
+                    'M15 12c0 1.656-1.344 3-3 3s-3-1.344-3-3 1.344-3 3-3 3 1.344 3 3zM12 4.5c4.418 0 8 3.582 8 8s-3.582 8-8 8-8-3.582-8-8 3.582-8 8-8z'
+                );
+            }
         });
     }
 
     // Resend OTP button action
-    
+
     const toggleOtpVisibility = document.getElementById('toggleOtpVisibility');
     if (toggleOtpVisibility) {
-    document.getElementById('resendOtp').addEventListener('click', function() {
-        // Logic for resending OTP goes here
-        
-        toastr.success('OTP has been resent!');
-    });
+        document.getElementById('resendOtp').addEventListener('click', function() {
+            // Logic for resending OTP goes here
+
+            toastr.success('OTP has been resent!');
+        });
     }
 
 });
@@ -414,27 +404,261 @@ $('#btnUpload').on('click', function() {
 
 
 // Image BG Color
-
-
 </script>
 
 
 
 <script>
-    document.getElementById('checkPhone').addEventListener('input', function() {
-        let phoneNumber = this.value;
-        // Remove all non-digit characters, including spaces
-        phoneNumber = phoneNumber.replace(/\D/g, '');
-        // Update the input field value with the cleaned number
-        this.value = phoneNumber;
-        const errorMessage = document.getElementById('error-message');
-        // Simple validation to check if the input is a valid number and has exactly 10 digits
-        const isValid = /^\d{10}$/.test(phoneNumber);
+document.getElementById('checkPhone').addEventListener('input', function() {
+    let phoneNumber = this.value;
+    // Remove all non-digit characters, including spaces
+    phoneNumber = phoneNumber.replace(/\D/g, '');
+    // Update the input field value with the cleaned number
+    this.value = phoneNumber;
+    const errorMessage = document.getElementById('error-message');
+    // Simple validation to check if the input is a valid number and has exactly 10 digits
+    const isValid = /^\d{10}$/.test(phoneNumber);
 
-        if (!isValid) {
-            errorMessage.textContent = 'Please enter a valid 10-digit phone number.';
-        } else {
-            errorMessage.textContent = ''; // Clear the error message if valid
-        }
+    if (!isValid) {
+        errorMessage.textContent = 'Please enter a valid 10-digit phone number.';
+    } else {
+        errorMessage.textContent = ''; // Clear the error message if valid
+    }
+});
+</script>
+
+<script>
+$(document).ready(function() {
+
+    $('#rating-stars li').hover(function() {
+        // On hover
+        var rating = $(this).data('star');
+        $('#rating-stars li').each(function(index) {
+            if (index < rating) {
+                $(this).find('ion-icon').attr('name', 'star'); // Filled star
+                $(this).find('ion-icon').css('color', 'white'); // Filled star color
+                $(this).css('background', 'red'); // Background color red
+            } else {
+                $(this).find('ion-icon').attr('name', 'star-outline'); // Unfilled star
+                $(this).find('ion-icon').css('color', ''); // Default color
+                $(this).css('background', ''); // Default background color
+            }
+        });
+    }, function() {
+        // On mouse leave
+        $('#rating-stars li').each(function() {
+            $(this).find('ion-icon').attr('name', 'star-outline'); // Revert to unfilled star
+            $(this).find('ion-icon').css('color', ''); // Default star color
+            $(this).css('background', ''); // Default background color
+        });
     });
-    </script>
+
+
+    // $('#rating-stars li').hover(function() {
+
+    //     var rating = $(this).data('star');
+    //     $('#rating-stars li').each(function(index) {
+
+    //         if (index < rating) {
+    //             $(this).find('ion-icon').attr('name', 'star'); // Filled star
+    //             $(this).find('ion-icon').css('color', 'white'); // Filled star
+    //             $(this).css('background', 'red');   // Color red
+    //         } else {
+
+
+    //             $(this).find('ion-icon').attr('name', 'star-outline'); // Unfilled star
+    //             $(this).find('ion-icon').css('color', ''); // Filled star
+
+    //             $(this).css('color', '');   // Default color
+    //             $(this).css('background', '');   // Color red
+
+    //         }
+    //     });
+    // });
+
+    $('#rating-stars li').on('click', function() {
+        var rating = $(this).data('star');
+
+        // Change star colors
+        $('#rating-stars li').each(function(index) {
+            if (index < rating) {
+                $(this).find('ion-icon').attr('name', 'star'); // Filled star
+                $(this).find('ion-icon').css('color', 'white'); // Filled star
+                $(this).css('background', 'red'); // Color red
+            } else {
+
+                $(this).find('ion-icon').attr('name', 'star-outline'); // Unfilled star
+                $(this).find('ion-icon').css('color', ''); // Filled star
+
+                $(this).css('color', ''); // Default color
+                $(this).css('background', ''); // Color red
+
+            }
+        });
+
+        // Send AJAX request to Laravel
+        // $.ajax({
+        //     url: '/rate', // Laravel route for inserting the rating
+        //     type: 'POST',
+        //     data: {
+        //         _token: '{{ csrf_token() }}', // Add CSRF token for security
+        //         rating: rating
+        //     },
+        //     success: function(response) {
+        //         alert('Rating submitted successfully');
+        //     },
+        //     error: function(xhr, status, error) {
+        //         console.error(xhr.responseText);
+        //     }
+        // });
+    });
+});
+
+
+function copyLink() {
+    var currentUrl = window.location.href; // Get the current URL
+
+    navigator.clipboard.writeText(currentUrl).then(function() {
+        toastr.success('Link copied!');
+
+        // alert('Link copied to clipboard!');
+    }).catch(function(err) {
+        console.error('Error copying text: ', err);
+    });
+}
+</script>
+
+
+
+<script>
+$(document).ready(function() {
+
+
+
+    $('.btn-edit').on('click', function() {
+        // alert('test')
+
+        let dataName = $(this).data('name'); // Retrieves the value of data-id
+        let dataType = $(this).data('type'); // Retrieves the value of data-id
+        let dataId = $(this).data('id'); // Retrieves the value of data-id
+        let dataAction = $(this).data('action'); // Retrieves the value of data-action
+
+        // alert($(this).data('product-category'));
+
+        $('#edit-product-popup .product-category').val($(this).data('product-category'));
+
+        $('#edit-product-popup  #name').val($(this).data('name'));
+        $('#edit-product-popup  #price').val($(this).data('price'));
+        $('#edit-product-popup  #items').val($(this).data('items'));
+        $('#edit-product-popup  #unit').val($(this).data('unit'));
+        $('#edit-product-popup  #id').val($(this).data('id'));
+
+        $('#edit-product-popup .description').html($(this).data('description'));
+
+        $('#edit-product-popup .edit-form').attr('action', dataAction);
+        $('#edit-product-popup .delete-title').text('Delete ' + dataType);
+        $('#edit-product-popup .data-name').text(dataType + ': ' + dataName);
+    });
+
+
+
+
+    $('.btn-delete').on('click', function() {
+        // alert('test')
+
+        let dataName = $(this).data('name'); // Retrieves the value of data-id
+        let dataType = $(this).data('type'); // Retrieves the value of data-id
+        let dataId = $(this).data('id'); // Retrieves the value of data-id
+        let dataAction = $(this).data('action'); // Retrieves the value of data-action
+
+        // alert($(this).data('product-category'));
+
+        $('#confirm-delete-popup .product-category').val($(this).data('product-category'));
+
+        $('#confirm-delete-popup  #name').val($(this).data('name'));
+        $('#confirm-delete-popup  #price').val($(this).data('price'));
+        $('#confirm-delete-popup  #items').val($(this).data('items'));
+        $('#confirm-delete-popup  #unit').val($(this).data('unit'));
+        $('#confirm-delete-popup  #id').val($(this).data('id'));
+
+        $('#confirm-delete-popup .description').html($(this).data('description'));
+
+        $('#confirm-delete-popup .delete-form').attr('action', dataAction);
+        $('#confirm-delete-popup .delete-title').text('Delete ' + dataType);
+        $('#confirm-delete-popup .data-name').text(dataType + ': ' + dataName);
+    });
+
+
+});
+</script>
+
+<!-- Share Page -->
+<script>
+function shareData(data) {
+    if (navigator.share) {
+        navigator.share(data)
+            .then(() => console.log('Data shared successfully'))
+            .catch((error) => console.error('Error sharing:', error));
+    } else {
+        console.log('Browser does not support navigator.share');
+        UIkit.modal('#share-popup').show(); // Fallback modal for unsupported browsers
+    }
+}
+
+// Adding event listeners to buttons with the 'shareBtn' class
+document.querySelectorAll('.shareBtn').forEach(function(button) {
+    button.addEventListener('click', function() {
+        const data = {
+            title: 'My Awesome Website',
+            text: 'Check out this awesome website!',
+            url: window.location.href // Current page URL
+        };
+
+        // Call shareData function
+        shareData(data);
+    });
+});
+</script>
+
+
+<script>
+function shareData(data) {
+    if (navigator.share) {
+        navigator.share(data)
+            .then(() => console.log('Data shared successfully'))
+            .catch((error) => console.error('Error sharing:', error));
+    } else {
+        console.log('Browser does not support navigator.share');
+        UIkit.modal('#share-popup').show();
+    }
+}
+
+// Adding event listener to the button
+document.getElementById('shareBtn').addEventListener('click', function() {
+    const data = {
+        title: 'My Awesome Website',
+        text: 'Check out this awesome website!',
+        url: window.location.href // Current page URL
+    };
+
+    // Call shareData function
+    shareData(data);
+});
+</script>
+
+
+<script>
+document.getElementById('edit-editor').addEventListener('input', function() {
+    const editorContent = document.getElementById('edit-editor').innerHTML;
+    document.getElementById('editTextArea').value = editorContent;
+    console.log(editorContent);
+});
+</script>
+
+<script>
+document.getElementById('add-editor').addEventListener('input', function() {
+    const editorContent = document.getElementById('add-editor').innerHTML;
+    document.getElementById('addTextArea').value = editorContent;
+    console.log(editorContent);
+});
+</script>

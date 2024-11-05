@@ -8,35 +8,59 @@
 
         <nav id="side">
         
-            <ul>
-                <li class="active">
-                    <a href="{{route('index')}}">
+        <ul class="mt-2 -space-y-2" 
+                uk-nav="multiple: true">
+                <li class="dashboard">
+                    <a href="{{route('myBusiness')}}">
                         <img src="{{asset('front')}}/images/icons/home.png" alt="feeds" class="w-6">
-                        <span> My Business </span> 
+                        <span> Dashboard </span> 
                     </a>
                 </li>
-                <li>
+                
+                
+                <li class="mybusiness uk-parent">
+                    <a href="{{route('myBusiness')}}" class="group"> 
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+                            <path stroke-linecap="round" stroke-linejbusiness.bladeoin="round" d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 004.5 19.5z" />
+                        </svg>
+                        <span>  My Business   </span>   
+                        <ion-icon name="chevron-down" class="text-base ml-auto duration-200 group-aria-expanded:rotate-180"></ion-icon>              
+                    </a>
+                    
+                    <ul class="my-1 space-y-0 text-sm">
+                        
+                        @forelse($businesses as $business)
+                            <li id="{{$business->id}}"><a href="{{route('myBusiness.show',$business->slug)}}" class="!py-2 !rounded -md">
+                            <img src="{{asset('front')}}/images/icons/blog.png" alt="blog" class="w-6"> {{$business->name}}</a></li>
+                        @endforeach
+
+                    </ul>
+                </li>
+
+                <li class="messsage">
                     <a href="{{route('messages')}}">
                         <img src="{{asset('front')}}/images/icons/message.png" alt="messages" class="w-5">
                         <span> messages </span> 
                     </a>
                 </li>
 
-                <li>
-                    <a href="{{route('messages')}}">
-                        <img src="{{asset('front')}}/images/icons/message.png" alt="messages" class="w-5">
-                        <span> products </span> 
-                    </a>
-                </li>
+                @if(isset($myBusiness))
+                    <li class="product">
+                        <a href="{{route('myBusiness.product', $myBusiness->slug)}}">
+                            <img src="{{asset('front')}}/images/icons/message.png" alt="messages" class="w-5">
+                            <span> products </span> 
+                        </a>
+                    </li>
+                @endif
 
-                <li>
+                <li class="service">
                     <a href="{{route('messages')}}">
                         <img src="{{asset('front')}}/images/icons/message.png" alt="messages" class="w-5">
                         <span> services </span> 
                     </a>
                 </li>
 
-                <li>
+                <li class="review">
                     <a href="{{route('messages')}}">
                         <img src="{{asset('front')}}/images/icons/message.png" alt="messages" class="w-5">
                         <span> reviews </span> 
@@ -100,7 +124,7 @@
                         <span>  Development   </span>   
                         <ion-icon name="chevron-down" class="text-base ml-auto duration-200 group-aria-expanded:rotate-180"></ion-icon>              
                     </a>
-                    <ul class="pl-10 my-1 space-y-0 text-sm">
+                    <ul class="my-1 space-y-0 text-sm">
                         <li><a href="{{route('components')}}" class="!py-2 !rounded -md">Elements</a></li>
                         <li><a href="{{route('components')}}" class="!py-2 !rounded -md">Components</a></li>
                         <li><a href="{{route('components')}}" class="!py-2 !rounded -md">Icons</a></li>

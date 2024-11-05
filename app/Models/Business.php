@@ -12,7 +12,7 @@ class Business extends Model
     use HasFactory;
 
     protected $table = 'business';
-    protected $fillable = ['title', 'contact_person', 'cid', 'name', 'description', 'business_type', 'phone1', 'phone2', 'whatsapp1', 'whatsapp2', 'email1', 'email2', 'building', 'street', 'landmark', 'city', 'state', 'pincode', 'country', 'establishment_year', 'user_id', 'slug','status', 'deleted_at'];
+    protected $fillable = ['title', 'contact_person', 'cid', 'name', 'description', 'business_type', 'phone1', 'phone2', 'whatsapp1', 'whatsapp2', 'email1', 'email2', 'building', 'street', 'landmark', 'city', 'state', 'pincode', 'gst', 'country', 'establishment_year', 'user_id', 'slug','status', 'deleted_at'];
     
     protected static function boot()
     {
@@ -62,6 +62,11 @@ public function categoryIds()
 public function gallery($limit = null)
 {
     return $this->morphMany(BusinessGallery::class, 'imageable')->orderBy('id', 'desc')->limit($limit);
+}
+
+public function products($limit = null)
+{
+    return $this->hasMany(Product::class, 'business_id')->orderBy('id', 'desc')->limit($limit);
 }
 
 

@@ -92,7 +92,6 @@
                         </div>
                     </a>
 
-                    
                     <div class="card-body">
                             <a
                                 href="@if($GaneshCompetition->id){{ route('ganeshFestivalGroup.show', $GaneshCompetition->id) }}@endif">

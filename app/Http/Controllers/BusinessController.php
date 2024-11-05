@@ -7,6 +7,9 @@ use Illuminate\Support\Str;
 use App\Models\Business;
 use App\Models\BusinessTiming;
 use App\Models\BusinessCategory;
+use App\Models\City;
+use App\Models\Product;
+
 use Auth;
 
 
@@ -29,16 +32,89 @@ class BusinessController extends Controller
      */
     public function create()
     {
-        // dd(getGujaratCities());
         $business = Business::orderBy('asc')->get();
         return view('front.pages.business.create', compact('business'));
     }
 
-    public function businessList()
+    public function businessList(Request $request)
     {
         // dd(getStates());
+
+        $cid = $request->query('cid');
+        // dd(getStates());
+        $business = Business::where('cid', $cid)->first();
+
+        if($business){
+            return view('front.pages.business.business-list', compact('business', 'cid'));
+        }        
+
         return view('front.pages.business.business-list');
     }
+
+    
+    public function businessDetail($city, $slug, Request $request)
+    {
+        // dd('tesst');
+        // dd($city ,$slug);
+        // dd($slug);
+
+        // dd($product);
+        
+        $businessDetail = Business::where(['slug' => $slug, 'status' => 'active'])->first();
+        $checkCity = City::where(['name' => $city])->first();
+        
+        // dd($businessDetail);
+
+        if($checkCity == null && $businessDetail == null ){
+            return redirect()->route('index')->with("Page link doesn't exist");
+            $businessExperience = Carbon::now()->year - $businessDetail->establishment_year;
+        }
+        elseif(!$city == null && $businessDetail == null ){
+            return redirect(route('index') . '/vadodara')->with("error", "Page link doesn't exist");
+            // return redirect()->route('index') . '/vadodara')->with("Page link doesn't exist");
+        }
+
+        if(!$businessDetail->establishment_year == null){
+            $businessExperience = Carbon::now()->year - $businessDetail->establishment_year;
+        }
+        else{
+            $businessExperience = null;
+        }
+
+        $p = $request->query('p');
+        $productDetail = Product::where(['slug' => $p, 'business_id'=> $businessDetail->id])->first();
+
+        $products = Product::where(['business_id'=> $businessDetail->id, 'status' => 'active'])->orderBy('id', 'desc')
+        ->paginate(8)
+        ->appends(['p' => 'true']);;
+        
+        // dd($city, $slug); // To debug and check if $city and $slug have valid values
+        // dd($productDetail , $p);
+
+        $businessOwner = Business::where(['slug' => $slug, 'user_id' => Auth::id()])->first();
+
+        // dd($businessOwner);
+        
+        if($p == 'true'){
+            // dd('test');
+            return view('front.pages.business.business-detail-product', compact('businessDetail', 'businessExperience', 'businessOwner', 'products'));
+        }
+        elseif($productDetail){
+            // dd($productDetail);
+            return view('front.pages.business.business-detail-product-detail', compact('businessDetail', 'businessExperience', 'businessOwner', 'productDetail'));
+        }
+
+        if(!$productDetail && $p){
+            return redirect()->route('businessDetail', ['city' => $city, 'slug' => $slug]);
+        }
+    
+
+        return view('front.pages.business.business-detail', compact('businessDetail', 'businessExperience', 'businessOwner'));
+
+        // dd($businessDetail);
+    }
+
+ 
 
     public function step2ContactDetail(Request $request)
     {
@@ -200,6 +276,31 @@ class BusinessController extends Controller
     public function store(Request $request)
     {
         // dd($request->all());
+        $checkCid = Business::where(['cid' => $request->cid, 'user_id' => Auth::id()])->first();
+        // dd($checkCid);
+
+        if($checkCid){
+            
+            $updateBusiness = $checkCid->update([
+                'name' => $request->name,
+                'description' => $request->description,
+                'business_type' => $request->business_type,
+                
+                'building' => $request->building,
+                'street' => $request->street,
+                'city' => $request->city,
+                'state' => $request->state,
+                'pincode' => $request->pincode,
+                'establishment_year' => $request->establishment_year,
+                'user_id' => Auth::id(),
+                'status' => 'active',
+            ]);
+            if($updateBusiness){
+                return redirect()->route('step2ContactDetail', ['cid' => $request->cid])->with('success', 'Business Detail Updated.');
+            }
+            return redirect()->back()->with('success', 'Something went wrong.');
+        }
+
         $cid = Str::lower(Str::random(12));
         
         // BusinessTiming::updateOrCreate(
@@ -214,6 +315,7 @@ class BusinessController extends Controller
             'whatsapp2' => $request->whatsapp2,
             'email1' => $request->email1,
             'email2' => $request->email2,
+            'building' => $request->building,
             'street' => $request->street,
             'landmark' => $request->landmark,
             'city' => $request->city,
@@ -222,11 +324,10 @@ class BusinessController extends Controller
             'country' => $request->country,
             'establishment_year' => $request->establishment_year,
             'user_id' => Auth::id(),
-            'status' => $request->status,
+            'status' => 'active',
         ]);
         // return $business;
         
-
         return redirect()->route('step2ContactDetail', ['cid' => $cid])->with('success', 'New Business Created Successfully.');
     }
 

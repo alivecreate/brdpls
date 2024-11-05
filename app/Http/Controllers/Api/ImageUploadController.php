@@ -162,7 +162,11 @@ public function imageUploads(Request $request)
 
 public function deleteBusinessLogo(Request $request)
 {
-    // dd($request->all());
+    // dd($request->image_id);
+
+    // $immg = deleteCloudImage($request->image_id);
+
+    // dd($immg);
 
     $business = Business::where('id', $request->business_id);
     
@@ -174,7 +178,7 @@ if ($business) {
     ]);
 
     // dd('updated');
-        deleteCloudImage($request->image_id);
+        $immg = deleteCloudImage($request->image_id);
         return response()->json(['success' => true, 'message' => 'Image Deleted.'], 200);
     } else {
         // Handle the case where the business was not found

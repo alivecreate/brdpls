@@ -15,7 +15,7 @@
  
     <div id="wrapper">
 
-		@include('front.ext.header')
+		@include('front.ext.headers.header-my-business')
         @include('front.widget.sidebar.business')
 
         @yield('content')
@@ -25,6 +25,22 @@
         @yield('custom-script')
   
  
+           
+        @if (session('error'))
+        
+        <script>
+            toastr.error('{{ session('error') }}');
+            </script>
+        @endif
+
+        @if (session('success'))
+        <script>
+            toastr.success('{{ session('success') }}');
+            </script>
+        @endif
+
+      
+        
 
 </body>
 </html>

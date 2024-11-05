@@ -89,7 +89,7 @@ a{
     height: 100px;
 }
 .justify-between{
-    justify-content: space-around;
+    justify-content: space-between;
 }
 .justify-around{
     justify-content: space-around;
@@ -98,6 +98,78 @@ a{
 	width: 300px;
 	max-height: 200px;
 	object-fit: cover;
+}
+
+.ul-list {
+    list-style: auto;
+    list-style-position: inside;
+    padding: 8px;
+}
+
+/* Proccessing Steps */
+
+.stepper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 20px;
+    font-family: Arial, sans-serif;
+}
+
+.step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    position: relative;
+}
+
+.step-circle {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #ccc;
+    color: white;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 5px;
+    z-index: 1;
+}
+
+.step.active .step-circle {
+    background-color: #8b8b8b;
+}
+
+.step-bar {
+    position: absolute;
+    top: 15px; /* Align with the center of the step-circle */
+    left: 50%;
+    right: -50%;
+    height: 2px;
+    background-color: #ccc;
+    z-index: 0;
+}
+
+.step.active .step-bar {
+    background-color: #8b8b8b;
+}
+
+.step-text {
+    font-size: 0.9em;
+    color: #666;
+}
+
+.step.active .step-text {
+    color: #8b8b8b;
+    font-weight: bold;
+}
+
+/* Hide last step bar */
+.step:last-child .step-bar {
+    display: none;
 }
 
 .btn-choose-file {
@@ -151,12 +223,26 @@ background: brown;
 }
 
 
+@media (min-width: 1024px) {
+    
+    .lg-right {
+        float: right;
+    }
+    
+    .lg-text-right {
+        text-align: right;
+    }
+}
+
+
 
 @media (min-width: 768px) {
     
 .login-page-wrapper{
     margin-top: 36px;
 }
+
+
     .timeline-cover{
         height: 30rem;
     }
@@ -186,6 +272,12 @@ background: brown;
         padding: 20px 5px;
         gap: 15px;
         flex-direction: column;
+    }
+
+
+    .footer {
+        background: #c8eeff33;
+        padding: 2rem 3rem;
     }
 
     #site__main {
@@ -226,6 +318,12 @@ background: brown;
     }
 }
 
+.footer {
+    background: rgb(248, 248, 255);
+    padding: 2rem 5rem;
+}
+
+
 @media (min-width: 1280px) and (max-width: 1480px) {
     .container-w{
         max-width: 780px; /* 8px */
@@ -247,7 +345,55 @@ background: brown;
     }
 }
 
+.social-links {
+	display: flex;
+	gap: 1rem;
+	margin-top: 10px;
+}
 
+.footer-copyright {
+    margin-top: 22px;
+    border-top: 1px solid silver;
+    padding-top: 12px;
+}
+
+.heading-2 {
+	color: #464646 !important;
+	font-family: "Poppins",sans-serif;
+	font-size: 20px;
+	font-weight: 500;
+}
+.heading-3 {
+	color: #282828 !important;
+	font-family: "Poppins",sans-serif;
+	font-size: 26px;
+	font-weight: 500;
+}
+
+.detail-tab .uk-active > a {
+	color: #0076d7 !important;
+	border-bottom: solid #0076d7 !important;
+}
+
+.detail-tab li a {
+	font-size: 17px;
+	color: #424242;
+}
+
+.text-xl{
+    font-size: 1.3rem;
+}
+
+.text-xl3{
+    font-size: 3rem;
+}
+.align-items-center{
+    align-items: center;
+}
+.elips-saprator {
+        font-size: 8px;
+        color: silver;
+}
 
 label {
     margin: 5px 0px;
@@ -307,7 +453,7 @@ text-transform: uppercase;
     padding: 0.6rem;
 }
 .heading-h1 {
-    font-size: 22px;
+    font-size: 24px;
     margin: 13px 0px;
     margin-bottom: 12px !important;
 }
@@ -332,7 +478,7 @@ float: left;
     width: auto;
     justify-content: center;
 }
-#side a.active svg, #side a.uk-active svg, #side .active  a, #side a.uk-active {
+#side a.active svg, #side a.uk-active svg, #side .active > a, #side a.uk-active {
     --tw-bg-opacity: 1;
     background-color: rgb(227 236 245);
     --tw-text-opacity: 1;
@@ -430,7 +576,7 @@ a.bg-primary:hover {
 }
 
 .dropdown-timining{
-width: 108px;
+width: 124px;
 }
 
 div#business-hours {
@@ -467,14 +613,123 @@ box-shadow: none;
 .selected-item {
     width: fit-content;
     background: #0076d7;
-    padding: 5px 17px;
+    padding: 3px 10px;
     color: white;
     border-radius: 19px;
     margin: 6px 4px;
     float: left;
     cursor: pointer;
 }
+#share-popup {
+	background: #3e3e3ebd !important;
+	padding: 2rem;
+}
+.detail-links ul li {
+	padding: 3px;
+}
+.detail-links ul li a:hover {
+	background: #ebebeb;
+}
 
+.detail-links ul li a {
+	padding: 4px 10px;
+	background: #faf9f9;
+	font-weight: bold;
+	border: 1px solid #eaeaea;
+	margin: 3px 0px;
+	display: flex;
+    color: #106891;
+}
+/* Editor */
+.editor-toolbar {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 10px;
+}
+
+.editor-toolbar button {
+    background: whitesmoke;
+    width: 32px;
+    height: 32px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+}
+
+.editor {
+    padding: 10px 23px;
+    border: 1px solid #ccc;
+    min-height: 140px;
+    cursor: text;
+}
+
+.editor ul {
+    list-style: disc;
+    list-style-position: inside;
+}
+
+.editor ol {
+    list-style: number;
+    list-style-position: inside;
+}
+
+/* business info */
+.business-info-b h1 {
+	font-size: 40px;  
+    color: #3a3a3a !important;
+}
+.business-info-b h2 {
+	font-size: 30px;  
+    color: #3a3a3a !important;
+}
+
+.business-info-b ul {
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+
+.business-info-b ul li {
+    font-size: 20px;
+    line-height: 1.7;
+    display: flex;
+}
+
+.mt-0{
+    margin-top: 0px !important;
+}
+.business-info-b h3 {
+	font-size: 23px;
+	font-weight: bold;
+	color: #6c6c6c !important;
+	margin-top: 11px;
+	text-decoration: underline;
+}
+
+.business-info-b ul li ion-icon {
+	color: green;
+	font-size: 27px;
+    margin-right: 10px;
+}
+
+.editor[contenteditable="true"]:focus {
+    outline: none;
+    border-color: #007bff;
+}
+.pagination {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin: 25px 0px;
+}
+
+/* End Editor */
+.clear{
+    clear: both;
+}
 #selectImagesButton {
     padding: 10px 20px;
     background-color: #007bff;
@@ -713,6 +968,28 @@ font-size: 20px;
     display: flex;
   justify-content: space-between;
 }
+
+.text-size2{
+    font-size: 2rem;
+}
+.rating-star li {
+	font-size: 2rem;
+	border: 1px solid silver;
+	padding: 6px;
+	border-radius: 8px;
+    background: whitesmoke;
+}
+.rating-star li:hover {
+	background: red;
+	border: 1px solid red;
+	color: white;
+}
+
+.text-1rem{
+    font-size: 1rem;
+}
+
+
 .alert-danger2 {
 	color: #383838;
 	background: #ffdada;

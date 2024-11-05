@@ -44,6 +44,9 @@ Route::get('/about-us', [PageController::class, 'about'])->name('about');
 Route::get('/terms-and-conditions', [PageController::class, 'termsAndConditions'])->name('termsAndConditions');
 Route::get('/privacy-policy', [PageController::class, 'privacyPolicy'])->name('privacyPolicy');
 Route::get('/refund-and-cancellation', [PageController::class, 'refundAndCancellation'])->name('refundAndCancellation');
+Route::get('/infringement-policy', [PageController::class, 'infringementPolicy'])->name('infringementPolicy');
+
+
 Route::get('/contact', [PageController::class, 'contact'])->name('contact');
 
 Route::get('/messages', [PageController::class, 'messages'])->name('messages')->middleware(ValidUser::class);
@@ -109,7 +112,6 @@ Route::resource('posts', PostsController::class);
 Route::resource('group-posts', GroupPostController::class);
 
 
-
 Route::resource('social_links', SocialLinkController::class);
 
 Route::resource('security', SecurityController::class);
@@ -119,18 +121,6 @@ Route::resource('group', GroupController::class);
 Route::resource('group-member', GroupMembersController::class);
 Route::resource('group-report', GroupReportController::class);
 
-Route::resource('business', BusinessController::class);
-Route::get('/business-list', [BusinessController::class, 'businessList'])->name('businessList');
-
-Route::get('/business-list/step-2', [BusinessController::class, 'step2ContactDetail'])->name('step2ContactDetail');
-Route::post('/business-list/step-2', [BusinessController::class, 'storeStep2ContactDetail'])->name('storeStep2ContactDetail');
-
-Route::get('/business-list/step-3-timing', [BusinessController::class, 'step3BusinessTimining'])->name('step3BusinessTimining');
-
-Route::post('/business-list/step-3-timing', [BusinessController::class, 'storeBusinessTimining'])->name('storeBusinessTimining');
-
-Route::get('/business-list/step-4-category', [BusinessController::class, 'step4BusinessCategory'])->name('step4BusinessCategory');
-Route::post('/business-list/step-4-category', [BusinessController::class, 'storeStep4BusinessCategory'])->name('storeStep4BusinessCategory');
 
 
 Route::get('/components', [PageController::class, 'components'])->name('components');
@@ -227,12 +217,34 @@ Route::post('/ganesh-festival/competition/group-payment', [GaneshCompetitionPaym
 
 
 Route::get('/my-business', [MyBusinessController::class, 'index'])->name('myBusiness');
-Route::get('/my-business/{cid}', [MyBusinessController::class, 'show'])->name('myBusiness.show');
+Route::get('/my-business/{slug}', [MyBusinessController::class, 'show'])->name('myBusiness.show');
+Route::get('/my-business/{slug}/product', [MyBusinessController::class, 'product'])->name('myBusiness.product');
+Route::post('/my-business/{slug}/product/store', [MyBusinessController::class, 'productStore'])->name('myBusiness.productStore');
+Route::delete('/my-business/product/{id}', [MyBusinessController::class, 'productDelete'])->name('myBusiness.productDelete');
+Route::put('/my-business/product/{id}', [MyBusinessController::class, 'productUpdate'])->name('myBusiness.productUpdate');
+
 
 Route::put('/my-business/{cid}/profile', [MyBusinessController::class, 'updateMyBusinessProfile'])->name('updateMyBusinessProfile');
 Route::put('/my-business/{cid}/sociallinks', [MyBusinessController::class, 'updateMyBusinessSocialLinks'])->name('updateMyBusinessSocialLinks');
 Route::put('/my-business/{cid}/contact', [MyBusinessController::class, 'updateMyBusinessContact'])->name('updateMyBusinessContact');
 Route::delete('/my-business/{id}', [MyBusinessController::class, 'deleteMyBusiness'])->name('deleteMyBusiness');
+
+
+
+Route::get('/business-list', [BusinessController::class, 'businessList'])->name('businessList');
+
+
+Route::get('/business-list/step-2', [BusinessController::class, 'step2ContactDetail'])->name('step2ContactDetail');
+Route::post('/business-list/step-2', [BusinessController::class, 'storeStep2ContactDetail'])->name('storeStep2ContactDetail');
+
+Route::get('/business-list/step-3-timing', [BusinessController::class, 'step3BusinessTimining'])->name('step3BusinessTimining');
+
+Route::post('/business-list/step-3-timing', [BusinessController::class, 'storeBusinessTimining'])->name('storeBusinessTimining');
+
+Route::get('/business-list/step-4-category', [BusinessController::class, 'step4BusinessCategory'])->name('step4BusinessCategory');
+Route::post('/business-list/step-4-category', [BusinessController::class, 'storeStep4BusinessCategory'])->name('storeStep4BusinessCategory');
+
+
 
 
 
@@ -272,9 +284,10 @@ Route::get('/ganesh-festival/{slug}/photos', [GaneshFestivalController::class, '
 Route::get('/ganesh-festival/{slug}/videos', [GaneshFestivalController::class, 'ganeshFestivalVideos'])->name('ganeshFestivalVideos');
 
 
+// Business Routes
 
 
+Route::resource('business', BusinessController::class);
 
-
-
+Route::get('/{city}/{slug}', [BusinessController::class, 'businessDetail'])->name('businessDetail');
 

@@ -119,15 +119,14 @@ class UserController extends Controller
             $credentials = $request->only('phone', 'password');
             $rememberMe = $request->filled('remember');
         
-            if (Auth::attempt($credentials, $rememberMe)) {
+            if (Auth::attempt($credentials)) {
                 $user = Auth::user();
                 // dd($user);
         
                 if ($rememberMe) {
-                    $rememberToken = $user->createRememberToken(); // Assume this method generates a unique token and saves it with the user
+                    $rememberToken = Str::random(60);
                     Cookie::queue('remember', $rememberToken, 365 * 24 * 60 * 60); // 2 weeks
                 }
-                
                 
                     $user = User::where('phone',  $request->phone)->select('id')->first();
                     $request->session()->put('isLoginSession', $user->id);

@@ -4,25 +4,71 @@
 
 
 <!-- main contents -->
-<main id="site__main" class="2xl:ml-[--w-side]  xl:ml-[--w-side-sm] py-10 p-2.5 h-[calc(100vh-var(--m-top))] mt-[--m-top]">
+<main id="site__main" class="w-full py-10 p-2.5 h-[calc(100vh-var(--m-top))] mt-[--m-top]">
+                 
+    <div class='business-info-b text-center'>
+        <h2 class="font-semibold">Create Business <span>(Step 3)</span></h2>
+    </div>
 
-    <div class="lg:flex 2xl:gap-12 gap-10 2xl:max-w-[1220px] max-w-[1065px] mx-auto lg:mt-2 mt-6" id="js-oversized">
 
-        <div class="lg:flex 2xl:gap-12 gap-10 2xl:max-w-[1220px] max-w-[1065px] mx-auto lg:mt-2 mt-6">
-            <div class="2xl:w-[380px] lg:w-[330px] w-full">
-                <!-- Content for the first column (40%) -->
-                <img src="https://www.justdial.com/Free-Listing/_next/image?url=https%3A%2F%2Fakam.cdn.jdmagicbox.com%2Fimages%2Ficontent%2Flistingbusiness%2Fbusiness_detail_2x_new.png&w=1920&q=75"
-                    alt="">
+    <div class="stepper">
+        <div class="step active">
+            <div class="step-circle  bg-danger">1</div>
+            <div class="step-bar"></div>
+            <div class="step-text">Create Business</div>
+        </div>
+        <div class="step active">
+            <div class="step-circle">2</div>
+            <div class="step-bar"></div>
+            <div class="step-text">Contact Details</div>
+        </div>
+        <div class="step active">
+            <div class="step-circle">3</div>
+            <div class="step-bar"></div>
+            <div class="step-text">Timing</div>
+        </div>
+        <div class="step">
+            <div class="step-circle">4</div>
+            <div class="step-text">Categories</div>
+        </div>
+    </div>
+
+
+
+    <div class="lg:flex mx-auto lg:mt-2 mt-6 " id="js-oversized">
+      
+    <div class="lg:flex mx-auto lg:mt-2 mt-6 gap-12">
+            <div class="2xl:w-[500px] lg:w-[500px] w-full">
+            <div class='business-info-b'>
+                    <h1 class="heading-h1 font-semibold">List Unlimited Business in <span
+                        class="text-danger text-right">just ₹365 / Year</span></h1>
+                    <h2>Business Opening and Closing Time</h2>
+
+                    <h3>Features:</h3>
+                    <ul>
+                        <li>
+                            <ion-icon name="checkmark-sharp"></ion-icon> Unlimited Business
+                        </li>
+                        <li>
+                            <ion-icon name="checkmark-sharp"></ion-icon> Free Digital Card
+                        </li>
+                        <li>
+                            <ion-icon name="checkmark-sharp"></ion-icon> Free Website
+                        </li>
+                        <li>
+                            <ion-icon name="checkmark-sharp"></ion-icon> Unlimited Product and Serives
+                        </li>
+                        <li>
+                            <ion-icon name="checkmark-sharp"></ion-icon> Customer Review and Rating
+                        </li>
+                    </ul>
+
+                </div>
             </div>
 
-            <div class="2xl:w-[380px] lg:w-[330px] w-full">
-                <div class="w-full bg-gray-200 rounded-full h-1 dark:bg-gray-700">
-                    <div class="bg-blue-600 h-1 rounded-full" style="width: 75%"></div>
-                </div>
-
-                <p class='heading-h1 font-semibold page-title'>Business timing</p>
-
-                <p class='mb-4'>Business Opening and Closing Time</p>
+            <div class="2xl:w-[500px] lg:w-[500px] w-full bg-white p-4">
+                
+                <p class='heading-h1 font-semibold page-title text-underline'>Business Timing</p>
 
                 <form class="needs-validation data-form" action="{{route('storeBusinessTimining')}}" method="POST"
                     enctype="multipart/form-data">
@@ -30,7 +76,6 @@
                     <input type="hidden" name="cid" value="{{$cid}}">
                     @csrf
                     <div class="container mx-auto">
-                        <p class="font-bold mb-4">Select the Days</p>
                         
                         @foreach(getDays() as $day)
 
@@ -63,23 +108,14 @@
 
                     </div>
 
-
-
-                    <div class="space-y-5">
-
-
-                        <div class="md:flex items-start gap-10 " hidden="">
-                            <div class="flex-1 flex items-center gap-5 max-md:mt-4">
-                                <img src="http://localhost:8000/front/images/avatars/avatar-3.jpg" alt="" name="image"
-                                    class="w-10 h-10 rounded-full">
-                                <button type="submit"
-                                    class="px-4 py-1 rounded-full bg-slate-100/60 border dark:bg-slate-700 dark:border-slate-600 dark:text-white">
-                                    Change</button>
-                            </div>
-                        </div>
-                    </div>
+                    
 
                     <div class="flex w-full items-center gap-4 mt-6">
+                        <a class="btn-md button lg:px-10 bg-secondery max-md:flex-1"
+                            href="{{route('step2ContactDetail',['cid' => $cid])}}"
+                        > Back</a>
+                        
+
                         <button type="submit" class="btn-md button lg:px-10 bg-primary text-white text-24 w-full"> Save
                             & Continue <span class="ripple-overlay"></span></button>
                     </div>

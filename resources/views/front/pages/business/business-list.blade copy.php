@@ -15,7 +15,7 @@
             <img src="https://www.justdial.com/Free-Listing/_next/image?url=https%3A%2F%2Fakam.cdn.jdmagicbox.com%2Fimages%2Ficontent%2Flistingbusiness%2Fbusiness_detail_2x_new.png&w=1920&q=75" alt="">
         </div>
 
-        <div class="w-3/5 bg-gray-300 p-4">
+        <div class="w-3/5 bg-white p-4">
             <h1 class='font-semibold text-black font-semibold text-black mb-5'>Enter your business detail</h1>
                         <form class="needs-validation data-form" action="http://localhost:8000/users/2" method="POST" enctype="multipart/form-data">
                         <input type="hidden" name="_token" value="Zl5boaJsMQjWyBh9pX5veDO4nWorFUvyp6eBoiTD" autocomplete="off">         

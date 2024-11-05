@@ -1,13 +1,23 @@
 @extends('front.layout.my-business-layout')
+@section('custom-script')
+    
+<script>
+    $(document).ready(function() {
+        $('.mybusiness').addClass('active');
+        $('.uk-parent').addClass('uk-open');
+        $('.uk-parent ul').removeAttr('hidden');
+    });
+</script>
+@endsection
 
 @section('content')
-
 
 <!-- main contents -->
 <main id="site__main" class="p-2.5 h-[calc(100vh-var(--m-top))] mt-20">
 
     <div class="2xl:gap-12 gap-10 2xl:max-w-[1220px] max-w-[828px] mx-auto mt-10 container-w" id="js-oversized">
 <div class="flex justify-between mb-5">
+
         <nav class="flex" aria-label="Breadcrumb">
             <ol class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
                 <li class="inline-flex items-center">
@@ -139,9 +149,8 @@
                         @empty
                         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                             <th scope="row" colspan="4"
-                                class="px-6 py-10 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">
-                                
-        <p>No businesses have been created yet.</p>
+                                class="px-6 py-10 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">        
+                                <p>No businesses have been created yet.</p>
                             </th>
 </tr>
                         @endforelse

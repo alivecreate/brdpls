@@ -1,3 +1,13 @@
+<a href="https://chat.whatsapp.com/JjCoTMCPKy4AiaJLcIedO3" target="_blank">
+    <img src="https://imagedelivery.net/zfs38w7w3E1dJVvB3mVs9g/bb4df606-909e-4884-343d-0cbea8007300/md" 
+        style="width: 100px;height: auto;position: fixed;right: 0;top: 172px;z-index: 9999;" />
+</a>
+
+<a href="https://www.instagram.com/barodaplus?utm_source=qr&igsh=MWFreGFvb3ppYTBzbQ==" target="_blank">
+    <img src="https://imagedelivery.net/zfs38w7w3E1dJVvB3mVs9g/818042d8-de96-46e6-f576-dda2a1cd5b00/md" 
+        style="width: 100px;height: auto;position: fixed;right: 0;top: 288px;z-index: 9999;" />
+</a>
+
 
     
    <header class="z-[100] h-[--m-top] fixed top-0 left-0 w-full flex items-center bg-white/80 sky-50 backdrop-blur-xl border-b border-slate-200 dark:bg-dark2 dark:border-slate-800">

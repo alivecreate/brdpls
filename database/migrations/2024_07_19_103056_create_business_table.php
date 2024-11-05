@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('business', function (Blueprint $table) {
             $table->id();
-            $table->string('title', 10)->nullable();
+            $table->string('name_prefix', 10)->nullable();
             $table->string('contact_person')->nullable();
             $table->string('name')->nullable();
             $table->string('logo')->nullable();
@@ -34,6 +34,9 @@ return new class extends Migration
             $table->string('state')->nullable();
             $table->string('country')->nullable();
             $table->string('establishment_year')->nullable();
+            $table->string('lat')->nullable();
+            $table->string('long')->nullable();
+            $table->string('gst')->nullable();
             $table->string('status')->nullable();
             $table->string('slug')->unique();
             

@@ -146,7 +146,6 @@
                                 <div class="flex-1 max-md:mt-4">
                                     <textarea class="w-full" name="bio" rows="5" value="{{old('bio')}}" 
                                     placeholder="Inter your Bio">{{ old('bio') ?: getUserData()['bio'] }}</textarea>
-                                    
                                 </div>
                             </div> 
 

@@ -724,7 +724,7 @@ $(document).ready(function() {
                                 class="bg-marron button text-lg bg-primary text-white flex-1 mt-4 button text-lg bg-secondary text-white flex-1  btn-print-qr"
                                 data-image="https://imagedelivery.net/zfs38w7w3E1dJVvB3mVs9g/{{$group->cover}}/lg"
                                 data-name="{{$group->name}}" data-address="{{$group->address}}"
-                                data-logo="{{asset('front/images/web')}}/barodaplus-logo.png"
+                                data-logo="{{asset('front/images')}}/logo-barodaplus-light2.png"
                                 data-qr="{{ DNS2D::getBarcodeSVG(route('ganeshFestivalGroup.show', $group->slug), 'QRCODE', 8, 8) }}">
                                 <ion-icon name="download-outline" class="text-lg"></ion-icon> Print QR
                             </button>

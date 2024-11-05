@@ -61,7 +61,7 @@
                 <div class="flex items-center justify-between">
 
                 <div class="flex items-center gap-2.5">
-                        <input id="rememberme" name="rememberme" type="checkbox">
+                        <input id="rememberme" name="remember" type="checkbox">
                         <label for="rememberme" class="font-normal">Remember me</label>
                     </div>
 

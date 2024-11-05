@@ -1,4 +1,4 @@
-@extends('front.layout.main-layout')
+@extends('front.layout.landing-layout')
 
 @section('content')
 
@@ -15,7 +15,6 @@
    
     @include('front.widget.story-block')
 
- 
 
 
 

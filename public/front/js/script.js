@@ -155,3 +155,6 @@ function deleteImage(imageId) {
 }
 
 
+function format(command) {
+    document.execCommand(command, false, null);
+}

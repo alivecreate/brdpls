@@ -684,7 +684,7 @@
                                     <span>  Development   </span>   
                                     <ion-icon name="chevron-down" class="text-base ml-auto duration-200 group-aria-expanded:rotate-180"></ion-icon>              
                                 </a>
-                                <ul class="pl-10 my-1 space-y-0 text-sm">
+                                <ul class="my-1 space-y-0 text-sm">
                                     <li><a href="components.html" class="!py-2 !rounded -md">Elements</a></li>
                                     <li><a href="components.html" class="!py-2 !rounded -md">Components</a></li>
                                     <li><a href="components.html" class="!py-2 !rounded -md">Icons</a></li>

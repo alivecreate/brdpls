@@ -4,27 +4,53 @@
 
 
 <!-- main contents -->
-<main id="site__main" class="2xl:ml-[--w-side]  xl:ml-[--w-side-sm] py-10 p-2.5 h-[calc(100vh-var(--m-top))] mt-[--m-top]">
-
-    <div class="lg:flex 2xl:gap-12 gap-10 2xl:max-w-[1220px] max-w-[1065px] mx-auto lg:mt-2 mt-6" id="js-oversized">
-
-
-        <div class="lg:flex 2xl:gap-12 gap-10 2xl:max-w-[1220px] max-w-[1065px] mx-auto lg:mt-2 mt-6">
-            <div class="2xl:w-[380px] lg:w-[330px] w-full">
-                <!-- Content for the first column (40%) -->
-                <img src="https://www.justdial.com/Free-Listing/_next/image?url=https%3A%2F%2Fakam.cdn.jdmagicbox.com%2Fimages%2Ficontent%2Flistingbusiness%2Fbusiness_detail_2x_new.png&w=1920&q=75"
-                    alt="">
-            </div>
-
-            <div class="2xl:w-[380px] lg:w-[330px] w-full">
-                <!-- Content for the second column (60%) -->
+<main id="site__main" class="w-full py-4 p-2.5 h-[calc(100vh-var(--m-top))] mt-[--m-top]">
+                       
+<div class='business-info-b text-center'>
+    <h2 class="font-semibold">Create Business <span>(Step 2)</span></h2>
+</div>
 
 
-                <div class="w-full bg-gray-200 rounded-full h-1 dark:bg-gray-700">
-                    <div class="bg-blue-600 h-1 rounded-full" style="width: 25%"></div>
+
+
+<div class="stepper">
+        <div class="step active">
+            <div class="step-circle  bg-danger">1</div>
+            <div class="step-bar"></div>
+            <div class="step-text">Create Business</div>
+        </div>
+        <div class="step active">
+            <div class="step-circle">2</div>
+            <div class="step-bar"></div>
+            <div class="step-text">Contact Details</div>
+        </div>
+        <div class="step">
+            <div class="step-circle">3</div>
+            <div class="step-bar"></div>
+            <div class="step-text">Timing</div>
+        </div>
+        <div class="step">
+            <div class="step-circle">4</div>
+            <div class="step-text">Categories</div>
+        </div>
+    </div>
+
+
+
+<div class="lg:flex mx-auto lg:mt-2 mt-6 " id="js-oversized">
+        <div class="lg:flex mx-auto lg:mt-2 mt-6 gap-12">
+            <div class="2xl:w-[600px] lg:w-[600px] w-full">     <!-- Content for the first column (40%) -->
+                <div class='business-info-b'>
+                    <h1 class="heading-h1 font-semibold">Just 2 Steps Away to Creating <span
+                    class="text-danger text-right">Your Business </span></h1>
+                    <h2>Baroda's Own Business Platform</h2>
                 </div>
+            </div>
+            
+            <div class="w-3/5 bg-white p-4">
+            
 
-                <p class='heading-h1 font-semibold text-black font-semibold text-black mb-5'>Add Contact Details</p>
+                <p class='heading-h1 font-semibold text-black font-semibold text-black mb-5'>Contact Details</p>
                 <form class="needs-validation data-form" action="{{route('storeStep2ContactDetail')}}" method="POST"
                     enctype="multipart/form-data">
                     @csrf
@@ -47,87 +73,41 @@
                             </div>
                         </div>
 
-                        <p>Mobile Number:</p>
-
                         <div class="md:flex items-center gap-10">
                             <div class="flex flex-1 max-md:mt-4 form-group">
                                 <input type="text" class="form-title float-left" disabled value="+91">
                                 <input type="number" name="phone1"
                                     value="@if($business->phone1){{$business->phone1}}@endif"
-                                    placeholder="Primary Mobile No" class="flex-auto float-left">
+                                    placeholder="Mobile No" class="flex-auto float-left">
                             </div>
                         </div>
-
-                        <div class="md:flex items-center gap-10">
-                            <div class="flex flex-1 max-md:mt-4 form-group">
-                                <input type="text" class="form-title float-left" disabled value="+91">
-                                <input type="number" name="phone2"
-                                    value="@if($business->phone2){{$business->phone2}}@endif"
-                                    placeholder="Secondary Mobile No" class="flex-auto float-left">
-                            </div>
-                        </div>
-
-                        <p>Whatsapp Number:</p>
-
 
                         <div class="md:flex items-center gap-10">
                             <div class="flex flex-1 max-md:mt-4 form-group">
                                 <input type="text" class="form-title float-left" disabled value="+91">
                                 <input type="number" name="whatsapp1"
                                     value="@if($business->whatsapp1){{$business->whatsapp1}}@endif"
-                                    placeholder="Primary Whatsapp" class="flex-auto float-left">
+                                    placeholder="Whatsapp" class="flex-auto float-left">
                             </div>
                         </div>
-
-
-
-                        <div class="md:flex items-center gap-10">
-                            <div class="flex flex-1 max-md:mt-4 form-group">
-                                <input type="text" class="form-title float-left" disabled value="+91">
-                                <input type="number" name="whatsapp2"
-                                    value="@if($business->whatsapp2){{$business->whatsapp2}}@endif"
-                                    placeholder="Secondary Whatsapp" class="flex-auto float-left">
-                            </div>
-                        </div>
-
-
-
-                        <p>Email Accounts:</p>
 
 
                         <div class="md:flex items-center gap-10">
                             <div class="flex flex-1 max-md:mt-4 form-group">
                                 <input type="email" name="email1"
                                     value="@if($business->email1){{$business->email1}}@endif"
-                                    placeholder="Primary Email" class="flex-auto float-left">
+                                    placeholder="Email Address" class="flex-auto float-left">
                             </div>
                         </div>
 
 
-
-                        <div class="md:flex items-center gap-10">
-                            <div class="flex flex-1 max-md:mt-4 form-group">
-                                <input type="email" name="email2"
-                                    value="@if($business->email2){{$business->email2}}@endif"
-                                    placeholder="Secondary Email" class="flex-auto float-left">
-                            </div>
-                        </div>
-
-
-
-
-                        <div class="md:flex items-start gap-10 " hidden="">
-                            <div class="flex-1 flex items-center gap-5 max-md:mt-4">
-                                <img src="http://localhost:8000/front/images/avatars/avatar-3.jpg" alt="" name="image"
-                                    class="w-10 h-10 rounded-full">
-                                <button type="submit"
-                                    class="px-4 py-1 rounded-full bg-slate-100/60 border dark:bg-slate-700 dark:border-slate-600 dark:text-white">
-                                    Change</button>
-                            </div>
-                        </div>
                     </div>
 
                     <div class="flex w-full items-center gap-4 mt-6">
+                        <a class="btn-md button lg:px-10 bg-secondery max-md:flex-1"
+                            href="{{route('businessList',['cid' => $cid])}}"
+                        > Back</a>
+                        
                         <button type="submit" class="btn-md button lg:px-10 bg-primary text-white text-24 w-full"> Save
                             & Continue <span class="ripple-overlay"></span></button>
                     </div>

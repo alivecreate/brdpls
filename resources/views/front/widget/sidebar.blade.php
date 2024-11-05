@@ -145,6 +145,7 @@
                         <span> Setting </span>                  
                     </a>
                 </li>
+
                 <li>
                     <a href="{{route('upgrade')}}"> 
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
@@ -169,7 +170,7 @@
                         <span>  Development   </span>   
                         <ion-icon name="chevron-down" class="text-base ml-auto duration-200 group-aria-expanded:rotate-180"></ion-icon>              
                     </a>
-                    <ul class="pl-10 my-1 space-y-0 text-sm">
+                    <ul class="my-1 space-y-0 text-sm">
                         <li><a href="{{route('components')}}" class="!py-2 !rounded -md">Elements</a></li>
                         <li><a href="{{route('components')}}" class="!py-2 !rounded -md">Components</a></li>
                         <li><a href="{{route('components')}}" class="!py-2 !rounded -md">Icons</a></li>

@@ -26,6 +26,7 @@
                         <img src="{{asset('front/images/web')}}/barodaplus-logo.png"
                             class="main-logo hidden dark:max-md:block w-20" alt="">
                     </a>
+                    
                 </div>
 
             </div>

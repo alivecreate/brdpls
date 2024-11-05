@@ -19,13 +19,13 @@
           
             <div id="logo">
                     <a href="{{route('index')}}">
-                        <img src="{{asset('front/images/web')}}/barodaplus-logo.png" alt=""
+                        <img src="{{asset('front/images')}}/logo-barodaplus-light2.png" alt=""
                             class="main-logo md:block hidden dark:!hidden">
-                        <img src="{{asset('front/images/web')}}/barodaplus-logo.png" alt=""
+                        <img src="{{asset('front/images')}}/logo-barodaplus-light2.png" alt=""
                             class="main-logo dark:md:block hidden">
-                        <img src="{{asset('front/images/web')}}/barodaplus-logo.png"
+                        <img src="{{asset('front/images')}}/logo-barodaplus-light2.png"
                             class="main-logo hidden max-md:block w-20 dark:!hidden" alt="">
-                        <img src="{{asset('front/images/web')}}/barodaplus-logo.png"
+                        <img src="{{asset('front/images')}}/logo-barodaplus-light2.png"
                             class="main-logo hidden dark:max-md:block w-20" alt="">
                     </a>
                 </div>

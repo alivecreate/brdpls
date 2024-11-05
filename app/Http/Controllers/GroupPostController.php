@@ -60,11 +60,8 @@ class GroupPostController extends Controller
                     foreach ($uploadedImages as $image) {
                         // Call the upload helper for each image and store the returned ID
                         $imageId = uploadCloudFlairImage($image);
-
-                        
                         $imageIds[] = $imageId;            
                         $gallery = implode(',', $imageIds);
-                        
                     }
                 }
                 else{

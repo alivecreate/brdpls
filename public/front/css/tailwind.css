@@ -648,7 +648,7 @@ input[type='text'],
   padding-bottom: 0.5rem;
   padding-left: 1rem;
   padding-right: 1rem;
-  font-size: 0.875rem;
+  font-size: 1rem;
   line-height: 1.25rem;
   font-weight: 500;
   --tw-text-opacity: 1 !important;
@@ -719,7 +719,6 @@ input[type='text'],
     textarea, [type='text'] {
   border-color: #cecece;
   --tw-bg-opacity: 1;
-  background-color: rgb(241 245 249 / var(--tw-bg-opacity));
 }
 
 @media (prefers-color-scheme: dark) {
@@ -778,7 +777,6 @@ select:focus,
 input[type='radio'],
     input[type='checkbox'] {
   --tw-bg-opacity: 1;
-  background-color: rgb(241 245 249 / var(--tw-bg-opacity));
   --tw-text-opacity: 1 !important;
   color: rgb(2 132 199 / var(--tw-text-opacity)) !important;
 }
@@ -1393,9 +1391,15 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
+
+.link-active {
+  text-decoration: underline;
+}
+
+
+
 #side a:hover {
-  --tw-bg-opacity: 1;
-  background-color: rgb(var(--color-secondery) / var(--tw-bg-opacity));
+  text-decoration: underline;
 }
 
 #side a svg {
@@ -1405,7 +1409,7 @@ h1, h2, h3, h4, h5, h6 {
 
 #side a.active svg , 
     #side a.uk-active svg ,
-    #side .active  a , 
+    #side .active > a , 
     #side a.uk-active {
   --tw-bg-opacity: 1;
   background-color: rgb(var(--color-secondery) / var(--tw-bg-opacity));
@@ -4280,6 +4284,16 @@ h1, h2, h3, h4, h5, h6 {
   --tw-bg-opacity: 1;
   background-color: rgb(0 0 0 / var(--tw-bg-opacity));
 }
+
+.bg-green {
+  background: green;
+}
+
+.text-green {
+  color: green;
+}
+
+
 
 .bg-black\/10 {
   background-color: rgb(0 0 0 / 0.1);
@@ -7959,6 +7973,11 @@ h1, h2, h3, h4, h5, h6 {
   .lg\:w-1\/4 {
     width: 25%;
   }
+  
+  .lg\:w-3\/4 {
+    width: 75%;
+}
+
 
   .lg\:w-1\/5 {
     width: 20%;
@@ -7996,6 +8015,10 @@ h1, h2, h3, h4, h5, h6 {
     width: 400px;
   }
 
+  .lg\:w-\[500px\] {
+    width: 500px;
+  }
+
   .lg\:w-\[580px\] {
     width: 580px;
   }
@@ -8020,6 +8043,10 @@ h1, h2, h3, h4, h5, h6 {
     max-width: 680px;
   }
 
+  .lg\:max-w-\[520px\] {
+    max-width: 520px;
+  }
+
   .lg\:max-w-sm {
     max-width: 24rem;
   }
@@ -8035,6 +8062,16 @@ h1, h2, h3, h4, h5, h6 {
   .lg\:grid-cols-4 {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
+
+  .lg\:grid-cols-5 {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+
+  .lg\:grid-cols-6 {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+
+
 
   .lg\:flex-row {
     flex-direction: row;

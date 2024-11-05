@@ -13,7 +13,7 @@
             <img src="https://www.justdial.com/Free-Listing/_next/image?url=https%3A%2F%2Fakam.cdn.jdmagicbox.com%2Fimages%2Ficontent%2Flistingbusiness%2Fbusiness_detail_2x_new.png&w=1920&q=75" alt="">
         </div>
 
-        <div class="w-3/5 bg-gray-300 p-4">
+        <div class="w-3/5 bg-white p-4">
             <!-- Content for the second column (60%) -->
              
 <div class="w-full bg-gray-200 rounded-full h-1 dark:bg-gray-700">

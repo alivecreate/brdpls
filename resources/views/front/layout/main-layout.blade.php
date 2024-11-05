@@ -20,8 +20,5 @@
 		@include('front.ext.scripts')
         @yield('custom-script')
 
-        
- 
-
 </body>
 </html>
