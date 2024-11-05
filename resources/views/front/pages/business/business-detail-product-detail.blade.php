@@ -9,12 +9,14 @@
 
 @section('keywords') {{ $productDetail->name }} price, {{ $productDetail->name }} in {{$businessDetail->city}}, {{ $productDetail->name }} near me, {{ $productDetail->name }} - {{$businessDetail->name}} @endsection
 
+
 @php
+
 
 $url = url()->full();
 $productUrl = "https://www.barodaplus.com/product/{$productDetail->name}";
 $message = "Check out this product on Barodaplus! Discover more details and shop now: $url";
-$whatsappLink = 'https://wa.me/?text=' . urlencode($message);
+$whatsappLink = 'https://wa.me/?phone='.$businessDetail->whatsapp1.'&text=' . urlencode($message);
 
 
 @endphp
@@ -128,7 +130,8 @@ $(document).ready(function() {
                                 </div>
 
                                 <div class="flex gap-2 py-2">
-                                    <a href="#" id="shareBtn" class="shareBtn button p-2 bg-green text-white text-lg"
+                                    <a href="{{$whatsappLink}}" target="_blank" id="shareBtn" 
+                                        class="shareBtn button p-2 bg-green text-white text-lg"
                                         uk-tooltip="title: Whatsapp Us">
                                         <ion-icon class="text-xl text-white md hydrated" name="logo-whatsapp">
                                         </ion-icon> Whatsapp
