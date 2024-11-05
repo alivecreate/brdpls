@@ -10,16 +10,22 @@
 @section('keywords') {{ $productDetail->name }} price, {{ $productDetail->name }} in {{$businessDetail->city}}, {{ $productDetail->name }} near me, {{ $productDetail->name }} - {{$businessDetail->name}} @endsection
 
 
-@php
+<?php
 
 
 $url = url()->full();
 $productUrl = "https://www.barodaplus.com/product/{$productDetail->name}";
-$message = "Check out this product on Barodaplus! Discover more details and shop now: $url";
+
+
+
+$message = "*{$productDetail->name}*" . 
+           (isset($productDetail->price) ? " *(Price: ₹. {$productDetail->price})*" : "") . ' - ' . $businessDetail->name. 
+           "\nCheck out this product on Barodaplus! Discover more details and shop now:\n{$url}";
+
+
 $whatsappLink = 'https://wa.me/?phone='.$businessDetail->whatsapp1.'&text=' . urlencode($message);
 
-
-@endphp
+?>
 
 @section('custom-script')
 
