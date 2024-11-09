@@ -609,10 +609,17 @@ function shareData(data) {
 document.querySelectorAll('.shareBtn').forEach(function(button) {
 
     button.addEventListener('click', function() {
-        alert('test');
+        // alert('test');
+        
+
+$message = "*Hello there,*" . 
+           (isset($productDetail->price) ? " *(Price: ₹. {$productDetail->price})*" : "") . ' - ' . $businessDetail->name. 
+           "\nCheck out this product on Barodaplus! Discover more details and shop now:\n{$url}";
+
+
         const data = {
             title: 'My Awesome Website',
-            url: `Check out this product on Barodaplus! Discover more details and shop now: ${window.location.href}` // Current page URL
+            url: message // Current page URL
             // url: window.location.href+'nCheck out this product on Barodaplus! Discover more details and shop now:\n{$url}' // Current page URL
         };
 
