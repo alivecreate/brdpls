@@ -22,8 +22,7 @@ $message = "*{$productDetail->name}*" .
            (isset($productDetail->price) ? " *(Price: ₹. {$productDetail->price})*" : "") . ' - ' . $businessDetail->name. 
            "\nCheck out this product on Barodaplus! Discover more details and shop now:\n{$url}";
 
-
-$whatsappLink = 'https://wa.me/?phone='.$businessDetail->whatsapp1.'&text=' . urlencode($message);
+$whatsappLink = 'https://wa.me/?phone=91'.$businessDetail->whatsapp1.'&text=' . urlencode($message);
 
 ?>
 
@@ -136,8 +135,8 @@ $(document).ready(function() {
                                 </div>
 
                                 <div class="flex gap-2 py-2">
-                                    <a href="{{$whatsappLink}}" target="_blank" id="shareBtn" 
-                                        class="shareBtn button p-2 bg-green text-white text-lg"
+                                    <a href="{{$whatsappLink}}" target="_blank"
+                                        class=" button p-2 bg-green text-white text-lg"
                                         uk-tooltip="title: Whatsapp Us">
                                         <ion-icon class="text-xl text-white md hydrated" name="logo-whatsapp">
                                         </ion-icon> Whatsapp

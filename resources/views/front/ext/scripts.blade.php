@@ -607,11 +607,13 @@ function shareData(data) {
 
 // Adding event listeners to buttons with the 'shareBtn' class
 document.querySelectorAll('.shareBtn').forEach(function(button) {
+
     button.addEventListener('click', function() {
+        alert('test');
         const data = {
             title: 'My Awesome Website',
-            text: 'Check out this awesome website!',
-            url: window.location.href // Current page URL
+            url: `Check out this product on Barodaplus! Discover more details and shop now: ${window.location.href}` // Current page URL
+            // url: window.location.href+'nCheck out this product on Barodaplus! Discover more details and shop now:\n{$url}' // Current page URL
         };
 
         // Call shareData function
@@ -623,6 +625,7 @@ document.querySelectorAll('.shareBtn').forEach(function(button) {
 
 <script>
 function shareData(data) {
+    
     if (navigator.share) {
         navigator.share(data)
             .then(() => console.log('Data shared successfully'))
@@ -634,16 +637,18 @@ function shareData(data) {
 }
 
 // Adding event listener to the button
-document.getElementById('shareBtn').addEventListener('click', function() {
-    const data = {
-        title: 'My Awesome Website',
-        text: 'Check out this awesome website!',
-        url: window.location.href // Current page URL
-    };
+// document.getElementById('shareBtn').addEventListener('click', function() {
+//     const data = {
+//         title: 'My Awesome Website',
+//         text: 'Check out this awesome website!',
+//         url: window.location.href // Current page URL
+//     };
+//     alert('test');
 
-    // Call shareData function
-    shareData(data);
-});
+//     // Call shareData function
+//     shareData(data);
+// });
+
 </script>
 
 
