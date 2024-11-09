@@ -612,14 +612,12 @@ document.querySelectorAll('.shareBtn').forEach(function(button) {
         // alert('test');
         
 
-$message = "*Hello there,*" . 
-           (isset($productDetail->price) ? " *(Price: ₹. {$productDetail->price})*" : "") . ' - ' . $businessDetail->name. 
-           "\nCheck out this product on Barodaplus! Discover more details and shop now:\n{$url}";
+var message = window.location.href + "\nCheck out this product on Barodaplus! Discover more details and shop now:\n";
 
 
         const data = {
             title: 'My Awesome Website',
-            url: message // Current page URL
+            url: message  // Current page URL
             // url: window.location.href+'nCheck out this product on Barodaplus! Discover more details and shop now:\n{$url}' // Current page URL
         };
 
