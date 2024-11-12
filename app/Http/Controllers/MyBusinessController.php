@@ -42,6 +42,93 @@ class MyBusinessController extends Controller
     }
 
     
+    public function profile($slug){
+
+        // dd($slug);
+
+        // return $slug;
+        
+        $businesses = Business::where('user_id', Auth::id())->where('status', '!=', 'deleted')->get();
+        $productCategories = ProductCategory::where('status', 'active')->get();
+        
+        $myBusiness = Business::where(['user_id' => Auth::id(), 'slug' => $slug])->where('status', '!=', 'deleted')
+        ->with(['socialLinks', 'categories'])
+        ->first();
+        
+        $products = Product::where('business_id', $myBusiness->id)->get();
+    
+        if(!$myBusiness){
+            return redirect(route('myBusiness'));
+        }
+
+        return view('front.pages.my-business.profile', compact('myBusiness', 'businesses', 'productCategories', 'products'));
+    }
+
+
+    
+    public function social($slug){
+
+        // dd($slug);
+
+        // return $slug;
+        
+        $businesses = Business::where('user_id', Auth::id())->where('status', '!=', 'deleted')->get();
+        $productCategories = ProductCategory::where('status', 'active')->get();
+        
+        $myBusiness = Business::where(['user_id' => Auth::id(), 'slug' => $slug])->where('status', '!=', 'deleted')
+        ->with(['socialLinks', 'categories'])
+        ->first();
+        
+        $products = Product::where('business_id', $myBusiness->id)->get();
+    
+        if(!$myBusiness){
+            return redirect(route('myBusiness'));
+        }
+
+        return view('front.pages.my-business.social', compact('myBusiness', 'businesses', 'productCategories', 'products'));
+    }
+    
+    public function category($slug){
+
+        // dd($slug);
+
+        // return $slug;
+        
+        $businesses = Business::where('user_id', Auth::id())->where('status', '!=', 'deleted')->get();
+        $productCategories = ProductCategory::where('status', 'active')->get();
+        
+        $myBusiness = Business::where(['user_id' => Auth::id(), 'slug' => $slug])->where('status', '!=', 'deleted')
+        ->with(['socialLinks', 'categories'])
+        ->first();
+        $products = Product::where('business_id', $myBusiness->id)->get();
+        if(!$myBusiness){
+            return redirect(route('myBusiness'));
+        }
+        return view('front.pages.my-business.category', compact('myBusiness', 'businesses', 'productCategories', 'products'));
+    }
+
+
+    public function contact($slug){
+
+        // dd($slug);
+
+        // return $slug;
+        
+        $businesses = Business::where('user_id', Auth::id())->where('status', '!=', 'deleted')->get();
+        $productCategories = ProductCategory::where('status', 'active')->get();
+        
+        $myBusiness = Business::where(['user_id' => Auth::id(), 'slug' => $slug])->where('status', '!=', 'deleted')
+        ->with(['socialLinks', 'categories'])
+        ->first();
+        $products = Product::where('business_id', $myBusiness->id)->get();
+        if(!$myBusiness){
+            return redirect(route('myBusiness'));
+        }
+        return view('front.pages.my-business.contact', compact('myBusiness', 'businesses', 'productCategories', 'products'));
+    }
+
+
+    
     public function product($slug){
 
         // return $slug;
@@ -275,6 +362,7 @@ public function productUpdate(string $id, Request $request){
                 'whatsapp2' => $request->whatsapp2, 
                 'email1' => $request->email1, 
                 'email2' => $request->email2, 
+                'website' => $request->website, 
              ]);
             }
          return redirect()->back()->with('success', 'Business Profile Updated');

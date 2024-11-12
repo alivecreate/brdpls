@@ -211,17 +211,24 @@
                             </a></li>
                         @endif
 
+                        @if($businessDetail->socialLinks->linnkedin)
+                        <li><a href="{{$businessDetail->socialLinks->linnkedin}}">
+                                <ion-icon name="logo-linnkedin" class="text-2xl text-sky-600"></ion-icon>
+                            </a></li>
+                        @endif
+
                         @if($businessDetail->socialLinks->youtube)
                         <li><a href="{{$businessDetail->socialLinks->youtube}}">
                                 <ion-icon name="logo-youtube" class="text-2xl text-red-600"></ion-icon>
                             </a></li>
                         @endif
 
-                        @if($businessDetail->socialLinks->whatsapp)
-                        <li><a href="{{$businessDetail->socialLinks->whatsapp}}">
-                                <ion-icon name="logo-whatsapp" class="text-2xl text-green-600"></ion-icon>
+                        @if($businessDetail->socialLinks->pinterest)
+                        <li><a href="{{$businessDetail->socialLinks->pinterest}}">
+                                <ion-icon name="logo-pinterest" class="text-2xl text-red-600"></ion-icon>
                             </a></li>
                         @endif
+
                     </ul>
 
                     @endif

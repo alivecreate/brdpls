@@ -7,18 +7,21 @@
 
 
 @section('custom-script')
-
+    
 <script>
-$(document).ready(function() {
-    $('.mybusiness').addClass('active');
+    
+    $(document).ready(function() {
+        $('.mybusiness').addClass('active');
+        
+        $('#{{$myBusiness->id}}').addClass('link-active');
 
-    $('#{{$myBusiness->id}}').addClass('link-active');
+        $('.uk-parent').addClass('uk-open');
+        $('.uk-parent ul').removeAttr('hidden');
 
-    $('.uk-parent').addClass('uk-open');
-    $('.uk-parent ul').removeAttr('hidden');
+        $('.my-b-profile a').addClass('uk-active-tab');
 
-    $('.my-b-logo a').addClass('uk-active-tab');
-});
+    });
+
 </script>
 
 
@@ -32,7 +35,6 @@ $(document).ready(function() {
 
 <main id="site__main" class="p-2.5 h-[calc(100vh-var(--m-top))] mt-20">
     <div class="2xl:gap-12 gap-10 2xl:max-w-[1220px] max-w-[828px] mx-auto mt-10 container-w" id="js-oversized">
-    <div class="flex justify-between mb-5">
 
         <nav class="flex mb-6" aria-label="Breadcrumb">
             <ol class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
@@ -71,141 +73,20 @@ $(document).ready(function() {
                         {{$myBusiness->name}}
                     </a>
                 </li>
+
+
+
             </ol>
         </nav>
 
-        <nav>
-        <ol>
-            <a class="button bg-primary flex items-center gap-1 text-white py-2 px-3.5 shadow ml-auto" target="_blank"
-            href="{{route('businessDetail', ['city' => $myBusiness->city, 'slug' => $myBusiness->slug])}}"><ion-icon class="text-xl" name="eye-outline"></ion-icon> Preview</a></li>
-             
-
-            </ol>
-</div>
 
         <div class="2xl:gap-12 gap-10 2xl:max-w-[1220px] mx-auto bg-white">
-
-
-            @include('front.pages.my-business.page-tab')
-
-
-            <script>
-            document.addEventListener("DOMContentLoaded", function() {
-                const tabLinks = document.querySelectorAll('#myTab li a');
-
-                tabLinks.forEach(link => {
-                    link.addEventListener('click', function(event) {
-                        const targetID = this.getAttribute('href'); // e.g., #profile
-                        history.pushState(null, null,
-                        targetID); // Update the URL with the target ID
-                    });
-                });
-            });
-
-            // Handle back/forward navigation
-            window.addEventListener('popstate', function() {
-                const hash = window.location.hash;
-                if (hash) {
-                    const targetTab = document.querySelector(`#myTab li a[href="${hash}"]`);
-                    if (targetTab) {
-                        UIkit.tab("#myTab").show(targetTab.closest('li').index);
-                    }
-                }
-            });
-            </script>
-
+        
+        @include('front.pages.my-business.page-tab')
+            
 
             <div id="setting_tab" class="uk-switcher md:py-6 p-6 overflow-hidden text-black text-sm">
-                <div class='uk-active' id="logo">
-
-                    <div>
-                        <div class="space-y-6">
-                            <div class="md:flex items-center gap-10">
-                                <div class="flex-1 max-md:mt-4">
-
-                                    <p id="uploadStatus"></p>
-
-                                    <div class="image-upload-container">
-                                        <input type="file" id="imageInput" accept="image/*" style="display: none;" />
-                                        <button type="button" id="uploadButton" class="flex align-items-center">
-                                            <ion-icon name="cloud-upload-outline" style="height: 18px;width: 18px;">
-                                            </ion-icon>&nbsp;&nbsp;Change Logo
-                                        </button>
-
-
-                                        <div class="card uk-transition-toggle shadow-none">
-                                            <div id="imagePreview" class="image-preview">
-                                                <img id="previewImg"
-                                                    src="@if($myBusiness->logo)https://imagedelivery.net/zfs38w7w3E1dJVvB3mVs9g/{{$myBusiness->logo}}/sm @else {{asset('front')}}/images/web/no-logo.png @endif"
-                                                    alt="">
-                                                <div class="card-overly"></div>
-                                            </div>
-                                            <button type="button" id="deleteButton"
-                                                onclick="deleteImage('{{$myBusiness->logo}}')"
-                                                class="uk-transition-fade absolute top-0 right-0 m-2 z-10 bg-black/20 rounded-full flex p-1 thumb-delete">
-                                                <ion-icon name="close" class="text-white md hydrated icon" role="img"
-                                                    aria-label="close"></ion-icon>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-
-
-                            <div class="md:flex items-center gap-10">
-                                <div class="flex-1 max-md:mt-4">
-                                    <div class="image-upload-container">
-                                        <input type="file" id="imageUpload" accept="image/jpeg, image/png, image/webp"
-                                            multiple style="display:none">
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="md:flex items-center gap-10">
-                                <div class="flex-1 max-md:mt-4">
-                                    <form id="imageUploadForm" enctype="multipart/form-data">
-                                        <input type="file" id="images" name="images[]"
-                                            accept="image/jpeg, image/png, image/webp" multiple style="display: none;">
-                                        <button type="button" id="selectImagesButton" class="flex align-items-center">
-                                            <ion-icon name="cloud-upload-outline" style="height: 18px;width: 18px;">
-                                            </ion-icon>&nbsp;&nbsp;Store Photos
-                                        </button>
-                                    </form>
-                                </div>
-                            </div>
-
-                            <div class="uk-slider-container pb-1">
-                                <ul id="imageMultiplePreview" class="flex-wrap flex"
-                                    style="transform: translate3d(0px, 0px, 0px);">
-
-                                    @foreach($myBusiness->gallery as $gallery)
-
-                                    <li class="lg:w-1/4 sm:w-1/3 w-1/2 p-4" tabindex="-1">
-                                        <div class="card uk-transition-toggle">
-                                            <div class="card-media sm:aspect-[2/1.9] h-40">
-                                                <img src="https://imagedelivery.net/zfs38w7w3E1dJVvB3mVs9g/{{$gallery->image}}/sm"
-                                                    alt="">
-                                                <div class="card-overly"></div>
-                                            </div>
-                                            <button type="button"
-                                                onclick="deleteBusinessImage(this,'{{$gallery->image}}')"
-                                                id='deleteButton'
-                                                class="uk-transition-fade absolute top-0 right-0 m-2 z-10 bg-black/20 rounded-full flex p-1 thumb-delete">
-                                                <ion-icon name="close" class="text-white md hydrated icon" role="img"
-                                                    aria-label="close"></ion-icon>
-                                            </button>
-                                        </div>
-                                    </li>
-                                    @endforeach
-                                </ul>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-
-                <div id="profile">
+                <div class='uk-active' id="profile">
                     <div>
                         <form class="needs-validation data-form"
                             action="{{ route('updateMyBusinessProfile', $myBusiness->id) }}" method="POST"
@@ -257,10 +138,10 @@ $(document).ready(function() {
                                 <div class="md:flex items-center gap-10 w-full">
                                     <label class="md:w-32"> City</label>
                                     <div class="flex-1 max-md:mt-4">
-                                        <select class="w-full text-capitalize lg:w-1/2 w-full" name="city">
+                                        <select class="w-full text-capitalize lg:w-1/2 w-full"
+                                            name="city">
                                             @foreach(getGujaratCities() as $city)
-                                            <option value="{{$city->name}}" @if($city->name == $myBusiness->city)
-                                                selected
+                                            <option value="{{$city->name}}" @if($city->name == $myBusiness->city) selected
                                                 @endif>{{$city->name}}</option>
                                             @endforeach
                                         </select>
@@ -272,7 +153,8 @@ $(document).ready(function() {
                                 <div class="md:flex items-center gap-10 w-full ">
                                     <label class="md:w-32"> State</label>
                                     <div class="flex-1 max-md:mt-4">
-                                        <select class="w-full text-capitalize lg:w-1/2 w-full" name="state">
+                                        <select class="w-full text-capitalize lg:w-1/2 w-full"
+                                            name="state">
                                             @foreach(getStates() as $state)
                                             <option value="{{$state->name}}" @if($state->name == $myBusiness->state)
                                                 selected @endif>{{$state->name}}</option>
@@ -286,9 +168,8 @@ $(document).ready(function() {
                                 <div class="md:flex items-center gap-10">
                                     <label class="md:w-32"> Pin Code </label>
                                     <div class="flex-1 max-md:mt-4">
-                                        <input type="text" name="pincode" value="{{$myBusiness->pincode}}"
-                                            placeholder="" class="lg:w-1/2 w-full"
-                                            value="{{old('pincode', $myBusiness->pincode)}}">
+                                        <input type="text" name="pincode" value="{{$myBusiness->pincode}}" placeholder=""
+                                            class="lg:w-1/2 w-full" value="{{old('pincode', $myBusiness->pincode)}}">
                                     </div>
                                 </div>
 
@@ -308,7 +189,7 @@ $(document).ready(function() {
                                     </div>
                                 </div>
 
-
+                                
                                 <div class="md:flex items-center gap-10 w-full">
                                     <label class="md:w-32"> GST No</label>
                                     <div class="flex-1 max-md:mt-4">
@@ -422,7 +303,7 @@ $(document).ready(function() {
 
                 <div>
                     <div class="w-full">
-
+                        
                         @error('selected_item')
                         <div class="text-red-500 text-sm mt-2">{{ $message }}</div>
                         @enderror

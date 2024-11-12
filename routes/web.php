@@ -218,7 +218,13 @@ Route::post('/ganesh-festival/competition/group-payment', [GaneshCompetitionPaym
 
 Route::get('/my-business', [MyBusinessController::class, 'index'])->name('myBusiness');
 Route::get('/my-business/{slug}', [MyBusinessController::class, 'show'])->name('myBusiness.show');
+
 Route::get('/my-business/{slug}/product', [MyBusinessController::class, 'product'])->name('myBusiness.product');
+Route::get('/my-business/{slug}/profile', [MyBusinessController::class, 'profile'])->name('myBusiness.profile');
+Route::get('/my-business/{slug}/social', [MyBusinessController::class, 'social'])->name('myBusiness.social');
+Route::get('/my-business/{slug}/category', [MyBusinessController::class, 'category'])->name('myBusiness.category');
+Route::get('/my-business/{slug}/contact', [MyBusinessController::class, 'contact'])->name('myBusiness.contact');
+
 Route::post('/my-business/{slug}/product/store', [MyBusinessController::class, 'productStore'])->name('myBusiness.productStore');
 Route::delete('/my-business/product/{id}', [MyBusinessController::class, 'productDelete'])->name('myBusiness.productDelete');
 Route::put('/my-business/product/{id}', [MyBusinessController::class, 'productUpdate'])->name('myBusiness.productUpdate');
@@ -228,7 +234,6 @@ Route::put('/my-business/{cid}/profile', [MyBusinessController::class, 'updateMy
 Route::put('/my-business/{cid}/sociallinks', [MyBusinessController::class, 'updateMyBusinessSocialLinks'])->name('updateMyBusinessSocialLinks');
 Route::put('/my-business/{cid}/contact', [MyBusinessController::class, 'updateMyBusinessContact'])->name('updateMyBusinessContact');
 Route::delete('/my-business/{id}', [MyBusinessController::class, 'deleteMyBusiness'])->name('deleteMyBusiness');
-
 
 
 Route::get('/business-list', [BusinessController::class, 'businessList'])->name('businessList');

@@ -12,7 +12,6 @@
 
 <?php
 
-
 $url = url()->full();
 $productUrl = "https://www.barodaplus.com/product/{$productDetail->name}";
 

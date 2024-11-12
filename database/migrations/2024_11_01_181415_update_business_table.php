@@ -12,16 +12,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('business', function (Blueprint $table) {
-            $table->string('gst')->nullable()->after('establishment_year'); // Replace 'column_name' with the column after which you want to add 'gst'
-            $table->string('lat')->nullable()->after('gst');
-            $table->string('long')->nullable()->after('lat');
+            $table->string('website')->nullable()->after('email2');
         });
     }
 
     public function down(): void
     {
         Schema::table('business', function (Blueprint $table) {
-            $table->dropColumn('gst');
+            $table->dropColumn('website');
         });
     }
 };

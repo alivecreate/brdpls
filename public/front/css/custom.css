@@ -370,6 +370,11 @@ background: brown;
 	font-weight: 500;
 }
 
+.uk-active-tab {
+    border-bottom: 3px solid #161616 !important;
+    color: #161616;
+}
+
 .detail-tab .uk-active > a {
 	color: #0076d7 !important;
 	border-bottom: solid #0076d7 !important;

@@ -43,37 +43,42 @@
             @if($businessDetail->socialLinks)
             <ul class='social-links'>
                 @if($businessDetail->socialLinks->facebook)
-                <li><a href="{{$businessDetail->socialLinks->facebook}}">
+                <li><a target="_blank" href="{{$businessDetail->socialLinks->facebook}}">
                         <ion-icon name="logo-facebook" class="text-2xl text-blue-600"></ion-icon>
                     </a></li>
                 @endif
 
                 @if($businessDetail->socialLinks->instagram)
-                <li><a href="{{$businessDetail->socialLinks->instagram}}">
+                <li><a target="_blank" href="{{$businessDetail->socialLinks->instagram}}">
                         <ion-icon name="logo-instagram" class="text-2xl text-pink-600"></ion-icon>
                     </a></li>
 
                 @endif
 
                 @if($businessDetail->socialLinks->twitter)
-                <li><a href="{{$businessDetail->socialLinks->twitter}}">
+                <li><a target="_blank" href="{{$businessDetail->socialLinks->twitter}}">
                         <ion-icon name="logo-twitter" class="text-2xl text-sky-600"></ion-icon>
                     </a></li>
                 @endif
 
+                @if($businessDetail->socialLinks->linkedin)
+                <li><a target="_blank" href="{{$businessDetail->socialLinks->linkedin}}">
+                        <ion-icon name="logo-linkedin" class="text-2xl text-sky-600"></ion-icon>
+                    </a></li>
+                @endif
+
                 @if($businessDetail->socialLinks->youtube)
-                <li><a href="{{$businessDetail->socialLinks->youtube}}">
+                <li><a target="_blank" href="{{$businessDetail->socialLinks->youtube}}">
                         <ion-icon name="logo-youtube" class="text-2xl text-red-600"></ion-icon>
                     </a></li>
                 @endif
 
-                @if($businessDetail->socialLinks->whatsapp)
-                <li><a href="{{$businessDetail->socialLinks->whatsapp}}">
-                        <ion-icon name="logo-whatsapp" class="text-2xl text-green-600"></ion-icon>
+                @if($businessDetail->socialLinks->pinterest)
+                <li><a target="_blank" href="{{$businessDetail->socialLinks->pinterest}}">
+                        <ion-icon name="logo-pinterest" class="text-2xl text-red-800"></ion-icon>
                     </a></li>
                 @endif
             </ul>
-
             @endif
 
             <div class="detail-links">
@@ -83,6 +88,7 @@
 
 
                         <a href="#" id="shareBtn"
+                            data-url="{{route('businessDetail', ['city' => $businessDetail->city, 'slug' => $businessDetail->slug])}} \n\nCheck out this product on Barodaplus! Discover more details and shop now:\n\n"
                             class="shareBtn inline-flex lg:text-lg text-md items-center gap-2 py-2 px-2.5 pr-3 bg-slate-200/60 rounded-full aria-expanded:text-black aria-expanded:border-black aria-expanded:dark:text-white aria-expanded:dark:border-white">
                             <ion-icon class="text-xl" name="arrow-redo"></ion-icon>
                             Share This Page
@@ -98,14 +104,15 @@
 
                     </li>
 
-                    <li>
-                        <a href="#" id="shareBtn"
-                            class="inline-flex lg:text-lg text-md items-center gap-2 py-2 px-2.5 pr-3 bg-slate-200/60 rounded-full aria-expanded:text-black aria-expanded:border-black aria-expanded:dark:text-white aria-expanded:dark:border-white">
-                            <ion-icon class="text-xl" name="globe-outline"></ion-icon>
-                            Visit Website
-                        </a>
-
-                    </li>
+                    @if($businessDetail->website)
+                        <li>
+                            <a target="_blank" href="{{$businessDetail->website}}" id="shareBtn"
+                                class="inline-flex lg:text-lg text-md items-center gap-2 py-2 px-2.5 pr-3 bg-slate-200/60 rounded-full aria-expanded:text-black aria-expanded:border-black aria-expanded:dark:text-white aria-expanded:dark:border-white">
+                                <ion-icon class="text-xl" name="globe-outline"></ion-icon>
+                                Visit Website
+                            </a>
+                        </li>
+                    @endif
 
                     <li>
                         <a href="#"
