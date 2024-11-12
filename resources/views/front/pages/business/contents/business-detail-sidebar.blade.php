@@ -89,9 +89,9 @@
                     <?php
 
 
-$Datamessage = route('businessDetail', ['city' => $businessDetail->city, 'slug' => $businessDetail->slug])."*{$businessDetail->name}*" . 
+$Datamessage = "*{$businessDetail->name}*" . 
      ' - ' . $businessDetail->name. 
-           "\nCheck our detail on Barodaplus! Discover more details and shop now:\n";
+           "\nCheck our detail on Barodaplus! Discover more details and shop now:\n". route('businessDetail', ['city' => $businessDetail->city, 'slug' => $businessDetail->slug]);
 
            
                     ?>
