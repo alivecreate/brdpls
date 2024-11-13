@@ -600,8 +600,12 @@ function shareData(data) {
             .then(() => console.log('Data shared successfully'))
             .catch((error) => console.error('Error sharing:', error));
     } else {
+        
+        alert(data);
+
         console.log('Browser does not support navigator.share');
         UIkit.modal('#share-popup').show(); // Fallback modal for unsupported browsers
+        
     }
 }
 
@@ -631,7 +635,8 @@ document.querySelectorAll('.shareBtn').forEach(function(button) {
 
 
 <script>
-function shareData(data) {
+function shareData(data = null) {
+    
     
     if (navigator.share) {
         navigator.share(data)
@@ -640,6 +645,11 @@ function shareData(data) {
     } else {
         console.log('Browser does not support navigator.share');
         UIkit.modal('#share-popup').show();
+
+        alert(data.url);
+        $('.whatsapp-link').attr('href', 'https://api.whatsapp.com/send?text=' + data.url);
+
+        alert(data.url);
     }
 }
 

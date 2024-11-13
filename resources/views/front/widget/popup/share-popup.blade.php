@@ -45,8 +45,8 @@
                 </a>
 
                 <!-- WhatsApp Share -->
-                <a href="https://api.whatsapp.com/send?text={{ urlencode(url()->current()) }}" target="_blank"
-                    class="p-2 text-center">
+                <a href="" target="_blank"
+                    class="p-2 text-center whatsapp-link">
                     <ion-icon name="logo-whatsapp" class="lg:text-5xl md:text-4xl text-3xl text-green-600"></ion-icon>
                     <p>WhatsApp</p>
                 </a>
