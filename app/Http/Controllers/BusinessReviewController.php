@@ -55,7 +55,7 @@ class BusinessReviewController extends Controller
             'city' => $getBusiness->city,
             'slug' => $getBusiness->slug,
             'review' => 'true' // Add query parameter here
-        ]);
+        ])->with('success', 'Your Review Updated.');
         
         
         // return redirect()->back()->with('success', 'Your Review Updated.');
