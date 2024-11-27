@@ -37,13 +37,12 @@
 
             <div>
                 <div class="card p-4 mb-6">
-
                     @if(count($businessDetail->gallery)>0)
                     <div class="relative capitalize font-medium text-sm text-center mt-4 mb-2" tabindex="-1"
                         uk-slider="autoplay: true;finite: true">
 
                         <div class="overflow-hidden uk-slider-container">
-
+                                
                             <ul class="-ml-2 uk-slider-items w-[calc(100%+0.5rem)]">
 
                                 @foreach($businessDetail->gallery(3)->get() as $gallery)
@@ -85,7 +84,6 @@
                     <h2 class="text-lg font-semibold mb-4">Business Detail:</h2>
 
                     <div class="grid md:grid-cols-3 sm:grid-cols-3 grid-cols-2 gap-2.5">
-
                         <div class="">
                             <p>Name:</p>
                             <strong>{{$businessDetail->name}}</strong>
@@ -109,8 +107,46 @@
 
                         @if($businessDetail->gst)
                         <div class="">
-                            <p class="text-lg">Experience:</p>
+                            <p class="text-lg">GST No:</p>
                             <strong>{{$businessDetail->gst}}</strong>
+                        </div>
+                        @endif
+
+                    </div>
+
+                    
+
+                    <hr class="my-5">
+                    <h2 class="text-lg font-semibold mb-4">Contact Detail:</h2>
+
+                    <div class="grid md:grid-cols-3 sm:grid-cols-3 grid-cols-2 gap-2.5">
+                        
+                        @if($businessDetail->phone1)
+                            <div class="">
+                                <p>Phone:</p>
+                                <strong>{{$businessDetail->phone1}}</strong><br>
+                                <strong>{{$businessDetail->phone2}}</strong>
+                            </div>
+                        @endif
+
+                        @if($businessDetail->whatsapp1)
+                        <div class="">
+                            <p class="text-lg">Whatsapp:</p>
+                            <strong>{{$businessDetail->whatsapp1}}</strong>
+                        </div>
+                        @endif
+
+                        @if($businessDetail->email1)
+                        <div class="">
+                            <p class="text-lg">Email:</p>
+                            <strong>{{$businessDetail->email1}}</strong>
+                        </div>
+                        @endif
+
+                        @if($businessDetail->website)
+                        <div class="">
+                            <p class="text-lg">Website:</p>
+                            <strong><a target="_blank" href="{{$businessDetail->website}}">{{$businessDetail->website}}</a></strong>
                         </div>
                         @endif
 

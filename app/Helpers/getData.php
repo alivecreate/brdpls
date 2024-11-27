@@ -8,6 +8,7 @@ use App\Models\Group;
 use App\Models\CompetitionVote;
 use App\Models\GaneshCompetition;
 use App\Models\LiveCompetitionStatus;
+use App\Models\BusinessReview;
 
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
@@ -19,8 +20,14 @@ function getUserData(){
     $sessionId = Session::get('isLoginSession');
     // dd($sessionId);
     $data = User::find($sessionId);
-
     return $data;
+}
+
+function getUserDetail($userId){
+    // dd($userId);
+    $userDetail = User::find($userId);
+    // dd($userDetail);
+    return $userDetail;
 }
 
 function getGujaratCities(){
@@ -341,4 +348,18 @@ if (!function_exists('getUserData')) {
         return User::where(['id' => $user_id])->first();
         }   
 }
+
+function getTotalBusinessRating($businessId)
+{
+    $totalRatingSum = BusinessReview::where('business_id', $businessId)->sum('rating');
+    return $totalRatingSum;
+}
+
+function getAverageBusinessRating($businessId)
+{
+    $averageRating = round(BusinessReview::where('business_id', $businessId)->average('rating'), 1);
+
+    return number_format($averageRating, 1);
+}
+
 

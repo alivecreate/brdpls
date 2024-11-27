@@ -22,19 +22,13 @@ $(document).ready(function() {
 
     @include('front.pages.business.contents.business-detail-header')
 
-
     <div class="lg:flex 2xl:gap-12 gap-10 w-full md:w-auto md:px-20 mx-auto" id="js-oversized">
-
 
         <div class="lg:w-3/4">
 
             <div class="lg:max-w-full w-full">
-
                 @include('front.pages.business.contents.business-detail-tab')
-
-
                 <div>
-
                     <div class="grid md:grid-cols-4 sm:grid-cols-3 grid-cols-2 gap-2.5">
 
                         @foreach($products as $product)
@@ -49,7 +43,7 @@ $(document).ready(function() {
                             </a>
 
                             <div class="card-body">
-                                <a href="{{route('timeline-page')}}">
+                                <a href="{{route('businessDetail', ['city' => $businessDetail->city, 'slug' => $businessDetail->slug])}}?p={{$product->slug}}">
                                     <h4 class="card-title"> {{$product->name}} </h4>
                                 </a>
                                 <p class="card-text">{{$product->category ? $product->category->name : 'No Category'}}

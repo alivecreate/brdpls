@@ -47,8 +47,8 @@
 
                 @endif
 
-
-                @if(checkCompetitionSchedule()->status == 'live')
+                @if(function_exists('checkCompetitionSchedule') && checkCompetitionSchedule() && checkCompetitionSchedule()->status === 'live')
+   
                 <li id="live-competition">
                     <a href="{{route('GaneshFestivalCompetitionLive')}}">
                         <img src="{{asset('front')}}/images/icons/video.png" alt="Live Competition" class="w-6">

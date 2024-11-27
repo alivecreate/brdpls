@@ -11,15 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-
-        Schema::create('business_gallery', function (Blueprint $table) {
+        Schema::create('business_reviews', function (Blueprint $table) {
             $table->id();
-            $table->string('image')->nullable();
-            $table->string('video')->nullable();
-            $table->morphs('imageable'); // This creates `imageable_id` and `imageable_type` columns
-            $table->string('type')->nullable();
             $table->timestamps();
-           
         });
     }
 
@@ -28,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('business_gallery');
+        Schema::dropIfExists('business_reviews');
     }
 };

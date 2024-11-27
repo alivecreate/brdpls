@@ -11,9 +11,7 @@
                 class="object-cover w-40  inset-0">
         </div>
         <div class="flex items-ce justify-between text-black dark:text-white">
-
-            <h3 class="font-bold text-lg"> {{$businessDetail->title}} {{$businessDetail->contact_person}}</h3>
-
+            <h3 class="font-bold text-lg"> {{$businessDetail->name_prefix}}. {{$businessDetail->contact_person}}</h3>
             @if($businessOwner)
             <a target="_blank" href="{{route('myBusiness.show', $businessDetail->slug)}}"
                 class="text-sm text-blue-500">Edit</a>
@@ -29,7 +27,6 @@
         @endif
 
         <ul class="text-gray-700 space-y-4 mt-4 text-sm dark:text-white/80 text-capitalize">
-
 
             <li class="flex items-center gap-3">
                 <ion-icon class="font-bold text-3xl lg:text-5xl" name="location-outline"></ion-icon>
@@ -87,7 +84,6 @@
                     <li>
 
                     <?php
-
 
 $Datamessage = route('businessDetail', ['city' => $businessDetail->city, 'slug' => $businessDetail->slug])."\n *$businessDetail->name- Check our detail on Barodaplus! Discover more details and shop now:\n*";
            

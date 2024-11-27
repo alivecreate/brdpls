@@ -132,7 +132,7 @@
                         <div class="md:flex items-center gap-10">
                             <div class="flex flex-1 max-md:mt-4">
 
-                                <select class="form-title float-left" name="title">
+                                <select class="form-title float-left" name="name_prefix">
                                     <option value="Mr">Mr</option>
                                     <option value="Ms">Ms</option>
                                     <option value="Mrs">Mrs</option>

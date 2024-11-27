@@ -26,6 +26,7 @@ return new class extends Migration
             $table->string('whatsapp2')->nullable();
             $table->string('email1')->nullable();
             $table->string('email2')->nullable();
+            $table->string('website')->nullable();
             $table->string('pincode')->nullable();
             $table->string('building')->nullable();
             $table->string('street')->nullable();

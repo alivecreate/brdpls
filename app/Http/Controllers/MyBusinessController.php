@@ -54,12 +54,13 @@ class MyBusinessController extends Controller
         $myBusiness = Business::where(['user_id' => Auth::id(), 'slug' => $slug])->where('status', '!=', 'deleted')
         ->with(['socialLinks', 'categories'])
         ->first();
-        
-        $products = Product::where('business_id', $myBusiness->id)->get();
-    
+
         if(!$myBusiness){
             return redirect(route('myBusiness'));
         }
+        
+        $products = Product::where('business_id', $myBusiness->id)->get();
+    
 
         return view('front.pages.my-business.profile', compact('myBusiness', 'businesses', 'productCategories', 'products'));
     }

@@ -106,7 +106,7 @@
 
                         <div class="md:flex items-center">
                             <div class="flex-1 max-md:mt-2">
-                                <strong class='lable' for="">choose product images (max 10)</strong>
+                                <strong class='lable' for="">Choose product images (max 10)</strong>
                                 <input type="file" id="image" multiple name="image[]" class="w-full mt-4"
                                     accept="image/*">
 

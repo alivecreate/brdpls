@@ -5,7 +5,7 @@
         <li class="inline-flex items-center">
             <a href="#"
                 class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white">
-                vadodara
+                {{$businessDetail->city}}
             </a>
         </li>
 
@@ -22,16 +22,14 @@
 </nav>
 
 <div class='rounded bg-white w-full py-4 px-6 border-2 mt-6  grid lg:grid-cols-2 sm:grid-cols-1 gap-5 mt-4'>
-
     <div class="md:w-full">
-
         <h1 class="heading-3 poppins-bold text-capitalize">{{$businessDetail->name}}</h1>
         <nav class="mt-0 mb-5">
             <div uk-tab
                 class="flex gap-3  flex-wrap align-items-center text-sm text-center text-gray-600 capitalize font-semibold dark:text-white/80"
                 uk-switcher="connect: #ttabs ; animation: uk-animation-slide-right-medium, uk-animation-slide-left-medium">
 
-                <p class="flex align-items-center">
+                <p class="flex align-items-center text-left">
                     <ion-icon class="text-xl mr-1" name="location"></ion-icon>
                     @if($businessDetail->building) {{$businessDetail->building}}, @endif
                     @if($businessDetail->street) {{$businessDetail->street}} @endif
@@ -113,3 +111,5 @@
 </div>
 </div>
 
+
+@include('front.widget.popup.add-business-review-popup')

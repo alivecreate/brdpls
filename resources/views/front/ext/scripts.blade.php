@@ -430,71 +430,68 @@ document.getElementById('checkPhone').addEventListener('input', function() {
 <script>
 $(document).ready(function() {
 
-    $('#rating-stars li').hover(function() {
-        // On hover
-        var rating = $(this).data('star');
-        $('#rating-stars li').each(function(index) {
-            if (index < rating) {
-                $(this).find('ion-icon').attr('name', 'star'); // Filled star
-                $(this).find('ion-icon').css('color', 'white'); // Filled star color
-                $(this).css('background', 'red'); // Background color red
-            } else {
-                $(this).find('ion-icon').attr('name', 'star-outline'); // Unfilled star
-                $(this).find('ion-icon').css('color', ''); // Default color
-                $(this).css('background', ''); // Default background color
-            }
-        });
-    }, function() {
-        // On mouse leave
-        $('#rating-stars li').each(function() {
-            $(this).find('ion-icon').attr('name', 'star-outline'); // Revert to unfilled star
-            $(this).find('ion-icon').css('color', ''); // Default star color
-            $(this).css('background', ''); // Default background color
-        });
-    });
-
-
     // $('#rating-stars li').hover(function() {
-
+    //     // On hover
     //     var rating = $(this).data('star');
     //     $('#rating-stars li').each(function(index) {
-
     //         if (index < rating) {
     //             $(this).find('ion-icon').attr('name', 'star'); // Filled star
-    //             $(this).find('ion-icon').css('color', 'white'); // Filled star
-    //             $(this).css('background', 'red');   // Color red
+    //             $(this).find('ion-icon').css('color', 'white'); // Filled star color
+    //             $(this).css('background', 'red'); // Background color red
     //         } else {
-
-
     //             $(this).find('ion-icon').attr('name', 'star-outline'); // Unfilled star
-    //             $(this).find('ion-icon').css('color', ''); // Filled star
-
-    //             $(this).css('color', '');   // Default color
-    //             $(this).css('background', '');   // Color red
-
+    //             $(this).find('ion-icon').css('color', ''); // Default color
+    //             $(this).css('background', ''); // Default background color
     //         }
+    //     });
+    // }, function() {
+    //     // On mouse leave
+    //     $('#rating-stars li').each(function() {
+    //         $(this).find('ion-icon').attr('name', 'star-outline'); // Revert to unfilled star
+    //         $(this).find('ion-icon').css('color', ''); // Default star color
+    //         $(this).css('background', ''); // Default background color
     //     });
     // });
 
-    $('#rating-stars li').on('click', function() {
+
+    $('#rating-stars li, #rating-star-popup li').on('click', function() {
         var rating = $(this).data('star');
+        // alert('rating - ' + rating);
+        
+        $('#review-rating').val(rating); // Filled star
+
+        UIkit.modal('#add-business-review-popup').show(); // Fallback modal for unsupported browsers
+        
+        // alert(rating + '- rating-stars');
 
         // Change star colors
+
         $('#rating-stars li').each(function(index) {
-            if (index < rating) {
-                $(this).find('ion-icon').attr('name', 'star'); // Filled star
-                $(this).find('ion-icon').css('color', 'white'); // Filled star
-                $(this).css('background', 'red'); // Color red
-            } else {
+    if (index < rating) {
+        $(this).find('ion-icon').attr('name', 'star'); // Filled star
+        $(this).find('ion-icon').css('color', 'white'); // Filled star color
+        $(this).css('background', 'red'); // Background red
+    } else {
+        $(this).find('ion-icon').attr('name', 'star-outline'); // Unfilled star
+        $(this).find('ion-icon').css('color', ''); // Reset color
+        $(this).css('color', ''); // Reset default color
+        $(this).css('background', ''); // Reset background
+    }
+});
 
-                $(this).find('ion-icon').attr('name', 'star-outline'); // Unfilled star
-                $(this).find('ion-icon').css('color', ''); // Filled star
+$('#rating-star-popup li').each(function(index) {
+    if (index < rating) {
+        $(this).find('ion-icon').attr('name', 'star'); // Filled star
+        $(this).find('ion-icon').css('color', 'white'); // Filled star color
+        $(this).css('background', 'red'); // Background red
+    } else {
+        $(this).find('ion-icon').attr('name', 'star-outline'); // Unfilled star
+        $(this).find('ion-icon').css('color', ''); // Reset color
+        $(this).css('color', ''); // Reset default color
+        $(this).css('background', ''); // Reset background
+    }
+});
 
-                $(this).css('color', ''); // Default color
-                $(this).css('background', ''); // Color red
-
-            }
-        });
 
         // Send AJAX request to Laravel
         // $.ajax({

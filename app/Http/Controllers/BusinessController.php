@@ -61,6 +61,7 @@ class BusinessController extends Controller
         // dd($product);
         
         $businessDetail = Business::where(['slug' => $slug, 'status' => 'active'])->first();
+        
         $checkCity = City::where(['name' => $city])->first();
         
         // dd($businessDetail);
@@ -82,14 +83,13 @@ class BusinessController extends Controller
         }
 
         $p = $request->query('p');
+        $review = $request->query('review');
         $productDetail = Product::where(['slug' => $p, 'business_id'=> $businessDetail->id])->first();
 
         $products = Product::where(['business_id'=> $businessDetail->id, 'status' => 'active'])->orderBy('id', 'desc')
         ->paginate(8)
         ->appends(['p' => 'true']);;
         
-        // dd($city, $slug); // To debug and check if $city and $slug have valid values
-        // dd($productDetail , $p);
 
         $businessOwner = Business::where(['slug' => $slug, 'user_id' => Auth::id()])->first();
 
@@ -102,6 +102,12 @@ class BusinessController extends Controller
         elseif($productDetail){
             // dd($productDetail);
             return view('front.pages.business.business-detail-product-detail', compact('businessDetail', 'businessExperience', 'businessOwner', 'productDetail'));
+        }  
+        elseif($review == 'true'){
+            // dd('all review');
+            $totalRating = $productDetail;
+            // dd($businessDetail->reviews);
+            return view('front.pages.business.business-detail-review', compact('businessDetail', 'businessExperience', 'businessOwner', 'products'));
         }
 
         if(!$productDetail && $p){
@@ -137,7 +143,7 @@ class BusinessController extends Controller
         if($business){
             // dd($business);
             $business->update([
-                'title' => $request->title, 
+                'name_prefix' => $request->name_prefix, 
                 'contact_person' => $request->contact_person, 
                 'phone1' => $request->phone1, 
                 'phone2' => $request->phone2, 

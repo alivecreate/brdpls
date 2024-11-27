@@ -62,7 +62,7 @@
                     class="custom-nav-menu p-3 px-2 rounded-lg dark:text-white dark:bg-dark4">
                     <ion-icon name="newspaper-outline" class="text-2xl drop-shadow-md md hydrated mr-2"
                         role="img" aria-label="videocam"></ion-icon>
-                    <div class="text-sm font-medium text-capitalize font-semibold"> Business Listing </div>
+                    <div class="text-sm font-medium text-capitalize font-semibold"> Business Listing (Rs. 365)</div>
                 </a>
                      
                 

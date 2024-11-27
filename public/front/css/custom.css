@@ -10,6 +10,13 @@
     display: block;
     width: 100%;
 }
+.img-thumb-review {
+    max-height: 150px;
+    border-radius: 8px;
+    max-width: 180px;
+    object-fit: cover;
+    height: 180px;
+}
 
 .img-thumb-category{
     border: 1px solid white;
@@ -369,6 +376,15 @@ background: brown;
 	font-size: 26px;
 	font-weight: 500;
 }
+
+
+
+.heading-4{
+    color: #646464 !important;
+    font-size: 15px;
+    font-weight: 500;
+}
+
 
 .uk-active-tab {
     border-bottom: 3px solid #161616 !important;
@@ -977,6 +993,49 @@ font-size: 20px;
 .text-size2{
     font-size: 2rem;
 }
+
+.rating-star-popup li{   
+	font-size: 2rem;
+	border: 1px solid silver;
+	padding: 6px;
+	border-radius: 8px;
+    background: whitesmoke;
+}
+.text-dark {
+    color: #434343 !important;
+    font-weight: 600;
+}
+.rating-badge {
+    background: green;
+    color: white;
+    border-radius: 18px;
+    font-size: 26px;
+    height: 70px;
+    width: 70px;
+}
+.active-star {
+    color: rgb(255, 110, 0);
+}
+.text-one{
+    font-size: 1rem;
+}
+.text-one-half{
+    font-size: 1.5rem;
+}
+
+.text-two{
+    font-size: 2rem;
+}
+.text-two-half{
+    font-size: 2.5rem;
+}
+
+.rating-star-popup li:hover {
+	background: red;
+	border: 1px solid red;
+	color: white;
+}
+
 .rating-star li {
 	font-size: 2rem;
 	border: 1px solid silver;

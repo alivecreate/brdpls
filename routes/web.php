@@ -17,6 +17,8 @@ use App\Http\Controllers\GroupController;
 use App\Http\Controllers\GroupMembersController;
 use App\Http\Controllers\GroupReportController;
 use App\Http\Controllers\BusinessController;
+use App\Http\Controllers\BusinessReviewController;
+
 use App\Http\Controllers\MyBusinessController;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\ListingController;
@@ -250,7 +252,8 @@ Route::get('/business-list/step-4-category', [BusinessController::class, 'step4B
 Route::post('/business-list/step-4-category', [BusinessController::class, 'storeStep4BusinessCategory'])->name('storeStep4BusinessCategory');
 
 
-
+Route::post('/business-review/store', [BusinessReviewController::class, 'store'])->name('businessReviewStore');
+Route::delete('/business-review/delete', [BusinessReviewController::class, 'destroy'])->name('businessReviewDelete');
 
 
 
