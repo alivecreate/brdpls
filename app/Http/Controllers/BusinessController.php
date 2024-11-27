@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Models\Business;
+use App\Models\BusinessReview;
+
 use App\Models\BusinessTiming;
 use App\Models\BusinessCategory;
 use App\Models\City;
@@ -91,6 +93,11 @@ class BusinessController extends Controller
         ->appends(['p' => 'true']);;
         
 
+        $reviews = BusinessReview::where(['business_id'=> $businessDetail->id])->orderBy('id', 'desc')
+        ->paginate(6)
+        ->appends(['review' => 'true']);;
+        
+
         $businessOwner = Business::where(['slug' => $slug, 'user_id' => Auth::id()])->first();
 
         // dd($businessOwner);
@@ -107,7 +114,7 @@ class BusinessController extends Controller
             // dd('all review');
             $totalRating = $productDetail;
             // dd($businessDetail->reviews);
-            return view('front.pages.business.business-detail-review', compact('businessDetail', 'businessExperience', 'businessOwner', 'products'));
+            return view('front.pages.business.business-detail-review', compact('businessDetail', 'reviews', 'businessExperience', 'businessOwner', 'products'));
         }
 
         if(!$productDetail && $p){

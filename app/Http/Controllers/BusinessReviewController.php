@@ -3,8 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\BusinessReview;
+use App\Models\Business;
+
 use Illuminate\Http\Request;
 use Auth;
+use URL;
+
 
 class BusinessReviewController extends Controller
 {
@@ -30,6 +34,7 @@ class BusinessReviewController extends Controller
      */
     public function store(Request $request)
     {
+        // dd(URL::previous());
         
         $review =  BusinessReview::create([
             'business_id' => $request->business_id,
@@ -38,10 +43,22 @@ class BusinessReviewController extends Controller
             'review' =>  $request->review,
     ]);
 
+    $getBusiness = Business::find($request->business_id);
+    // dd($getBusiness->slug);
+
         // dd($review);
 
         // return redirect()->back()->with('error', 'Your Review could not be updated.')->withInput()->withQueryString(['foo' => 'bar']);
-        return redirect()->back()->with('success', 'Your Review Updated.');
+
+        // {{route('businessDetail', ['city' => $businessDetail->city, 'slug' => $businessDetail->slug])}}?review=true
+        return redirect()->route('businessDetail', [
+            'city' => $getBusiness->city,
+            'slug' => $getBusiness->slug,
+            'review' => 'true' // Add query parameter here
+        ]);
+        
+        
+        // return redirect()->back()->with('success', 'Your Review Updated.');
     }
 
     /**

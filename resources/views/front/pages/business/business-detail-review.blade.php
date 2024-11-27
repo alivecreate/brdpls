@@ -51,7 +51,7 @@ $(document).ready(function() {
 
                         <div class="grid gap-4">
                         <h1 class="text-lg text-dark mt-6">User Reviews</h1>
-                            @foreach($businessDetail->reviews()->get() as $review)
+                            @foreach($reviews as $review)
                             <div>
                                 <div class="side-list-item mt-3">
                                     @if(optional($review->user)->image)
@@ -103,8 +103,9 @@ $(document).ready(function() {
                             @endforeach
 
                         </div>
-
-                        {{ $products->links() }}
+                        <div class="custom-pagination">
+                            {{ $reviews->links() }}
+                        </div>
                     </div>
                 </div>
 

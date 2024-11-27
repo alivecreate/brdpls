@@ -55,10 +55,7 @@
                 <div class="">
                     <div class="card-body">
                         <h2 class="text-md font-semibold text-black mt-4 mb-6 text-underline"> Our Location: </h2>
-                        <iframe
-                            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14767.914058607543!2d73.2305881!3d22.2788037!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395fc53cdaf83b99%3A0x3df7bb69a3d1a03d!2sBaroda%20Plus!5e0!3m2!1sen!2sin!4v1727549889918!5m2!1sen!2sin"
-                            width="600" height="250" style="border:0;" allowfullscreen="" loading="lazy"
-                            referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        
                     </div>
                 </div>
             </div>
