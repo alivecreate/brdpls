@@ -30,63 +30,75 @@
 
         <div class="flex-1 relative">
             <div class="max-w-[1220px] mx-auto flex gap-2 justify-end">
-                
-
-            <div class="flex items-center sm:gap-4 gap-2 absolute right-5 top-1/2 -translate-y-1/2 text-black">
 
 
-            
-                       
-            <a href="{{route('GaneshFestivalCompetitionRules')}}"
-                    class="custom-nav-menu p-3 px-2 rounded-lg dark:text-white dark:bg-dark4">
-                    <ion-icon name="bookmark-outline" class="text-2xl drop-shadow-md md hydrated mr-2"
-                        role="img" aria-label="videocam"></ion-icon>
-                    <div class="text-sm font-medium text-capitalize font-semibold"> We are Hiring </div>
-                </a>
-                            
-                <a href="{{route('GaneshFestivalCompetitionRules')}}"
-                    class="custom-nav-menu p-3 px-2 rounded-lg dark:text-white dark:bg-dark4">
-                    <ion-icon name="people-outline" class="text-2xl drop-shadow-md md hydrated mr-2"
-                        role="img" aria-label="videocam"></ion-icon>
-                    <div class="text-sm font-medium text-capitalize font-semibold"> Festival </div>
-                </a>
-                            
-                <a href="{{route('GaneshFestivalCompetitionRules')}}"
-                    class="custom-nav-menu p-3 px-2 rounded-lg dark:text-white dark:bg-dark4">
-                    <ion-icon name="business-outline" class="text-2xl drop-shadow-md md hydrated mr-2"
-                        role="img" aria-label="videocam"></ion-icon>
-                    <div class="text-sm font-medium text-capitalize font-semibold"> Market Place (Free)</div>
-                </a>
-                            
-                <a href="{{route('myBusiness')}}"
-                    class="custom-nav-menu p-3 px-2 rounded-lg dark:text-white dark:bg-dark4">
-                    <ion-icon name="newspaper-outline" class="text-2xl drop-shadow-md md hydrated mr-2"
-                        role="img" aria-label="videocam"></ion-icon>
-                    <div class="text-sm font-medium text-capitalize font-semibold"> Business Listing (₹.365)</div>
-                </a>
-                     
-                
-                @if(Auth::check())
-                
-                    @if(getUserData()) 
-                        <div class="rounded-full relative flex-center cursor-pointer shrink-0">
-                            @if(getUserData()['image'])
-                            <img class="w-10 h-10 rounded-full shadow cover"
-                                src="https://imagedelivery.net/zfs38w7w3E1dJVvB3mVs9g/{{getUserData()['image']}}/xs"
-                                alt="{{getUserData()['name']}}" />
-                            @else
-                            <img class="w-10 h-10 rounded-full shadow cover"
-                                src="{{asset('front')}}/images/avatars/avatar-3.jpg" alt="Profile Picture" />
-                            @endif
+                <div class="flex items-center sm:gap-4 gap-2 absolute right-5 top-1/2 -translate-y-1/2 text-black">
 
-                        </div>
+
+
+                    <div class=" hidden lg:block">
+
+
+                        <ul class="uk-slider-items grid-small"
+                            uk-scrollspy="target: > li; cls: uk-animation-scale-up , uk-animation-slide-right-small; delay: 20 ;repeat: true"
+                            style="transform: translate3d(0px, 0px, 0px);">
+
+
+
+                            <a href="{{route('GaneshFestivalCompetitionRules')}}"
+                                class="custom-nav-menu p-3 px-2 rounded-lg dark:text-white dark:bg-dark4">
+                                <ion-icon name="bookmark-outline" class="text-2xl drop-shadow-md md hydrated mr-2"
+                                    role="img" aria-label="videocam"></ion-icon>
+                                <div class="text-sm font-medium text-capitalize font-semibold"> We are Hiring 11 </div>
+                            </a>
+
+                            <a href="{{route('GaneshFestivalCompetitionRules')}}"
+                                class="custom-nav-menu p-3 px-2 rounded-lg dark:text-white dark:bg-dark4">
+                                <ion-icon name="people-outline" class="text-2xl drop-shadow-md md hydrated mr-2"
+                                    role="img" aria-label="videocam"></ion-icon>
+                                <div class="text-sm font-medium text-capitalize font-semibold"> Festival </div>
+                            </a>
+
+                            <a href="{{route('GaneshFestivalCompetitionRules')}}"
+                                class="custom-nav-menu p-3 px-2 rounded-lg dark:text-white dark:bg-dark4">
+                                <ion-icon name="business-outline" class="text-2xl drop-shadow-md md hydrated mr-2"
+                                    role="img" aria-label="videocam"></ion-icon>
+                                <div class="text-sm font-medium text-capitalize font-semibold"> Market Place (Free)
+                                </div>
+                            </a>
+
+                            <a href="{{route('myBusiness')}}"
+                                class="custom-nav-menu p-3 px-2 rounded-lg dark:text-white dark:bg-dark4">
+                                <ion-icon name="newspaper-outline" class="text-2xl drop-shadow-md md hydrated mr-2"
+                                    role="img" aria-label="videocam"></ion-icon>
+                                <div class="text-sm font-medium text-capitalize font-semibold"> Business Listing (₹.365)
+                                </div>
+                            </a>
+                        </ul>
+                    </div>
+
+
+                    @if(Auth::check())
+
+                    @if(getUserData())
+                    <div class="rounded-full relative flex-center cursor-pointer shrink-0">
+                        @if(getUserData()['image'])
+                        <img class="w-10 h-10 rounded-full shadow cover"
+                            src="https://imagedelivery.net/zfs38w7w3E1dJVvB3mVs9g/{{getUserData()['image']}}/xs"
+                            alt="{{getUserData()['name']}}" />
+                        @else
+                        <img class="w-10 h-10 rounded-full shadow cover"
+                            src="{{asset('front')}}/images/avatars/avatar-3.jpg" alt="Profile Picture" />
+                        @endif
+
+                    </div>
                     @endif
 
                     <div class="hidden bg-white rounded-lg drop-shadow-xl dark:bg-slate-700 w-64 border2"
                         uk-drop="offset:6;pos: bottom-right;animate-out: true; animation: uk-animation-scale-up uk-transform-origin-top-right ">
 
-                        
-                    @if(getUserData()) 
+
+                        @if(getUserData())
                         <a href="#">
                             <div class="p-4 py-5 flex items-center gap-4">
                                 @if(getUserData()['image'])
@@ -106,7 +118,7 @@
                                 </div>
                             </div>
                         </a>
-                    @endif
+                        @endif
 
                         <hr class="dark:border-gray-600/60">
                         <nav class="p-2 text-sm text-black font-normal dark:text-white">
@@ -167,15 +179,14 @@
                         </svg>
                     </div>
 
-                @else
-                          
+                    @else
 
-                <a href="{{route('login')}}"
-                    class="button bg-primary text-white text-sm uk-scrollspy-inview px-4">
-                    <ion-icon name="log-in-outline" style="height: 27px;width: 27px;"></ion-icon> Login Now
-                </a>
-                @endif
-  
+
+                    <a href="{{route('login')}}" class="button bg-primary text-white text-sm uk-scrollspy-inview px-4">
+                        <ion-icon name="log-in-outline" style="height: 27px;width: 27px;"></ion-icon> Login Now
+                    </a>
+                    @endif
+
                 </div>
 
             </div>

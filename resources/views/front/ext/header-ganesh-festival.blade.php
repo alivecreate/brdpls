@@ -1,18 +1,19 @@
 <a href="https://chat.whatsapp.com/JjCoTMCPKy4AiaJLcIedO3" target="_blank">
-    <img src="https://imagedelivery.net/zfs38w7w3E1dJVvB3mVs9g/bb4df606-909e-4884-343d-0cbea8007300/md" 
+    <img src="https://imagedelivery.net/zfs38w7w3E1dJVvB3mVs9g/bb4df606-909e-4884-343d-0cbea8007300/md"
         style="width: 100px;height: auto;position: fixed;right: 0;top: 172px;z-index: 9999;" />
 </a>
 
 <a href="https://www.instagram.com/barodaplus?utm_source=qr&igsh=MWFreGFvb3ppYTBzbQ==" target="_blank">
-    <img src="https://imagedelivery.net/zfs38w7w3E1dJVvB3mVs9g/818042d8-de96-46e6-f576-dda2a1cd5b00/md" 
+    <img src="https://imagedelivery.net/zfs38w7w3E1dJVvB3mVs9g/818042d8-de96-46e6-f576-dda2a1cd5b00/md"
         style="width: 100px;height: auto;position: fixed;right: 0;top: 288px;z-index: 9999;" />
 </a>
 
 
-    
-   <header class="z-[100] h-[--m-top] fixed top-0 left-0 w-full flex items-center bg-white/80 sky-50 backdrop-blur-xl border-b border-slate-200 dark:bg-dark2 dark:border-slate-800">
 
-<div class="flex items-center w-full xl:px-6 px-2 max-lg:gap-10">
+<header
+    class="z-[100] h-[--m-top] fixed top-0 left-0 w-full flex items-center bg-white/80 sky-50 backdrop-blur-xl border-b border-slate-200 dark:bg-dark2 dark:border-slate-800">
+
+    <div class="flex items-center w-full xl:px-6 px-2 max-lg:gap-10">
 
         <div class="2xl:w-[--w-side] lg:w-[--w-side-sm]">
 
@@ -34,7 +35,7 @@
                             class="main-logo hidden max-md:block w-20 dark:!hidden" alt="">
                         <img src="{{asset('front/images')}}/logo-barodaplus-dark22.png"
                             class="main-logo hidden dark:max-md:block w-20" alt="">
-                            
+
                     </a>
                 </div>
 
@@ -49,40 +50,43 @@
                         uk-scrollspy="target: > li; cls: uk-animation-scale-up , uk-animation-slide-right-small; delay: 20 ;repeat: true"
                         style="transform: translate3d(0px, 0px, 0px);">
 
-                      
 
-                        
-            @if(isGroupExists())
-                <li class="custom-nav-menu-wrap mr-2" tabindex="-1" style="">
-                    <a href="{{route('ganeshFestivalGroup.show', isGroupExists()->slug)}}" 
-                    class="mb-2 flex-inline p-3 px-4 rounded-lg bg-teal-100/60 text-teal-600 font-semibold dark:text-white dark:bg-dark4">
-                        <ion-icon name="people" class="text-2xl drop-shadow-md md hydrated mr-2" role="img"
-                        aria-label="book"></ion-icon> My Mandal</a>
-                </li>
-            @elseif(isHomeCompetitionExists())
 
-            <li class="custom-nav-menu-wrap mr-2" tabindex="-1" style="">
-                    <a href="{{route('showHome', isHomeCompetitionExists()->id)}}" 
-                    class="mb-2 flex-inline p-3 px-4 rounded-lg bg-teal-100/60 text-teal-600 font-semibold dark:text-white dark:bg-dark4">
-                        <ion-icon name="people" class="text-2xl drop-shadow-md md hydrated mr-2" role="img"
-                        aria-label="book"></ion-icon> My Home Ganesh</a>
-                </li>
 
-            @else
+                        @if(isGroupExists())
+                        <li class="custom-nav-menu-wrap mr-2" tabindex="-1" style="">
+                            <a href="{{route('ganeshFestivalGroup.show', isGroupExists()->slug)}}"
+                                class="mb-2 flex-inline p-3 px-4 rounded-lg bg-teal-100/60 text-teal-600 font-semibold dark:text-white dark:bg-dark4">
+                                <ion-icon name="people" class="text-2xl drop-shadow-md md hydrated mr-2" role="img"
+                                    aria-label="book"></ion-icon> My Mandal
+                            </a>
+                        </li>
+                        @elseif(isHomeCompetitionExists())
 
-            <li class="custom-nav-menu-wrap mr-2" tabindex="-1" style="">
-                    <a href="{{route('ganeshFestivalGroup.create')}}" 
-                    class="mb-2 flex-inline p-3 px-4 rounded-lg bg-teal-100/60 text-teal-600 font-semibold dark:text-white dark:bg-dark4">
-                        <ion-icon name="people" class="text-2xl drop-shadow-md md hydrated mr-2" role="img"
-                        aria-label="book"></ion-icon> ગણેશ મંડળ / ઘરના ગણેશજીનું રજીસ્ટ્રેશન</a>
-                </li>
+                        <li class="custom-nav-menu-wrap mr-2" tabindex="-1" style="">
+                            <a href="{{route('showHome', isHomeCompetitionExists()->id)}}"
+                                class="mb-2 flex-inline p-3 px-4 rounded-lg bg-teal-100/60 text-teal-600 font-semibold dark:text-white dark:bg-dark4">
+                                <ion-icon name="people" class="text-2xl drop-shadow-md md hydrated mr-2" role="img"
+                                    aria-label="book"></ion-icon> My Home Ganesh
+                            </a>
+                        </li>
 
-            
-            @endif
-            
+                        @else
 
-                        
-                    @if(getUserData() && getUserData()->status != 'active')
+                        <li class="custom-nav-menu-wrap mr-2" tabindex="-1" style="">
+                            <a href="{{route('ganeshFestivalGroup.create')}}"
+                                class="mb-2 flex-inline p-3 px-4 rounded-lg bg-teal-100/60 text-teal-600 font-semibold dark:text-white dark:bg-dark4">
+                                <ion-icon name="people" class="text-2xl drop-shadow-md md hydrated mr-2" role="img"
+                                    aria-label="book"></ion-icon> ગણેશ મંડળ / ઘરના ગણેશજીનું રજીસ્ટ્રેશન
+                            </a>
+                        </li>
+
+
+                        @endif
+
+
+
+                        @if(getUserData() && getUserData()->status != 'active')
                         <li class="custom-nav-menu-wrap" tabindex="-1" style="">
                             <a href="{{route('userVerification',['cid' => getUserData()['cid']])}}"
                                 class="custom-nav-menu p-3 px-4 rounded-lg bg-sky-100/60 text-sky-600 dark:text-white dark:bg-dark4">
@@ -92,7 +96,7 @@
                                 </div>
                             </a>
                         </li>
-                        @endif	
+                        @endif
 
                         <li class="custom-nav-menu-wrap " tabindex="-1" style="">
                             <a href="{{route('GaneshFestivalCompetitionRules')}}"
@@ -110,13 +114,12 @@
                 <div class="flex items-center sm:gap-4 gap-2 absolute right-5 top-1/2 -translate-y-1/2 text-black">
                     <div class="rounded-full relative flex-center cursor-pointer shrink-0">
                         @if(getUserData()['image'])
-                        <img
-                            class="w-10 h-10 rounded-full shadow cover"
+                        <img class="w-10 h-10 rounded-full shadow cover"
                             src="https://imagedelivery.net/zfs38w7w3E1dJVvB3mVs9g/{{getUserData()['image']}}/xs"
-                                    alt="{{getUserData()['name']}}" />
+                            alt="{{getUserData()['name']}}" />
                         @else
-                        <img class="w-10 h-10 rounded-full shadow cover" src="{{asset('front')}}/images/avatars/avatar-3.jpg"
-                                    alt="Profile Picture" />
+                        <img class="w-10 h-10 rounded-full shadow cover"
+                            src="{{asset('front')}}/images/avatars/avatar-3.jpg" alt="Profile Picture" />
                         @endif
 
                     </div>
@@ -125,20 +128,20 @@
 
                         <a href="#">
                             <div class="p-4 py-5 flex items-center gap-4">
-                            @if(getUserData()['image'])
-                        <img
-                            class="w-10 h-10 rounded-full shadow cover"
-                            src="https://imagedelivery.net/zfs38w7w3E1dJVvB3mVs9g/{{getUserData()['image']}}/xs"
+                                @if(getUserData()['image'])
+                                <img class="w-10 h-10 rounded-full shadow cover"
+                                    src="https://imagedelivery.net/zfs38w7w3E1dJVvB3mVs9g/{{getUserData()['image']}}/xs"
                                     alt="{{getUserData()['name']}}" />
-                        @else
-                        <img 
-                            class="w-10 h-10 rounded-full shadow cover"
-                            src="{{asset('front')}}/images/avatars/avatar-3.jpg"
-                                    alt="Profile Picture" />
-                        @endif
+                                @else
+                                <img class="w-10 h-10 rounded-full shadow cover"
+                                    src="{{asset('front')}}/images/avatars/avatar-3.jpg" alt="Profile Picture" />
+                                @endif
                                 <div class="flex-1">
-                                    <h4 class="text-sm font-medium text-black">@if(getUserData()){{getUserData()['first_name']}} {{getUserData()['last_name']}}@endif</h4>
-                                    <div class="text-sm mt-1 text-blue-600 font-light dark:text-white/70">@if(getUserData()){{getUserData()['phone']}}@endif</div>
+                                    <h4 class="text-sm font-medium text-black">
+                                        @if(getUserData()){{getUserData()['first_name']}}
+                                        {{getUserData()['last_name']}}@endif</h4>
+                                    <div class="text-sm mt-1 text-blue-600 font-light dark:text-white/70">
+                                        @if(getUserData()){{getUserData()['phone']}}@endif</div>
                                 </div>
                             </div>
                         </a>
@@ -146,11 +149,11 @@
                         <hr class="dark:border-gray-600/60">
                         <nav class="p-2 text-sm text-black font-normal dark:text-white">
 
-                        @if(!Auth::id() || (getUserData() && getUserData()->status != 'active'))
+                            @if(!Auth::id() || (getUserData() && getUserData()->status != 'active'))
                             <a href="{{route('userVerification',['cid' => getUserData()['cid']])}}">
                                 <div
                                     class="flex items-center gap-2.5 hover:bg-secondery p-2 px-2.5 rounded-md dark:hover:bg-white/10">
-                                   
+
                                     <ion-icon name="checkmark" style="font-size: 23px;"></ion-icon>
 
                                     Verify User Account
@@ -223,8 +226,8 @@
     <ul class="uk-slider-items grid-small "
         uk-scrollspy="target: > li; cls: uk-animation-scale-up , uk-animation-slide-right-small; delay: 20 ;repeat: true"
         style="transform: translate3d(0px, 0px, 0px);">
-        
-              
+
+
 
         <li class="custom-nav-menu-wrap" uk-scrollspy-class="uk-animation-fade" tabindex="-1" style="">
 
@@ -255,4 +258,3 @@
 
     </ul>
 </div>
-
