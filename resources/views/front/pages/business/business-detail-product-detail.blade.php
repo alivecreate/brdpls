@@ -21,7 +21,8 @@ $message = "*{$productDetail->name}*" .
            (isset($productDetail->price) ? " *(Price: ₹. {$productDetail->price})*" : "") . ' - ' . $businessDetail->name. 
            "\nCheck out this product on Barodaplus! Discover more details and shop now:\n{$url}";
 
-$whatsappLink = 'https://wa.me/?phone=91'.$businessDetail->whatsapp1.'&text=' . urlencode($message);
+// $whatsappLink = 'https://wa.me/?phone=91'.$businessDetail->whatsapp1.'&text=' . urlencode($message);
+$whatsappLink = 'https://wa.me/?text=' . urlencode($message);
 
 ?>
 
