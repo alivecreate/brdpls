@@ -13,6 +13,7 @@ $(document).ready(function() {
 </script>
 @endsection
 
+keywords
 
 @section('content')
 

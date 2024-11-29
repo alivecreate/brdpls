@@ -3,7 +3,7 @@
 
 @section('title'){{ $productDetail->name }} in {{$businessDetail->city}} {{ $productDetail->price }} by {{$businessDetail->name}}@endsection
 
-@section('image') https://imagedelivery.net/zfs38w7w3E1dJVvB3mVs9g/{{$businessDetail->city}}/lg @endsection
+@section('image') https://imagedelivery.net/zfs38w7w3E1dJVvB3mVs9g/035bfeb0-c5ef-484c-c597-f5ff4c5a8a00/md @endsection
 
 @section('description') Click on this Link for More Detail About {{ $productDetail->name }}, Follow Barodaplus for Best Offer @endsection
 

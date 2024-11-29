@@ -14,7 +14,7 @@
     @yield('meta-content')
 
    
-      <meta name="keywords" content="@yield('keywords', '11 best product near me, best service provider in vadodara, budget products near me')">
+      <meta name="keywords" content="@yield('keywords', 'Best product near me, best service provider in vadodara, budget products near me')">
       <meta name="description" content="@yield('description', 'A local search engine for baroda, search product and business for best deal.')">    
       <meta name="author" content="Barodaplus">
       <meta name="robots" content="index, follow">
