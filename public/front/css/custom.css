@@ -652,15 +652,18 @@ box-shadow: none;
 	background: #ebebeb;
 }
 
-.detail-links ul li a {
-	padding: 4px 10px;
-	background: #faf9f9;
-	font-weight: bold;
-	border: 1px solid #eaeaea;
-	margin: 3px 0px;
-	display: flex;
+.detail-links ul li a, .detail-links ul li button {
+    padding: 4px 10px;
+    background: #faf9f9;
+    font-weight: bold;
+    border: 1px solid #eaeaea;
+    margin: 3px 0px;
+    display: flex;
     color: #106891;
+    width: 100%;
+    text-transform: capitalize;
 }
+
 /* Editor */
 .editor-toolbar {
     display: flex;

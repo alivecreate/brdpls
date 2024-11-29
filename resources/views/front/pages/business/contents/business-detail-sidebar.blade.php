@@ -5,12 +5,63 @@
 
 
         <div class="box p-5 px-6">
-            <div class="flex items-ce justify-between text-black dark:text-white">
-                <h3 class="font-bold text-lg"> Social Links</h3>
-            </div>
+         
 
             <ul class="text-gray-700 space-y-4 mt-4 text-sm dark:text-white/80 text-capitalize">
 
+
+                <div class="flex items-ce justify-between text-black dark:text-white">
+                    <h3 class="font-bold text-lg"> Inquiry Form</h3>
+                </div>
+
+                <div class="detail-links">
+
+                    <ul>
+                        <li>
+
+                            <?php
+
+                            $Datamessage = route('businessDetail', ['city' => $businessDetail->city, 'slug' => $businessDetail->slug])."\n *$businessDetail->name- Check our detail on Barodaplus! Discover more details and shop now:\n*";
+                
+                            ?>
+
+                            <a href="#" id="shareBtn" data-url="{{$Datamessage}}"
+                                class="shareBtn inline-flex lg:text-lg text-md items-center gap-2 py-2 px-2.5 pr-3 bg-slate-200/60 rounded-full aria-expanded:text-black aria-expanded:border-black aria-expanded:dark:text-white aria-expanded:dark:border-white">
+                                <ion-icon class="text-xl" name="arrow-redo"></ion-icon>
+                                Share This Page
+                            </a>
+
+                        </li>
+                     
+
+                        <li>
+                            <button target="_blank" href="{{$businessDetail->website}}" id="shareBtn"  uk-toggle="target: #send-business-inquiry-popup"
+                                class="inline-flex lg:text-lg text-md items-center gap-2 py-2 px-2.5 pr-3 bg-slate-200/60 rounded-full aria-expanded:text-black aria-expanded:border-black aria-expanded:dark:text-white aria-expanded:dark:border-white">
+                                <ion-icon class="text-xl" name="mail-outline"></ion-icon>
+                                Send inquiry
+                            </button>
+                        </li>
+
+                        @if($businessDetail->website)
+                        <li>
+                            <a target="_blank" href="{{$businessDetail->website}}" id="shareBtn"
+                                class="inline-flex lg:text-lg text-md items-center gap-2 py-2 px-2.5 pr-3 bg-slate-200/60 rounded-full aria-expanded:text-black aria-expanded:border-black aria-expanded:dark:text-white aria-expanded:dark:border-white">
+                                <ion-icon class="text-xl" name="globe-outline"></ion-icon>
+                                Visit Website
+                            </a>
+                        </li>
+                        @endif
+
+                        <li>
+                            <a href="#"
+                                class="inline-flex lg:text-lg text-md items-center gap-2 py-2 px-2.5 pr-3 bg-slate-200/60 rounded-full aria-expanded:text-black aria-expanded:border-black aria-expanded:dark:text-white aria-expanded:dark:border-white">
+                                <ion-icon class="text-xl" name="star-outline"></ion-icon>
+                                Give Rating
+                            </a>
+                        </li>
+                    </ul>
+
+                    
                 @if($businessDetail->socialLinks)
                 <ul class='social-links'>
                     @if($businessDetail->socialLinks->facebook)
@@ -52,55 +103,6 @@
                 </ul>
                 @endif
 
-                <div class="flex items-ce justify-between text-black dark:text-white">
-                    <h3 class="font-bold text-lg"> Inquiry Form</h3>
-                </div>
-
-                <div class="detail-links">
-
-                    <ul>
-                        <li>
-
-                            <?php
-
-                            $Datamessage = route('businessDetail', ['city' => $businessDetail->city, 'slug' => $businessDetail->slug])."\n *$businessDetail->name- Check our detail on Barodaplus! Discover more details and shop now:\n*";
-                
-                            ?>
-
-                            <a href="#" id="shareBtn" data-url="{{$Datamessage}}"
-                                class="shareBtn inline-flex lg:text-lg text-md items-center gap-2 py-2 px-2.5 pr-3 bg-slate-200/60 rounded-full aria-expanded:text-black aria-expanded:border-black aria-expanded:dark:text-white aria-expanded:dark:border-white">
-                                <ion-icon class="text-xl" name="arrow-redo"></ion-icon>
-                                Share This Page
-                            </a>
-
-                        </li>
-                        <li>
-                            <a href="mailto:{{$businessDetail->email1}}"
-                                class="inline-flex lg:text-lg text-md items-center gap-2 py-2 px-2.5 pr-3 bg-slate-200/60 rounded-full aria-expanded:text-black aria-expanded:border-black aria-expanded:dark:text-white aria-expanded:dark:border-white">
-                                <ion-icon class="text-xl" name="mail-outline"></ion-icon>
-                                Send Email
-                            </a>
-
-                        </li>
-
-                        @if($businessDetail->website)
-                        <li>
-                            <a target="_blank" href="{{$businessDetail->website}}" id="shareBtn"
-                                class="inline-flex lg:text-lg text-md items-center gap-2 py-2 px-2.5 pr-3 bg-slate-200/60 rounded-full aria-expanded:text-black aria-expanded:border-black aria-expanded:dark:text-white aria-expanded:dark:border-white">
-                                <ion-icon class="text-xl" name="globe-outline"></ion-icon>
-                                Visit Website
-                            </a>
-                        </li>
-                        @endif
-
-                        <li>
-                            <a href="#"
-                                class="inline-flex lg:text-lg text-md items-center gap-2 py-2 px-2.5 pr-3 bg-slate-200/60 rounded-full aria-expanded:text-black aria-expanded:border-black aria-expanded:dark:text-white aria-expanded:dark:border-white">
-                                <ion-icon class="text-xl" name="star-outline"></ion-icon>
-                                Give Rating
-                            </a>
-                        </li>
-                    </ul>
                 </div>
             </ul>
 

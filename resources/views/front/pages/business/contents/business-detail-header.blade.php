@@ -182,3 +182,5 @@
 
 
 @include('front.widget.popup.add-business-review-popup')
+
+@include('front.widget.popup.send-business-inquiry-popup')

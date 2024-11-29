@@ -3,6 +3,13 @@
 <script src="{{asset('front')}}/js/simplebar.js"></script>
 <script src="{{asset('front')}}/js/script.js"></script>
 <script src="{{asset('front')}}/js/custom.js"></script>
+<script src="https://www.google.com/recaptcha/api.js"></script>
+<script>
+   function onSubmit(token) {
+     document.getElementById("demo-form").submit();
+   }
+ </script>
+
 
 
 <!-- Ion icon -->

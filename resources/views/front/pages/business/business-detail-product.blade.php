@@ -6,14 +6,13 @@ $(document).ready(function() {
     $('.mybusiness').addClass('active');
     $('.uk-parent').addClass('uk-open');
     $('.uk-parent ul').removeAttr('hidden');
-
     $('.product').addClass('uk-active');
 
 });
 </script>
 @endsection
 
-keywords
+
 
 @section('content')
 
