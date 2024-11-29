@@ -52,7 +52,7 @@ $(document).ready(function() {
                                 <h3>₹. {{$product->price}}</h3>
                                 <div class="flex gap-3">
                                     <a href="#" class="button p-2 bg-primary text-white">
-                                        Inquire Now
+                                        INQUIRY
                                     </a>
 
                                     <a href="#" id="shareBtn" class="shareBtn button p-2 bg-green" title="Whatsapp Us">

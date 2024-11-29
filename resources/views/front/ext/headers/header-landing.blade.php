@@ -38,7 +38,6 @@
 
                     <div class=" hidden lg:block">
 
-
                         <ul class="uk-slider-items grid-small"
                             uk-scrollspy="target: > li; cls: uk-animation-scale-up , uk-animation-slide-right-small; delay: 20 ;repeat: true"
                             style="transform: translate3d(0px, 0px, 0px);">

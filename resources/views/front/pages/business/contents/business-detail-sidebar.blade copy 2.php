@@ -56,6 +56,24 @@
                     <h3 class="font-bold text-lg"> Inquiry Form</h3>
                 </div>
 
+                <form>
+                    
+                    <div class="flex items-center mb-3">
+                            <input type="text" name="name" class="w-full" value="{{ $social_links->facebook ?? ''}}" placeholder="Your Name">
+                    </div>
+                        <div class="flex items-center mb-3">
+                            <input type="text" name="name" class="w-full" value="{{ $social_links->facebook ?? ''}}" placeholder="Phone Number">
+                        </div>
+                        <div class="flex items-center mb-3">
+                            <input type="text" name="name" class="w-full" value="{{ $social_links->facebook ?? ''}}" placeholder="Email Id">
+                        </div>
+                        <div class="flex items-center mb-3">
+                            <input type="text" name="name" class="w-full" value="{{ $social_links->facebook ?? ''}}" placeholder="Message">
+                        </div>
+                    </div>
+
+                </form>
+
                 <div class="detail-links">
 
                     <ul>

@@ -5,11 +5,37 @@
 
 
         <div class="box p-5 px-6">
+            <div class="mb-4">
+                <img src="https://imagedelivery.net/zfs38w7w3E1dJVvB3mVs9g/{{$businessDetail->logo}}/md" alt=""
+                    class="object-cover w-40  inset-0">
+            </div>
             <div class="flex items-ce justify-between text-black dark:text-white">
-                <h3 class="font-bold text-lg"> Social Links</h3>
+                <h3 class="font-bold text-lg"> {{$businessDetail->name_prefix}}. {{$businessDetail->contact_person}}
+                </h3>
+                @if($businessOwner)
+                <a target="_blank" href="{{route('myBusiness.show', $businessDetail->slug)}}"
+                    class="text-sm text-blue-500">Edit</a>
+                @endif
             </div>
 
+
+            @if($businessDetail->phone2)
+            <a class="font-bold text-lg subheading-h2  mr-2"> {{$businessDetail->phone1}}</a>
+            @endif
+            @if($businessDetail->phone2),
+            <a class="font-bold text-lg subheading-h2 "> {{$businessDetail->phone2}}</a>
+            @endif
+
             <ul class="text-gray-700 space-y-4 mt-4 text-sm dark:text-white/80 text-capitalize">
+
+                <li class="flex items-center gap-3">
+                    <ion-icon class="font-bold text-3xl lg:text-5xl" name="location-outline"></ion-icon>
+                    <div>
+                        @if($businessDetail->building){{$businessDetail->building}}, @endif
+                        @if($businessDetail->street) {{$businessDetail->street}}, @endif{{$businessDetail->city}},
+                        @if($businessDetail->pincode){{$businessDetail->pincode}}. @endif </div>
+                </li>
+
 
                 @if($businessDetail->socialLinks)
                 <ul class='social-links'>
@@ -52,10 +78,6 @@
                 </ul>
                 @endif
 
-                <div class="flex items-ce justify-between text-black dark:text-white">
-                    <h3 class="font-bold text-lg"> Inquiry Form</h3>
-                </div>
-
                 <div class="detail-links">
 
                     <ul>
@@ -63,9 +85,9 @@
 
                             <?php
 
-                            $Datamessage = route('businessDetail', ['city' => $businessDetail->city, 'slug' => $businessDetail->slug])."\n *$businessDetail->name- Check our detail on Barodaplus! Discover more details and shop now:\n*";
-                
-                            ?>
+$Datamessage = route('businessDetail', ['city' => $businessDetail->city, 'slug' => $businessDetail->slug])."\n *$businessDetail->name- Check our detail on Barodaplus! Discover more details and shop now:\n*";
+           
+                    ?>
 
                             <a href="#" id="shareBtn" data-url="{{$Datamessage}}"
                                 class="shareBtn inline-flex lg:text-lg text-md items-center gap-2 py-2 px-2.5 pr-3 bg-slate-200/60 rounded-full aria-expanded:text-black aria-expanded:border-black aria-expanded:dark:text-white aria-expanded:dark:border-white">

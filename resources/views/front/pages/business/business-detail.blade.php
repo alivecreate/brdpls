@@ -45,7 +45,7 @@
                                 
                             <ul class="-ml-2 uk-slider-items w-[calc(100%+0.5rem)]">
 
-                                @foreach($businessDetail->gallery(3)->get() as $gallery)
+                                @foreach($businessDetail->gallery(8)->get() as $gallery)
                                 <li class="col-3 pr-2">
                                     <a href="#">
                                         <div class="relative overflow-hidden rounded-lg">
