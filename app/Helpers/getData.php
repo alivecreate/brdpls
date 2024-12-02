@@ -30,6 +30,21 @@ function getUserDetail($userId){
     return $userDetail;
 }
 
+function getArrayImage($images, $limit = 1){
+    
+        if (!empty($images)) {
+            // Process the images string
+            $imageArray = strpos($images, ',') !== false 
+                ? array_filter(explode(',', $images), fn($img) => strlen(trim($img)) > 0) // Remove empty entries
+                : (strlen(trim($images)) > 0 ? [trim($images)] : []); // Wrap valid single value in an array
+        } else {
+            $imageArray = null; // Empty array for empty input
+        }
+
+    return strpos($images, ',') !== false ? explode(',', $images) : $images;
+    // return explode(',', $images);
+}
+
 function getGujaratCities(){
     
     $data = City::where('state_id', 7)->get();
@@ -97,7 +112,7 @@ function getDays(){
 //  return 
 // }
 
-function formatDate($dateString, $format = 'd-m-Y h:i A')
+function formatDate($dateString, $format = 'd-m-Y, h:i A')
 {
     try {
         // Create a Carbon instance from the date string
@@ -233,7 +248,7 @@ function totalVotes($votable_id, $competition_category_id)
 //     ->where('u.status', 'active')
 //     ->count();
     
-    return $totalVotes;
+return $totalVotes;
 // dd($totalVotes);
     return $this->votes()->count();
 }
@@ -243,6 +258,73 @@ if (!function_exists('getCompetitionGroup')) {
     function getCompetitionGroup($group_id) {
         return Group::where(['id' => $group_id])->first();
         }
+}
+
+
+
+if (!function_exists('getUserPic')) {
+    function getUserPic($userId) {
+        return User::where(['id' => $userId])->select('image')->first();
+    }
+}
+
+
+if (!function_exists('getTotalMyBusiness')) {
+    function getTotalMyBusiness($userId) {
+        return Business::where(['user_id' => $userId])->count();
+        }
+}
+
+if (!function_exists('getTotalMyInquiry')) {
+    function getTotalMyInquiry() {
+        
+            $userId = auth()->id(); // Example user ID
+            $user = User::find($userId);
+
+            // Calculate total inquiries
+            $totalInquiries = $user->businesses()->withCount('inquiries')->get()->sum('inquiries_count');
+
+            return $totalInquiries;
+
+        }
+}
+
+ function getTopInquiries($limit = 3)
+{
+  
+$user = auth()->user(); // Get the currently logged-in user
+
+$topInquiries = $user->businesses()
+  ->with(['inquiries' => function ($query)  use ($limit) {
+      $query->take($limit);
+  }])
+  ->orderBy('created_at', 'desc')
+  ->get()
+  ->flatMap(function ($business) {
+      return $business->inquiries;
+  });
+
+return $topInquiries;
+
+}
+
+
+function getInquiryStages()
+{
+  
+    return [
+            'new' => 'New',
+            'assigned' => 'Assigned',
+            'in_progress' => 'In Progress',
+            'follow_up' => 'Follow-Up',
+            'on_hold' => 'On Hold',
+            'closed' => 'Closed',
+            'rejected' => 'Rejected',
+            'cancelled' => 'Cancelled',
+            'completed' => 'Completed',
+    ];
+    
+
 }
 
 
@@ -272,6 +354,23 @@ function checkIsGroupOwner($id){
     }
     return false;
 }
+
+function removeStringFromCommaSeparated($originalString, $stringToRemove)
+{
+    // Step 1: Convert the string to an array
+    $array = explode(',', $originalString);
+
+    // Step 2: Remove the specific string
+    $filteredArray = array_filter($array, function ($value) use ($stringToRemove) {
+        return $value !== $stringToRemove;
+    });
+
+    // Step 3: Convert the array back to a comma-separated string
+    $updatedString = implode(',', $filteredArray);
+
+    return $updatedString;
+}
+
 
 
 function checkIsHomeOwner($id){

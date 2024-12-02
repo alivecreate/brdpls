@@ -229,9 +229,12 @@ function deleteCloudImage($imageId = null){
             if ($statusCode == 200 && $body['success']) {
                 return response()->json(['success' => true, 'message' => 'Image deleted successfully.']);
             } else {
+                // return false;
                 return response()->json(['success' => false, 'message' => 'Failed to delete the image.', 'error' => $body]);
             }
         } catch (\Exception $e) {
+            // return false;
+
             return response()->json(['success' => false, 'message' => 'Failed to delete the image.', 'error' => $e->getMessage()]);
         }
 

@@ -18,8 +18,12 @@ use App\Http\Controllers\GroupMembersController;
 use App\Http\Controllers\GroupReportController;
 use App\Http\Controllers\BusinessController;
 use App\Http\Controllers\BusinessReviewController;
+use App\Http\Controllers\BusinessInquiryController;
+
 
 use App\Http\Controllers\MyBusinessController;
+use App\Http\Controllers\DashboardController;
+
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\ListingController;
 use App\Http\Controllers\SocialShareController;
@@ -218,24 +222,42 @@ Route::post('/ganesh-festival/competition/group-payment', [GaneshCompetitionPaym
 // Route::get('/components', [PageController::class, 'components'])->name('components');
 
 
-Route::get('/my-business', [MyBusinessController::class, 'index'])->name('myBusiness');
-Route::get('/my-business/{slug}', [MyBusinessController::class, 'show'])->name('myBusiness.show');
+// Admin
+$adminName = 'manage';
 
-Route::get('/my-business/{slug}/product', [MyBusinessController::class, 'product'])->name('myBusiness.product');
-Route::get('/my-business/{slug}/profile', [MyBusinessController::class, 'profile'])->name('myBusiness.profile');
-Route::get('/my-business/{slug}/social', [MyBusinessController::class, 'social'])->name('myBusiness.social');
-Route::get('/my-business/{slug}/category', [MyBusinessController::class, 'category'])->name('myBusiness.category');
-Route::get('/my-business/{slug}/contact', [MyBusinessController::class, 'contact'])->name('myBusiness.contact');
+Route::prefix('/' . $adminName)->group(function () {
 
-Route::post('/my-business/{slug}/product/store', [MyBusinessController::class, 'productStore'])->name('myBusiness.productStore');
-Route::delete('/my-business/product/{id}', [MyBusinessController::class, 'productDelete'])->name('myBusiness.productDelete');
-Route::put('/my-business/product/{id}', [MyBusinessController::class, 'productUpdate'])->name('myBusiness.productUpdate');
+Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
 
-Route::put('/my-business/{cid}/profile', [MyBusinessController::class, 'updateMyBusinessProfile'])->name('updateMyBusinessProfile');
-Route::put('/my-business/{cid}/sociallinks', [MyBusinessController::class, 'updateMyBusinessSocialLinks'])->name('updateMyBusinessSocialLinks');
-Route::put('/my-business/{cid}/contact', [MyBusinessController::class, 'updateMyBusinessContact'])->name('updateMyBusinessContact');
-Route::delete('/my-business/{id}', [MyBusinessController::class, 'deleteMyBusiness'])->name('deleteMyBusiness');
+
+Route::get('/business', [MyBusinessController::class, 'index'])->name('myBusiness');
+Route::get('/business/{slug}', [MyBusinessController::class, 'show'])->name('myBusiness.show');
+
+
+Route::get('/business/{slug}/product', [MyBusinessController::class, 'product'])->name('myBusiness.product');
+Route::get('/business/{slug}/profile', [MyBusinessController::class, 'profile'])->name('myBusiness.profile');
+Route::get('/business/{slug}/social', [MyBusinessController::class, 'social'])->name('myBusiness.social');
+Route::get('/business/{slug}/category', [MyBusinessController::class, 'category'])->name('myBusiness.category');
+Route::get('/business/{slug}/contact', [MyBusinessController::class, 'contact'])->name('myBusiness.contact');
+
+Route::post('/business/{slug}/product/store', [MyBusinessController::class, 'productStore'])->name('myBusiness.productStore');
+Route::delete('/business/product/{id}', [MyBusinessController::class, 'productDelete'])->name('myBusiness.productDelete');
+Route::put('/business/product/{id}', [MyBusinessController::class, 'productUpdate'])->name('myBusiness.productUpdate');
+
+
+Route::put('/business/{cid}/profile', [MyBusinessController::class, 'updateMyBusinessProfile'])->name('updateMyBusinessProfile');
+Route::put('/business/{cid}/sociallinks', [MyBusinessController::class, 'updateMyBusinessSocialLinks'])->name('updateMyBusinessSocialLinks');
+Route::put('/business/{cid}/contact', [MyBusinessController::class, 'updateMyBusinessContact'])->name('updateMyBusinessContact');
+Route::delete('/business/{id}', [MyBusinessController::class, 'deleteMyBusiness'])->name('deleteMyBusiness');
+
+
+Route::get('/inquiry', [BusinessInquiryController::class, 'index'])->name('businessInquiry');
+// Route::delete('/business/product/{id}', [MyBusinessController::class, 'productDelete'])->name('myBusiness.productDelete');
+
+Route::delete('/inquiry/delete/{id}', [BusinessInquiryController::class, 'destroy'])->name('businessInquiryDelete');
+
+});
 
 
 Route::get('/business-list', [BusinessController::class, 'businessList'])->name('businessList');
@@ -255,8 +277,6 @@ Route::post('/business-list/step-4-category', [BusinessController::class, 'store
 Route::post('/business-review/store', [BusinessReviewController::class, 'store'])->name('businessReviewStore');
 Route::delete('/business-review/delete', [BusinessReviewController::class, 'destroy'])->name('businessReviewDelete');
 
-
-
 Route::get('/{slug}', [ListingController::class, 'listing'])->name('listingList');
 
 
@@ -266,6 +286,13 @@ Route::resource('/live-competition-status', LiveCompetitionStatus::class)->names
 Route::resource('/adm/user', AdminUserController::class)->names('UserController');
 
 });
+
+
+
+Route::post('/business-inquiry/store', [BusinessInquiryController::class, 'store'])->name('businessInquiryStore');
+// Route::delete('/business-inquiry/delete', [BusinessInquiryController::class, 'destroy'])->name('businessInquiryDelete');
+
+
 
 
 

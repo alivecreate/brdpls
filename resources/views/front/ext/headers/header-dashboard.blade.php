@@ -1,0 +1,187 @@
+<header
+    class="z-[100] h-[--m-top] fixed top-0 left-0 w-full flex items-center bg-white/80 sky-50 backdrop-blur-xl border-b border-slate-200 dark:bg-dark2 dark:border-slate-800">
+
+    <div class="flex items-center w-full xl:px-6 px-2 max-lg:gap-10">
+
+        <div class="2xl:w-[--w-side] lg:w-[--w-side-sm]">
+
+            <div class="flex items-center gap-1">
+
+                <button uk-toggle="target: #site__sidebar ; cls :!-translate-x-0"
+                    class="flex items-center justify-center w-8 h-8 text-xl rounded-full hover:bg-gray-100 xl:hidden dark:hover:bg-slate-600 group">
+                    <ion-icon name="menu-outline" class="text-2xl group-aria-expanded:hidden"></ion-icon>
+                    <ion-icon name="close-outline" class="hidden text-2xl group-aria-expanded:block"></ion-icon>
+                </button>
+
+                <div id="logo">
+                    <a href="{{route('index')}}">
+                        <img src="{{asset('front/images')}}/logo-barodaplus-light2.png" alt=""
+                            class="main-logo md:block hidden dark:!hidden">
+                        <img src="{{asset('front/images')}}/logo-barodaplus-dark22.png" alt=""
+                            class="main-logo dark:md:block hidden">
+                        <img src="{{asset('front/images')}}/logo-barodaplus-light2.png"
+                            class="main-logo hidden max-md:block w-20 dark:!hidden" alt="">
+                        <img src="{{asset('front/images')}}/logo-barodaplus-dark22.png"
+                            class="main-logo hidden dark:max-md:block w-20" alt="">
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex-1 relative">
+            <div class="max-w-[1220px] mx-auto flex gap-2 justify-end">
+                
+
+            <div class="flex items-center sm:gap-4 gap-2 absolute right-5 top-1/2 -translate-y-1/2 text-black">
+
+
+            
+                       
+            <a href="{{route('GaneshFestivalCompetitionRules')}}"
+                    class="custom-nav-menu p-3 px-2 rounded-lg dark:text-white dark:bg-dark4">
+                    <ion-icon name="bookmark-outline" class="text-2xl drop-shadow-md md hydrated mr-2"
+                        role="img" aria-label="videocam"></ion-icon>
+                    <div class="text-sm font-medium text-capitalize font-semibold"> We are Hiring </div>
+                </a>
+                            
+                <a href="{{route('GaneshFestivalCompetitionRules')}}"
+                    class="custom-nav-menu p-3 px-2 rounded-lg dark:text-white dark:bg-dark4">
+                    <ion-icon name="people-outline" class="text-2xl drop-shadow-md md hydrated mr-2"
+                        role="img" aria-label="videocam"></ion-icon>
+                    <div class="text-sm font-medium text-capitalize font-semibold"> Festival </div>
+                </a>
+                            
+                <a href="{{route('GaneshFestivalCompetitionRules')}}"
+                    class="custom-nav-menu p-3 px-2 rounded-lg dark:text-white dark:bg-dark4">
+                    <ion-icon name="business-outline" class="text-2xl drop-shadow-md md hydrated mr-2"
+                        role="img" aria-label="videocam"></ion-icon>
+                    <div class="text-sm font-medium text-capitalize font-semibold"> Market Place (Free)</div>
+                </a>
+                            
+                <a href="{{route('myBusiness')}}"
+                    class="custom-nav-menu p-3 px-2 rounded-lg dark:text-white dark:bg-dark4">
+                    <ion-icon name="newspaper-outline" class="text-2xl drop-shadow-md md hydrated mr-2"
+                        role="img" aria-label="videocam"></ion-icon>
+                    <div class="text-sm font-medium text-capitalize font-semibold"> Business Listing (Rs. 365)</div>
+                </a>
+                     
+                
+                @if(Auth::check())
+                
+                    @if(getUserData()) 
+                        <div class="rounded-full relative flex-center cursor-pointer shrink-0">
+                            @if(getUserData()['image'])
+                            <img class="w-10 h-10 rounded-full shadow cover"
+                                src="https://imagedelivery.net/zfs38w7w3E1dJVvB3mVs9g/{{getUserData()['image']}}/xs"
+                                alt="{{getUserData()['name']}}" />
+                            @else
+                            <img class="w-10 h-10 rounded-full shadow cover"
+                                src="{{asset('front')}}/images/avatars/avatar-3.jpg" alt="Profile Picture" />
+                            @endif
+
+                        </div>
+                    @endif
+
+                    <div class="hidden bg-white rounded-lg drop-shadow-xl dark:bg-slate-700 w-64 border2"
+                        uk-drop="offset:6;pos: bottom-right;animate-out: true; animation: uk-animation-scale-up uk-transform-origin-top-right ">
+
+                        
+                    @if(getUserData()) 
+                        <a href="#">
+                            <div class="p-4 py-5 flex items-center gap-4">
+                                @if(getUserData()['image'])
+                                <img class="w-10 h-10 rounded-full shadow cover"
+                                    src="https://imagedelivery.net/zfs38w7w3E1dJVvB3mVs9g/{{getUserData()['image']}}/xs"
+                                    alt="{{getUserData()['name']}}" />
+                                @else
+                                <img class="w-10 h-10 rounded-full shadow cover"
+                                    src="{{asset('front')}}/images/avatars/avatar-3.jpg" alt="Profile Picture" />
+                                @endif
+                                <div class="flex-1">
+                                    <h4 class="text-sm font-medium text-black">
+                                        @if(getUserData()){{getUserData()['first_name']}}
+                                        {{getUserData()['last_name']}}@endif</h4>
+                                    <div class="text-sm mt-1 text-blue-600 font-light dark:text-white/70">
+                                        @if(getUserData()){{getUserData()['phone']}}@endif</div>
+                                </div>
+                            </div>
+                        </a>
+                    @endif
+
+                        <hr class="dark:border-gray-600/60">
+                        <nav class="p-2 text-sm text-black font-normal dark:text-white">
+
+                            @if(!Auth::id() || (getUserData() && getUserData()->status != 'active'))
+                            <a href="{{route('userVerification',['cid' => getUserData()['cid']])}}">
+                                <div
+                                    class="flex items-center gap-2.5 hover:bg-secondery p-2 px-2.5 rounded-md dark:hover:bg-white/10">
+
+                                    <ion-icon name="checkmark" style="font-size: 23px;"></ion-icon>
+
+                                    Verify User Account
+                                </div>
+                            </a>
+                            @endif
+
+                            <a href="{{route('setting')}}">
+                                <div
+                                    class="flex items-center gap-2.5 hover:bg-secondery p-2 px-2.5 rounded-md dark:hover:bg-white/10">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                        stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.324.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 011.37.49l1.296 2.247a1.125 1.125 0 01-.26 1.431l-1.003.827c-.293.24-.438.613-.431.992a6.759 6.759 0 010 .255c-.007.378.138.75.43.99l1.005.828c.424.35.534.954.26 1.43l-1.298 2.247a1.125 1.125 0 01-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.57 6.57 0 01-.22.128c-.331.183-.581.495-.644.869l-.213 1.28c-.09.543-.56.941-1.11.941h-2.594c-.55 0-1.02-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 01-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 01-1.369-.49l-1.297-2.247a1.125 1.125 0 01.26-1.431l1.004-.827c.292-.24.437-.613.43-.992a6.932 6.932 0 010-.255c.007-.378-.138-.75-.43-.99l-1.004-.828a1.125 1.125 0 01-.26-1.43l1.297-2.247a1.125 1.125 0 011.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.087.22-.128.332-.183.582-.495.644-.869l.214-1.281z" />
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                    </svg>
+                                    Settings
+                                </div>
+                            </a>
+
+                            <hr class="-mx-2 my-2 dark:border-gray-600/60">
+                            <a href="{{route('logout')}}">
+                                <div
+                                    class="flex items-center gap-2.5 hover:bg-secondery p-2 px-2.5 rounded-md dark:hover:bg-white/10">
+                                    <svg class="w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                        stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1">
+                                        </path>
+                                    </svg>
+                                    Log Out
+                                </div>
+                            </a>
+
+                        </nav>
+
+                    </div>
+
+                    <div class="flex items-center gap-2 hidden">
+                        <img src="{{asset('front')}}/images/avatars/avatar-2.jpg" alt=""
+                            class="w-9 h-9 rounded-full shadow">
+
+                        <div class="w-20 font-semibold text-gray-600"> Hamse </div>
+
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="w-5 h-5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                        </svg>
+                    </div>
+
+                @else
+                          
+
+                <a href="{{route('login')}}"
+                    class="button bg-primary text-white text-sm uk-scrollspy-inview px-4">
+                    <ion-icon name="log-in-outline" style="height: 27px;width: 27px;"></ion-icon> Login Now
+                </a>
+                @endif
+  
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</header>

@@ -108,7 +108,7 @@
                             <div class="flex-1 max-md:mt-2">
                                 <strong class='lable' for="">Choose product images (max 10)</strong>
                                 <input type="file" id="image" multiple name="image[]" class="w-full mt-4"
-                                    accept="image/*">
+                                    accept="image/*" required>
 
                                 <p id="fileError" style="color:red; display:none;">You can only upload up to 10 images.
                                 </p>

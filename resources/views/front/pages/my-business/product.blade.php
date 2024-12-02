@@ -27,61 +27,7 @@ $(document).ready(function() {
 <main id="site__main" class="p-2.5 h-[calc(100vh-var(--m-top))] mt-20">
     <div class="2xl:gap-12 gap-10 w-full mx-auto mt-10 container-w" id="js-oversized">
 
-
-        <div class="flex justify-between mb-5">
-            <nav class="flex mb-6" aria-label="Breadcrumb">
-                <ol class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
-                    <li class="inline-flex items-center">
-                        <a href="#"
-                            class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white">
-                            <svg class="w-3 h-3 me-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                                fill="currentColor" viewBox="0 0 20 20">
-                                <path
-                                    d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z" />
-                            </svg>
-                            Home
-                        </a>
-                    </li>
-
-                    <li class="inline-flex items-center">
-                        <a href="{{route('myBusiness')}}"
-                            class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white">
-                            <svg class="rtl:rotate-180 w-3 h-3 text-gray-400 mx-1" aria-hidden="true"
-                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                    stroke-width="2" d="m1 9 4-4-4-4" />
-                            </svg>
-                            My Business
-                        </a>
-                    </li>
-
-                    <li class="inline-flex items-center">
-                        <a href="#"
-                            class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white">
-                            <svg class="rtl:rotate-180 w-3 h-3 text-gray-400 mx-1" aria-hidden="true"
-                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                    stroke-width="2" d="m1 9 4-4-4-4" />
-                            </svg>
-                            {{$myBusiness->name}}
-                        </a>
-                    </li>
-
-                    
-                </ol>
-            </nav>
-
-            <nav>
-                <ol>
-                    <a class="button bg-primary flex items-center gap-1 text-white py-2 px-3.5 shadow ml-auto"
-                        data-cid="{{$myBusiness->cid}}" data-name="{{$myBusiness->name}}"
-                        uk-toggle="target: #add-product-popup">
-                        <ion-icon class="text-xl" name="add-outline"></ion-icon> Add New Product
-                    </a></li>
-
-                </ol>
-            </nav>
-        </div>
+    @include('front.pages.my-business.breadcrumb', ['breadcrumbType' => 'product'])
 
         <div class="2xl:gap-12 gap-10 2xl:max-w-[1220px] mx-auto bg-white">
 
@@ -98,7 +44,21 @@ $(document).ready(function() {
                         <div class="card">
                             <a href="{{route('timeline-page')}}">
                                 <div class="card-media sm:aspect-[2/1.7] h-40">
-                                    <img src="{{asset('front')}}/images/avatars/avatar-3.jpg" alt="">
+
+                                    
+                                    @if(isset($product->image) && strlen($product->image) < 400)
+                                        @if(strpos($product->image, ',') == false)
+                                            <img src="https://imagedelivery.net/zfs38w7w3E1dJVvB3mVs9g/{{$product->image}}/xs" alt="{{$product->name}}">
+                                        @else
+                                        
+                                        <img src="https://imagedelivery.net/zfs38w7w3E1dJVvB3mVs9g/{{getArrayImage($product->image)[0]}}/xs" alt="{{$product->name}}">
+                                        
+
+                                        @endif
+                                    @else
+                                        <img src="{{asset('front')}}/images/avatars/avatar-3.jpg" alt="">
+                                    @endif
+
                                     <div class="card-overly"></div>
                                 </div>
                             </a>
@@ -131,7 +91,10 @@ $(document).ready(function() {
                                         data-type="Product" data-items="{{$product->items}}"
                                         data-unit="{{$product->unit}}" data-description="{!! $product->description !!}"
                                         data-action="{{route('myBusiness.productUpdate', $product->id)}}"
-                                        data-id="{{$product->id}}" uk-toggle="target: #edit-product-popup">
+                                        data-id="{{$product->id}}" 
+                                        data-images="{{$product->image}}"
+
+                                        uk-toggle="target: #edit-product-popup">
                                         <ion-icon class="text-xl" name="create-outline"></ion-icon>
                                     </button>
 

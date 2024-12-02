@@ -66,30 +66,28 @@ $(document).ready(function() {
                             <div class="relative" uk-slideshow="animation: push; ratio: 7:5">
 
                                 <ul class="uk-slideshow-items overflow-hidden rounded-xl" uk-lightbox="animation: fade">
-                                    <li class="w-full">
-                                        <a class="inline"
-                                            href="https://imagedelivery.net/zfs38w7w3E1dJVvB3mVs9g/ab5546e6-2956-4d79-ca51-fb473028ab00/lg"
-                                            data-caption="Caption 1">
-                                            <img src="https://imagedelivery.net/zfs38w7w3E1dJVvB3mVs9g/ab5546e6-2956-4d79-ca51-fb473028ab00/lg"
-                                                alt="" class="w-full h-full absolute object-cover insta-0">
-                                        </a>
-                                    </li>
-                                    <li class="w-full">
-                                        <a class="inline"
-                                            href="https://imagedelivery.net/zfs38w7w3E1dJVvB3mVs9g/54093373-5cb2-42f8-ad30-73ee505a3b00/lg"
-                                            data-caption="Caption 2">
-                                            <img src="https://imagedelivery.net/zfs38w7w3E1dJVvB3mVs9g/54093373-5cb2-42f8-ad30-73ee505a3b00/lg"
-                                                alt="" class="w-full h-full absolute object-cover insta-0">
-                                        </a>
-                                    </li>
-                                    <li class="w-full">
-                                        <a class="inline"
-                                            href="https://imagedelivery.net/zfs38w7w3E1dJVvB3mVs9g/48ac0748-efdd-49db-3ccd-ed9dcd9c9100/lg"
-                                            data-caption="Caption 3">
-                                            <img src="https://imagedelivery.net/zfs38w7w3E1dJVvB3mVs9g/48ac0748-efdd-49db-3ccd-ed9dcd9c9100/lg"
-                                                alt="" class="w-full h-full absolute object-cover insta-0">
-                                        </a>
-                                    </li>
+                                    
+                                    
+                                @if(isset($productDetail->image) && strlen($productDetail->image) < 400)
+                                    @if(strpos($productDetail->image, ',') == false)
+                                        <img src="https://imagedelivery.net/zfs38w7w3E1dJVvB3mVs9g/{{$product->image}}/xs" alt="{{$product->name}}">
+                                    @else
+                                        @foreach(getArrayImage($productDetail->image) as $image)
+                                        <li class="w-full">
+                                            <a class="inline"
+                                                href="https://imagedelivery.net/zfs38w7w3E1dJVvB3mVs9g/{{$image}}/lg"
+                                                data-caption="Caption 1">
+                                                <img src="https://imagedelivery.net/zfs38w7w3E1dJVvB3mVs9g/{{$image}}/lg"
+                                                    alt="" class="w-full h-full absolute object-scale-down insta-0">
+                                            </a>
+                                        </li>
+                                        @endforeach
+                                    @endif
+                                @else
+                                    <img src="{{asset('front')}}/images/avatars/avatar-3.jpg" alt="">
+                                @endif
+                                  
+
                                 </ul>
 
                                 <!-- slide nav icons -->
@@ -105,15 +103,20 @@ $(document).ready(function() {
                                 </div>
 
                                 <ul class="flex justify-center gap-4 py-4 absolute w-full bottom-0">
-                                    <li uk-slideshow-item="0"><a href="#"> <img
-                                                src="https://imagedelivery.net/zfs38w7w3E1dJVvB3mVs9g/ab5546e6-2956-4d79-ca51-fb473028ab00/lg"
-                                                alt="" class="w-16 h-12 rounded"> </a></li>
-                                    <li uk-slideshow-item="1"><a href="#"> <img
-                                                src="https://imagedelivery.net/zfs38w7w3E1dJVvB3mVs9g/54093373-5cb2-42f8-ad30-73ee505a3b00/lg"
-                                                alt="" class="w-16 h-12 rounded"></a></li>
-                                    <li uk-slideshow-item="2"><a href="#"> <img
-                                                src="https://imagedelivery.net/zfs38w7w3E1dJVvB3mVs9g/48ac0748-efdd-49db-3ccd-ed9dcd9c9100/lg"
-                                                alt="" class="w-16 h-12 rounded"></a></li>
+                                @if(isset($productDetail->image) && strlen($productDetail->image) < 400)
+                                    @if(strpos($productDetail->image, ',') == false)
+                                        <img src="https://imagedelivery.net/zfs38w7w3E1dJVvB3mVs9g/{{$product->image}}/xs" alt="{{$product->name}}">
+                                    @else
+                                        @foreach(getArrayImage($productDetail->image)  as $key => $image)
+                                        
+                                        <li uk-slideshow-item="{{$key}}"><a href="#"> <img
+                                                    src="https://imagedelivery.net/zfs38w7w3E1dJVvB3mVs9g/{{$image}}/sm"
+                                                    alt="" class="w-16 h-12 rounded"> </a></li>
+                                        @endforeach
+                                    @endif
+                                @endif
+                                
+                                   
                                 </ul>
 
                             </div>

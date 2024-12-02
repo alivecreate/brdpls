@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\SearchController;
 use App\Http\Controllers\Api\ImageUploadController;
 use App\Http\Controllers\Api\OTPController;
 use App\Http\Controllers\Api\GaneshCompetitionApi;
+use App\Http\Controllers\BusinessInquiryController;
 
 
 
@@ -16,10 +17,11 @@ Route::get('/search-category', [SearchController::class, 'searchCategory']);
 Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
-
+    
 // Route::delete('/delete-image', [ImageUploadController::class, 'deleteBusinessImage']);
 Route::delete('/delete-business-logo', [ImageUploadController::class, 'deleteBusinessLogo']);
 Route::delete('/delete-business-image', [ImageUploadController::class, 'deleteBusinessImage']);
+Route::delete('/delete-business-product-image', [ImageUploadController::class, 'deleteBusinessProductImage'])->name('deleteBusinessProductImage');
 
 Route::post('/image-upload', [ImageUploadController::class, 'imageUpload']);
 Route::post('/image-uploads', [ImageUploadController::class, 'imageUploads']);
@@ -40,4 +42,6 @@ Route::post('/resend-otp', [OTPController::class, 'resendOtp']);
 
 Route::post('/resend-forgot-pw-otp', [OTPController::class, 'forgotPwOtp'])->name('forgotPwOtp');
 
+
+Route::patch('/inquiry/{type}/status', [BusinessInquiryController::class, 'updateInquiryStatus']);
 

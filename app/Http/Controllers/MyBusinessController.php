@@ -267,10 +267,27 @@ public function productUpdate(string $id, Request $request){
             ]
         );
 
+        $uploadedImages = $request->file('image');
+
+        if($uploadedImages){
+            foreach ($uploadedImages as $image) {
+                // Call the upload helper for each image and store the returned ID
+                $imageId = uploadCloudFlairImage($image);
+                $imageIds[] = $imageId;            
+                $image = implode(',', $imageIds);
+            }
+        }
+        else{
+            $image = null;
+        }
+
+
+
         $checkUpdated = $product->update([
             'name' => $request->name,
             'description' => $request->description,
             'price' => $request->price,
+            'image' => $image,
             'items' => $request->items,
             'unit' => $request->unit,
             'product_category_id' => $category->id,

@@ -173,21 +173,34 @@ $business->gallery()->save($businessGallery);
 public function deleteBusinessImage(Request $request)
 {
     // dd($request->all());
-
     $business = BusinessGallery::where('image', $request->image_id)->first();
     // dd($business);
-
-
-   
-if ($business) {
-    $business->delete();
-    // dd('updated');
-        deleteCloudImage($request->image_id);
-        return response()->json(['success' => true, 'message' => 'Image Deleted.'], 200);
-    } else {
-        // Handle the case where the business was not found
-        return response()->json(['success' => false, 'message' => 'Business not found.'], 404);
-    }
-  
+    if ($business) {
+        $business->delete();
+        // dd('updated');
+            deleteCloudImage($request->image_id);
+            return response()->json(['success' => true, 'message' => 'Image Deleted.'], 200);
+        } else {
+            // Handle the case where the business was not found
+            return response()->json(['success' => false, 'message' => 'Business not found.'], 404);
+        }
 }
+
+public function deleteBusinessProductImage(Request $request)
+{
+    return response()->json(['success' => true, 'message' => 'Image Deleted.'], 200);
+
+    dd($request->all());
+    $business = BusinessGallery::where('image', $request->image_id)->first();
+    // dd($business);
+    if ($business) {
+        $business->delete();
+        // dd('updated');
+            deleteCloudImage($request->image_id);
+            return response()->json(['success' => true, 'message' => 'Image Deleted.'], 200);
+        } else {
+            // Handle the case where the business was not found
+            return response()->json(['success' => false, 'message' => 'Business not found.'], 404);
+        }
+    }
 }

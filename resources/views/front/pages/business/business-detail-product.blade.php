@@ -29,7 +29,7 @@ $(document).ready(function() {
             <div class="lg:max-w-full w-full">
                 @include('front.pages.business.contents.business-detail-tab')
                 <div>
-                    <div class="grid md:grid-cols-4 sm:grid-cols-3 grid-cols-2 gap-2.5">
+                    <div class="grid md:grid-cols-3 sm:grid-cols-4 grid-cols-2 gap-2.5">
 
                         @foreach($products as $product)
 

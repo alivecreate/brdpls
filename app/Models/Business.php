@@ -90,6 +90,14 @@ public function setWebsiteAttribute($value)
       return $url;
   }
 
+  
+  public function inquiries()
+  {
+      return $this->hasMany(BusinessInquiry::class);
+  }
+  
+
+
 
 }
 

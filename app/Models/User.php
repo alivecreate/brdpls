@@ -87,4 +87,11 @@ class User extends Authenticatable
     return $hasVoted;
 }
 
+public function businesses()
+{
+    return $this->hasMany(Business::class);
+}
+
+
+
 }

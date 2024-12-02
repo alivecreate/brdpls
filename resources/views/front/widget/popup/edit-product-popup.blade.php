@@ -12,23 +12,23 @@
         <div>
 
             <div class="w-3/5 bg-white p-4">
-                <form class="needs-validation data-form edit-form" action=""
-                    method="POST" enctype="multipart/form-data">
+                <form class="needs-validation data-form edit-form" action="" method="POST"
+                    enctype="multipart/form-data">
                     @csrf
-                     @method('PUT')
-                    <input type="hidden" id="id"  name="id" value="{{ $myBusiness->id }}">
+                    @method('PUT')
+                    <input type="hidden" id="id" name="id" value="{{ $myBusiness->id }}">
 
                     <div class="space-y-4">
 
                         <div class="md:flex items-center">
                             <div class="flex-1 max-md:mt-2">
-                                <input required list="categories" id="product-category"  type="text" 
-                                    name="product_category" 
-                                    placeholder="Choose category" class="w-full text-capitalize product-category">
+                                <input required list="categories" id="product-category" type="text"
+                                    name="product_category" placeholder="Choose category"
+                                    class="w-full text-capitalize product-category">
 
                                 <datalist id="categories" class='text-capitalize'>
                                     @foreach($productCategories as $productCategory)
-                                        <option value="{{$productCategory->name}}">{{$productCategory->name}}</option>
+                                    <option value="{{$productCategory->name}}">{{$productCategory->name}}</option>
                                     @endforeach
                                 </datalist>
 
@@ -36,23 +36,25 @@
                         </div>
                         <div class="md:flex items-center">
                             <div class="flex-1 max-md:mt-2">
-                                <input type="text" required id="name" name="name" placeholder="Product Name" class="w-full">
+                                <input type="text" required id="name" name="name" placeholder="Product Name"
+                                    class="w-full">
                             </div>
                         </div>
 
                         <div class="md:flex items-center">
                             <div class="flex-1 max-md:mt-2">
-                                <input type="text" required id="price" name="price" placeholder="Price in INR (₹)" class="w-full">
+                                <input type="text" required id="price" name="price" placeholder="Price in INR (₹)"
+                                    class="w-full">
                             </div>
                         </div>
 
                         <div class="flex md:flex items-center">
                             <div class="flex mr-2">
-                                <input type="text" id="items" name="items" placeholder="1 Pcs, 1 Kg, 100 Gm etc" class="w-full" min="1"
-                                    
+                                <input type="text" id="items" name="items" placeholder="1 Pcs, 1 Kg, 100 Gm etc"
+                                    class="w-full" min="1"
                                     oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1').replace(/^0+(\d)/, '$1')">
 
-                                </div>
+                            </div>
 
                             <div class="flex">
                                 <select class="flex !rounded-md" id="unit" name="unit" value="">
@@ -69,28 +71,27 @@
                         </div>
 
 
-                            <div class="editor-toolbar items-center">
-                                <button type="button" class='mr-2' onclick="format('bold')"><strong>B</strong></button>
-                                <button type="button" class='mr-2' onclick="format('italic')"><em>I</em></button>
-                                <button type="button" class='mr-2 items-center'
-                                    onclick="format('underline')"><u>U</u></button>
+                        <div class="editor-toolbar items-center">
+                            <button type="button" class='mr-2' onclick="format('bold')"><strong>B</strong></button>
+                            <button type="button" class='mr-2' onclick="format('italic')"><em>I</em></button>
+                            <button type="button" class='mr-2 items-center'
+                                onclick="format('underline')"><u>U</u></button>
 
-                                <button type="button" class='mr-2 flex items-center'
-                                    onclick="format('insertUnorderedList')">
-                                    <ion-icon class='text-lg' name="list"></ion-icon>
-                                </button>
-                                <button type="button" class='mr-2 flex items-center'
-                                    onclick="format('insertOrderedList')">
-                                    <ion-icon class='text-lg' name="list"></ion-icon>
-                                </button>
-                            </div>
+                            <button type="button" class='mr-2 flex items-center'
+                                onclick="format('insertUnorderedList')">
+                                <ion-icon class='text-lg' name="list"></ion-icon>
+                            </button>
+                            <button type="button" class='mr-2 flex items-center' onclick="format('insertOrderedList')">
+                                <ion-icon class='text-lg' name="list"></ion-icon>
+                            </button>
+                        </div>
 
-                            
 
-                            <div id="edit-editor" class="editor description" contenteditable="true"></div>
 
-                            <textarea id="editTextArea" placeholder='product description' name="description" class="description"
-                            style="display:none;"></textarea>
+                        <div id="edit-editor" class="editor description" contenteditable="true"></div>
+
+                        <textarea id="editTextArea" placeholder='product description' name="description"
+                            class="description" style="display:none;"></textarea>
 
 
                         <div class="md:flex items-center">
@@ -103,6 +104,15 @@
                                 </p>
 
                             </div>
+
+
+                        </div>
+
+
+                        <div class="uk-slider-container pb-1">
+                                <ul id="imageMultiplePreview" class="flex-wrap flex imageDeletePreview"
+                                    style="transform: translate3d(0px, 0px, 0px);">
+                            </ul>
                         </div>
 
                         <script>

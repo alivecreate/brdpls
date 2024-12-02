@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
 use App\Models\Business;
+use App\Models\Product;
+
 use App\Models\BusinessGallery;
 use Log;
 use Auth;
@@ -203,4 +205,68 @@ if ($business) {
         return response()->json(['success' => false, 'message' => 'Business not found.'], 404);
     }
 }
+
+
+
+public function deleteBusinessProductImage(Request $request)
+{
+
+
+
+    // return response()->json(['success' => true, 'message' => 'Image Deleted.'], 200);
+    // dd($request->all());
+
+        // deleteCloudImage($request->image_id);
+
+    $business = Business::where(['user_id' => $request->business_id, 'user_id' => $request->user_id])->first();
+
+
+
+    // dd($business);
+
+    if ($business) {
+
+        $product = Product::where(['id' => $request->product_id, 'business_id' => $request->business_id])->first();
+
+        if($product){
+            // dd($product->image);
+
+            $deleteCloudImage = deleteCloudImage($request->image_id);
+            $deleteCloudImage = $deleteCloudImage->getOriginalContent();
+            // Access specific keys in the original content
+            $success = $deleteCloudImage['success'];
+    
+            // dd($product->image, $request->image_id);
+            if($product->image != $request->image_id){
+                $newImage = removeStringFromCommaSeparated($product->image, $request->image_id);
+            }else{
+                $newImage = null;
+            }
+            
+            $product->update([
+                'image' => $newImage,
+            ]);
+
+            // dd($imgs);
+
+            if($success){
+                removeStringFromCommaSeparated($product->image, $request->image_id);
+                return response()->json(['success' => true, 'message' => 'Image Deleted.'], 200);
+            }
+            removeStringFromCommaSeparated($product->image, $request->image_id);
+            
+            return response()->json(['success' => true, 'message' => 'Image Deleted.'], 200);
+            // return response()->json(['error' => false, 'message' => 'Something went wrong.'], 404);
+
+        }
+
+
+        // dd($success);
+
+        } else {
+            // Handle the case where the business was not found
+            return response()->json(['error' => false, 'message' => 'Something went wrong.'], 404);
+        }
+    }
+
 }

@@ -5,10 +5,10 @@
 <script src="{{asset('front')}}/js/custom.js"></script>
 <script src="https://www.google.com/recaptcha/api.js"></script>
 <script>
-   function onSubmit(token) {
-     document.getElementById("demo-form").submit();
-   }
- </script>
+function onSubmit(token) {
+    document.getElementById("demo-form").submit();
+}
+</script>
 
 
 
@@ -297,7 +297,7 @@ function deleteImage(imageId) {
     var user_id = document.querySelector('meta[name="user-id"]').getAttribute('content');
 
     // Send the delete request using AJAX
-    fetch(`/api/delete-business-logo?image_id=${imageId}&business_id=${business_id}&user_id=${user_id}`, {
+    fetch(`/api/delete-business-product-image?image_id=${imageId}&business_id=${business_id}&user_id=${user_id}`, {
             method: 'DELETE',
             headers: {
                 'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute(
@@ -309,7 +309,52 @@ function deleteImage(imageId) {
         .then(data => {
             if (data.success) {
                 // alert('Image deleted successfully.');
-                toastr.success('Logo Deleted Successfully!');
+                toastr.success('Image Deleted Successfully!');
+            } else {
+
+                toastr.warning('Someting Went Wrong!');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+
+}
+
+
+function deleteProductImage(imageId, productId) {
+    var formData = new FormData();
+
+    formData.append('image_id', imageId);
+
+    var business_id = document.querySelector('meta[name="business-id"]').getAttribute('content');
+    var user_id = document.querySelector('meta[name="user-id"]').getAttribute('content');
+
+    // Send the delete request using AJAX
+    fetch(`/api/delete-business-product-image?image_id=${imageId}&product_id=${productId}&business_id=${business_id}&user_id=${user_id}`, {
+            method: 'DELETE',
+            headers: {
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute(
+                    'content') // For Laravel CSRF protection
+            },
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                // alert('Image deleted successfully.');
+
+                // const ImageElements = document.getElementsByClassName(imageId);
+
+
+                // Remove the row div from the DOM
+                $(`.${imageId}`).remove();
+
+                // if (ImageElements) {
+                //     ImageElements.remove();
+                // }
+
+                toastr.success('Image Deleted Successfully!');
             } else {
 
                 toastr.warning('Someting Went Wrong!');
@@ -464,40 +509,40 @@ $(document).ready(function() {
     $('#rating-stars li, #rating-star-popup li').on('click', function() {
         var rating = $(this).data('star');
         // alert('rating - ' + rating);
-        
+
         $('#review-rating').val(rating); // Filled star
 
         UIkit.modal('#add-business-review-popup').show(); // Fallback modal for unsupported browsers
-        
+
         // alert(rating + '- rating-stars');
 
         // Change star colors
 
         $('#rating-stars li').each(function(index) {
-    if (index < rating) {
-        $(this).find('ion-icon').attr('name', 'star'); // Filled star
-        $(this).find('ion-icon').css('color', 'white'); // Filled star color
-        $(this).css('background', 'red'); // Background red
-    } else {
-        $(this).find('ion-icon').attr('name', 'star-outline'); // Unfilled star
-        $(this).find('ion-icon').css('color', ''); // Reset color
-        $(this).css('color', ''); // Reset default color
-        $(this).css('background', ''); // Reset background
-    }
-});
+            if (index < rating) {
+                $(this).find('ion-icon').attr('name', 'star'); // Filled star
+                $(this).find('ion-icon').css('color', 'white'); // Filled star color
+                $(this).css('background', 'red'); // Background red
+            } else {
+                $(this).find('ion-icon').attr('name', 'star-outline'); // Unfilled star
+                $(this).find('ion-icon').css('color', ''); // Reset color
+                $(this).css('color', ''); // Reset default color
+                $(this).css('background', ''); // Reset background
+            }
+        });
 
-$('#rating-star-popup li').each(function(index) {
-    if (index < rating) {
-        $(this).find('ion-icon').attr('name', 'star'); // Filled star
-        $(this).find('ion-icon').css('color', 'white'); // Filled star color
-        $(this).css('background', 'red'); // Background red
-    } else {
-        $(this).find('ion-icon').attr('name', 'star-outline'); // Unfilled star
-        $(this).find('ion-icon').css('color', ''); // Reset color
-        $(this).css('color', ''); // Reset default color
-        $(this).css('background', ''); // Reset background
-    }
-});
+        $('#rating-star-popup li').each(function(index) {
+            if (index < rating) {
+                $(this).find('ion-icon').attr('name', 'star'); // Filled star
+                $(this).find('ion-icon').css('color', 'white'); // Filled star color
+                $(this).css('background', 'red'); // Background red
+            } else {
+                $(this).find('ion-icon').attr('name', 'star-outline'); // Unfilled star
+                $(this).find('ion-icon').css('color', ''); // Reset color
+                $(this).css('color', ''); // Reset default color
+                $(this).css('background', ''); // Reset background
+            }
+        });
 
 
         // Send AJAX request to Laravel
@@ -547,6 +592,11 @@ $(document).ready(function() {
         let dataId = $(this).data('id'); // Retrieves the value of data-id
         let dataAction = $(this).data('action'); // Retrieves the value of data-action
 
+        let dataImages = $(this).data('images');
+        // alert(dataImages.length);
+
+
+
         // alert($(this).data('product-category'));
 
         $('#edit-product-popup .product-category').val($(this).data('product-category'));
@@ -562,6 +612,43 @@ $(document).ready(function() {
         $('#edit-product-popup .edit-form').attr('action', dataAction);
         $('#edit-product-popup .delete-title').text('Delete ' + dataType);
         $('#edit-product-popup .data-name').text(dataType + ': ' + dataName);
+
+        const imageArray = dataImages.split(',');
+
+        // alert(count(imageArray));
+
+        // alert(imageArray.length); // Output: 3
+
+        // Select the container where the HTML will be added
+
+        const imageDeletePreview = document.getElementById('imageMultiplePreview');
+
+        imageDeletePreview.innerHTML = '';
+
+        // Loop through the array and generate HTML
+        if (dataImages.length > 0) {
+
+            imageArray.forEach((image, index) => {
+                // Create an HTML block dynamically
+                const html = `
+        <li class="lg:w-1/4 sm:w-1/3 w-1/2 p-4 ${image}" tabindex="-1">
+            <div class="card uk-transition-toggle">
+                <div class="card-media sm:aspect-[2/1.9] h-30">
+                    <img src="https://imagedelivery.net/zfs38w7w3E1dJVvB3mVs9g/${image}/sm" alt="Image ${index + 1}">
+                    <div class="card-overly"></div>
+                </div>
+                <button type="button"
+                    onclick="deleteProductImage('${image}', '${dataId}')"
+                    class="uk-transition-fade absolute top-0 right-0 m-2 z-10 bg-black/20 rounded-full flex p-1 thumb-delete">
+                    <ion-icon name="close" class="text-white md hydrated icon" role="img" aria-label="close"></ion-icon>
+                </button>
+            </div>
+        </li>
+    `;
+
+                imageDeletePreview.insertAdjacentHTML('beforeend', html);
+            });
+        }
     });
 
 
@@ -604,12 +691,12 @@ function shareData(data) {
             .then(() => console.log('Data shared successfully'))
             .catch((error) => console.error('Error sharing:', error));
     } else {
-        
+
         alert(data);
 
         console.log('Browser does not support navigator.share');
         UIkit.modal('#share-popup').show(); // Fallback modal for unsupported browsers
-        
+
     }
 }
 
@@ -618,16 +705,17 @@ document.querySelectorAll('.shareBtn').forEach(function(button) {
 
     button.addEventListener('click', function() {
         // alert('test');
-        
-        
+
+
         const dataUrl = this.getAttribute('data-url');
 
-        var message = window.location.href + "\n\nCheck out this product on Barodaplus! Discover more details and shop now:\n\n";
+        var message = window.location.href +
+            "\n\nCheck out this product on Barodaplus! Discover more details and shop now:\n\n";
 
 
         const data = {
             title: 'My Awesome Website',
-            url: dataUrl  // Current page URL
+            url: dataUrl // Current page URL
             // url: window.location.href+'nCheck out this product on Barodaplus! Discover more details and shop now:\n{$url}' // Current page URL
         };
 
@@ -640,8 +728,8 @@ document.querySelectorAll('.shareBtn').forEach(function(button) {
 
 <script>
 function shareData(data = null) {
-    
-    
+
+
     if (navigator.share) {
         navigator.share(data)
             .then(() => console.log('Data shared successfully'))
@@ -657,18 +745,34 @@ function shareData(data = null) {
     }
 }
 
-// Adding event listener to the button
-// document.getElementById('shareBtn').addEventListener('click', function() {
-//     const data = {
-//         title: 'My Awesome Website',
-//         text: 'Check out this awesome website!',
-//         url: window.location.href // Current page URL
-//     };
-//     alert('test');
 
-//     // Call shareData function
-//     shareData(data);
-// });
+function updateInquiryStatus(inquiryId, newStatus) {
+    const yourToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+    // alert(yourToken);
+
+    fetch(`/api/inquiry/${inquiryId}/status`, {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${yourToken}`, // Replace `yourToken` with the user's auth token
+        },
+        body: JSON.stringify({ status: newStatus, id: inquiryId})
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            // alert(data.message);
+            // Optionally update the UI to reflect the status change
+            // document.querySelector(`#inquiry-status-${inquiryId}`).textContent = newStatus;
+            
+            toastr.success('inquiry updated Successfully!');
+        } else {
+            alert(data.message);
+        }
+    })
+    .catch(error => console.error('Error:', error));
+}
+
 
 </script>
 
