@@ -48,7 +48,8 @@ class GroupController extends Controller
 
         // $groupId = Str::random(15);
         // $groupId = generateRandomNumericString(10);
-        // return response()->json(['group_id' => $groupId]);
+
+        // return response()->json(['group_id' => $groupId]); 
 
         Group::create([
             'name' => $request->name,

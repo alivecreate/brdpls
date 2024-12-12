@@ -165,7 +165,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 formData.append('user_id', document.querySelector('meta[name="user-id"]').getAttribute(
                     'content'));
 
-                fetch('http://localhost:8000/api/image-upload', {
+                fetch('/api/image-upload', {
                         method: 'POST',
                         body: formData,
                         headers: {
